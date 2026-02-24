@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   title: 'Kaleos | AI That Does Your Busywork',
   description:
     'We build AI systems that handle the repetitive work so you can focus on what matters.',
+  icons: {
+    icon: '/icon.svg',
+    apple: '/apple-icon',
+  },
 }
 
 export default function RootLayout({
