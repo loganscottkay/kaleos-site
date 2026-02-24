@@ -52,6 +52,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://kaleoshq.com',
   },
+  verification: {
+    google: 'u9TYfcPGp3i-VQfEiGwIpZQjFveJoI0uijF9d0rev4U',
+  },
 }
 
 const jsonLd = {
