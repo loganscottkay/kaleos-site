@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import Image from 'next/image'
 import { NavBar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
@@ -188,12 +187,14 @@ export default function AboutPage() {
             </h2>
           </AnimateIn>
           <AnimateIn delay={150}>
-            <Link
-              href="/audit"
+            <a
+              href="https://calendly.com/logan-kaleoshq/30min"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center px-8 py-3.5 rounded-xl bg-white text-navy hover:bg-white/90 font-medium transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-xl hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98]"
             >
               Book a Discovery Call
-            </Link>
+            </a>
           </AnimateIn>
         </div>
       </section>

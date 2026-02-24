@@ -1,5 +1,4 @@
 import { Fragment } from 'react'
-import Link from 'next/link'
 import { NavBar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
 import { GlassCard } from '@/components/GlassCard'
@@ -120,12 +119,14 @@ export default function Home() {
           </AnimateIn>
 
           <AnimateIn delay={400} distance={10}>
-            <Link
-              href="/audit"
+            <a
+              href="https://calendly.com/logan-kaleoshq/30min"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center px-8 py-3.5 rounded-xl bg-white/90 backdrop-blur-sm hover:bg-white text-navy font-medium transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-xl hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98]"
             >
               Get Started
-            </Link>
+            </a>
           </AnimateIn>
 
           <AnimateIn delay={600} distance={10}>
@@ -268,12 +269,14 @@ export default function Home() {
             </p>
           </AnimateIn>
           <AnimateIn delay={200}>
-            <Link
-              href="/audit"
+            <a
+              href="https://calendly.com/logan-kaleoshq/30min"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center px-8 py-3.5 rounded-xl bg-white text-navy hover:bg-white/90 font-medium transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-xl hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98]"
             >
               Request a Free Discovery Call
-            </Link>
+            </a>
           </AnimateIn>
         </div>
       </section>
