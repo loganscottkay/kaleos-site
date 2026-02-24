@@ -18,6 +18,11 @@
 - Table: leads (name, email, company, pain_type, desired_outcome, created_at)
 - RLS enabled with public insert policy
 
+## Booking
+- Calendly: https://calendly.com/logan-kaleoshq/30min
+- "Get Started" and CTA buttons link to Calendly
+- Audit page form submits to Supabase leads table
+
 ## Design Rules
 - Glassmorphic frosted cards on dark section backgrounds
 - Serif headings (Playfair Display), sans-serif body

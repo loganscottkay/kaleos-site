@@ -7,9 +7,18 @@ import { AuditForm } from '@/components/AuditForm'
 import { FAQ } from '@/components/FAQ'
 
 export const metadata: Metadata = {
-  title: 'Discovery Call | Kaleos',
+  title: 'AI Ops Audit',
   description:
-    "We'll map out your workflows, find the bottlenecks, and show you exactly what can be automated and what the ROI looks like.",
+    'Get a full breakdown of how AI can save your business time and money. Starting at $1,500.',
+  alternates: {
+    canonical: 'https://kaleoshq.com/audit',
+  },
+  openGraph: {
+    title: 'AI Ops Audit | Kaleos',
+    description:
+      'Get a full breakdown of how AI can save your business time and money. Starting at $1,500.',
+    url: 'https://kaleoshq.com/audit',
+  },
 }
 
 const HERO_BG =

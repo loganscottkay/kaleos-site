@@ -6,9 +6,18 @@ import { GlassCard } from '@/components/GlassCard'
 import { AnimateIn } from '@/components/AnimateIn'
 
 export const metadata: Metadata = {
-  title: 'About | Kaleos',
+  title: 'About',
   description:
-    'I worked on AI implementation at Harvard Business School. Now I build AI systems for businesses like yours.',
+    'Logan Kay built AI systems at Harvard Business School. Now he builds them for businesses like yours.',
+  alternates: {
+    canonical: 'https://kaleoshq.com/about',
+  },
+  openGraph: {
+    title: 'About | Kaleos',
+    description:
+      'Logan Kay built AI systems at Harvard Business School. Now he builds them for businesses like yours.',
+    url: 'https://kaleoshq.com/about',
+  },
 }
 
 const HERO_BG =
@@ -99,7 +108,7 @@ export default function AboutPage() {
             <AnimateIn delay={200} className="w-full md:w-auto shrink-0">
               <div className="w-full max-w-[400px] mx-auto md:mx-0">
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-xl shadow-black/10 relative">
-                  <Image src="/photo.png" alt="Logan Kay" fill className="object-cover" sizes="(max-width: 768px) 100vw, 400px" />
+                  <Image src="/photo.png" alt="Logan Kay, Founder of Kaleos" fill className="object-cover" sizes="(max-width: 768px) 100vw, 400px" />
                 </div>
                 <p className="mt-4 text-navy font-semibold text-center">
                   Logan Kay, Founder
