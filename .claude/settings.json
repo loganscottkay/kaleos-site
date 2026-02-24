@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "supabase": {
+      "command": "npx",
+      "args": ["-y", "@supabase/mcp-server", "--supabase-url", "https://fxykyvdnastatdddzoxg.supabase.co", "--supabase-key", "sb_publishable_toIA9YN50VwTWA5jJ7Wo7g_chwQrr9E"]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-playwright"]
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-context7"]
+    },
+    "browser": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-browser"]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/logan/kaleos-site"]
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"]
+    }
+  }
+}
