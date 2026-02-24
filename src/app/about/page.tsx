@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { NavBar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
 import { GlassCard } from '@/components/GlassCard'
@@ -98,8 +99,8 @@ export default function AboutPage() {
 
             <AnimateIn delay={200} className="w-full md:w-auto shrink-0">
               <div className="w-full max-w-[400px] mx-auto md:mx-0">
-                <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-xl shadow-black/10">
-                  <img src="/photo.png" alt="Logan Kay" className="w-full h-full object-cover" />
+                <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-xl shadow-black/10 relative">
+                  <Image src="/photo.png" alt="Logan Kay" fill className="object-cover" sizes="(max-width: 768px) 100vw, 400px" />
                 </div>
                 <p className="mt-4 text-navy font-semibold text-center">
                   Logan Kay, Founder

@@ -52,12 +52,19 @@ export function AuditForm() {
   if (status === 'success') {
     return (
       <div className="text-center py-12">
-        <div className="text-2xl font-semibold text-navy mb-4">Thank you.</div>
+        <div className="mx-auto mb-5 w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center">
+          <svg className="w-7 h-7 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <div className="text-2xl font-semibold text-emerald-700 mb-3">
+          Thank you! We&apos;ll get back to you within 24 hours.
+        </div>
         <p className="text-slate-500 mb-8">
-          We&apos;ll get back to you within 24 hours.
+          Your request has been received.
         </p>
-        <div className="space-y-2 text-sm text-slate-400">
-          <p className="font-medium text-slate-500">Next steps:</p>
+        <div className="inline-block text-left space-y-2 text-sm text-slate-500">
+          <p className="font-medium text-slate-600">Next steps:</p>
           <p>1. We review your submission</p>
           <p>2. We schedule a discovery call</p>
           <p>3. Audit delivered within 2 weeks</p>
@@ -149,7 +156,12 @@ export function AuditForm() {
       </div>
 
       {status === 'error' && (
-        <p className="text-red-500 text-sm">{errorMessage}</p>
+        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
+          <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          {errorMessage}
+        </div>
       )}
 
       <button

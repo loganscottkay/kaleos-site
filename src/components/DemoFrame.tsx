@@ -94,6 +94,7 @@ const skillOutput = [
 
 export function DemoFrame() {
   const [activeTab, setActiveTab] = useState<Tab>('Approvals')
+  const [actionedItems, setActionedItems] = useState<Record<number, 'approved' | 'rejected'>>({})
 
   return (
     <div className="rounded-2xl overflow-hidden bg-white/6 backdrop-blur-xl border border-white/10 ring-1 ring-white/5 shadow-2xl shadow-teal-500/10 animate-[float_6s_ease-in-out_infinite]">
@@ -153,12 +154,35 @@ export function DemoFrame() {
                   <span className="text-white/30 text-xs">{item.time}</span>
                 </div>
                 <div className="flex gap-2">
-                  <button className="px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 text-xs font-medium border border-emerald-500/20 hover:bg-emerald-500/20 transition-colors btn-shimmer">
-                    Approve
-                  </button>
-                  <button className="px-3 py-1.5 rounded-lg bg-red-500/10 text-red-400 text-xs font-medium border border-red-500/20 hover:bg-red-500/20 transition-colors btn-shimmer">
-                    Reject
-                  </button>
+                  {actionedItems[i] ? (
+                    <span className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 ${
+                      actionedItems[i] === 'approved'
+                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                        : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                    }`}>
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d={
+                          actionedItems[i] === 'approved' ? 'M5 13l4 4L19 7' : 'M6 18L18 6M6 6l12 12'
+                        } />
+                      </svg>
+                      {actionedItems[i] === 'approved' ? 'Approved' : 'Rejected'}
+                    </span>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => setActionedItems(prev => ({ ...prev, [i]: 'approved' }))}
+                        className="px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 text-xs font-medium border border-emerald-500/20 hover:bg-emerald-500/20 transition-colors btn-shimmer"
+                      >
+                        Approve
+                      </button>
+                      <button
+                        onClick={() => setActionedItems(prev => ({ ...prev, [i]: 'rejected' }))}
+                        className="px-3 py-1.5 rounded-lg bg-red-500/10 text-red-400 text-xs font-medium border border-red-500/20 hover:bg-red-500/20 transition-colors btn-shimmer"
+                      >
+                        Reject
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             ))}
