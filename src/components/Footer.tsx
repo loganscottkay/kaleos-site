@@ -6,6 +6,10 @@ export function Footer() {
         <a href="https://kaleoshq.com" className="hover:text-slate-600 transition-colors">
           kaleoshq.com
         </a>
+        {' '}&middot;{' '}
+        <a href="mailto:logan@kaleoshq.com" className="hover:text-slate-600 transition-colors">
+          logan@kaleoshq.com
+        </a>
       </div>
     </footer>
   )
