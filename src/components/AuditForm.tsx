@@ -33,6 +33,8 @@ export function AuditForm() {
     setErrorMessage('')
 
     try {
+      // TODO: Set up a Supabase database webhook or Zapier integration
+      // to notify logan@kaleoshq.com when a new lead is inserted.
       const { error } = await supabase.from('leads').insert({
         name: formData.name,
         email: formData.email,
