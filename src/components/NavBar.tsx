@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 const links = [
   { href: '/', label: 'Home' },
   { href: '/audit', label: 'Audit' },
+  { href: '/blog', label: 'Blog' },
   { href: '/about', label: 'About' },
 ]
 
@@ -38,7 +39,7 @@ export function NavBar() {
               key={link.href}
               href={link.href}
               className={`text-sm tracking-wide transition-colors ${
-                pathname === link.href
+                pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
                   ? 'text-navy font-medium'
                   : 'text-slate-400 hover:text-navy'
               }`}
@@ -89,7 +90,7 @@ export function NavBar() {
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className={`text-sm tracking-wide transition-colors ${
-                  pathname === link.href
+                  pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
                     ? 'text-navy font-medium'
                     : 'text-slate-400 hover:text-navy'
                 }`}
