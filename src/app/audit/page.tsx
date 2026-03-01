@@ -41,12 +41,12 @@ const steps = [
   },
   {
     step: '02',
-    title: 'We hop on a discovery call',
+    title: 'Hop on a discovery call',
     desc: '30 minutes. We learn how your business actually operates.',
   },
   {
     step: '03',
-    title: 'You get the full audit',
+    title: 'Get the full audit',
     desc: 'Delivered within 2 weeks. No fluff, just numbers and a plan.',
   },
 ]

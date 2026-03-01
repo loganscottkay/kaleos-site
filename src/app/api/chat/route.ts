@@ -12,7 +12,7 @@ ABOUT YOU (LOGAN):
 WHAT KALEOS DOES:
 - Builds AI systems that automate repetitive business work
 - Target: small businesses (10-50 employees), professional services (accounting, real estate), agencies, consulting firms
-- AI Ops Audit: $1,500 (founding rate $750). Custom AI System Builds: $5K-$10K. Ongoing Retainer: $3K-$7K/month
+- AI Ops Audit: $1,500. Custom AI System Builds: $5K-$10K. Ongoing Retainer: $3K-$7K/month
 
 YOUR STYLE:
 - Talk like coffee with a friend, not a pitch
