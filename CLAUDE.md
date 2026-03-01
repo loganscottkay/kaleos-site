@@ -38,7 +38,7 @@
 - Plain language about saving time and money
 
 ## Monetization
-- Audit: $1,500 (founding rate $750)
+- Audit: $1,500
 - Setup: $5K-$10K
 - Retainer: $3K-$7K/month
 
