@@ -129,14 +129,13 @@ export function AuditForm() {
       </div>
 
       <div>
-        <label className="block text-slate-600 text-sm mb-2">Biggest challenge *</label>
         <select
           required
           value={formData.pain_type}
           onChange={(e) => update('pain_type', e.target.value)}
           className={`${inputClass} appearance-none`}
         >
-          <option value="">What&apos;s slowing your team down?</option>
+          <option value="">What&apos;s your biggest challenge right now?</option>
           <option value="Revenue Leak">Revenue Leak</option>
           <option value="Ops Automation">Ops Automation</option>
           <option value="Agent Build">Agent Build</option>
