@@ -27,7 +27,7 @@ export function NavBar() {
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link
           href="/"
-          className="text-navy font-semibold text-lg tracking-tight flex items-center gap-4"
+          className="text-navy font-semibold text-lg tracking-tight flex items-center gap-6"
         >
           <img src="/kaleos-logo.png" width={28} height={28} alt="Kaleos" style={{ borderRadius: 6, objectFit: 'cover' }} />
           <span>Kaleos</span>
