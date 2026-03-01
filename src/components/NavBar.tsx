@@ -25,12 +25,14 @@ export function NavBar() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b border-slate-200/60 transition-all duration-300 ${scrolled ? 'bg-white/90 shadow-sm' : 'bg-white/70'}`}>
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+        <Link href="/" style={{ position: 'absolute', left: 20, top: '50%', transform: 'translateY(-50%)' }}>
+          <img src="/kaleos-logo.png" width={28} height={28} alt="Kaleos" style={{ borderRadius: 6, objectFit: 'cover' }} />
+        </Link>
         <Link
           href="/"
-          className="text-navy font-semibold text-lg tracking-tight flex items-center gap-6"
+          className="text-navy font-semibold text-lg tracking-tight"
         >
-          <img src="/kaleos-logo.png" width={28} height={28} alt="Kaleos" style={{ borderRadius: 6, objectFit: 'cover' }} />
-          <span>Kaleos</span>
+          Kaleos
         </Link>
 
         {/* Desktop */}
