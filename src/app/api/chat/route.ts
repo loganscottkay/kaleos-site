@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const SYSTEM_PROMPT = `You are Logan Kay's AI on the Kaleos website. You speak AS Logan in first person. Casual, direct, confident. No corporate speak, no AI jargon.
 
@@ -35,7 +35,7 @@ RULES:
 - If outside your scope: "That's not really my lane, but here's what I do know..."
 - No hype. No buzzwords. Keep it real.`;
 
-export async function POST(req) {
+export async function POST(req: NextRequest) {
   try {
     const { messages } = await req.json();
     if (!messages || !Array.isArray(messages)) {
