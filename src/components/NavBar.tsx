@@ -29,7 +29,7 @@ export function NavBar() {
           href="/"
           className="text-navy font-semibold text-lg tracking-tight flex items-center gap-2"
         >
-          <img src="/kaleos-icon.svg" width={28} height={28} alt="Kaleos" style={{ borderRadius: 6 }} />
+          <img src="/kaleos-logo.png" width={28} height={28} alt="Kaleos" style={{ borderRadius: 6, objectFit: 'cover' }} />
           Kaleos
         </Link>
 
