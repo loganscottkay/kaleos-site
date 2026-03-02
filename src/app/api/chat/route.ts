@@ -44,6 +44,13 @@ export async function POST(req: NextRequest) {
     if (messages.length > 30) {
       return NextResponse.json({ error: "Conversation too long" }, { status: 400 });
     }
+
+    // Easter egg
+    const lastUserMsg = [...messages].reverse().find((m: { role: string }) => m.role === "user");
+    if (lastUserMsg && (lastUserMsg as { content: string }).content.trim().toLowerCase() === "chungus aioli") {
+      return NextResponse.json({ content: "Congratulations you have unlocked mollick doing tricks on it" });
+    }
+
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
