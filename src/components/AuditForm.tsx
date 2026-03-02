@@ -8,6 +8,7 @@ export function AuditForm() {
     name: '',
     email: '',
     company: '',
+    pain_type: '',
     desired_outcome: '',
     honeypot: '',
   })
@@ -22,7 +23,7 @@ export function AuditForm() {
 
     if (formData.honeypot) return
 
-    if (!formData.name || !formData.email || !formData.company) {
+    if (!formData.name || !formData.email || !formData.company || !formData.pain_type) {
       setErrorMessage('Please fill in all required fields.')
       setStatus('error')
       return
@@ -38,6 +39,7 @@ export function AuditForm() {
         name: formData.name,
         email: formData.email,
         company: formData.company,
+        pain_type: formData.pain_type,
         desired_outcome: formData.desired_outcome,
       })
 
@@ -127,9 +129,22 @@ export function AuditForm() {
       </div>
 
       <div>
-        <p className="text-slate-700 font-medium text-sm mb-1">
-          What&apos;s your biggest challenge right now?
-        </p>
+        <label className="block text-slate-600 text-sm mb-2">What&apos;s your biggest challenge right now? *</label>
+        <select
+          required
+          value={formData.pain_type}
+          onChange={(e) => update('pain_type', e.target.value)}
+          className={`${inputClass} appearance-none`}
+        >
+          <option value="">Select one...</option>
+          <option value="Revenue Leak">Revenue Leak</option>
+          <option value="Ops Automation">Ops Automation</option>
+          <option value="Agent Build">Agent Build</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div>
         <label className="block text-slate-600 text-sm mb-2">
           Desired Outcome
         </label>
