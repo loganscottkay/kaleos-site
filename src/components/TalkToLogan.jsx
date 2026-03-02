@@ -13,6 +13,7 @@ export default function TalkToLogan() {
   const endRef = useRef(null);
   const inputRef = useRef(null);
   const turns = useRef(0);
+  const sessionId = useRef(crypto.randomUUID());
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);
   useEffect(() => { if (isOpen && inputRef.current) inputRef.current.focus(); }, [isOpen]);
   useEffect(() => { const t = setTimeout(() => setPulse(false), 8000); return () => clearTimeout(t); }, []);
@@ -25,7 +26,7 @@ export default function TalkToLogan() {
     setLoading(true);
     turns.current += 1;
     try {
-      const res = await fetch("/api/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ messages: updated.map((m) => ({ role: m.role, content: m.content })) }) });
+      const res = await fetch("/api/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ messages: updated.map((m) => ({ role: m.role, content: m.content })), session_id: sessionId.current, email: email || undefined }) });
       const data = await res.json();
       const text = data.content || "Something glitched. Try that again?";
       setMessages((prev) => [...prev, { role: "assistant", content: text }]);

@@ -1,4 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
+
+function getSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+}
 
 const SYSTEM_PROMPT = `You are Logan Kay's AI on the Kaleos website. You speak AS Logan in first person. Casual, direct, confident. No corporate speak, no AI jargon.
 
@@ -37,7 +45,7 @@ RULES:
 
 export async function POST(req: NextRequest) {
   try {
-    const { messages } = await req.json();
+    const { messages, session_id, email } = await req.json();
     if (!messages || !Array.isArray(messages)) {
       return NextResponse.json({ error: "Invalid request" }, { status: 400 });
     }
@@ -45,10 +53,29 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Conversation too long" }, { status: 400 });
     }
 
+    // Log the user's message
+    const lastUserMsg = messages[messages.length - 1];
+    if (lastUserMsg?.role === "user" && session_id) {
+      getSupabase().from("chat_logs").insert({
+        session_id,
+        role: "user",
+        message: lastUserMsg.content,
+        email: email || null,
+      }).then();
+    }
+
     // Easter egg
-    const lastUserMsg = [...messages].reverse().find((m: { role: string }) => m.role === "user");
-    if (lastUserMsg && (lastUserMsg as { content: string }).content.trim().toLowerCase() === "chungus aioli") {
-      return NextResponse.json({ content: "Congratulations you have unlocked mollick doing tricks on it" });
+    if (lastUserMsg && lastUserMsg.content.trim().toLowerCase() === "chungus aioli") {
+      const easterEggReply = "Congratulations you have unlocked mollick doing tricks on it";
+      if (session_id) {
+        getSupabase().from("chat_logs").insert({
+          session_id,
+          role: "assistant",
+          message: easterEggReply,
+          email: email || null,
+        }).then();
+      }
+      return NextResponse.json({ content: easterEggReply });
     }
 
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -72,7 +99,20 @@ export async function POST(req: NextRequest) {
       console.error("OpenAI error:", data);
       return NextResponse.json({ error: "AI request failed" }, { status: 500 });
     }
-    return NextResponse.json({ content: data.choices[0].message.content });
+
+    const assistantContent = data.choices[0].message.content;
+
+    // Log the assistant's response
+    if (session_id) {
+      getSupabase().from("chat_logs").insert({
+        session_id,
+        role: "assistant",
+        message: assistantContent,
+        email: email || null,
+      }).then();
+    }
+
+    return NextResponse.json({ content: assistantContent });
   } catch (error) {
     console.error("Chat API error:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
