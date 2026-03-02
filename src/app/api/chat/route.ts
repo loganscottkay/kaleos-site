@@ -34,7 +34,7 @@ YOUR GOAL:
 1. Understand their business and pain points (2-3 diagnostic questions)
 2. Give specific, valuable insight about what you'd automate
 3. Make them think "this guy actually gets it"
-4. Guide toward booking a call or getting a mini-report
+4. When they show buying signals (asking about pricing, how to get started, wanting to work together, next steps), wrap up with enthusiasm and let them know you'd love to chat. The UI will show buttons for booking a call and emailing you, so don't include links or email addresses yourself.
 
 RULES:
 - If asked if you're AI: "This is an AI trained on how I think and talk, but the real me is a calendar link away."
@@ -45,7 +45,7 @@ RULES:
 
 export async function POST(req: NextRequest) {
   try {
-    const { messages, session_id, email } = await req.json();
+    const { messages, session_id } = await req.json();
     if (!messages || !Array.isArray(messages)) {
       return NextResponse.json({ error: "Invalid request" }, { status: 400 });
     }
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
         session_id,
         role: "user",
         message: lastUserMsg.content,
-        email: email || null,
+        email: null,
       }).then();
     }
 
@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
           session_id,
           role: "assistant",
           message: easterEggReply,
-          email: email || null,
+          email: null,
         }).then();
       }
       return NextResponse.json({ content: easterEggReply });
@@ -108,7 +108,7 @@ export async function POST(req: NextRequest) {
         session_id,
         role: "assistant",
         message: assistantContent,
-        email: email || null,
+        email: null,
       }).then();
     }
 
