@@ -28,13 +28,19 @@ export function GlassCard({
     : 'bg-gradient-to-b from-white/[0.12] via-transparent to-transparent'
 
   return (
-    <div
-      className={['relative overflow-hidden rounded-2xl', base, hoverClass, className].join(' ')}
-    >
+    <div className="relative group">
+      {/* Glow layer — hidden on mobile for performance */}
+      <div className="glow-layer hidden md:block absolute -inset-[3px] rounded-2xl opacity-30 blur-[8px] transition-opacity duration-[400ms] ease-in-out group-hover:opacity-70 pointer-events-none" />
+
+      {/* Card */}
       <div
-        className={`absolute inset-0 ${highlight} pointer-events-none`}
-      />
-      <div className="relative">{children}</div>
+        className={['relative z-10 overflow-hidden rounded-2xl', base, hoverClass, className].join(' ')}
+      >
+        <div
+          className={`absolute inset-0 ${highlight} pointer-events-none`}
+        />
+        <div className="relative">{children}</div>
+      </div>
     </div>
   )
 }

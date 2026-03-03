@@ -62,6 +62,21 @@ body::before {
   background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.25) 100%);
 }
 
+/* Radiant glow border for glass cards */
+@keyframes glow-drift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.glow-layer {
+  background: linear-gradient(135deg, #1B2A4A, #0d9488);
+  background-size: 200% 200%;
+}
+
+.group:hover .glow-layer {
+  animation: glow-drift 4s ease infinite;
+}
+
 /* Subtle button shimmer */
 @keyframes shimmer {
   0%, 100% { opacity: 1; }
