@@ -11,32 +11,33 @@ const links = [
   { href: '/about', label: 'About' },
 ]
 
-function JetIcon({ className }: { className?: string }) {
+const skywritingWords = ['Kaleos', 'is', 'for', 'you']
+// Delays timed to when the jet passes each word's position
+const wordDelays = [0.5, 0.85, 1.2, 1.55]
+
+function JetIcon() {
   return (
-    <svg
-      className={className}
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M22 2L11 13"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M22 2L15 22L11 13L2 9L22 2Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="currentColor"
-        fillOpacity="0.15"
-      />
+    <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
+      {/* Engine glow */}
+      <ellipse cx="1" cy="8" rx="3.5" ry="2.5" fill="#0d9488" opacity="0.4">
+        <animate attributeName="rx" values="3;4;3" dur="0.6s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.3;0.5;0.3" dur="0.6s" repeatCount="indefinite" />
+      </ellipse>
+      {/* Fuselage */}
+      <path d="M32 8 C29 6.2, 22 5.2, 14 5.8 L6 6.2 L0 8 L6 9.8 L14 10.2 C22 10.8, 29 9.8, 32 8Z" fill="#1B2A4A" />
+      {/* Port wing */}
+      <path d="M17 5.8 L11 0.5 L7 1.8 L12 6Z" fill="#1B2A4A" opacity="0.88" />
+      {/* Starboard wing */}
+      <path d="M17 10.2 L11 15.5 L7 14.2 L12 10Z" fill="#1B2A4A" opacity="0.88" />
+      {/* Port tail fin */}
+      <path d="M5 6.2 L2 2 L0.5 3.2 L3.5 6.8Z" fill="#1B2A4A" opacity="0.8" />
+      {/* Starboard tail fin */}
+      <path d="M5 9.8 L2 14 L0.5 12.8 L3.5 9.2Z" fill="#1B2A4A" opacity="0.8" />
+      {/* Canopy */}
+      <ellipse cx="23" cy="7.2" rx="3" ry="0.9" fill="#3a5a8a" opacity="0.35" />
+      {/* Intake lines */}
+      <line x1="18" y1="6.5" x2="14" y2="6.2" stroke="#0F1A2E" strokeWidth="0.3" opacity="0.4" />
+      <line x1="18" y1="9.5" x2="14" y2="9.8" stroke="#0F1A2E" strokeWidth="0.3" opacity="0.4" />
     </svg>
   )
 }
@@ -84,19 +85,34 @@ export function NavBar() {
           <div
             className={`hidden md:flex absolute inset-0 items-center pointer-events-none overflow-hidden transition-opacity duration-500 ${fadingOut ? 'opacity-0' : 'opacity-100'}`}
           >
-            {/* Text trail with glow */}
-            <div className="skywriting-track absolute inset-0 flex items-center justify-center">
-              <span className="skywriting-text relative">
-                Kaleos is for you
-                {/* Glow layer behind text */}
-                <span className="skywriting-glow" aria-hidden="true">
-                  Kaleos is for you
+            {/* Exhaust glow layer — appears slightly before text, stays blurry */}
+            <div className="absolute inset-0 flex items-center justify-center" style={{ gap: '0.35em' }}>
+              {skywritingWords.map((word, i) => (
+                <span
+                  key={`exhaust-${word}`}
+                  className="skywriting-exhaust-word"
+                  style={{ animationDelay: `${wordDelays[i] - 0.15}s` }}
+                  aria-hidden="true"
+                >
+                  {word}
                 </span>
-              </span>
+              ))}
             </div>
-            {/* Jet icon */}
+            {/* Text layer — materializes from smoke to readable */}
+            <div className="absolute inset-0 flex items-center justify-center" style={{ gap: '0.35em' }}>
+              {skywritingWords.map((word, i) => (
+                <span
+                  key={`text-${word}`}
+                  className="skywriting-word"
+                  style={{ animationDelay: `${wordDelays[i]}s` }}
+                >
+                  {word}
+                </span>
+              ))}
+            </div>
+            {/* Jet */}
             <div className="skywriting-jet absolute flex items-center" style={{ top: '50%', transform: 'translateY(-50%)' }}>
-              <JetIcon className="text-accent opacity-70" />
+              <JetIcon />
             </div>
           </div>
         )}
