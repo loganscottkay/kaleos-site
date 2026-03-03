@@ -36,19 +36,27 @@ export function NavBar() {
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm tracking-wide transition-colors ${
-                pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
-                  ? 'text-navy font-medium'
-                  : 'text-slate-400 hover:text-navy'
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {links.map((link) => {
+            const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`group/nav relative text-sm font-medium tracking-wide transition-colors duration-300 ease-in-out pb-1 ${
+                  isActive
+                    ? 'text-navy'
+                    : 'text-slate-400 hover:text-navy'
+                }`}
+              >
+                {link.label}
+                <span
+                  className={`absolute left-0 bottom-0 h-[2px] bg-accent transition-all duration-300 ease-in-out ${
+                    isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
+                  }`}
+                />
+              </Link>
+            )
+          })}
         </div>
 
         {/* Mobile toggle */}
@@ -91,9 +99,9 @@ export function NavBar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className={`text-sm tracking-wide transition-colors ${
+                className={`text-sm font-medium tracking-wide transition-colors duration-300 ease-in-out ${
                   pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
-                    ? 'text-navy font-medium'
+                    ? 'text-navy'
                     : 'text-slate-400 hover:text-navy'
                 }`}
               >
