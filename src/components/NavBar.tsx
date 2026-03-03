@@ -11,15 +11,60 @@ const links = [
   { href: '/about', label: 'About' },
 ]
 
+function JetIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M22 2L11 13"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M22 2L15 22L11 13L2 9L22 2Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="currentColor"
+        fillOpacity="0.15"
+      />
+    </svg>
+  )
+}
+
 export function NavBar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [showSkywriting, setShowSkywriting] = useState(false)
+  const [fadingOut, setFadingOut] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Trigger skywriting once on mount
+  useEffect(() => {
+    const startTimer = setTimeout(() => setShowSkywriting(true), 300)
+    // Total: 2.5s flight + 1.5s hold + 0.5s fade = 4.5s
+    const fadeTimer = setTimeout(() => setFadingOut(true), 4300)
+    const removeTimer = setTimeout(() => setShowSkywriting(false), 4800)
+    return () => {
+      clearTimeout(startTimer)
+      clearTimeout(fadeTimer)
+      clearTimeout(removeTimer)
+    }
   }, [])
 
   return (
@@ -33,6 +78,28 @@ export function NavBar() {
           <img src="/kaleos-logo.png" width={28} height={28} alt="Kaleos" style={{ borderRadius: 6, objectFit: 'cover' }} />
           Kaleos
         </Link>
+
+        {/* Skywriting flyover — desktop only, one-time */}
+        {showSkywriting && (
+          <div
+            className={`hidden md:flex absolute inset-0 items-center pointer-events-none overflow-hidden transition-opacity duration-500 ${fadingOut ? 'opacity-0' : 'opacity-100'}`}
+          >
+            {/* Text trail with glow */}
+            <div className="skywriting-track absolute inset-0 flex items-center justify-center">
+              <span className="skywriting-text relative">
+                Kaleos is for you
+                {/* Glow layer behind text */}
+                <span className="skywriting-glow" aria-hidden="true">
+                  Kaleos is for you
+                </span>
+              </span>
+            </div>
+            {/* Jet icon */}
+            <div className="skywriting-jet absolute flex items-center" style={{ top: '50%', transform: 'translateY(-50%)' }}>
+              <JetIcon className="text-accent opacity-70" />
+            </div>
+          </div>
+        )}
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
