@@ -64,8 +64,8 @@ export default function AboutPage() {
         />
         <div className="absolute inset-0 bg-white/70 backdrop-blur-sm" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_3fr_1fr] gap-8 xl:gap-14 items-stretch">
+        <div className="relative z-10 max-w-[92rem] mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_3fr_1fr] gap-8 xl:gap-24 items-stretch">
             {/* Left Graph — The Decline */}
             <div className="order-1">
               <StrategyGraph variant="decline" />
@@ -78,7 +78,7 @@ export default function AboutPage() {
 
             {/* Bio + Photo (center content) */}
             <div className="order-3 xl:order-2 md:col-span-2 xl:col-span-1">
-              <div className="flex flex-col md:flex-row gap-10 items-start max-w-4xl mx-auto xl:max-w-none">
+              <div className="flex flex-col md:flex-row gap-10 items-center max-w-4xl mx-auto">
                 {/* Text */}
                 <div className="flex-1">
                   <AnimateIn>
