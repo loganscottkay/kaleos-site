@@ -146,7 +146,7 @@ export default function AboutPage() {
             </h2>
           </AnimateIn>
 
-          <div className="max-w-3xl mx-auto grid grid-cols-1 gap-6 auto-rows-fr">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
             <AnimateIn delay={100} className="h-full">
               <GlassCard className="p-8 h-full">
                 <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
@@ -223,7 +223,7 @@ export default function AboutPage() {
               href="https://calendly.com/logan-kaleoshq/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-3.5 rounded-xl bg-white text-navy hover:bg-white/90 font-medium transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-xl hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex items-center px-8 py-3.5 rounded-xl bg-[#1B2A4A] border border-white/[0.15] text-white font-medium transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-[0_0_20px_rgba(13,148,136,0.4)] hover:scale-[1.03] hover:border-accent/30 active:scale-[0.97]"
             >
               Book a Discovery Call
             </a>

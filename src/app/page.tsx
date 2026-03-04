@@ -82,7 +82,7 @@ const trustBadges = [
     ),
   },
   {
-    label: 'Enterprise-Grade Security',
+    label: 'Complete Transparency',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -90,7 +90,7 @@ const trustBadges = [
     ),
   },
   {
-    label: 'Strategic Methodology',
+    label: 'Strategy-First Approach',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -143,7 +143,7 @@ export default function Home() {
               href="https://calendly.com/logan-kaleoshq/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-3.5 rounded-xl bg-white/90 backdrop-blur-sm hover:bg-white text-navy font-medium transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-xl hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex items-center px-8 py-3.5 rounded-xl bg-[#1B2A4A] border border-white/[0.15] text-white font-medium transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-[0_0_20px_rgba(13,148,136,0.4)] hover:scale-[1.03] hover:border-accent/30 active:scale-[0.97]"
             >
               Get Started
             </a>
@@ -306,29 +306,22 @@ export default function Home() {
       </section>
 
       {/* Trust Strip */}
-      <section className="relative py-24 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
-        <div className="absolute inset-0 bg-white/70 backdrop-blur-sm" />
+      <section className="relative py-24 bg-navy overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4">
-          <AnimateIn>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {trustBadges.map((badge, i) => (
-                <div
-                  key={i}
-                  className="flex items-center justify-center gap-3 px-4 py-4 rounded-xl bg-white/[0.5] backdrop-blur-lg border border-white/[0.3] shadow-md shadow-black/5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
-                >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {trustBadges.map((badge, i) => (
+              <AnimateIn key={i} delay={i * 100}>
+                <div className="flex items-center justify-center gap-3 px-5 py-5 rounded-xl bg-white/[0.06] backdrop-blur-xl border border-white/[0.12] shadow-lg shadow-black/10 transition-all duration-300 hover:bg-white/[0.1] hover:border-accent/20 hover:shadow-[0_0_15px_rgba(13,148,136,0.15)] hover:scale-[1.02]">
                   <span className="text-accent">{badge.icon}</span>
-                  <span className="text-slate-700 text-sm font-medium tracking-wide">
+                  <span className="text-white/80 text-sm font-medium tracking-wide">
                     {badge.label}
                   </span>
                 </div>
-              ))}
-            </div>
-          </AnimateIn>
+              </AnimateIn>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -349,7 +342,7 @@ export default function Home() {
               href="https://calendly.com/logan-kaleoshq/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-3.5 rounded-xl bg-white text-navy hover:bg-white/90 font-medium transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-xl hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex items-center px-8 py-3.5 rounded-xl bg-[#1B2A4A] border border-white/[0.15] text-white font-medium transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-[0_0_20px_rgba(13,148,136,0.4)] hover:scale-[1.03] hover:border-accent/30 active:scale-[0.97]"
             >
               Start with an Assessment
             </a>
