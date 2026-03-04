@@ -36,7 +36,7 @@ export const metadata: Metadata = {
       "AI doesn't fail because of the technology. It fails because of the implementation.",
     images: [
       {
-        url: '/opengraph-image',
+        url: '/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'Kaleos - Strategic AI Implementation',
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: 'Kaleos | Strategic AI Implementation',
     description:
       "AI doesn't fail because of the technology. It fails because of the implementation.",
-    images: ['/opengraph-image'],
+    images: ['/opengraph-image.png'],
   },
   alternates: {
     canonical: 'https://kaleoshq.com',
