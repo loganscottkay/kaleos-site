@@ -362,7 +362,7 @@ export function QuickAssessment() {
                                 : handleSingleSelect(opt.label)
                             }
                             disabled={transitioning}
-                            className="relative px-6 py-3.5 rounded-full border text-sm sm:text-base font-medium transition-all duration-200 cursor-pointer"
+                            className="relative px-6 py-3.5 rounded-full border text-sm sm:text-base font-medium transition-all duration-200 cursor-pointer min-w-[280px] text-center"
                             style={{
                               background: isSelected
                                 ? 'rgba(13,148,136,0.25)'
