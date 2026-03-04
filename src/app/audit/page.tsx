@@ -185,7 +185,7 @@ export default function AuditPage() {
                     Assessment
                   </h3>
                   <p className="text-4xl font-bold tracking-tight text-white mb-1">
-                    $5,000
+                    $5,000+
                   </p>
                   <p className="text-white/40 text-sm mb-4">one-time</p>
                   <p className="text-white/60 text-sm leading-relaxed mb-6">
@@ -231,8 +231,9 @@ export default function AuditPage() {
                   <h3 className="text-lg font-semibold tracking-tight text-white mb-4">
                     Implementation
                   </h3>
+                  <p className="text-white/40 text-sm mb-1">Starting at</p>
                   <p className="text-4xl font-bold tracking-tight text-white mb-1">
-                    $8,500
+                    $6,500
                   </p>
                   <p className="text-white/40 text-sm mb-4">
                     /month &middot; 3-month minimum
@@ -278,6 +279,7 @@ export default function AuditPage() {
                   <h3 className="text-lg font-semibold tracking-tight text-white mb-4">
                     Strategic Partner
                   </h3>
+                  <p className="text-white/40 text-sm mb-1">Starting at</p>
                   <p className="text-4xl font-bold tracking-tight text-white mb-1">
                     $15,000
                   </p>
@@ -324,15 +326,7 @@ export default function AuditPage() {
             </p>
           </AnimateIn>
 
-          <AnimateIn delay={400}>
-            <p className="text-white/60 text-center mt-6">
-              Our clients typically recover{' '}
-              <span className="text-accent font-semibold">
-                $8,000-$25,000
-              </span>
-              /month in operational capacity within 90 days.
-            </p>
-          </AnimateIn>
+
         </div>
       </section>
 
