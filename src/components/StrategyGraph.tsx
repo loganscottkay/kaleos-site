@@ -33,6 +33,7 @@ const config = {
     gradientColor: '#ef4444',
     borderColor: 'border-red-500/[0.25]',
     glowBorder: 'rgba(239, 68, 68, 0.15)',
+    labelColor: '#f87171',
     cardBg: 'rgba(50, 15, 15, 0.65)',
     linePath: 'M 25,18 C 50,20 70,30 95,55 C 120,80 145,105 165,118 C 175,124 182,127 185,128',
     fillPath:
@@ -55,6 +56,7 @@ const config = {
     gradientColor: '#10b981',
     borderColor: 'border-emerald-500/[0.25]',
     glowBorder: 'rgba(16, 185, 129, 0.15)',
+    labelColor: '#6ee7b7',
     cardBg: 'rgba(10, 35, 30, 0.65)',
     linePath: 'M 25,128 C 50,127 75,124 100,112 C 125,95 145,65 160,40 C 172,22 180,15 185,12',
     fillPath:
@@ -291,13 +293,14 @@ export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
 
                 {/* Y-axis label */}
                 <text
-                  x={CHART_LEFT - 4}
+                  x={CHART_LEFT - 6}
                   y={(CHART_TOP + CHART_BOTTOM) / 2}
-                  fill="white"
-                  fillOpacity={0.25}
-                  fontSize={7}
+                  fill={c.labelColor}
+                  fillOpacity={0.75}
+                  fontSize={9}
+                  fontWeight={600}
                   textAnchor="middle"
-                  transform={`rotate(-90, ${CHART_LEFT - 4}, ${(CHART_TOP + CHART_BOTTOM) / 2})`}
+                  transform={`rotate(-90, ${CHART_LEFT - 6}, ${(CHART_TOP + CHART_BOTTOM) / 2})`}
                 >
                   ROI
                 </text>
@@ -306,9 +309,10 @@ export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
                 <text
                   x={(CHART_LEFT + CHART_RIGHT) / 2}
                   y={CHART_BOTTOM + 13}
-                  fill="white"
-                  fillOpacity={0.25}
-                  fontSize={7}
+                  fill={c.labelColor}
+                  fillOpacity={0.75}
+                  fontSize={9}
+                  fontWeight={600}
                   textAnchor="middle"
                 >
                   Time
