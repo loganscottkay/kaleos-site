@@ -253,7 +253,7 @@ export default function Home() {
       </section>
 
       {/* Our Methodology */}
-      <section className="relative py-24 bg-navy dot-grid-dark">
+      <section id="methodology" className="relative py-24 bg-navy dot-grid-dark">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
         <div className="relative z-10 max-w-6xl mx-auto px-4">
           <AnimateIn>
