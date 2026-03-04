@@ -65,14 +65,19 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-white/70 backdrop-blur-sm" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.8fr_1.3fr_1fr] gap-6 lg:gap-8 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_1.8fr_1.3fr_1fr] gap-8 xl:gap-10 items-stretch">
             {/* Left Graph — The Decline */}
-            <div className="order-1 lg:order-none">
+            <div className="order-1 xl:order-1">
               <StrategyGraph variant="decline" />
             </div>
 
+            {/* Right Graph — The Growth (order-2 on md so graphs sit side-by-side, order-4 on xl to go to right edge) */}
+            <div className="order-2 xl:order-4">
+              <StrategyGraph variant="growth" delay={500} />
+            </div>
+
             {/* Text */}
-            <div className="order-2 lg:order-none">
+            <div className="order-3 xl:order-2">
               <AnimateIn>
                 <p className="text-xl text-slate-800 font-medium leading-relaxed mb-8 tracking-tight">
                   I led AI implementation at Harvard Business School. Now I work
@@ -109,10 +114,10 @@ export default function AboutPage() {
             </div>
 
             {/* Photo */}
-            <AnimateIn delay={200} className="order-3 lg:order-none">
-              <div className="max-w-[400px] mx-auto lg:max-w-none">
+            <AnimateIn delay={200} className="order-4 xl:order-3">
+              <div className="max-w-[400px] mx-auto xl:max-w-none">
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-xl shadow-black/10 relative">
-                  <Image src="/photo.png" alt="Logan Kay, Founder of Kaleos" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 300px" />
+                  <Image src="/photo.png" alt="Logan Kay, Founder of Kaleos" fill className="object-cover" sizes="(max-width: 1280px) 100vw, 300px" />
                 </div>
                 <p className="mt-4 text-navy font-semibold text-center">
                   Logan Kay, Founder
@@ -122,11 +127,6 @@ export default function AboutPage() {
                 </p>
               </div>
             </AnimateIn>
-
-            {/* Right Graph — The Growth */}
-            <div className="order-4 lg:order-none">
-              <StrategyGraph variant="growth" delay={500} />
-            </div>
           </div>
         </div>
       </section>
