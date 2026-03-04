@@ -392,10 +392,9 @@ export default function Home() {
         <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
           <AnimateIn>
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight mb-4 text-white">
-              The companies that win with AI aren&apos;t the ones
-              <br className="hidden sm:inline" /> using the most of it.
-              They&apos;re the ones implementing
-              <br className="hidden sm:inline" /> it the most strategically.
+              AI won&apos;t replace your business.
+              <br className="hidden sm:inline" /> But a competitor with better AI
+              <br className="hidden sm:inline" /> implementation will.
             </h2>
           </AnimateIn>
           <AnimateIn delay={200}>
