@@ -7,16 +7,16 @@ import { AuditForm } from '@/components/AuditForm'
 import { FAQ } from '@/components/FAQ'
 
 export const metadata: Metadata = {
-  title: 'AI Ops Audit',
+  title: 'Strategic AI Assessment',
   description:
-    'Get a full breakdown of how AI can save your business time and money. Starting at $1,500.',
+    'A deep operational analysis that maps your business, identifies your highest-leverage AI opportunities, and gives you a clear implementation roadmap with projected ROI.',
   alternates: {
     canonical: 'https://kaleoshq.com/audit',
   },
   openGraph: {
-    title: 'AI Ops Audit | Kaleos',
+    title: 'Strategic AI Assessment | Kaleos',
     description:
-      'Get a full breakdown of how AI can save your business time and money. Starting at $1,500.',
+      'A deep operational analysis that maps your business, identifies your highest-leverage AI opportunities, and gives you a clear implementation roadmap with projected ROI.',
     url: 'https://kaleoshq.com/audit',
   },
 }
@@ -25,12 +25,13 @@ const HERO_BG =
   'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2070&q=80'
 
 const deliverables = [
-  'A full breakdown of how your business runs day-to-day',
-  'A list of every task that can be automated with AI',
-  `ROI numbers: how much time and money you'll save`,
-  'A recommended plan for what to build first',
-  'A clear scope and timeline for implementation',
-  'Everything delivered as a clean PDF plus a 45-minute walkthrough call',
+  'Complete operational workflow mapping',
+  'AI readiness evaluation across every major business function',
+  'Prioritized opportunity matrix ranked by revenue impact, complexity, and strategic alignment',
+  'Conservative and aggressive ROI projections for each opportunity',
+  'Phased implementation roadmap with defined milestones and KPIs',
+  'Risk assessment and change management strategy',
+  'Executive summary PDF and 45-minute strategy presentation',
 ]
 
 const steps = [
@@ -46,7 +47,7 @@ const steps = [
   },
   {
     step: '03',
-    title: 'Get the full audit',
+    title: 'Get the full assessment',
     desc: 'Delivered within 2 weeks. No fluff, just numbers and a plan.',
   },
 ]
@@ -56,7 +57,7 @@ export default function AuditPage() {
     <main className="min-h-screen">
       <NavBar />
 
-      {/* Hero (nature bg) */}
+      {/* Hero */}
       <section className="relative pt-32 pb-16 overflow-hidden hero-vignette">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -77,21 +78,22 @@ export default function AuditPage() {
               className="text-4xl sm:text-5xl font-semibold tracking-tight mb-6 text-white drop-shadow-lg"
               style={{ textShadow: '0 2px 40px rgba(0,0,0,0.15)' }}
             >
-              Let&apos;s Find Where AI Saves
-              <br className="hidden sm:inline" /> You Time and Money
+              Strategic AI Assessment
             </h1>
           </AnimateIn>
           <AnimateIn delay={200} distance={15}>
             <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
-              We&apos;ll map out your workflows, find the bottlenecks, and show
-              you exactly what can be automated and what the ROI looks like. No
-              commitment.
+              Before we build anything, we need to understand everything. Our
+              assessment is a deep operational analysis that maps your business,
+              identifies your highest-leverage AI opportunities, and gives you a
+              clear implementation roadmap with projected ROI, before you commit
+              to a single dollar of implementation.
             </p>
           </AnimateIn>
         </div>
       </section>
 
-      {/* What You Get (light — nature bg shows through) */}
+      {/* Assessment Deliverables */}
       <section className="relative py-24 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -102,7 +104,7 @@ export default function AuditPage() {
         <div className="relative z-10 max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-10 text-navy">
-              What You Get
+              Assessment Deliverables
             </h2>
           </AnimateIn>
 
@@ -133,7 +135,7 @@ export default function AuditPage() {
         </div>
       </section>
 
-      {/* How It Works (dark) */}
+      {/* How It Works */}
       <section className="relative py-24 bg-navy dot-grid-dark">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
         <div className="relative z-10 max-w-6xl mx-auto px-4">
@@ -170,7 +172,7 @@ export default function AuditPage() {
         </div>
       </section>
 
-      {/* Price + ROI (dark, continued) */}
+      {/* Price + ROI */}
       <section className="relative py-24 bg-navy dot-grid-dark">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
         <div className="relative z-10 max-w-6xl mx-auto px-4">
@@ -178,14 +180,17 @@ export default function AuditPage() {
             <AnimateIn>
               <GlassCard className="p-8 h-full">
                 <p className="text-white/50 text-sm mb-2 tracking-wide">
-                  Audit Investment
+                  Assessment Investment
                 </p>
                 <p className="text-4xl font-bold tracking-tight mb-3 text-white">
-                  Starting at $1,500
+                  $1,500
                 </p>
-                <p className="text-white/50 text-sm leading-relaxed">
-                  Full workflow audit with ROI projections and implementation
-                  roadmap.
+                <p className="text-white/60 text-sm leading-relaxed">
+                  Most consulting firms charge $10,000-$25,000 for this level of
+                  operational analysis. We price our assessment at $1,500
+                  because we&apos;d rather work with 10 companies who are
+                  serious about implementation than 2 companies who just want a
+                  report.
                 </p>
               </GlassCard>
             </AnimateIn>
@@ -196,11 +201,15 @@ export default function AuditPage() {
                   ROI Preview
                 </p>
                 <p className="text-white/80 leading-relaxed">
-                  If we save you 10 hours a week at $150/hour, that&apos;s{' '}
+                  Our clients typically discover 15-30 hours per week of
+                  high-value procedural work that&apos;s blocking strategic
+                  execution. At executive billing rates, that represents{' '}
                   <span className="text-accent font-semibold">
-                    $6,000/month
+                    $8,000-$25,000
                   </span>{' '}
-                  back in your pocket.
+                  in monthly capacity that&apos;s currently being burned on work
+                  AI can accelerate. The assessment pays for itself before we
+                  build anything.
                 </p>
               </GlassCard>
             </AnimateIn>
@@ -208,7 +217,7 @@ export default function AuditPage() {
         </div>
       </section>
 
-      {/* FAQ (light — nature bg) */}
+      {/* FAQ */}
       <section className="relative py-24 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -231,7 +240,7 @@ export default function AuditPage() {
         </div>
       </section>
 
-      {/* Intake Form (light — nature bg, continued) */}
+      {/* Intake Form */}
       <section className="relative py-24 overflow-hidden" id="form">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"

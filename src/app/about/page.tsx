@@ -8,14 +8,14 @@ import { AnimateIn } from '@/components/AnimateIn'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Logan Kay built AI systems at Harvard Business School. Now he builds them for businesses like yours.',
+    'Logan Kay led AI implementation at Harvard Business School. Now he builds strategic AI systems for founders and executives.',
   alternates: {
     canonical: 'https://kaleoshq.com/about',
   },
   openGraph: {
     title: 'About | Kaleos',
     description:
-      'Logan Kay built AI systems at Harvard Business School. Now he builds them for businesses like yours.',
+      'Logan Kay led AI implementation at Harvard Business School. Now he builds strategic AI systems for founders and executives.',
     url: 'https://kaleoshq.com/about',
   },
 }
@@ -28,7 +28,7 @@ export default function AboutPage() {
     <main className="min-h-screen">
       <NavBar />
 
-      {/* Hero (nature bg) */}
+      {/* Hero */}
       <section className="relative pt-32 pb-16 overflow-hidden hero-vignette">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -55,7 +55,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Origin + Photo (light — nature bg shows through) */}
+      {/* Origin + Photo */}
       <section className="relative py-24 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -69,37 +69,41 @@ export default function AboutPage() {
             <div className="flex-1">
               <AnimateIn>
                 <p className="text-xl text-slate-800 font-medium leading-relaxed mb-8 tracking-tight">
-                  I worked on AI implementation at Harvard Business School. Now
-                  I build AI systems for businesses like yours.
+                  I led AI implementation initiatives at Harvard Business
+                  School, designing and deploying systems across admissions and
+                  operations teams. Now I work with founders and executives who
+                  understand that the AI advantage isn&apos;t about having the
+                  best tools. It&apos;s about having the best implementation.
                 </p>
               </AnimateIn>
 
               <div className="space-y-6 text-slate-600 leading-relaxed">
                 <AnimateIn delay={100}>
                   <p>
-                    Most AI tools are built to demo well. They look impressive
-                    in a pitch but don&apos;t actually do the work. I got tired
-                    of seeing that. So I started Kaleos to build AI that actually
-                    runs your business operations, not just reports on them.
+                    Most companies approach AI backwards. They buy a tool, try to
+                    plug it into their business, and wonder why nobody uses it
+                    six months later. The technology was never the problem. The
+                    implementation was.
                   </p>
                 </AnimateIn>
 
                 <AnimateIn delay={200}>
                   <p>
-                    We build systems that draft proposals in your voice, send
-                    follow-ups on your schedule, catch revenue leaks you
-                    didn&apos;t know existed, and automate the repetitive stuff
-                    that eats up your week. Everything runs under your control.
-                    You approve every output before it goes anywhere.
+                    Kaleos exists because I kept seeing the same pattern:
+                    brilliant executives with clear strategic vision, stuck
+                    because nobody could translate that vision into operational AI
+                    systems that actually work. Not demos. Not proofs of concept.
+                    Production systems that run real business processes under real
+                    constraints with real accountability.
                   </p>
                 </AnimateIn>
 
                 <AnimateIn delay={300}>
                   <p>
-                    If you&apos;re spending 10, 15, 20 hours a week on work that
-                    follows a pattern, there&apos;s a good chance we can cut that
-                    in half. And if we can&apos;t, the audit will tell you that
-                    too.
+                    Every system I build starts with one question: what is this
+                    business actually trying to accomplish? The AI comes second.
+                    The strategy comes first. And the human always stays in the
+                    loop.
                   </p>
                 </AnimateIn>
               </div>
@@ -122,7 +126,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* How We're Different (dark) */}
+      {/* How We're Different */}
       <section className="relative py-24 bg-navy dot-grid-dark">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
         <div className="relative z-10 max-w-6xl mx-auto px-4">
@@ -135,29 +139,40 @@ export default function AboutPage() {
           <div className="max-w-3xl mx-auto space-y-6">
             <AnimateIn delay={100}>
               <GlassCard className="p-8">
+                <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
+                  Methodology over tools.
+                </h3>
                 <p className="text-white/80 leading-relaxed">
-                  These aren&apos;t chatbots. Every system we build is trained on
-                  your actual documents, your writing style, and your
-                  decision-making process.
+                  We don&apos;t lead with technology. We lead with a strategic
+                  framework that determines where AI creates the most leverage,
+                  then we select and build the right tools for that specific
+                  application. The methodology is the product.
                 </p>
               </GlassCard>
             </AnimateIn>
 
             <AnimateIn delay={200}>
               <GlassCard className="p-8">
+                <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
+                  Single-outcome precision.
+                </h3>
                 <p className="text-white/80 leading-relaxed">
-                  Everything is scoped to a specific workflow. We don&apos;t
-                  build generic tools. We build systems that do one job really
-                  well.
+                  Every engagement targets one measurable operational outcome. No
+                  sprawling AI roadmaps that never ship. One system, one KPI,
+                  clear results. Then we expand based on what the data shows.
                 </p>
               </GlassCard>
             </AnimateIn>
 
             <AnimateIn delay={300}>
               <GlassCard className="p-8">
+                <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
+                  Absolute executive control.
+                </h3>
                 <p className="text-white/80 leading-relaxed">
-                  You stay in control. Nothing sends, publishes, or executes
-                  without your review. Every action is logged.
+                  Nothing in any system we build executes without human approval.
+                  Every action is logged. Every output is reviewable. AI
+                  amplifies your judgment. It never replaces it.
                 </p>
               </GlassCard>
             </AnimateIn>
@@ -165,7 +180,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* The Operation (light — nature bg) */}
+      {/* The Operation */}
       <section className="relative py-24 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -186,7 +201,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA (dark) */}
+      {/* CTA */}
       <section className="relative py-24 bg-navy">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
         <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
