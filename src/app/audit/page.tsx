@@ -331,25 +331,19 @@ export default function AuditPage() {
       </section>
 
       {/* FAQ */}
-      <section className="relative py-24 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
-        <div className="absolute inset-0 bg-white/80 backdrop-blur-sm" />
+      <section className="relative py-24 bg-navy overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-10 text-navy">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-12 text-white">
               Frequently Asked Questions
             </h2>
           </AnimateIn>
 
-          <AnimateIn delay={100}>
-            <div className="max-w-2xl mx-auto">
-              <FAQ />
-            </div>
-          </AnimateIn>
+          <div className="max-w-2xl mx-auto">
+            <FAQ />
+          </div>
         </div>
       </section>
 
