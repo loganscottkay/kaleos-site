@@ -178,9 +178,10 @@ export default function AboutPage() {
                   Data &amp; Analysis
                 </h3>
                 <p className="text-white/70 leading-relaxed text-sm">
-                  K2 Integrity. Fraud detection and financial transaction
-                  analysis at scale. SQL, Python, large datasets. The
-                  analytical foundation behind every system I build.
+                  Renowned consulting firm. Fraud detection and financial
+                  transaction analysis at scale for major institutional
+                  clients. SQL, Python, large datasets. The analytical
+                  foundation behind every system I build.
                 </p>
               </GlassCard>
             </AnimateIn>
