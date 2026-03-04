@@ -3,6 +3,8 @@ import { Footer } from '@/components/Footer'
 import { GlassCard } from '@/components/GlassCard'
 import { DemoFrame } from '@/components/DemoFrame'
 import { AnimateIn } from '@/components/AnimateIn'
+import { WorkflowDiagram } from '@/components/WorkflowDiagram'
+import { QuickAssessment } from '@/components/QuickAssessment'
 
 const HERO_BG =
   'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2070&q=80'
@@ -196,6 +198,60 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Where This Thinking Comes From */}
+      <section className="relative py-24 bg-[#1B2A4A]">
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
+        <div className="relative z-10 max-w-[800px] mx-auto px-4">
+          <AnimateIn>
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-6 text-white">
+              Where This Thinking Comes From
+            </h2>
+          </AnimateIn>
+
+          <AnimateIn delay={100}>
+            <p className="text-white/90 text-center text-lg sm:text-xl leading-relaxed mb-12">
+              This methodology didn&apos;t come from a textbook. It came from
+              building real systems inside one of the most complex institutions
+              in higher education.
+            </p>
+          </AnimateIn>
+
+          <AnimateIn delay={200}>
+            <GlassCard className="p-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/10">
+                <div className="p-8">
+                  <h3 className="text-accent font-semibold text-lg mb-3">
+                    Harvard Business School
+                  </h3>
+                  <p className="text-white/70 leading-relaxed text-sm">
+                    Helped spearhead AI implementation across admissions and
+                    operations teams. Designed systems that handle real workflows
+                    under real institutional constraints. Learned firsthand why
+                    most AI projects fail: nobody connects the technology to how
+                    the organization actually makes decisions.
+                  </p>
+                </div>
+                <div className="p-8">
+                  <h3 className="text-accent font-semibold text-lg mb-3">
+                    Kaleos
+                  </h3>
+                  <p className="text-white/70 leading-relaxed text-sm">
+                    Built on the same principles. Every client engagement uses
+                    the same strategic assessment methodology, the same
+                    human-in-the-loop architecture, and the same single-outcome
+                    precision. The framework scales. The approach doesn&apos;t
+                    change.
+                  </p>
+                </div>
+              </div>
+            </GlassCard>
+          </AnimateIn>
+
+          {/* Teal divider */}
+          <div className="mt-16 mx-auto max-w-xs h-px bg-teal-500/20" />
+        </div>
+      </section>
+
       {/* Our Methodology */}
       <section className="relative py-24 bg-navy dot-grid-dark">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
@@ -205,6 +261,8 @@ export default function Home() {
               A framework for AI that actually works.
             </h2>
           </AnimateIn>
+
+          <WorkflowDiagram />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {methodology.map((item, i) => (
@@ -324,6 +382,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Quick Assessment Quiz */}
+      <QuickAssessment />
 
       {/* Bottom CTA */}
       <section className="relative py-24 bg-navy">
