@@ -83,29 +83,33 @@ body::before {
   100% { left: 105%; }
 }
 
-@keyframes word-materialize {
-  0%   { opacity: 0;    filter: blur(8px); }
-  40%  { opacity: 0.4;  filter: blur(4px); }
-  75%  { opacity: 0.7;  filter: blur(1px); }
-  100% { opacity: 0.8;  filter: blur(0px); }
-}
-
 .skywriting-jet {
   animation: skywriting-fly 2.5s ease-out forwards;
   left: 10%;
   z-index: 2;
 }
 
-.skywriting-word {
+/* Single trail element: morphs from blurry cloud streak → readable text */
+.skywriting-trail {
   font-family: var(--font-playfair), Georgia, serif;
   font-style: italic;
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-  color: #0d9488;
+  font-size: 1rem;
   white-space: nowrap;
-  opacity: 0;
+  transition: filter 1s ease-out, opacity 1s ease-out, color 1s ease-out, letter-spacing 1s ease-out;
+  /* Text state (default) */
+  filter: blur(0px);
+  opacity: 0.8;
+  color: #0d9488;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 8px rgba(13, 148, 136, 0.2);
+}
+
+.skywriting-trail.is-cloud {
   filter: blur(8px);
-  animation: word-materialize 1s ease-out forwards;
+  opacity: 0.5;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.5em;
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.5);
 }
 
 /* Subtle button shimmer */

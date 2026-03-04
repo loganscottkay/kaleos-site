@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -10,8 +10,6 @@ const links = [
   { href: '/blog', label: 'Blog' },
   { href: '/about', label: 'About' },
 ]
-
-const skywritingWords = ['Kaleos', 'is', 'for', 'you']
 
 function JetIcon() {
   return (
@@ -47,7 +45,7 @@ export function NavBar() {
   const [scrolled, setScrolled] = useState(false)
   const [skyPhase, setSkyPhase] = useState<SkyPhase | null>(null)
   const jetRef = useRef<HTMLDivElement>(null)
-  const contrailRef = useRef<HTMLDivElement>(null)
+  const trailRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
 
@@ -70,20 +68,21 @@ export function NavBar() {
     return () => timers.forEach(clearTimeout)
   }, [])
 
-  // Track jet position and clip contrail behind it
-  useEffect(() => {
+  // Clip trail behind jet position — useLayoutEffect prevents flash on first frame
+  useLayoutEffect(() => {
     if (skyPhase !== 'flight') {
-      if (contrailRef.current) contrailRef.current.style.clipPath = 'none'
+      if (trailRef.current) trailRef.current.style.clipPath = 'none'
       return
     }
+    if (trailRef.current) trailRef.current.style.clipPath = 'inset(0 100% 0 0)'
     let rafId: number
     const update = () => {
-      if (jetRef.current && contrailRef.current && containerRef.current) {
+      if (jetRef.current && trailRef.current && containerRef.current) {
         const jetRect = jetRef.current.getBoundingClientRect()
         const cRect = containerRef.current.getBoundingClientRect()
         const visible = Math.max(0, jetRect.left - cRect.left - 10)
         const clipRight = Math.max(0, cRect.width - visible)
-        contrailRef.current.style.clipPath = `inset(0 ${clipRight}px 0 0)`
+        trailRef.current.style.clipPath = `inset(0 ${clipRight}px 0 0)`
       }
       rafId = requestAnimationFrame(update)
     }
@@ -92,9 +91,7 @@ export function NavBar() {
   }, [skyPhase])
 
   const showOverlay = skyPhase !== null
-  const showContrail = skyPhase === 'flight' || skyPhase === 'hold' || skyPhase === 'morph'
-  const showText = skyPhase === 'morph' || skyPhase === 'text' || skyPhase === 'fadeout'
-  const showJet = skyPhase === 'flight'
+  const isCloud = skyPhase === 'flight' || skyPhase === 'hold'
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b border-slate-200/60 transition-all duration-300 ${scrolled ? 'bg-white/90 shadow-sm' : 'bg-white/70'}`}>
@@ -114,61 +111,15 @@ export function NavBar() {
             ref={containerRef}
             className={`hidden md:flex absolute inset-0 items-center pointer-events-none overflow-hidden transition-opacity duration-500 ${skyPhase === 'fadeout' ? 'opacity-0' : 'opacity-100'}`}
           >
-            {/* Contrail vapor — SVG with turbulence filter for cloud texture */}
-            {showContrail && (
-              <div ref={contrailRef} className="absolute inset-0" style={{ clipPath: 'inset(0 100% 0 0)' }}>
-                <svg
-                  className={`absolute inset-0 w-full h-full transition-opacity duration-[900ms] ${skyPhase === 'morph' ? 'opacity-0' : 'opacity-100'}`}
-                  preserveAspectRatio="none"
-                >
-                  <defs>
-                    <filter id="cv">
-                      <feTurbulence type="fractalNoise" baseFrequency="0.015 0.08" numOctaves="4" seed="3" result="t" />
-                      <feDisplacementMap in="SourceGraphic" in2="t" scale="5" />
-                      <feGaussianBlur stdDeviation="2.5" />
-                    </filter>
-                    <filter id="cg">
-                      <feTurbulence type="fractalNoise" baseFrequency="0.01 0.06" numOctaves="3" seed="7" result="t" />
-                      <feDisplacementMap in="SourceGraphic" in2="t" scale="3" />
-                      <feGaussianBlur stdDeviation="5" />
-                    </filter>
-                    <linearGradient id="cgrad" x1="0" x2="1" y1="0" y2="0">
-                      <stop offset="0%" stopColor="white" stopOpacity="0.1" />
-                      <stop offset="25%" stopColor="#0d9488" stopOpacity="0.35" />
-                      <stop offset="60%" stopColor="white" stopOpacity="0.55" />
-                      <stop offset="100%" stopColor="white" stopOpacity="0.3" />
-                    </linearGradient>
-                  </defs>
-                  {/* Outer diffuse glow */}
-                  <rect x="20%" y="34%" width="42%" height="32%" rx="16"
-                        fill="url(#cgrad)" filter="url(#cg)" opacity="0.25" />
-                  {/* Core vapor band */}
-                  <rect x="22%" y="42%" width="38%" height="16%" rx="8"
-                        fill="url(#cgrad)" filter="url(#cv)" opacity="0.55" />
-                  {/* Hot bright center */}
-                  <rect x="25%" y="46%" width="32%" height="8%" rx="4"
-                        fill="white" filter="url(#cv)" opacity="0.35" />
-                </svg>
-              </div>
-            )}
-
-            {/* Text — materializes from smoke after contrail fades */}
-            {showText && (
-              <div className="absolute inset-0 flex items-center justify-center" style={{ gap: '0.35em' }}>
-                {skywritingWords.map((word, i) => (
-                  <span
-                    key={word}
-                    className="skywriting-word"
-                    style={{ animationDelay: `${i * 0.15}s` }}
-                  >
-                    {word}
-                  </span>
-                ))}
-              </div>
-            )}
+            {/* Single trail element — starts as blurry cloud streak, morphs into text */}
+            <div ref={trailRef} className="absolute inset-0 flex items-center justify-center">
+              <span className={`skywriting-trail ${isCloud ? 'is-cloud' : ''}`}>
+                Kaleos is for you
+              </span>
+            </div>
 
             {/* Jet — flies across and exits right */}
-            {showJet && (
+            {skyPhase === 'flight' && (
               <div
                 ref={jetRef}
                 className="skywriting-jet absolute flex items-center"
