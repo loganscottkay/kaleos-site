@@ -64,69 +64,74 @@ export default function AboutPage() {
         />
         <div className="absolute inset-0 bg-white/70 backdrop-blur-sm" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_1.8fr_1.3fr_1fr] gap-8 xl:gap-10 items-stretch">
+        <div className="relative z-10 max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_3fr_1fr] gap-8 xl:gap-14 items-stretch">
             {/* Left Graph — The Decline */}
-            <div className="order-1 xl:order-1">
+            <div className="order-1">
               <StrategyGraph variant="decline" />
             </div>
 
-            {/* Right Graph — The Growth (order-2 on md so graphs sit side-by-side, order-4 on xl to go to right edge) */}
-            <div className="order-2 xl:order-4">
+            {/* Right Graph — The Growth */}
+            <div className="order-2 xl:order-3">
               <StrategyGraph variant="growth" delay={500} />
             </div>
 
-            {/* Text */}
-            <div className="order-3 xl:order-2">
-              <AnimateIn>
-                <p className="text-xl text-slate-800 font-medium leading-relaxed mb-8 tracking-tight">
-                  I led AI implementation at Harvard Business School. Now I work
-                  with founders who understand the AI advantage isn&apos;t about
-                  the best tools. It&apos;s about the best implementation.
-                </p>
-              </AnimateIn>
+            {/* Bio + Photo (center content) */}
+            <div className="order-3 xl:order-2 md:col-span-2 xl:col-span-1">
+              <div className="flex flex-col md:flex-row gap-10 items-start max-w-4xl mx-auto xl:max-w-none">
+                {/* Text */}
+                <div className="flex-1">
+                  <AnimateIn>
+                    <p className="text-xl text-slate-800 font-medium leading-relaxed mb-8 tracking-tight">
+                      I led AI implementation at Harvard Business School. Now I work
+                      with founders who understand the AI advantage isn&apos;t about
+                      the best tools. It&apos;s about the best implementation.
+                    </p>
+                  </AnimateIn>
 
-              <div className="space-y-6 text-slate-600 leading-relaxed">
-                <AnimateIn delay={100}>
-                  <p>
-                    Most companies approach AI backwards. They buy a tool, try to
-                    plug it in, and wonder why nobody uses it six months later.
-                    The implementation was always the problem.
-                  </p>
-                </AnimateIn>
+                  <div className="space-y-6 text-slate-600 leading-relaxed">
+                    <AnimateIn delay={100}>
+                      <p>
+                        Most companies approach AI backwards. They buy a tool, try to
+                        plug it in, and wonder why nobody uses it six months later.
+                        The implementation was always the problem.
+                      </p>
+                    </AnimateIn>
 
-                <AnimateIn delay={200}>
-                  <p>
-                    Kaleos exists because brilliant executives with clear
-                    strategic vision keep getting stuck. Nobody translates that
-                    vision into AI systems that actually run in production.
-                  </p>
-                </AnimateIn>
+                    <AnimateIn delay={200}>
+                      <p>
+                        Kaleos exists because brilliant executives with clear
+                        strategic vision keep getting stuck. Nobody translates that
+                        vision into AI systems that actually run in production.
+                      </p>
+                    </AnimateIn>
 
-                <AnimateIn delay={300}>
-                  <p>
-                    Every system starts with one question: what is this business
-                    actually trying to accomplish? The AI comes second. The
-                    strategy comes first.
-                  </p>
+                    <AnimateIn delay={300}>
+                      <p>
+                        Every system starts with one question: what is this business
+                        actually trying to accomplish? The AI comes second. The
+                        strategy comes first.
+                      </p>
+                    </AnimateIn>
+                  </div>
+                </div>
+
+                {/* Photo */}
+                <AnimateIn delay={200} className="w-full md:w-auto shrink-0">
+                  <div className="max-w-[400px] mx-auto md:mx-0 md:w-[280px] xl:w-[260px]">
+                    <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-xl shadow-black/10 relative">
+                      <Image src="/photo.png" alt="Logan Kay, Founder of Kaleos" fill className="object-cover" sizes="(max-width: 1280px) 100vw, 280px" />
+                    </div>
+                    <p className="mt-4 text-navy font-semibold text-center">
+                      Logan Kay, Founder
+                    </p>
+                    <p className="text-slate-500 text-sm text-center">
+                      AI &amp; Operations, Harvard Business School
+                    </p>
+                  </div>
                 </AnimateIn>
               </div>
             </div>
-
-            {/* Photo */}
-            <AnimateIn delay={200} className="order-4 xl:order-3">
-              <div className="max-w-[400px] mx-auto xl:max-w-none">
-                <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-xl shadow-black/10 relative">
-                  <Image src="/photo.png" alt="Logan Kay, Founder of Kaleos" fill className="object-cover" sizes="(max-width: 1280px) 100vw, 300px" />
-                </div>
-                <p className="mt-4 text-navy font-semibold text-center">
-                  Logan Kay, Founder
-                </p>
-                <p className="text-slate-500 text-sm text-center">
-                  AI &amp; Operations, Harvard Business School
-                </p>
-              </div>
-            </AnimateIn>
           </div>
         </div>
       </section>
