@@ -3,27 +3,54 @@
 import { useState, type FormEvent } from 'react'
 import { supabase } from '@/lib/supabase'
 
+const challengeOptions = [
+  'Revenue Operations',
+  'Process Automation',
+  'AI Strategy',
+  'Client Operations',
+  'Not Sure Yet',
+]
+
+const sizeOptions = ['Just me', '2-10', '11-50', '50+']
+
 export function AuditForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
-    pain_type: '',
+    challenges: [] as string[],
+    company_size: '',
     desired_outcome: '',
     honeypot: '',
   })
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [status, setStatus] = useState<
+    'idle' | 'loading' | 'success' | 'error'
+  >('idle')
   const [errorMessage, setErrorMessage] = useState('')
 
   const update = (field: string, value: string) =>
     setFormData((prev) => ({ ...prev, [field]: value }))
+
+  const toggleChallenge = (challenge: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      challenges: prev.challenges.includes(challenge)
+        ? prev.challenges.filter((c) => c !== challenge)
+        : [...prev.challenges, challenge],
+    }))
+  }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
     if (formData.honeypot) return
 
-    if (!formData.name || !formData.email || !formData.company || !formData.pain_type) {
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.company ||
+      formData.challenges.length === 0
+    ) {
       setErrorMessage('Please fill in all required fields.')
       setStatus('error')
       return
@@ -33,13 +60,15 @@ export function AuditForm() {
     setErrorMessage('')
 
     try {
-      // TODO: Set up a Supabase database webhook or Zapier integration
-      // to notify logan@kaleoshq.com when a new lead is inserted.
+      const painType = formData.company_size
+        ? `${formData.challenges.join(', ')} | Team: ${formData.company_size}`
+        : formData.challenges.join(', ')
+
       const { error } = await supabase.from('leads').insert({
         name: formData.name,
         email: formData.email,
         company: formData.company,
-        pain_type: formData.pain_type,
+        pain_type: painType,
         desired_outcome: formData.desired_outcome,
       })
 
@@ -54,34 +83,45 @@ export function AuditForm() {
   if (status === 'success') {
     return (
       <div className="text-center py-12">
-        <div className="mx-auto mb-5 w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center">
-          <svg className="w-7 h-7 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+        <div className="mx-auto mb-5 w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center">
+          <svg
+            className="w-7 h-7 text-accent"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 13l4 4L19 7"
+            />
           </svg>
         </div>
-        <div className="text-2xl font-semibold text-emerald-700 mb-3">
-          Thank you! We&apos;ll get back to you within 24 hours.
+        <div className="text-2xl font-semibold text-white mb-3">
+          Thank you! You&apos;ll hear back within 24 hours.
         </div>
-        <p className="text-slate-500 mb-8">
-          Your request has been received.
-        </p>
-        <div className="inline-block text-left space-y-2 text-sm text-slate-500">
-          <p className="font-medium text-slate-600">Next steps:</p>
+        <p className="text-white/40 mb-8">No spam, no sales pitch.</p>
+        <div className="inline-block text-left space-y-2 text-sm text-white/40">
+          <p className="font-medium text-white/60">Next steps:</p>
           <p>1. We review your submission</p>
           <p>2. We schedule a discovery call</p>
-          <p>3. Audit delivered within 2 weeks</p>
+          <p>3. Assessment delivered within 2 weeks</p>
         </div>
       </div>
     )
   }
 
   const inputClass =
-    'w-full px-4 py-3 rounded-xl bg-white/80 border border-gray-200/60 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500/30 focus:border-teal-400 transition-all duration-200'
+    'w-full px-4 py-3 rounded-xl bg-white/[0.06] border border-white/[0.1] text-white placeholder-white/25 focus:outline-none focus:border-accent/50 focus:shadow-[0_0_15px_rgba(13,148,136,0.12)] transition-all duration-300'
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-6">
       {/* Honeypot */}
-      <div className="absolute opacity-0 pointer-events-none" aria-hidden="true">
+      <div
+        className="absolute opacity-0 pointer-events-none"
+        aria-hidden="true"
+      >
         <input
           type="text"
           name="website"
@@ -93,7 +133,7 @@ export function AuditForm() {
       </div>
 
       <div>
-        <label className="block text-slate-600 text-sm mb-2">Name *</label>
+        <label className="block text-white/50 text-sm mb-2">Name *</label>
         <input
           type="text"
           required
@@ -105,7 +145,7 @@ export function AuditForm() {
       </div>
 
       <div>
-        <label className="block text-slate-600 text-sm mb-2">Email *</label>
+        <label className="block text-white/50 text-sm mb-2">Email *</label>
         <input
           type="email"
           required
@@ -117,7 +157,7 @@ export function AuditForm() {
       </div>
 
       <div>
-        <label className="block text-slate-600 text-sm mb-2">Company *</label>
+        <label className="block text-white/50 text-sm mb-2">Company *</label>
         <input
           type="text"
           required
@@ -129,23 +169,59 @@ export function AuditForm() {
       </div>
 
       <div>
-        <label className="block text-slate-600 text-sm mb-2">What&apos;s your biggest challenge right now? *</label>
-        <select
-          required
-          value={formData.pain_type}
-          onChange={(e) => update('pain_type', e.target.value)}
-          className={`${inputClass} appearance-none`}
-        >
-          <option value="">Select one...</option>
-          <option value="Revenue Leak">Revenue Leak</option>
-          <option value="Ops Automation">Ops Automation</option>
-          <option value="Agent Build">Agent Build</option>
-          <option value="Other">Other</option>
-        </select>
+        <label className="block text-white/50 text-sm mb-2">
+          Company Size
+        </label>
+        <div className="flex flex-wrap gap-2">
+          {sizeOptions.map((size) => {
+            const selected = formData.company_size === size
+            return (
+              <button
+                key={size}
+                type="button"
+                onClick={() =>
+                  update('company_size', selected ? '' : size)
+                }
+                className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 active:scale-[0.95] cursor-pointer ${
+                  selected
+                    ? 'bg-accent/20 text-accent border-accent/40 shadow-[0_0_12px_rgba(13,148,136,0.2)]'
+                    : 'bg-white/[0.04] text-white/40 border-white/[0.08] hover:border-white/[0.18] hover:text-white/60'
+                }`}
+              >
+                {size}
+              </button>
+            )
+          })}
+        </div>
       </div>
 
       <div>
-        <label className="block text-slate-600 text-sm mb-2">
+        <label className="block text-white/50 text-sm mb-2">
+          What are you looking to solve? *
+        </label>
+        <div className="flex flex-wrap gap-2">
+          {challengeOptions.map((challenge) => {
+            const selected = formData.challenges.includes(challenge)
+            return (
+              <button
+                key={challenge}
+                type="button"
+                onClick={() => toggleChallenge(challenge)}
+                className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 active:scale-[0.95] cursor-pointer ${
+                  selected
+                    ? 'bg-accent/20 text-accent border-accent/40 shadow-[0_0_12px_rgba(13,148,136,0.2)]'
+                    : 'bg-white/[0.04] text-white/40 border-white/[0.08] hover:border-white/[0.18] hover:text-white/60'
+                }`}
+              >
+                {challenge}
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
+      <div>
+        <label className="block text-white/50 text-sm mb-2">
           Desired Outcome
         </label>
         <textarea
@@ -153,14 +229,24 @@ export function AuditForm() {
           onChange={(e) => update('desired_outcome', e.target.value)}
           rows={4}
           className={`${inputClass} resize-none`}
-          placeholder="What would success look like for you?"
+          placeholder="What would winning look like for you?"
         />
       </div>
 
       {status === 'error' && (
-        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
-          <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+          <svg
+            className="w-4 h-4 shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
           </svg>
           {errorMessage}
         </div>
@@ -169,40 +255,42 @@ export function AuditForm() {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full py-3.5 rounded-xl bg-[#1B2A4A] hover:bg-[#243656] text-white font-medium transition-all duration-300 hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full py-3.5 rounded-xl bg-navy text-white font-medium transition-all duration-300 hover:shadow-[0_0_25px_rgba(13,148,136,0.2)] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 relative overflow-hidden group border border-white/[0.08] hover:border-accent/30 cursor-pointer"
       >
-        {status === 'loading' ? (
-          <>
-            <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              />
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-              />
-            </svg>
-            Submitting...
-          </>
-        ) : (
-          'Submit Request'
-        )}
+        <span className="relative z-10">
+          {status === 'loading' ? (
+            <span className="flex items-center gap-2">
+              <svg
+                className="w-4 h-4 animate-spin"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                />
+              </svg>
+              Submitting...
+            </span>
+          ) : (
+            "Let's Talk"
+          )}
+        </span>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.04] to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
       </button>
 
-      <div className="text-center space-y-1">
-        <p className="text-slate-400 text-xs">
-          We&apos;ll get back to you within 24 hours.
-        </p>
-        <p className="text-slate-400 text-xs">
-          Your info stays private. We don&apos;t sell or share your data.
-        </p>
-      </div>
+      <p className="text-white/25 text-xs text-center">
+        You&apos;ll hear back within 24 hours. No spam, no sales pitch.
+      </p>
     </form>
   )
 }

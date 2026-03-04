@@ -348,24 +348,23 @@ export default function AuditPage() {
       </section>
 
       {/* Intake Form */}
-      <section className="relative py-24 overflow-hidden" id="form">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
-        <div className="absolute inset-0 bg-white/80 backdrop-blur-sm" />
+      <section className="relative py-24 bg-navy overflow-hidden" id="form">
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-10 text-navy">
-              Let&apos;s Talk
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-10 text-white">
+              Start a Conversation
             </h2>
           </AnimateIn>
 
           <AnimateIn delay={100}>
             <div className="max-w-lg mx-auto">
-              <div className="relative overflow-hidden rounded-2xl bg-white/[0.65] backdrop-blur-xl border border-white/[0.2] shadow-lg p-8">
-                <AuditForm />
+              <div className="relative overflow-hidden rounded-2xl bg-white/[0.06] backdrop-blur-2xl border border-white/[0.12] shadow-2xl shadow-black/20 p-8">
+                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.04] via-transparent to-transparent pointer-events-none" />
+                <div className="relative">
+                  <AuditForm />
+                </div>
               </div>
             </div>
           </AnimateIn>
