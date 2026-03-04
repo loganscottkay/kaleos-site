@@ -48,68 +48,93 @@ export default async function BlogPostPage({
   const post = await getPostBySlug(slug)
   if (!post) notFound()
 
+  const formattedDate = new Date(post.date + 'T00:00:00').toLocaleDateString(
+    'en-US',
+    { year: 'numeric', month: 'long', day: 'numeric' },
+  )
+
   return (
     <main className="min-h-screen">
       <NavBar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 overflow-hidden hero-vignette">
+      <section className="relative pt-32 pb-16 overflow-hidden">
+        <div className="absolute inset-0 bg-navy" />
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.08]"
           style={{ backgroundImage: `url('${HERO_BG}')` }}
         />
-        <div className="absolute inset-0 bg-white/30" />
         <div
           className="absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse at center, rgba(255,255,255,0.15) 0%, transparent 70%)',
+              'radial-gradient(ellipse at center, rgba(13,148,136,0.08) 0%, transparent 70%)',
           }}
         />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
-          <AnimateIn distance={20}>
-            <h1
-              className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white drop-shadow-lg"
-              style={{ textShadow: '0 2px 40px rgba(0,0,0,0.15)' }}
+        <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
+          <AnimateIn>
+            <Link
+              href="/blog"
+              className="inline-flex items-center text-white/40 text-sm hover:text-accent transition-colors mb-8"
             >
+              &larr; Back to Thinking
+            </Link>
+          </AnimateIn>
+          <AnimateIn distance={20} delay={50}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white">
               {post.title}
             </h1>
           </AnimateIn>
-          <AnimateIn delay={100}>
-            <p className="mt-4 text-white/80 text-sm tracking-wide">
-              {new Date(post.date + 'T00:00:00').toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-              {' · '}
-              {post.author}
-            </p>
+          <AnimateIn delay={150}>
+            <div className="mt-5 flex items-center justify-center gap-3 text-sm text-white/40">
+              {post.category && (
+                <>
+                  <span className="px-3 py-1 text-xs font-semibold rounded-full bg-accent/15 text-accent">
+                    {post.category}
+                  </span>
+                  <span className="text-white/20">·</span>
+                </>
+              )}
+              <span>{formattedDate}</span>
+              <span className="text-white/20">·</span>
+              <span>{post.readTime}</span>
+            </div>
           </AnimateIn>
         </div>
       </section>
 
       {/* Article content */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative py-20 bg-navy dot-grid-dark">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.04]"
           style={{ backgroundImage: `url('${HERO_BG}')` }}
         />
-        <div className="absolute inset-0 bg-white/70 backdrop-blur-sm" />
 
-        <div className="relative z-10 max-w-[700px] mx-auto px-4">
+        <div className="relative z-10 max-w-[720px] mx-auto px-4">
           <AnimateIn>
-            <article
-              className="prose"
-              dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-            />
+            <div
+              className="relative rounded-2xl backdrop-blur-2xl border border-white/[0.12] overflow-hidden"
+              style={{
+                backgroundColor: 'rgba(255,255,255,0.05)',
+                boxShadow:
+                  '0 0 40px rgba(13,148,136,0.06), inset 0 1px 0 rgba(255,255,255,0.07)',
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-white/[0.05] via-transparent to-transparent pointer-events-none" />
+              <div className="relative p-8 sm:p-12">
+                <article
+                  className="prose prose-invert"
+                  dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+                />
+              </div>
+            </div>
           </AnimateIn>
 
           {/* Tags */}
           {post.tags.length > 0 && (
             <AnimateIn delay={100}>
-              <div className="mt-12 flex flex-wrap gap-2">
+              <div className="mt-8 flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
@@ -126,9 +151,9 @@ export default async function BlogPostPage({
           <AnimateIn delay={200}>
             <Link
               href="/blog"
-              className="inline-block mt-12 text-accent font-medium text-sm hover:underline"
+              className="inline-block mt-10 text-accent font-medium text-sm hover:underline"
             >
-              &larr; Back to all posts
+              &larr; Back to Thinking
             </Link>
           </AnimateIn>
         </div>

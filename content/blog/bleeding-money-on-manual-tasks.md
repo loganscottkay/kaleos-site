@@ -4,6 +4,7 @@ date: "2026-02-26"
 description: "Your team is spending hours every week on repetitive work. Here's why that's costing you more than you think."
 author: "Kaleos"
 tags: ["AI automation", "business operations", "productivity"]
+category: "Perspective"
 slug: "bleeding-money-on-manual-tasks"
 ---
 

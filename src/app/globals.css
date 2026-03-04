@@ -273,3 +273,30 @@ body::before {
   background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.08), transparent);
   margin: 2em 0;
 }
+
+/* Dark background variant */
+.prose.prose-invert {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.prose.prose-invert h2,
+.prose.prose-invert h3 {
+  color: #fff;
+}
+
+.prose.prose-invert strong {
+  color: #fff;
+}
+
+.prose.prose-invert blockquote {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.prose.prose-invert code {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.prose.prose-invert hr {
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+}

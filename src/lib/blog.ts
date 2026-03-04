@@ -12,11 +12,19 @@ export interface PostMeta {
   description: string
   author: string
   tags: string[]
+  category: string
+  readTime: string
   slug: string
 }
 
 export interface Post extends PostMeta {
   contentHtml: string
+}
+
+function estimateReadTime(content: string): string {
+  const words = content.trim().split(/\s+/).length
+  const minutes = Math.max(1, Math.ceil(words / 230))
+  return `${minutes} min read`
 }
 
 export function getAllPosts(): PostMeta[] {
@@ -27,7 +35,7 @@ export function getAllPosts(): PostMeta[] {
   const posts = files.map((filename) => {
     const filePath = path.join(BLOG_DIR, filename)
     const raw = fs.readFileSync(filePath, 'utf-8')
-    const { data } = matter(raw)
+    const { data, content } = matter(raw)
 
     return {
       title: data.title,
@@ -35,6 +43,8 @@ export function getAllPosts(): PostMeta[] {
       description: data.description,
       author: data.author ?? 'Kaleos',
       tags: data.tags ?? [],
+      category: data.category ?? '',
+      readTime: estimateReadTime(content),
       slug: data.slug ?? filename.replace(/\.md$/, ''),
     } as PostMeta
   })

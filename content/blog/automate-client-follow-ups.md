@@ -4,6 +4,7 @@ date: "2026-02-27"
 description: "AI can handle your follow-up emails, reminders, and check-ins while still sounding like you. Here's how it works."
 author: "Kaleos"
 tags: ["client follow-ups", "AI automation", "email automation"]
+category: "Framework"
 slug: "automate-client-follow-ups"
 ---
 

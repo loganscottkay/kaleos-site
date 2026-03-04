@@ -4,6 +4,7 @@ date: "2026-02-27"
 description: "You don't need a big budget or a tech team to start automating. Here are the 3 easiest wins for small businesses."
 author: "Kaleos"
 tags: ["AI automation", "small business", "productivity"]
+category: "Framework"
 slug: "ai-automation-for-small-business"
 ---
 

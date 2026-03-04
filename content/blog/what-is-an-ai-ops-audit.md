@@ -4,6 +4,7 @@ date: "2026-02-27"
 description: "An AI Ops Audit shows you exactly where your business is losing time and money to manual work. Here's what the process looks like and what you get."
 author: "Kaleos"
 tags: ["AI ops audit", "business operations", "automation strategy"]
+category: "Framework"
 slug: "what-is-an-ai-ops-audit"
 ---
 
