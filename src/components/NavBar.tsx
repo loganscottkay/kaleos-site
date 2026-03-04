@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -12,8 +12,6 @@ const links = [
 ]
 
 const skywritingWords = ['Kaleos', 'is', 'for', 'you']
-// Delays timed to when the jet passes each word's position
-const wordDelays = [0.5, 0.85, 1.2, 1.55]
 
 function JetIcon() {
   return (
@@ -42,11 +40,15 @@ function JetIcon() {
   )
 }
 
+type SkyPhase = 'flight' | 'hold' | 'morph' | 'text' | 'fadeout'
+
 export function NavBar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [showSkywriting, setShowSkywriting] = useState(false)
-  const [fadingOut, setFadingOut] = useState(false)
+  const [skyPhase, setSkyPhase] = useState<SkyPhase | null>(null)
+  const jetRef = useRef<HTMLDivElement>(null)
+  const contrailRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -55,18 +57,44 @@ export function NavBar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Trigger skywriting once on mount
+  // Phase progression
   useEffect(() => {
-    const startTimer = setTimeout(() => setShowSkywriting(true), 300)
-    // Total: 2.5s flight + 1.5s hold + 0.5s fade = 4.5s
-    const fadeTimer = setTimeout(() => setFadingOut(true), 4300)
-    const removeTimer = setTimeout(() => setShowSkywriting(false), 4800)
-    return () => {
-      clearTimeout(startTimer)
-      clearTimeout(fadeTimer)
-      clearTimeout(removeTimer)
-    }
+    const timers = [
+      setTimeout(() => setSkyPhase('flight'), 300),
+      setTimeout(() => setSkyPhase('hold'), 2800),
+      setTimeout(() => setSkyPhase('morph'), 3100),
+      setTimeout(() => setSkyPhase('text'), 4200),
+      setTimeout(() => setSkyPhase('fadeout'), 5700),
+      setTimeout(() => setSkyPhase(null), 6200),
+    ]
+    return () => timers.forEach(clearTimeout)
   }, [])
+
+  // Track jet position and clip contrail behind it
+  useEffect(() => {
+    if (skyPhase !== 'flight') {
+      if (contrailRef.current) contrailRef.current.style.clipPath = 'none'
+      return
+    }
+    let rafId: number
+    const update = () => {
+      if (jetRef.current && contrailRef.current && containerRef.current) {
+        const jetRect = jetRef.current.getBoundingClientRect()
+        const cRect = containerRef.current.getBoundingClientRect()
+        const visible = Math.max(0, jetRect.left - cRect.left - 10)
+        const clipRight = Math.max(0, cRect.width - visible)
+        contrailRef.current.style.clipPath = `inset(0 ${clipRight}px 0 0)`
+      }
+      rafId = requestAnimationFrame(update)
+    }
+    rafId = requestAnimationFrame(update)
+    return () => cancelAnimationFrame(rafId)
+  }, [skyPhase])
+
+  const showOverlay = skyPhase !== null
+  const showContrail = skyPhase === 'flight' || skyPhase === 'hold' || skyPhase === 'morph'
+  const showText = skyPhase === 'morph' || skyPhase === 'text' || skyPhase === 'fadeout'
+  const showJet = skyPhase === 'flight'
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b border-slate-200/60 transition-all duration-300 ${scrolled ? 'bg-white/90 shadow-sm' : 'bg-white/70'}`}>
@@ -81,39 +109,74 @@ export function NavBar() {
         </Link>
 
         {/* Skywriting flyover — desktop only, one-time */}
-        {showSkywriting && (
+        {showOverlay && (
           <div
-            className={`hidden md:flex absolute inset-0 items-center pointer-events-none overflow-hidden transition-opacity duration-500 ${fadingOut ? 'opacity-0' : 'opacity-100'}`}
+            ref={containerRef}
+            className={`hidden md:flex absolute inset-0 items-center pointer-events-none overflow-hidden transition-opacity duration-500 ${skyPhase === 'fadeout' ? 'opacity-0' : 'opacity-100'}`}
           >
-            {/* Exhaust glow layer — appears slightly before text, stays blurry */}
-            <div className="absolute inset-0 flex items-center justify-center" style={{ gap: '0.35em' }}>
-              {skywritingWords.map((word, i) => (
-                <span
-                  key={`exhaust-${word}`}
-                  className="skywriting-exhaust-word"
-                  style={{ animationDelay: `${wordDelays[i] - 0.15}s` }}
-                  aria-hidden="true"
+            {/* Contrail vapor — SVG with turbulence filter for cloud texture */}
+            {showContrail && (
+              <div ref={contrailRef} className="absolute inset-0" style={{ clipPath: 'inset(0 100% 0 0)' }}>
+                <svg
+                  className={`absolute inset-0 w-full h-full transition-opacity duration-[900ms] ${skyPhase === 'morph' ? 'opacity-0' : 'opacity-100'}`}
+                  preserveAspectRatio="none"
                 >
-                  {word}
-                </span>
-              ))}
-            </div>
-            {/* Text layer — materializes from smoke to readable */}
-            <div className="absolute inset-0 flex items-center justify-center" style={{ gap: '0.35em' }}>
-              {skywritingWords.map((word, i) => (
-                <span
-                  key={`text-${word}`}
-                  className="skywriting-word"
-                  style={{ animationDelay: `${wordDelays[i]}s` }}
-                >
-                  {word}
-                </span>
-              ))}
-            </div>
-            {/* Jet */}
-            <div className="skywriting-jet absolute flex items-center" style={{ top: '50%', transform: 'translateY(-50%)' }}>
-              <JetIcon />
-            </div>
+                  <defs>
+                    <filter id="cv">
+                      <feTurbulence type="fractalNoise" baseFrequency="0.015 0.08" numOctaves="4" seed="3" result="t" />
+                      <feDisplacementMap in="SourceGraphic" in2="t" scale="5" />
+                      <feGaussianBlur stdDeviation="2.5" />
+                    </filter>
+                    <filter id="cg">
+                      <feTurbulence type="fractalNoise" baseFrequency="0.01 0.06" numOctaves="3" seed="7" result="t" />
+                      <feDisplacementMap in="SourceGraphic" in2="t" scale="3" />
+                      <feGaussianBlur stdDeviation="5" />
+                    </filter>
+                    <linearGradient id="cgrad" x1="0" x2="1" y1="0" y2="0">
+                      <stop offset="0%" stopColor="white" stopOpacity="0.1" />
+                      <stop offset="25%" stopColor="#0d9488" stopOpacity="0.35" />
+                      <stop offset="60%" stopColor="white" stopOpacity="0.55" />
+                      <stop offset="100%" stopColor="white" stopOpacity="0.3" />
+                    </linearGradient>
+                  </defs>
+                  {/* Outer diffuse glow */}
+                  <rect x="20%" y="34%" width="42%" height="32%" rx="16"
+                        fill="url(#cgrad)" filter="url(#cg)" opacity="0.25" />
+                  {/* Core vapor band */}
+                  <rect x="22%" y="42%" width="38%" height="16%" rx="8"
+                        fill="url(#cgrad)" filter="url(#cv)" opacity="0.55" />
+                  {/* Hot bright center */}
+                  <rect x="25%" y="46%" width="32%" height="8%" rx="4"
+                        fill="white" filter="url(#cv)" opacity="0.35" />
+                </svg>
+              </div>
+            )}
+
+            {/* Text — materializes from smoke after contrail fades */}
+            {showText && (
+              <div className="absolute inset-0 flex items-center justify-center" style={{ gap: '0.35em' }}>
+                {skywritingWords.map((word, i) => (
+                  <span
+                    key={word}
+                    className="skywriting-word"
+                    style={{ animationDelay: `${i * 0.15}s` }}
+                  >
+                    {word}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Jet — flies across and exits right */}
+            {showJet && (
+              <div
+                ref={jetRef}
+                className="skywriting-jet absolute flex items-center"
+                style={{ top: '50%', transform: 'translateY(-50%)' }}
+              >
+                <JetIcon />
+              </div>
+            )}
           </div>
         )}
 

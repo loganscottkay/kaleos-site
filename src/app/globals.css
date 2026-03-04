@@ -79,26 +79,20 @@ body::before {
 
 /* Skywriting flyover animation */
 @keyframes skywriting-fly {
-  0% { left: 15%; }
-  100% { left: 62%; }
+  0% { left: 10%; }
+  100% { left: 105%; }
 }
 
 @keyframes word-materialize {
   0%   { opacity: 0;    filter: blur(8px); }
-  35%  { opacity: 0.35; filter: blur(4px); }
-  70%  { opacity: 0.65; filter: blur(1px); }
+  40%  { opacity: 0.4;  filter: blur(4px); }
+  75%  { opacity: 0.7;  filter: blur(1px); }
   100% { opacity: 0.8;  filter: blur(0px); }
-}
-
-@keyframes exhaust-appear {
-  0%   { opacity: 0;    filter: blur(12px); }
-  40%  { opacity: 0.25; filter: blur(8px); }
-  100% { opacity: 0.2;  filter: blur(6px); }
 }
 
 .skywriting-jet {
   animation: skywriting-fly 2.5s ease-out forwards;
-  left: 15%;
+  left: 10%;
   z-index: 2;
 }
 
@@ -111,19 +105,7 @@ body::before {
   white-space: nowrap;
   opacity: 0;
   filter: blur(8px);
-  animation: word-materialize 0.8s ease-out forwards;
-}
-
-.skywriting-exhaust-word {
-  font-family: var(--font-playfair), Georgia, serif;
-  font-style: italic;
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-  color: #0d9488;
-  white-space: nowrap;
-  opacity: 0;
-  filter: blur(12px);
-  animation: exhaust-appear 0.6s ease-out forwards;
+  animation: word-materialize 1s ease-out forwards;
 }
 
 /* Subtle button shimmer */
