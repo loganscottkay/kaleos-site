@@ -77,6 +77,18 @@ body::before {
   animation: glow-drift 4s ease infinite;
 }
 
+/* Nav link rumble when jet passes over */
+@keyframes nav-rumble {
+  0%, 100% { transform: translateX(0); text-shadow: none; }
+  25% { transform: translateX(-2px); text-shadow: 0 0 8px #0d9488; }
+  50% { transform: translateX(2px); text-shadow: 0 0 8px #0d9488; }
+  75% { transform: translateX(-1px); text-shadow: 0 0 4px #0d9488; }
+}
+
+.nav-rumble {
+  animation: nav-rumble 0.2s ease-out !important;
+}
+
 /* Skywriting flyover animation */
 @keyframes skywriting-fly {
   0% { left: 10%; }

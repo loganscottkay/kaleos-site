@@ -47,6 +47,8 @@ export function NavBar() {
   const jetRef = useRef<HTMLDivElement>(null)
   const trailRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const linkRefs = useRef<(HTMLAnchorElement | null)[]>([])
+  const triggeredLinks = useRef<Set<number>>(new Set())
   const pathname = usePathname()
 
   useEffect(() => {
@@ -76,6 +78,7 @@ export function NavBar() {
       return
     }
     if (trailRef.current) trailRef.current.style.clipPath = 'inset(0 100% 0 0)'
+    triggeredLinks.current.clear()
     let rafId: number
     const update = () => {
       if (jetRef.current && trailRef.current && containerRef.current) {
@@ -84,6 +87,18 @@ export function NavBar() {
         const visible = Math.max(0, jetRect.left - cRect.left - 10)
         const clipRight = Math.max(0, cRect.width - visible)
         trailRef.current.style.clipPath = `inset(0 ${clipRight}px 0 0)`
+
+        // Rumble nav links as jet passes over them
+        const jetCenterX = jetRect.left + 16
+        linkRefs.current.forEach((el, i) => {
+          if (!el || triggeredLinks.current.has(i)) return
+          const r = el.getBoundingClientRect()
+          if (jetCenterX >= r.left && jetCenterX <= r.right) {
+            triggeredLinks.current.add(i)
+            el.classList.add('nav-rumble')
+            setTimeout(() => el.classList.remove('nav-rumble'), 300)
+          }
+        })
       }
       rafId = requestAnimationFrame(update)
     }
@@ -115,7 +130,7 @@ export function NavBar() {
             {/* Single trail element — starts as blurry cloud streak, morphs into text */}
             <div ref={trailRef} className="absolute inset-0 flex items-center justify-center">
               <span className={`skywriting-trail ${isCloud ? 'is-cloud' : ''}`}>
-                Kaleos is for you
+                Kaleos
               </span>
             </div>
 
@@ -134,12 +149,13 @@ export function NavBar() {
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
-          {links.map((link) => {
+          {links.map((link, i) => {
             const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
             return (
               <Link
                 key={link.href}
                 href={link.href}
+                ref={(el: HTMLAnchorElement | null) => { linkRefs.current[i] = el }}
                 className={`group/nav relative text-sm font-medium tracking-wide transition-colors duration-300 ease-in-out pb-1 ${
                   isActive
                     ? 'text-navy'
