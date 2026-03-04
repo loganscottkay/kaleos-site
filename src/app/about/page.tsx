@@ -9,14 +9,14 @@ import { StrategyGraph } from '@/components/StrategyGraph'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Logan Kay led AI implementation at Harvard Business School. Now he builds strategic AI systems for founders and executives.',
+    'Logan Kay helped spearhead AI implementation initiatives at Harvard Business School. Now he builds strategic AI systems for founders and executives.',
   alternates: {
     canonical: 'https://kaleoshq.com/about',
   },
   openGraph: {
     title: 'About | Kaleos',
     description:
-      'Logan Kay led AI implementation at Harvard Business School. Now he builds strategic AI systems for founders and executives.',
+      'Logan Kay helped spearhead AI implementation initiatives at Harvard Business School. Now he builds strategic AI systems for founders and executives.',
     url: 'https://kaleoshq.com/about',
   },
 }
@@ -83,7 +83,7 @@ export default function AboutPage() {
                 <div className="flex-1">
                   <AnimateIn>
                     <p className="text-xl text-slate-800 font-medium leading-relaxed mb-8 tracking-tight">
-                      I led AI implementation at Harvard Business School. Now I work
+                      I helped spearhead AI implementation initiatives at Harvard Business School. Now I work
                       with founders who understand the AI advantage isn&apos;t about
                       the best tools. It&apos;s about the best implementation.
                     </p>
