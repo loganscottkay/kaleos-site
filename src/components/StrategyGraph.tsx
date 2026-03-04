@@ -24,7 +24,8 @@ const particles = [
 
 const config = {
   decline: {
-    header: 'What happens without a plan',
+    header: 'AI Without Strategy',
+    subtitle: 'Tools without direction. Budget spent, nothing to show.',
     headerColor: 'text-red-400/90',
     lineColor: '#ef4444',
     glowColor: 'rgba(239, 68, 68, 0.45)',
@@ -45,7 +46,8 @@ const config = {
     ],
   },
   growth: {
-    header: "What happens when it's done right",
+    header: 'AI With Kaleos',
+    subtitle: 'Strategy first. Compounding returns.',
     headerColor: 'text-emerald-400/90',
     lineColor: '#10b981',
     glowColor: 'rgba(16, 185, 129, 0.45)',
@@ -146,14 +148,17 @@ export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
 
           <div className="relative p-5 pb-4 flex flex-col h-full">
             <p
-              className={`text-xs font-semibold ${c.headerColor} mb-4 tracking-widest uppercase`}
+              className={`text-xs font-semibold ${c.headerColor} mb-1 tracking-widest uppercase`}
             >
               {c.header}
+            </p>
+            <p className="text-[10px] text-white/40 mb-3">
+              {c.subtitle}
             </p>
 
             <div className="flex-1 min-h-[200px]">
               <svg
-                viewBox="0 0 200 150"
+                viewBox="0 0 200 158"
                 className="w-full h-full"
                 preserveAspectRatio="xMidYMid meet"
               >
@@ -283,6 +288,31 @@ export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
                   strokeOpacity={0.2}
                   strokeWidth={0.7}
                 />
+
+                {/* Y-axis label */}
+                <text
+                  x={CHART_LEFT - 4}
+                  y={(CHART_TOP + CHART_BOTTOM) / 2}
+                  fill="white"
+                  fillOpacity={0.25}
+                  fontSize={7}
+                  textAnchor="middle"
+                  transform={`rotate(-90, ${CHART_LEFT - 4}, ${(CHART_TOP + CHART_BOTTOM) / 2})`}
+                >
+                  ROI
+                </text>
+
+                {/* X-axis label */}
+                <text
+                  x={(CHART_LEFT + CHART_RIGHT) / 2}
+                  y={CHART_BOTTOM + 13}
+                  fill="white"
+                  fillOpacity={0.25}
+                  fontSize={7}
+                  textAnchor="middle"
+                >
+                  Time
+                </text>
 
                 {/* Fill area under curve */}
                 <path
