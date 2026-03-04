@@ -27,9 +27,9 @@ const HERO_BG =
 const deliverables = [
   'Complete operational workflow mapping',
   'AI readiness evaluation across every major business function',
-  'Prioritized opportunity matrix ranked by revenue impact, complexity, and strategic alignment',
-  'Conservative and aggressive ROI projections for each opportunity',
-  'Phased implementation roadmap with defined milestones and KPIs',
+  'Prioritized opportunity matrix ranked by revenue impact and complexity',
+  'Conservative and aggressive ROI projections',
+  'Phased implementation roadmap with milestones and KPIs',
   'Risk assessment and change management strategy',
   'Executive summary PDF and 45-minute strategy presentation',
 ]
@@ -83,11 +83,9 @@ export default function AuditPage() {
           </AnimateIn>
           <AnimateIn delay={200} distance={15}>
             <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
-              Before we build anything, we need to understand everything. Our
-              assessment is a deep operational analysis that maps your business,
-              identifies your highest-leverage AI opportunities, and gives you a
-              clear implementation roadmap with projected ROI, before you commit
-              to a single dollar of implementation.
+              A deep operational analysis that maps your business, identifies
+              your highest-leverage AI opportunities, and delivers a clear
+              implementation roadmap with projected ROI.
             </p>
           </AnimateIn>
         </div>
@@ -145,28 +143,21 @@ export default function AuditPage() {
             </h2>
           </AnimateIn>
 
-          <div className="flex flex-col md:flex-row items-stretch gap-4 md:gap-0 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {steps.map((item, i) => (
-              <div key={i} className="flex-1 flex items-stretch">
-                {i > 0 && (
-                  <div className="hidden md:flex items-center px-1">
-                    <div className="w-10 border-t border-dashed border-white/20" />
+              <AnimateIn key={i} delay={i * 100} className="h-full">
+                <GlassCard className="p-6 h-full">
+                  <div className="text-accent text-sm font-mono mb-2">
+                    {item.step}
                   </div>
-                )}
-                <AnimateIn delay={i * 100} className="flex-1">
-                  <GlassCard className="p-6 h-full">
-                    <div className="text-accent text-sm font-mono mb-2">
-                      {item.step}
-                    </div>
-                    <h3 className="text-lg font-semibold tracking-tight mb-2 text-white">
-                      {item.title}
-                    </h3>
-                    <p className="text-white/70 text-sm leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </GlassCard>
-                </AnimateIn>
-              </div>
+                  <h3 className="text-lg font-semibold tracking-tight mb-2 text-white">
+                    {item.title}
+                  </h3>
+                  <p className="text-white/70 text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
+                </GlassCard>
+              </AnimateIn>
             ))}
           </div>
         </div>
@@ -177,7 +168,7 @@ export default function AuditPage() {
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
         <div className="relative z-10 max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <AnimateIn>
+            <AnimateIn className="h-full">
               <GlassCard className="p-8 h-full">
                 <p className="text-white/50 text-sm mb-2 tracking-wide">
                   Assessment Investment
@@ -186,30 +177,25 @@ export default function AuditPage() {
                   $1,500
                 </p>
                 <p className="text-white/60 text-sm leading-relaxed">
-                  Most consulting firms charge $10,000-$25,000 for this level of
-                  operational analysis. We price our assessment at $1,500
-                  because we&apos;d rather work with 10 companies who are
-                  serious about implementation than 2 companies who just want a
-                  report.
+                  Most firms charge $10K-$25K for this level of operational
+                  analysis.
                 </p>
               </GlassCard>
             </AnimateIn>
 
-            <AnimateIn delay={150}>
+            <AnimateIn delay={150} className="h-full">
               <GlassCard className="p-8 h-full">
                 <p className="text-white/50 text-sm mb-2 tracking-wide">
                   ROI Preview
                 </p>
                 <p className="text-white/80 leading-relaxed">
                   Our clients typically discover 15-30 hours per week of
-                  high-value procedural work that&apos;s blocking strategic
-                  execution. At executive billing rates, that represents{' '}
+                  procedural work blocking strategic execution. At executive
+                  billing rates, that&apos;s{' '}
                   <span className="text-accent font-semibold">
                     $8,000-$25,000
                   </span>{' '}
-                  in monthly capacity that&apos;s currently being burned on work
-                  AI can accelerate. The assessment pays for itself before we
-                  build anything.
+                  in monthly capacity the assessment helps you reclaim.
                 </p>
               </GlassCard>
             </AnimateIn>

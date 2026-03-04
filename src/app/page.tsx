@@ -10,15 +10,15 @@ const HERO_BG =
 const implementationGap = [
   {
     title: 'The Strategy Problem',
-    desc: "Most AI vendors start with the tool and look for a problem. We start with your strategy and work backwards. What are you trying to accomplish? What\u2019s preventing you from executing faster? Where is human judgment essential and where is it bottlenecking procedural work? The answers to these questions determine what we build.",
+    desc: "Most AI vendors start with the tool and look for a problem. We start with your strategy and work backwards to what actually needs to be built.",
   },
   {
     title: 'The Trust Problem',
-    desc: "Executives don\u2019t adopt AI they can\u2019t control. Every system we deploy has approval gates, audit trails, and human checkpoints at every decision point. You see everything the AI does before it does it. Full transparency, full control. That\u2019s not a feature. That\u2019s the foundation.",
+    desc: "Every system we deploy has approval gates, audit trails, and human checkpoints. You see everything the AI does before it does it.",
   },
   {
     title: 'The Execution Problem',
-    desc: "Strategy without execution is a slide deck. Most consulting firms will tell you what AI can do for your business. We actually build it. Architecture, deployment, testing, iteration, documentation. We don\u2019t hand you a recommendation and walk away. We hand you a working system.",
+    desc: "Most consulting firms tell you what AI can do. We build it. Architecture, deployment, testing, documentation, and a working system.",
   },
 ]
 
@@ -26,41 +26,41 @@ const methodology = [
   {
     phase: 'Phase 1',
     title: 'Strategic Assessment',
-    desc: "We conduct a deep operational analysis of your business. Not a surface-level survey. We map every workflow, identify where human judgment is essential versus where it\u2019s being wasted on procedural execution, and build a prioritized opportunity matrix ranked by revenue impact, implementation complexity, and strategic alignment. You get a clear picture of where AI creates the most leverage for your specific situation.",
+    desc: "We map every workflow, identify where human judgment is essential versus wasted on procedural execution, and build a prioritized opportunity matrix. You get a clear picture of where AI creates the most leverage.",
   },
   {
     phase: 'Phase 2',
     title: 'Precision Architecture',
-    desc: "We don\u2019t build generic tools. Every system is designed around your specific workflows, your voice, your decision-making patterns, and your operational reality. We scope each build to a single, measurable outcome with defined KPIs. One system, one job, clear accountability.",
+    desc: "Every system is designed around your specific workflows, voice, and operational reality. One system, one measurable outcome, clear accountability.",
   },
   {
     phase: 'Phase 3',
     title: 'Deployment and Control',
-    desc: "We deploy into your existing infrastructure with approval gates, audit logging, and human-in-the-loop controls at every critical point. Your team maintains full visibility and final authority over every AI-generated output. Nothing ships, sends, or executes without explicit human approval.",
+    desc: "We deploy with approval gates, audit logging, and human-in-the-loop controls at every critical point. Nothing executes without explicit human approval.",
   },
   {
     phase: 'Phase 4',
     title: 'Measurement and Expansion',
-    desc: "We track performance against the KPIs defined in Phase 2. We refine system behavior based on real usage data. And when results compound, we identify the next highest-leverage opportunity and expand. This is iterative, not one-and-done.",
+    desc: "We track performance against defined KPIs and refine based on real usage data. When results compound, we expand to the next highest-leverage opportunity.",
   },
 ]
 
 const leverage = [
   {
     title: 'Revenue Operations',
-    desc: 'Automated reconciliation, invoice auditing, and financial workflow systems that recover revenue, reduce errors, and eliminate the procedural drag on your finance team. Built for operators managing complex, high-volume financial operations.',
+    desc: 'Invoice auditing, reconciliation, and financial workflow systems that recover revenue and reduce errors. Built for operators managing high-volume financial operations.',
   },
   {
     title: 'Client Intelligence and Communication',
-    desc: 'Proposals, follow-ups, briefs, and client communications generated in your voice with your strategic context embedded. Every output goes through human review before it reaches anyone. Your relationships, your judgment, your voice, accelerated.',
+    desc: 'Proposals, briefs, and client communications generated in your voice with your strategic context. Every output goes through human review before it reaches anyone.',
   },
   {
     title: 'Pipeline and Growth Operations',
-    desc: 'Structured lead qualification, intake automation, ROI modeling, and opportunity scoring that turns inbound interest into scoped engagements. Stop losing deals to slow follow-up and manual qualification processes.',
+    desc: 'Lead qualification, intake automation, and opportunity scoring that turns inbound interest into scoped engagements. Stop losing deals to slow follow-up.',
   },
   {
     title: 'Operational Infrastructure',
-    desc: 'Internal workflows, approvals, reporting, scheduling, and coordination systems encoded into repeatable, scalable processes. Add capacity without adding headcount. Scale operations without scaling complexity.',
+    desc: 'Workflows, approvals, reporting, and coordination encoded into repeatable, scalable processes. Add capacity without adding headcount.',
   },
 ]
 
@@ -133,9 +133,8 @@ export default function Home() {
 
           <AnimateIn delay={200} distance={15}>
             <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto mb-8 leading-relaxed drop-shadow-sm">
-              Kaleos is a strategic AI implementation practice. We deploy AI
-              systems designed around how your business actually operates, not
-              how a demo looks on stage.
+              We deploy AI systems designed around how your business actually
+              operates, not how a demo looks on stage.
             </p>
           </AnimateIn>
 
@@ -174,16 +173,15 @@ export default function Home() {
 
           <AnimateIn delay={100}>
             <p className="text-white/70 text-center max-w-3xl mx-auto mb-14 leading-relaxed">
-              Every company knows they need AI. Most don&apos;t know where to
-              start. The ones that do start usually fail, not because the
-              technology doesn&apos;t work, but because nobody connected it to
-              what actually matters.
+              Most companies that start with AI fail. Not because the technology
+              doesn&apos;t work, but because nobody connected it to what
+              actually matters.
             </p>
           </AnimateIn>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {implementationGap.map((item, i) => (
-              <AnimateIn key={i} delay={i * 100}>
+              <AnimateIn key={i} delay={i * 100} className="h-full">
                 <GlassCard hover className="p-8 h-full">
                   <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
                     {item.title}
@@ -210,7 +208,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {methodology.map((item, i) => (
-              <AnimateIn key={i} delay={i * 100}>
+              <AnimateIn key={i} delay={i * 100} className="h-full">
                 <GlassCard hover className="p-8 h-full">
                   <div className="text-accent text-sm font-mono mb-3">
                     {item.phase}
@@ -240,7 +238,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {leverage.map((item, i) => (
-              <AnimateIn key={i} delay={i * 100}>
+              <AnimateIn key={i} delay={i * 100} className="h-full">
                 <GlassCard hover className="p-8 h-full">
                   <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
                     {item.title}
@@ -294,17 +292,13 @@ export default function Home() {
           <AnimateIn delay={100}>
             <div className="max-w-3xl mx-auto">
               <p className="text-slate-600 leading-relaxed text-lg">
-                Kaleos works with a specific kind of operator: established
-                businesses with real revenue, real complexity, and a genuine
-                strategic need for AI, not a curiosity. Our clients are typically
-                founders, CEOs, and operators running companies with $2M-$100M+
-                in revenue who know they&apos;re leaving money on the table but
-                don&apos;t have the internal capability to implement AI properly.
-                If you&apos;re looking for a chatbot or a quick automation hack,
-                we&apos;re not the right fit. If you&apos;re looking for a
-                strategic implementation partner who will understand your
-                business and build systems that create lasting operational
-                leverage, we should talk.
+                We work with established businesses with real revenue, real
+                complexity, and a genuine strategic need for AI. Our clients are
+                typically founders and operators running $2M-$100M+ companies
+                who don&apos;t have the internal capability to implement AI
+                properly. If you&apos;re looking for a chatbot, we&apos;re not
+                the right fit. If you need a strategic implementation partner,
+                we should talk.
               </p>
             </div>
           </AnimateIn>

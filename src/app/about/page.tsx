@@ -69,11 +69,9 @@ export default function AboutPage() {
             <div className="flex-1">
               <AnimateIn>
                 <p className="text-xl text-slate-800 font-medium leading-relaxed mb-8 tracking-tight">
-                  I led AI implementation initiatives at Harvard Business
-                  School, designing and deploying systems across admissions and
-                  operations teams. Now I work with founders and executives who
-                  understand that the AI advantage isn&apos;t about having the
-                  best tools. It&apos;s about having the best implementation.
+                  I led AI implementation at Harvard Business School. Now I work
+                  with founders who understand the AI advantage isn&apos;t about
+                  the best tools. It&apos;s about the best implementation.
                 </p>
               </AnimateIn>
 
@@ -81,29 +79,24 @@ export default function AboutPage() {
                 <AnimateIn delay={100}>
                   <p>
                     Most companies approach AI backwards. They buy a tool, try to
-                    plug it into their business, and wonder why nobody uses it
-                    six months later. The technology was never the problem. The
-                    implementation was.
+                    plug it in, and wonder why nobody uses it six months later.
+                    The implementation was always the problem.
                   </p>
                 </AnimateIn>
 
                 <AnimateIn delay={200}>
                   <p>
-                    Kaleos exists because I kept seeing the same pattern:
-                    brilliant executives with clear strategic vision, stuck
-                    because nobody could translate that vision into operational AI
-                    systems that actually work. Not demos. Not proofs of concept.
-                    Production systems that run real business processes under real
-                    constraints with real accountability.
+                    Kaleos exists because brilliant executives with clear
+                    strategic vision keep getting stuck. Nobody translates that
+                    vision into AI systems that actually run in production.
                   </p>
                 </AnimateIn>
 
                 <AnimateIn delay={300}>
                   <p>
-                    Every system I build starts with one question: what is this
-                    business actually trying to accomplish? The AI comes second.
-                    The strategy comes first. And the human always stays in the
-                    loop.
+                    Every system starts with one question: what is this business
+                    actually trying to accomplish? The AI comes second. The
+                    strategy comes first.
                   </p>
                 </AnimateIn>
               </div>
@@ -136,43 +129,41 @@ export default function AboutPage() {
             </h2>
           </AnimateIn>
 
-          <div className="max-w-3xl mx-auto space-y-6">
-            <AnimateIn delay={100}>
-              <GlassCard className="p-8">
+          <div className="max-w-3xl mx-auto grid grid-cols-1 gap-6 auto-rows-fr">
+            <AnimateIn delay={100} className="h-full">
+              <GlassCard className="p-8 h-full">
                 <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
                   Methodology over tools.
                 </h3>
                 <p className="text-white/80 leading-relaxed">
-                  We don&apos;t lead with technology. We lead with a strategic
-                  framework that determines where AI creates the most leverage,
-                  then we select and build the right tools for that specific
+                  We lead with a strategic framework that determines where AI
+                  creates the most leverage, then build the right tools for that
                   application. The methodology is the product.
                 </p>
               </GlassCard>
             </AnimateIn>
 
-            <AnimateIn delay={200}>
-              <GlassCard className="p-8">
+            <AnimateIn delay={200} className="h-full">
+              <GlassCard className="p-8 h-full">
                 <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
                   Single-outcome precision.
                 </h3>
                 <p className="text-white/80 leading-relaxed">
-                  Every engagement targets one measurable operational outcome. No
-                  sprawling AI roadmaps that never ship. One system, one KPI,
-                  clear results. Then we expand based on what the data shows.
+                  Every engagement targets one measurable outcome. One system,
+                  one KPI, clear results. Then we expand based on data.
                 </p>
               </GlassCard>
             </AnimateIn>
 
-            <AnimateIn delay={300}>
-              <GlassCard className="p-8">
+            <AnimateIn delay={300} className="h-full">
+              <GlassCard className="p-8 h-full">
                 <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
                   Absolute executive control.
                 </h3>
                 <p className="text-white/80 leading-relaxed">
-                  Nothing in any system we build executes without human approval.
-                  Every action is logged. Every output is reviewable. AI
-                  amplifies your judgment. It never replaces it.
+                  Nothing executes without human approval. Every action is
+                  logged, every output reviewable. AI amplifies your judgment,
+                  never replaces it.
                 </p>
               </GlassCard>
             </AnimateIn>
