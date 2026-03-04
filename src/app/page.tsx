@@ -258,12 +258,12 @@ export default function Home() {
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
         <div className="relative z-10 max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <p className="text-accent text-xs font-mono tracking-widest text-center mb-2 uppercase">
-              Live Operator Dashboard Preview
+            <p className="text-accent text-xs font-mono tracking-widest text-center mb-3 uppercase">
+              What it looks like in practice
             </p>
-            <p className="text-white/60 text-center mb-10 tracking-wide">
-              This is what it actually looks like when it&apos;s running.
-            </p>
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-center mb-12 text-white">
+              AI does the work. You make the call.
+            </h2>
           </AnimateIn>
 
           <AnimateIn delay={150}>
