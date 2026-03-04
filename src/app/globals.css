@@ -92,16 +92,16 @@ body::before {
 /* Single trail element: morphs from blurry cloud streak → readable text */
 .skywriting-trail {
   font-family: var(--font-playfair), Georgia, serif;
-  font-style: italic;
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 1.125rem;
   white-space: nowrap;
   transition: filter 1s ease-out, opacity 1s ease-out, color 1s ease-out, letter-spacing 1s ease-out;
   /* Text state (default) */
   filter: blur(0px);
   opacity: 0.8;
-  color: #0d9488;
+  color: #1B2A4A;
   letter-spacing: 0.04em;
-  text-shadow: 0 0 8px rgba(13, 148, 136, 0.2);
+  text-shadow: 0 0 8px rgba(27, 42, 74, 0.15);
 }
 
 .skywriting-trail.is-cloud {
