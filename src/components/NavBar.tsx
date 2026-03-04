@@ -55,8 +55,9 @@ export function NavBar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Phase progression
+  // Phase progression — home page only
   useEffect(() => {
+    if (pathname !== '/') return
     const timers = [
       setTimeout(() => setSkyPhase('flight'), 300),
       setTimeout(() => setSkyPhase('hold'), 2800),
@@ -66,7 +67,7 @@ export function NavBar() {
       setTimeout(() => setSkyPhase(null), 6200),
     ]
     return () => timers.forEach(clearTimeout)
-  }, [])
+  }, [pathname])
 
   // Clip trail behind jet position — useLayoutEffect prevents flash on first frame
   useLayoutEffect(() => {
