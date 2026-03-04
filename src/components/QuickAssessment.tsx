@@ -9,30 +9,30 @@ const questions = [
   {
     question: "What takes up most of your team's time?",
     options: [
-      { icon: '📊', label: 'Reporting & analysis' },
-      { icon: '📧', label: 'Client communication' },
-      { icon: '📋', label: 'Admin & coordination' },
-      { icon: '🔄', label: 'Repetitive processes' },
+      { label: 'Reporting & analysis' },
+      { label: 'Client communication' },
+      { label: 'Admin & coordination' },
+      { label: 'Repetitive processes' },
     ],
     multi: true,
   },
   {
     question: 'How would you describe your current AI situation?',
     options: [
-      { icon: '', label: "Haven't started" },
-      { icon: '', label: 'Tried tools, nothing stuck' },
-      { icon: '', label: 'Using some, want more' },
-      { icon: '', label: 'Advanced, want to optimize' },
+      { label: "Haven't started" },
+      { label: 'Tried tools, nothing stuck' },
+      { label: 'Using some, want more' },
+      { label: 'Advanced, want to optimize' },
     ],
     multi: false,
   },
   {
     question: 'What would change your business the most right now?',
     options: [
-      { icon: '', label: 'More capacity without more hires' },
-      { icon: '', label: 'Faster client response time' },
-      { icon: '', label: 'Better data and decision-making' },
-      { icon: '', label: 'Reducing operational errors' },
+      { label: 'More capacity without more hires' },
+      { label: 'Faster client response time' },
+      { label: 'Better data and decision-making' },
+      { label: 'Reducing operational errors' },
     ],
     multi: false,
   },
@@ -52,21 +52,23 @@ function getResult(answers: string[][]) {
   let body = ''
   let key = ''
 
+  const q3Lower = q3.toLowerCase()
+
   if (q2 === "Haven't started" || q2 === 'Tried tools, nothing stuck') {
     headline = "You're sitting on untapped capacity."
-    body = `Based on what you've told us, there are clear opportunities to reclaim time your team is burning on ${q1Text}. Companies in your position typically find 2-3 high-leverage automation opportunities in the first assessment.`
+    body = `There are clear opportunities to reclaim time your team is burning on ${q1Text}. You told us ${q3Lower} would change your business the most. That's exactly what a strategic assessment is designed to unlock. Companies in your position typically find 2-3 high-leverage automation opportunities in the first conversation.`
     key = 'untapped_capacity'
   } else if (q2 === 'Using some, want more') {
     headline = "You've got the foundation. Now it's about precision."
-    body = "You're already ahead of most companies. The next step isn't more tools. It's connecting what you have to specific operational outcomes. A strategic assessment identifies exactly where to double down."
+    body = `You're already ahead of most companies. With your team spending time on ${q1Text}, the next step isn't more tools. It's connecting what you have to specific outcomes. You told us ${q3Lower} would change your business the most. A strategic assessment identifies exactly where to double down to make that happen.`
     key = 'foundation_precision'
   } else if (q2 === 'Advanced, want to optimize') {
     headline = "Time to compound what's working."
-    body = "At your stage, the biggest gains come from expansion and optimization, not new experiments. A Kaleos engagement maps your next highest-leverage system based on what's already delivering."
+    body = `At your stage, the biggest gains come from expansion and optimization, not new experiments. Your team is still spending time on ${q1Text}, and you told us ${q3Lower} would change your business the most. A Kaleos engagement maps your next highest-leverage system based on what's already delivering.`
     key = 'compound'
   } else {
     headline = "Let's figure it out together."
-    body = "Every business is different. A 30-minute conversation will tell us both whether there's a fit."
+    body = `Every business is different. With your team focused on ${q1Text} and ${q3Lower} as your top priority, a 30-minute conversation will tell us both whether there's a fit.`
     key = 'default'
   }
 
@@ -341,11 +343,11 @@ export function QuickAssessment() {
                       transition: 'opacity 0.3s ease, transform 0.3s ease',
                     }}
                   >
-                    <p className="text-white text-xl sm:text-2xl font-semibold mb-10 leading-relaxed">
+                    <p className="text-white text-xl sm:text-2xl font-semibold mb-10 leading-relaxed text-center">
                       {currentQ.question}
                     </p>
 
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-3 justify-center">
                       {currentQ.options.map((opt) => {
                         const isSelected = currentQ.multi
                           ? multiSelected.has(opt.label)
@@ -377,9 +379,6 @@ export function QuickAssessment() {
                                 : 'scale(1)',
                             }}
                           >
-                            {opt.icon && (
-                              <span className="mr-2">{opt.icon}</span>
-                            )}
                             {opt.label}
                             {isSelected && currentQ.multi && (
                               <span className="ml-2 text-xs">✓</span>
@@ -430,6 +429,27 @@ export function QuickAssessment() {
                       animation: 'quizResultIn 0.5s ease-out both',
                     }}
                   >
+                    <p className="text-teal-400 text-xs font-semibold tracking-widest uppercase mb-6">
+                      Personalized for you
+                    </p>
+
+                    <p className="text-white/50 text-sm mb-3">Based on your answers:</p>
+                    <div className="flex flex-wrap gap-2 justify-center mb-8">
+                      {[...answers[0], ...answers[1], ...answers[2]].map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1.5 rounded-full text-xs font-medium"
+                          style={{
+                            background: 'rgba(13,148,136,0.15)',
+                            border: '1px solid rgba(45,212,191,0.3)',
+                            color: 'rgb(45,212,191)',
+                          }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
                     <h3
                       className="text-2xl sm:text-3xl font-bold text-white mb-5"
                       style={{ fontFamily: 'var(--font-playfair)' }}
