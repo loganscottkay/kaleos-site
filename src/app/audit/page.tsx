@@ -9,14 +9,14 @@ import { FAQ } from '@/components/FAQ'
 export const metadata: Metadata = {
   title: 'Strategic AI Assessment',
   description:
-    'A deep operational analysis that maps your business, identifies your highest-leverage AI opportunities, and gives you a clear implementation roadmap with projected ROI.',
+    'Before we build anything, we need to understand everything. Deep operational analysis, prioritized opportunities, and a clear implementation roadmap.',
   alternates: {
     canonical: 'https://kaleoshq.com/audit',
   },
   openGraph: {
     title: 'Strategic AI Assessment | Kaleos',
     description:
-      'A deep operational analysis that maps your business, identifies your highest-leverage AI opportunities, and gives you a clear implementation roadmap with projected ROI.',
+      'Before we build anything, we need to understand everything. Deep operational analysis, prioritized opportunities, and a clear implementation roadmap.',
     url: 'https://kaleoshq.com/audit',
   },
 }

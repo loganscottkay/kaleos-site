@@ -17,11 +17,11 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL('https://kaleoshq.com'),
   title: {
-    default: 'Kaleos | AI That Does Your Busywork',
+    default: 'Kaleos | Strategic AI Implementation',
     template: '%s | Kaleos',
   },
   description:
-    'We build AI systems that automate business operations. Save time, make more money, and stop wasting hours on repetitive tasks.',
+    "AI doesn't fail because of the technology. It fails because of the implementation. Kaleos deploys AI systems designed around how your business actually operates.",
   icons: {
     icon: '/icon.svg',
     apple: '/apple-icon',
@@ -31,23 +31,23 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://kaleoshq.com',
     siteName: 'Kaleos',
-    title: 'Kaleos | AI That Does Your Busywork',
+    title: 'Kaleos | Strategic AI Implementation',
     description:
-      'We build AI systems that automate business operations. Save time, make more money, and stop wasting hours on repetitive tasks.',
+      "AI doesn't fail because of the technology. It fails because of the implementation.",
     images: [
       {
         url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'Kaleos - AI That Does Your Busywork',
+        alt: 'Kaleos - Strategic AI Implementation',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kaleos | AI That Does Your Busywork',
+    title: 'Kaleos | Strategic AI Implementation',
     description:
-      'We build AI systems that automate business operations. Save time, make more money, and stop wasting hours on repetitive tasks.',
+      "AI doesn't fail because of the technology. It fails because of the implementation.",
     images: ['/opengraph-image'],
   },
   alternates: {
@@ -64,7 +64,7 @@ const jsonLd = {
   name: 'Kaleos',
   url: 'https://kaleoshq.com',
   description:
-    'We build AI systems that automate business operations. Save time, make more money, and stop wasting hours on repetitive tasks.',
+    "AI doesn't fail because of the technology. It fails because of the implementation. Kaleos deploys AI systems designed around how your business actually operates.",
   founder: {
     '@type': 'Person',
     name: 'Logan Kay',
