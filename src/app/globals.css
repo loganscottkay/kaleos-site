@@ -101,22 +101,22 @@ body::before {
   z-index: 2;
 }
 
-/* Single trail element: morphs from blurry cloud streak → readable text */
-.skywriting-trail {
+/* Centered wordmark: morphs from blurry cloud → readable text */
+.skywriting-wordmark {
   font-family: var(--font-playfair), Georgia, serif;
   font-weight: 600;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   white-space: nowrap;
   transition: filter 1s ease-out, opacity 1s ease-out, color 1s ease-out, letter-spacing 1s ease-out;
   /* Text state (default) */
   filter: blur(0px);
   opacity: 0.8;
   color: #1B2A4A;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.025em;
   text-shadow: 0 0 8px rgba(27, 42, 74, 0.15);
 }
 
-.skywriting-trail.is-cloud {
+.skywriting-wordmark.is-cloud {
   filter: blur(8px);
   opacity: 0.5;
   color: rgba(255, 255, 255, 0.9);

@@ -38,7 +38,7 @@ function JetIcon() {
   )
 }
 
-type SkyPhase = 'flight' | 'hold' | 'morph' | 'text' | 'fadeout'
+type SkyPhase = 'flight' | 'hold' | 'morph'
 
 export function NavBar() {
   const [open, setOpen] = useState(false)
@@ -46,10 +46,12 @@ export function NavBar() {
   const [skyPhase, setSkyPhase] = useState<SkyPhase | null>(null)
   const jetRef = useRef<HTMLDivElement>(null)
   const trailRef = useRef<HTMLDivElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([])
   const triggeredLinks = useRef<Set<number>>(new Set())
+  const hasAnimated = useRef(false)
   const pathname = usePathname()
+
+  const isHome = pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80)
@@ -57,21 +59,22 @@ export function NavBar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Phase progression — home page only
+  // Phase progression — home page only, once per session
   useEffect(() => {
-    if (pathname !== '/') return
+    if (!isHome || hasAnimated.current) return
     const timers = [
       setTimeout(() => setSkyPhase('flight'), 300),
       setTimeout(() => setSkyPhase('hold'), 2800),
       setTimeout(() => setSkyPhase('morph'), 3100),
-      setTimeout(() => setSkyPhase('text'), 4200),
-      setTimeout(() => setSkyPhase('fadeout'), 5700),
-      setTimeout(() => setSkyPhase(null), 6200),
+      setTimeout(() => {
+        hasAnimated.current = true
+        setSkyPhase(null)
+      }, 4200),
     ]
     return () => timers.forEach(clearTimeout)
-  }, [pathname])
+  }, [isHome])
 
-  // Clip trail behind jet position — useLayoutEffect prevents flash on first frame
+  // Clip wordmark behind jet during flight
   useLayoutEffect(() => {
     if (skyPhase !== 'flight') {
       if (trailRef.current) trailRef.current.style.clipPath = 'none'
@@ -81,11 +84,11 @@ export function NavBar() {
     triggeredLinks.current.clear()
     let rafId: number
     const update = () => {
-      if (jetRef.current && trailRef.current && containerRef.current) {
+      if (jetRef.current && trailRef.current) {
         const jetRect = jetRef.current.getBoundingClientRect()
-        const cRect = containerRef.current.getBoundingClientRect()
-        const visible = Math.max(0, jetRect.left - cRect.left - 10)
-        const clipRight = Math.max(0, cRect.width - visible)
+        const tRect = trailRef.current.getBoundingClientRect()
+        const visible = Math.max(0, jetRect.left - tRect.left - 10)
+        const clipRight = Math.max(0, tRect.width - visible)
         trailRef.current.style.clipPath = `inset(0 ${clipRight}px 0 0)`
 
         // Rumble nav links as jet passes over them
@@ -106,44 +109,36 @@ export function NavBar() {
     return () => cancelAnimationFrame(rafId)
   }, [skyPhase])
 
-  const showOverlay = skyPhase !== null
-  const isCloud = skyPhase === 'flight' || skyPhase === 'hold'
+  // Cloud state: during flight/hold, or on home before animation has played
+  const isCloud = skyPhase === 'flight' || skyPhase === 'hold' || (isHome && skyPhase === null && !hasAnimated.current)
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b border-slate-200/60 transition-all duration-300 ${scrolled ? 'bg-white/90 shadow-sm' : 'bg-white/70'}`}>
       <div className="mx-auto px-5 h-16 flex items-center justify-between">
-        <Link
-          href="/"
-          className="text-navy font-semibold text-lg tracking-tight flex items-center"
-          style={{ gap: 10 }}
-        >
+        {/* K icon only */}
+        <Link href="/" className="flex items-center">
           <img src="/kaleos-logo.png" width={28} height={28} alt="Kaleos" style={{ borderRadius: 6, objectFit: 'cover' }} />
-          Kaleos
         </Link>
 
-        {/* Skywriting flyover — desktop only, one-time */}
-        {showOverlay && (
-          <div
-            ref={containerRef}
-            className={`hidden md:flex absolute inset-0 items-center pointer-events-none overflow-hidden transition-opacity duration-500 ${skyPhase === 'fadeout' ? 'opacity-0' : 'opacity-100'}`}
-          >
-            {/* Single trail element — starts as blurry cloud streak, morphs into text */}
-            <div ref={trailRef} className="absolute inset-0 flex items-center justify-center">
-              <span className={`skywriting-trail ${isCloud ? 'is-cloud' : ''}`}>
-                Kaleos
-              </span>
-            </div>
+        {/* Centered wordmark — permanent, animated on home */}
+        <div ref={trailRef} className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <Link href="/" className="pointer-events-auto" tabIndex={-1}>
+            <span className={`skywriting-wordmark ${isCloud ? 'is-cloud' : ''}`}>
+              Kaleos
+            </span>
+          </Link>
+        </div>
 
-            {/* Jet — flies across and exits right */}
-            {skyPhase === 'flight' && (
-              <div
-                ref={jetRef}
-                className="skywriting-jet absolute flex items-center"
-                style={{ top: '50%', transform: 'translateY(-50%)' }}
-              >
-                <JetIcon />
-              </div>
-            )}
+        {/* Jet flyover — home page, during flight only */}
+        {skyPhase === 'flight' && (
+          <div className="hidden md:block absolute inset-0 pointer-events-none overflow-hidden">
+            <div
+              ref={jetRef}
+              className="skywriting-jet absolute flex items-center"
+              style={{ top: '50%', transform: 'translateY(-50%)' }}
+            >
+              <JetIcon />
+            </div>
           </div>
         )}
 
