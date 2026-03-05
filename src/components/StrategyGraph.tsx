@@ -305,19 +305,6 @@ export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
                   ROI
                 </text>
 
-                {/* X-axis label */}
-                <text
-                  x={(CHART_LEFT + CHART_RIGHT) / 2}
-                  y={CHART_BOTTOM + 13}
-                  fill={c.labelColor}
-                  fillOpacity={0.75}
-                  fontSize={9}
-                  fontWeight={600}
-                  textAnchor="middle"
-                >
-                  Time
-                </text>
-
                 {/* Fill area under curve */}
                 <path
                   d={c.fillPath}
