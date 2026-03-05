@@ -196,7 +196,7 @@ export function AuthorityTimeline() {
             transform: phase >= 4 ? 'translateY(0)' : 'translateY(12px)',
           }}
         >
-          The framework that works inside one of the world&apos;s most complex institutions now works inside yours.
+          The same principles that drive AI inside one of the world&apos;s most complex institutions now drive yours.
         </p>
       </div>
 
