@@ -156,8 +156,8 @@ export default function Home() {
 
           <AnimateIn delay={700} distance={10}>
             <p
-              className="text-xs text-white/70 tracking-widest font-medium uppercase"
-              style={{ textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}
+              className="text-base text-white/85 tracking-wide font-normal"
+              style={{ fontFamily: "'Inter', sans-serif", textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}
             >
               Logan Kay | Founder, Kaleos | AI &amp; Operations @ Harvard
               Business School
@@ -245,8 +245,6 @@ export default function Home() {
             </GlassCard>
           </AnimateIn>
 
-          {/* Teal divider */}
-          <div className="mt-16 mx-auto max-w-xs h-px bg-teal-500/20" />
         </div>
       </section>
 

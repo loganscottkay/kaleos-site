@@ -58,12 +58,15 @@ export default function BlogPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
           <AnimateIn distance={20}>
-            <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-white">
+            <h1
+              className="text-4xl sm:text-5xl font-semibold tracking-tight text-white drop-shadow-lg"
+              style={{ textShadow: '0 2px 40px rgba(0,0,0,0.15)' }}
+            >
               Thinking
             </h1>
           </AnimateIn>
           <AnimateIn delay={100}>
-            <p className="mt-4 text-white/50 max-w-xl mx-auto leading-relaxed">
+            <p className="mt-4 text-white/50 text-lg max-w-xl mx-auto leading-relaxed text-center">
               Frameworks, lessons, and perspectives on AI implementation that
               actually works.
             </p>
