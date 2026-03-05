@@ -142,10 +142,10 @@ export default function Home() {
           }}
         />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 text-center pt-20">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
           <AnimateIn delay={300} distance={20}>
             <h1
-              className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-tight mb-6 text-white drop-shadow-lg"
+              className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-wide leading-tight mb-16 text-white drop-shadow-lg"
               style={{ textShadow: '0 2px 40px rgba(0,0,0,0.15)' }}
             >
               AI doesn&apos;t fail because of the technology.
@@ -154,16 +154,9 @@ export default function Home() {
             </h1>
           </AnimateIn>
 
-          <AnimateIn delay={600} distance={15}>
-            <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto mb-6 leading-relaxed drop-shadow-sm">
-              We deploy AI systems designed around how your business actually
-              operates, not how a demo looks on stage.
-            </p>
-          </AnimateIn>
-
-          <AnimateIn delay={900} distance={10}>
+          <AnimateIn delay={700} distance={10}>
             <p
-              className="mt-4 text-sm text-white/90 tracking-wide font-medium"
+              className="text-xs text-white/70 tracking-widest font-medium uppercase"
               style={{ textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}
             >
               Logan Kay | Founder, Kaleos | AI &amp; Operations @ Harvard
