@@ -6,6 +6,7 @@ import { AnimateIn } from '@/components/AnimateIn'
 import { WorkflowDiagram } from '@/components/WorkflowDiagram'
 import { QuickAssessment } from '@/components/QuickAssessment'
 import { StickyCTA } from '@/components/StickyCTA'
+import { BuiltToDemo } from '@/components/BuiltToDemo'
 
 const HERO_BG =
   'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2070&q=80'
@@ -335,6 +336,11 @@ export default function Home() {
           <StickyCTA />
         </div>
       </section>
+
+      <SectionChevron />
+
+      {/* Built to Demonstrate */}
+      <BuiltToDemo />
 
       {/* Who This Is For */}
       <section className="relative py-24 overflow-hidden">
