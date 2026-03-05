@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import TalkToLogan from "@/components/TalkToLogan";
+import { ScrollProgress } from '@/components/ScrollProgress';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -85,6 +86,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <ScrollProgress />
         {children}
         <TalkToLogan />
       </body>

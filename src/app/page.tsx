@@ -5,6 +5,7 @@ import { DemoFrame } from '@/components/DemoFrame'
 import { AnimateIn } from '@/components/AnimateIn'
 import { WorkflowDiagram } from '@/components/WorkflowDiagram'
 import { QuickAssessment } from '@/components/QuickAssessment'
+import { StickyCTA } from '@/components/StickyCTA'
 
 const HERO_BG =
   'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2070&q=80'
@@ -101,6 +102,26 @@ const trustBadges = [
   },
 ]
 
+function SectionChevron() {
+  return (
+    <div className="flex justify-center py-4 bg-navy">
+      <svg
+        className="w-5 h-5 text-teal-500/30"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M19 9l-7 7-7-7"
+        />
+      </svg>
+    </div>
+  )
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen">
@@ -122,7 +143,7 @@ export default function Home() {
         />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 text-center pt-20">
-          <AnimateIn delay={0} distance={20}>
+          <AnimateIn delay={300} distance={20}>
             <h1
               className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-tight mb-6 text-white drop-shadow-lg"
               style={{ textShadow: '0 2px 40px rgba(0,0,0,0.15)' }}
@@ -133,14 +154,14 @@ export default function Home() {
             </h1>
           </AnimateIn>
 
-          <AnimateIn delay={200} distance={15}>
+          <AnimateIn delay={600} distance={15}>
             <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto mb-6 leading-relaxed drop-shadow-sm">
               We deploy AI systems designed around how your business actually
               operates, not how a demo looks on stage.
             </p>
           </AnimateIn>
 
-          <AnimateIn delay={400} distance={10}>
+          <AnimateIn delay={900} distance={10}>
             <p
               className="mt-4 text-sm text-white/90 tracking-wide font-medium"
               style={{ textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}
@@ -186,6 +207,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <SectionChevron />
 
       {/* Where This Thinking Comes From */}
       <section className="relative py-24 bg-[#1B2A4A]">
@@ -234,6 +257,8 @@ export default function Home() {
         </div>
       </section>
 
+      <SectionChevron />
+
       {/* Our Methodology */}
       <section id="methodology" className="relative py-24 bg-navy dot-grid-dark">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
@@ -266,6 +291,8 @@ export default function Home() {
         </div>
       </section>
 
+      <SectionChevron />
+
       {/* Where AI Creates Leverage */}
       <section className="relative py-24 bg-navy dot-grid-dark">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
@@ -293,6 +320,8 @@ export default function Home() {
         </div>
       </section>
 
+      <SectionChevron />
+
       {/* Proof Section */}
       <section className="relative py-24 bg-[#162035]">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
@@ -311,6 +340,8 @@ export default function Home() {
               <DemoFrame />
             </div>
           </AnimateIn>
+
+          <StickyCTA />
         </div>
       </section>
 

@@ -12,7 +12,7 @@ interface AnimateInProps {
 export function AnimateIn({
   children,
   delay = 0,
-  distance = 10,
+  distance = 30,
   className = '',
 }: AnimateInProps) {
   const ref = useRef<HTMLDivElement>(null)
