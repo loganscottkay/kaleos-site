@@ -83,7 +83,7 @@ export function AuthorityTimeline() {
             transform: phase >= 1 ? 'translateY(0)' : 'translateY(20px)',
           }}
         >
-          Built at Harvard. Refined for Business.
+          Trained at Harvard Business School. Built for Your Business.
         </h2>
 
         {/* Timeline — desktop: horizontal, mobile: vertical */}
