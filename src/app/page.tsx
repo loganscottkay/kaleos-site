@@ -134,26 +134,15 @@ export default function Home() {
           </AnimateIn>
 
           <AnimateIn delay={200} distance={15}>
-            <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto mb-8 leading-relaxed drop-shadow-sm">
+            <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto mb-6 leading-relaxed drop-shadow-sm">
               We deploy AI systems designed around how your business actually
               operates, not how a demo looks on stage.
             </p>
           </AnimateIn>
 
           <AnimateIn delay={400} distance={10}>
-            <a
-              href="https://calendly.com/logan-kaleoshq/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-3.5 rounded-xl bg-[#1B2A4A] border border-white/[0.15] text-white font-medium transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-[0_0_20px_rgba(13,148,136,0.4)] hover:scale-[1.03] hover:border-accent/30 active:scale-[0.97]"
-            >
-              Get Started
-            </a>
-          </AnimateIn>
-
-          <AnimateIn delay={600} distance={10}>
             <p
-              className="mt-8 text-sm text-white/90 tracking-wide font-medium"
+              className="mt-4 text-sm text-white/90 tracking-wide font-medium"
               style={{ textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}
             >
               Logan Kay | Founder, Kaleos | AI &amp; Operations @ Harvard
