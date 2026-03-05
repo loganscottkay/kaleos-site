@@ -8,6 +8,33 @@ function getSupabase() {
   );
 }
 
+/* ── Simple in-memory rate limiter: 20 requests per IP per hour ── */
+const RATE_LIMIT_MAX = 20;
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+
+const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
+
+// Clean up expired entries every 10 minutes to prevent memory leak
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, value] of rateLimitStore) {
+    if (now > value.resetAt) rateLimitStore.delete(key);
+  }
+}, 10 * 60 * 1000);
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitStore.get(ip);
+
+  if (!entry || now > entry.resetAt) {
+    rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+
+  entry.count++;
+  return entry.count > RATE_LIMIT_MAX;
+}
+
 const SYSTEM_PROMPT = `You are Logan Kay's AI assistant on the Kaleos website. Kaleos is a strategic AI implementation practice — not a generic automation agency.
 
 Core thesis: AI doesn't fail because of the technology. It fails because of the implementation. Kaleos exists to bridge that gap.
@@ -27,6 +54,15 @@ When someone expresses interest, say something like: 'Sounds like we should talk
 Book a free call links to Calendly. Email me directly opens mailto:logan@kaleoshq.com.`;
 
 export async function POST(req: NextRequest) {
+  // Rate limiting
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (isRateLimited(ip)) {
+    return NextResponse.json(
+      { error: "Too many requests. Please try again later." },
+      { status: 429 }
+    );
+  }
+
   try {
     const { messages, session_id } = await req.json();
     if (!messages || !Array.isArray(messages)) {
