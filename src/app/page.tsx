@@ -7,6 +7,7 @@ import { WorkflowDiagram } from '@/components/WorkflowDiagram'
 import { QuickAssessment } from '@/components/QuickAssessment'
 import { StickyCTA } from '@/components/StickyCTA'
 import { BuiltToDemo } from '@/components/BuiltToDemo'
+import { AuthorityTimeline } from '@/components/AuthorityTimeline'
 
 const HERO_BG =
   'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2070&q=80'
@@ -185,50 +186,8 @@ export default function Home() {
 
       <SectionChevron />
 
-      {/* Where This Thinking Comes From */}
-      <section className="relative py-24 bg-[#1B2A4A]">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
-        <div className="relative z-10 max-w-[800px] mx-auto px-4">
-          <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-6 text-white">
-              Where This Thinking Comes From
-            </h2>
-          </AnimateIn>
-
-          <AnimateIn delay={100}>
-            <div className="mb-12" />
-          </AnimateIn>
-
-          <AnimateIn delay={200}>
-            <GlassCard className="p-0">
-              <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/10">
-                <div className="p-8">
-                  <h3 className="text-accent font-semibold text-lg mb-3">
-                    Harvard Business School
-                  </h3>
-                  <p className="text-white/70 leading-relaxed text-sm">
-                    Helped spearhead AI implementation across admissions and
-                    operations. Learned firsthand why most AI projects fail:
-                    nobody connects the technology to how the organization
-                    actually makes decisions.
-                  </p>
-                </div>
-                <div className="p-8">
-                  <h3 className="text-accent font-semibold text-lg mb-3">
-                    Kaleos
-                  </h3>
-                  <p className="text-white/70 leading-relaxed text-sm">
-                    Same strategic methodology, same human-in-the-loop
-                    architecture, same single-outcome precision. The framework
-                    scales. The principles don&apos;t change.
-                  </p>
-                </div>
-              </div>
-            </GlassCard>
-          </AnimateIn>
-
-        </div>
-      </section>
+      {/* Authority Timeline */}
+      <AuthorityTimeline />
 
       <SectionChevron />
 
