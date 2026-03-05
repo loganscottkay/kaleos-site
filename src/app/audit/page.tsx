@@ -144,7 +144,7 @@ export default function AuditPage() {
             {steps.map((item, i) => (
               <AnimateIn key={i} delay={i * 100} className="h-full">
                 <GlassCard className="p-6 h-full">
-                  <div className="text-accent text-sm font-mono mb-2">
+                  <div className="text-white/60 text-xs uppercase tracking-widest mb-2" style={{ fontFamily: "'Inter', sans-serif" }}>
                     {item.step}
                   </div>
                   <h3 className="text-lg font-semibold tracking-tight mb-2 text-white">

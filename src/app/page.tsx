@@ -85,26 +85,6 @@ const trustBadges = [
   },
 ]
 
-function SectionChevron() {
-  return (
-    <div className="flex justify-center py-4 bg-navy">
-      <svg
-        className="w-5 h-5 text-teal-500/30"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M19 9l-7 7-7-7"
-        />
-      </svg>
-    </div>
-  )
-}
-
 export default function Home() {
   return (
     <main className="min-h-screen">
@@ -184,12 +164,8 @@ export default function Home() {
         </div>
       </section>
 
-      <SectionChevron />
-
       {/* Authority Timeline */}
       <AuthorityTimeline />
-
-      <SectionChevron />
 
       {/* Our Methodology */}
       <section id="methodology" className="relative py-24 bg-navy dot-grid-dark">
@@ -207,7 +183,7 @@ export default function Home() {
             {methodology.map((item, i) => (
               <AnimateIn key={i} delay={i * 100} className="h-full">
                 <GlassCard hover className="p-8 h-full">
-                  <div className="text-accent text-sm font-mono mb-3">
+                  <div className="text-white/60 text-xs uppercase tracking-widest mb-3" style={{ fontFamily: "'Inter', sans-serif" }}>
                     {item.phase}
                   </div>
                   <h3 className="text-xl font-semibold tracking-tight mb-3 text-white">
@@ -222,8 +198,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <SectionChevron />
 
       {/* Proof Section */}
       <section className="relative py-24 bg-[#162035]">
@@ -247,8 +221,6 @@ export default function Home() {
           <StickyCTA />
         </div>
       </section>
-
-      <SectionChevron />
 
       {/* Built to Demonstrate */}
       <BuiltToDemo />

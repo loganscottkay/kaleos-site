@@ -130,14 +130,6 @@ export function AuthorityTimeline() {
                 }}
               />
             ))}
-            {/* Arrow */}
-            <svg
-              className="absolute -right-1 top-1/2 -translate-y-1/2"
-              width="8" height="10" viewBox="0 0 8 10"
-              style={{ opacity: phase >= 2 ? 0.6 : 0, transition: 'opacity 0.3s ease-out' }}
-            >
-              <path d="M1 1L6 5L1 9" stroke="#0d9488" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
           </div>
 
           {/* Mobile vertical connector */}
@@ -159,13 +151,6 @@ export function AuthorityTimeline() {
                 }}
               />
             ))}
-            <svg
-              className="absolute -bottom-1 left-1/2 -translate-x-1/2"
-              width="10" height="8" viewBox="0 0 10 8"
-              style={{ opacity: phase >= 2 ? 0.6 : 0, transition: 'opacity 0.3s ease-out' }}
-            >
-              <path d="M1 1L5 6L9 1" stroke="#0d9488" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
           </div>
 
           {/* Right node */}
