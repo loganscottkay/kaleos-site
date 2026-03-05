@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { NavBar } from '@/components/NavBar'
-import { Footer } from '@/components/Footer'
+import { Footer, SocialIcons } from '@/components/Footer'
 import { GlassCard } from '@/components/GlassCard'
 import { AnimateIn } from '@/components/AnimateIn'
 import { StrategyGraph } from '@/components/StrategyGraph'
@@ -120,6 +120,9 @@ export default function AboutPage() {
                     <p className="text-slate-500 text-sm text-center">
                       AI &amp; Operations, Harvard Business School
                     </p>
+                    <div className="flex justify-center mt-3">
+                      <SocialIcons className="[&_a]:text-slate-400/50 [&_a:hover]:text-accent" />
+                    </div>
                   </div>
                 </AnimateIn>
               </div>
