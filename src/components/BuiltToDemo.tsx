@@ -120,19 +120,21 @@ function DocumentProcessor({ active }: { active: boolean }) {
         </div>
 
         {/* queue */}
-        <div className="flex-1 px-4 py-4 space-y-3 min-h-0">
+        <div className="flex-1 px-4 py-4 space-y-2.5 min-h-0">
           {docs.map((doc, i) => (
-            <div key={i} className="flex items-start gap-2.5 py-2 px-3 rounded-md bg-white/[0.02]">
-              <DocIcon />
-              <div className="flex-1 min-w-0">
-                <span className="text-[9px] font-mono text-white/70 block">{doc.name}</span>
+            <div key={i} className="py-2 px-3 rounded-md bg-white/[0.02]">
+              {/* row 1: icon + filename */}
+              <div className="flex items-center gap-2 mb-1.5">
+                <DocIcon />
+                <span className="text-[9px] font-mono text-white/70 truncate">{doc.name}</span>
               </div>
-              <div className="w-32 shrink-0 flex items-center justify-end text-right">
+              {/* row 2: status */}
+              <div className="pl-6 h-4 flex items-center">
                 {statuses[i] === 'queued' && (
                   <span className="text-[9px] font-mono text-white/30">Queued</span>
                 )}
                 {statuses[i] === 'processing' && (
-                  <div className="w-full h-1.5 rounded-full bg-white/5 overflow-hidden">
+                  <div className="w-full max-w-[140px] h-1.5 rounded-full bg-white/5 overflow-hidden">
                     <div
                       className="h-full rounded-full bg-gradient-to-r from-teal-700 to-teal-400 shimmer-bar"
                       style={{ width: `${progresses[i] * 100}%` }}
@@ -146,10 +148,10 @@ function DocumentProcessor({ active }: { active: boolean }) {
                   <span className="text-[9px] font-mono text-white/80">{doc.classification}</span>
                 )}
                 {statuses[i] === 'routed' && (
-                  <div className="flex items-center gap-1 justify-end">
+                  <div className="flex items-center gap-2">
                     <span className="text-[9px] font-mono text-green-400 pop-in">&rarr; {doc.route}</span>
                     <svg className="w-3 h-3 text-green-400 pop-in shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    {doc.alert && <span className="text-[8px] font-mono bg-amber-500/20 text-amber-400 px-1 rounded flash-in ml-0.5 shrink-0">Alert</span>}
+                    {doc.alert && <span className="text-[7px] font-mono bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded flash-in shrink-0">Alert Sent</span>}
                   </div>
                 )}
               </div>
@@ -160,11 +162,11 @@ function DocumentProcessor({ active }: { active: boolean }) {
         {/* summary bar */}
         {showSummary && (
           <div
-            className="px-4 py-3 border-t border-white/5 transition-opacity duration-500"
+            className="px-3 py-2.5 border-t border-white/5 transition-opacity duration-500"
             style={{ opacity: summaryOpacity }}
           >
-            <p className="text-[9px] font-mono text-white/50 text-center">
-              <span className="text-teal-400">4</span> processed &middot; <span className="text-teal-400">3</span> departments routed &middot; <span className="text-teal-400">1</span> alert triggered &middot; <span className="text-teal-400">0</span> human hours spent
+            <p className="text-[8px] font-mono text-white/50 text-center leading-relaxed">
+              <span className="text-teal-400">4</span> processed <span className="text-white/20">&middot;</span> <span className="text-teal-400">3</span> depts routed <span className="text-white/20">&middot;</span> <span className="text-teal-400">1</span> alert <span className="text-white/20">&middot;</span> <span className="text-teal-400">0</span> human hours
             </p>
           </div>
         )}
