@@ -275,11 +275,6 @@ export function WorkflowDiagram() {
             <InternalNode icon={<ShieldIcon />} label="Approval Gate" visible={visible} delay={750} />
             <InternalNode icon={<ClipboardIcon />} label="Audit Log" visible={visible} delay={900} />
           </div>
-          {/* Internal animated connections */}
-          <div className="absolute left-3 top-[72px] bottom-[28px] w-[2px]">
-            <div className="h-full bg-gradient-to-b from-teal-500/20 via-teal-500/30 to-teal-500/20"
-              style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.5s ease-out 800ms' }} />
-          </div>
         </GlassBox>
 
         {/* Connection 2 */}
