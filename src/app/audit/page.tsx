@@ -25,12 +25,10 @@ const HERO_BG =
   'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2070&q=80'
 
 const deliverables = [
-  'Complete operational workflow mapping',
-  'AI readiness evaluation across every major business function',
-  'Prioritized opportunity matrix ranked by revenue impact and complexity',
-  'Conservative and aggressive ROI projections',
-  'Phased implementation roadmap with milestones and KPIs',
-  'Risk assessment and change management strategy',
+  'Operational workflow mapping',
+  'AI readiness evaluation across every business function',
+  'Prioritized opportunity matrix ranked by impact and complexity',
+  'ROI projections with implementation roadmap',
   'Executive summary PDF and 45-minute strategy presentation',
 ]
 
@@ -83,9 +81,8 @@ export default function AuditPage() {
           </AnimateIn>
           <AnimateIn delay={200} distance={15}>
             <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
-              A deep operational analysis that maps your business, identifies
-              your highest-leverage AI opportunities, and delivers a clear
-              implementation roadmap with projected ROI.
+              We map your business, identify your highest-leverage AI
+              opportunities, and deliver a clear roadmap with projected ROI.
             </p>
           </AnimateIn>
         </div>
@@ -171,9 +168,7 @@ export default function AuditPage() {
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-3 text-white">
               Engagement Tiers
             </h2>
-            <p className="text-white/60 text-center mb-14">
-              Choose the level of partnership that fits your needs.
-            </p>
+            <div className="mb-14" />
           </AnimateIn>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
@@ -197,10 +192,8 @@ export default function AuditPage() {
                       'Operational workflow mapping',
                       'AI readiness evaluation',
                       'Prioritized opportunity matrix',
-                      'ROI projections (conservative + aggressive)',
-                      'Implementation roadmap',
-                      'Executive summary PDF',
-                      '45-minute strategy presentation',
+                      'ROI projections + implementation roadmap',
+                      'Executive summary PDF + strategy presentation',
                     ].map((item, i) => (
                       <div key={i} className="flex items-start gap-2.5">
                         <svg className="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -246,11 +239,9 @@ export default function AuditPage() {
                     {[
                       'Everything in Assessment',
                       '1 precision-scoped AI system per month',
-                      'Architecture, build, testing, deployment',
+                      'Full build, testing, and deployment',
                       'Human-in-the-loop controls',
-                      'Weekly check-ins',
-                      'Full documentation',
-                      '30-day post-deployment optimization',
+                      'Weekly check-ins + 30-day optimization',
                     ].map((item, i) => (
                       <div key={i} className="flex items-start gap-2.5">
                         <svg className="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -296,7 +287,6 @@ export default function AuditPage() {
                       'Unlimited system builds',
                       'Priority response',
                       'Quarterly business reviews',
-                      'Expansion roadmapping',
                       'Performance-linked component',
                     ].map((item, i) => (
                       <div key={i} className="flex items-start gap-2.5">
@@ -318,13 +308,7 @@ export default function AuditPage() {
             </AnimateIn>
           </div>
 
-          <AnimateIn delay={300}>
-            <p className="text-white/50 text-center mt-12 max-w-2xl mx-auto">
-              Every engagement starts with a conversation. No pressure, no
-              pitch. Just an honest assessment of whether we&apos;re the right
-              fit.
-            </p>
-          </AnimateIn>
+          <div className="mt-12" />
 
 
         </div>

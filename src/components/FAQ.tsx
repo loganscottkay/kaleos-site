@@ -5,35 +5,35 @@ import { useState, useEffect, useRef } from 'react'
 const faqs = [
   {
     q: 'How is this different from hiring an AI freelancer?',
-    a: "Freelancers build what you ask for. We figure out what you should be asking for. Our methodology starts with your strategy and works backwards to the right system. Most AI projects fail because this step gets skipped.",
+    a: "Freelancers build what you ask for. We figure out what you should be asking for, then build it.",
   },
   {
     q: "What if AI can't handle my workflows?",
-    a: "That's what the assessment is for. We map every workflow before we build anything. If AI isn't the right solution for something, we'll tell you. We'd rather keep your trust than sell you something that doesn't work.",
+    a: "We map every workflow before we build anything. If AI isn't the right solution, we'll tell you.",
   },
   {
     q: 'How long before I see results?',
-    a: 'Assessment clients get their full analysis within 2 weeks. Implementation clients typically have their first system deployed within 30 days.',
+    a: 'Assessment delivered within 2 weeks. First system deployed within 30 days.',
   },
   {
     q: 'Is my data safe?',
-    a: "Every system we build runs in your infrastructure with your security protocols. We don't store your data. Full audit trails on every action.",
+    a: "Every system runs in your infrastructure with your security protocols. We don't store your data.",
   },
   {
     q: 'What industries do you work with?',
-    a: "Any business with complex operations and a genuine need for AI. We've worked across professional services, finance, and operations-heavy businesses. The methodology adapts. The principles don't change.",
+    a: "Any business with complex operations and a genuine need for AI. The methodology adapts across industries.",
   },
   {
     q: "What if I'm not sure which tier is right?",
-    a: "Start with a conversation. We'll tell you honestly whether the Assessment, Implementation, or Strategic Partner tier fits your situation. Or if we're not the right fit at all.",
+    a: "Start with a conversation. We'll tell you honestly which tier fits or if we're not the right fit at all.",
   },
   {
     q: 'Do I need to be technical?',
-    a: "No. We handle everything from architecture to deployment. You just need to know your business. We'll translate that into systems.",
+    a: "No. We handle everything from architecture to deployment. You just need to know your business.",
   },
   {
     q: 'What does human-in-the-loop actually mean?',
-    a: 'Nothing AI generates in our systems goes out without your explicit approval. Every email, report, decision, and output gets reviewed by a human before it touches your clients or operations.',
+    a: 'Nothing AI generates goes out without your explicit approval. Every output gets reviewed before it touches your clients.',
   },
 ]
 

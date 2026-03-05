@@ -12,15 +12,15 @@ const HERO_BG =
 const implementationGap = [
   {
     title: 'The Strategy Problem',
-    desc: "Most AI vendors start with the tool and look for a problem. We start with your strategy and work backwards to what actually needs to be built.",
+    desc: "Most vendors start with the tool and look for a problem. We start with your strategy and work backwards.",
   },
   {
     title: 'The Trust Problem',
-    desc: "Every system we deploy has approval gates, audit trails, and human checkpoints. You see everything the AI does before it does it.",
+    desc: "Approval gates, audit trails, and human checkpoints on every system. You see everything before it executes.",
   },
   {
     title: 'The Execution Problem',
-    desc: "Most consulting firms tell you what AI can do. We build it. Architecture, deployment, testing, documentation, and a working system.",
+    desc: "Most firms tell you what AI can do. We build it, deploy it, and hand you a working system.",
   },
 ]
 
@@ -28,41 +28,41 @@ const methodology = [
   {
     phase: 'Phase 1',
     title: 'Strategic Assessment',
-    desc: "We map every workflow, identify where human judgment is essential versus wasted on procedural execution, and build a prioritized opportunity matrix. You get a clear picture of where AI creates the most leverage.",
+    desc: "Map every workflow, separate essential human judgment from procedural execution, and prioritize by impact.",
   },
   {
     phase: 'Phase 2',
     title: 'Precision Architecture',
-    desc: "Every system is designed around your specific workflows, voice, and operational reality. One system, one measurable outcome, clear accountability.",
+    desc: "One system, one measurable outcome, designed around your specific workflows and operational reality.",
   },
   {
     phase: 'Phase 3',
     title: 'Deployment and Control',
-    desc: "We deploy with approval gates, audit logging, and human-in-the-loop controls at every critical point. Nothing executes without explicit human approval.",
+    desc: "Approval gates, audit logging, and human-in-the-loop controls. Nothing executes without your sign-off.",
   },
   {
     phase: 'Phase 4',
     title: 'Measurement and Expansion',
-    desc: "We track performance against defined KPIs and refine based on real usage data. When results compound, we expand to the next highest-leverage opportunity.",
+    desc: "Track performance against KPIs. When results compound, expand to the next highest-leverage opportunity.",
   },
 ]
 
 const leverage = [
   {
     title: 'Revenue Operations',
-    desc: 'Invoice auditing, reconciliation, and financial workflow systems that recover revenue and reduce errors. Built for operators managing high-volume financial operations.',
+    desc: 'Invoice auditing, reconciliation, and financial workflows that recover revenue and reduce errors.',
   },
   {
-    title: 'Client Intelligence and Communication',
-    desc: 'Proposals, briefs, and client communications generated in your voice with your strategic context. Every output goes through human review before it reaches anyone.',
+    title: 'Client Intelligence',
+    desc: 'Proposals, briefs, and communications generated in your voice, reviewed by you before they reach anyone.',
   },
   {
-    title: 'Pipeline and Growth Operations',
-    desc: 'Lead qualification, intake automation, and opportunity scoring that turns inbound interest into scoped engagements. Stop losing deals to slow follow-up.',
+    title: 'Pipeline and Growth',
+    desc: 'Lead qualification, intake automation, and opportunity scoring. Stop losing deals to slow follow-up.',
   },
   {
     title: 'Operational Infrastructure',
-    desc: 'Workflows, approvals, reporting, and coordination encoded into repeatable, scalable processes. Add capacity without adding headcount.',
+    desc: 'Workflows, approvals, and reporting encoded into repeatable processes. Add capacity without headcount.',
   },
 ]
 
@@ -209,11 +209,7 @@ export default function Home() {
           </AnimateIn>
 
           <AnimateIn delay={100}>
-            <p className="text-white/90 text-center text-lg sm:text-xl leading-relaxed mb-12">
-              This methodology didn&apos;t come from a textbook. It came from
-              building real systems inside one of the most complex institutions
-              in higher education.
-            </p>
+            <div className="mb-12" />
           </AnimateIn>
 
           <AnimateIn delay={200}>
@@ -225,10 +221,9 @@ export default function Home() {
                   </h3>
                   <p className="text-white/70 leading-relaxed text-sm">
                     Helped spearhead AI implementation across admissions and
-                    operations teams. Designed systems that handle real workflows
-                    under real institutional constraints. Learned firsthand why
-                    most AI projects fail: nobody connects the technology to how
-                    the organization actually makes decisions.
+                    operations. Learned firsthand why most AI projects fail:
+                    nobody connects the technology to how the organization
+                    actually makes decisions.
                   </p>
                 </div>
                 <div className="p-8">
@@ -236,11 +231,9 @@ export default function Home() {
                     Kaleos
                   </h3>
                   <p className="text-white/70 leading-relaxed text-sm">
-                    Built on the same principles. Every client engagement uses
-                    the same strategic assessment methodology, the same
-                    human-in-the-loop architecture, and the same single-outcome
-                    precision. The framework scales. The approach doesn&apos;t
-                    change.
+                    Same strategic methodology, same human-in-the-loop
+                    architecture, same single-outcome precision. The framework
+                    scales. The principles don&apos;t change.
                   </p>
                 </div>
               </div>
@@ -350,13 +343,10 @@ export default function Home() {
           <AnimateIn delay={100}>
             <div className="max-w-3xl mx-auto">
               <p className="text-slate-600 leading-relaxed text-lg">
-                We work with established businesses with real revenue, real
-                complexity, and a genuine strategic need for AI. Our clients are
-                typically founders and operators running $2M-$100M+ companies
-                who don&apos;t have the internal capability to implement AI
-                properly. If you&apos;re looking for a chatbot, we&apos;re not
-                the right fit. If you need a strategic implementation partner,
-                we should talk.
+                Founders and operators running $2M-$100M+ companies with real
+                complexity and no internal AI capability. If you need a chatbot,
+                we&apos;re not the right fit. If you need a strategic
+                implementation partner, we should talk.
               </p>
             </div>
           </AnimateIn>

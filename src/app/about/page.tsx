@@ -92,21 +92,13 @@ export default function AboutPage() {
                   <div className="space-y-6 text-slate-600 leading-relaxed">
                     <AnimateIn delay={100}>
                       <p>
-                        Most companies approach AI backwards. They buy a tool, try to
-                        plug it in, and wonder why nobody uses it six months later.
-                        The implementation was always the problem.
+                        Kaleos exists because brilliant executives keep getting
+                        stuck. They have the vision but nobody to translate it into
+                        AI systems that actually run in production.
                       </p>
                     </AnimateIn>
 
                     <AnimateIn delay={200}>
-                      <p>
-                        Kaleos exists because brilliant executives with clear
-                        strategic vision keep getting stuck. Nobody translates that
-                        vision into AI systems that actually run in production.
-                      </p>
-                    </AnimateIn>
-
-                    <AnimateIn delay={300}>
                       <p>
                         Every system starts with one question: what is this business
                         actually trying to accomplish? The AI comes second. The
@@ -159,9 +151,8 @@ export default function AboutPage() {
                   AI Implementation
                 </h3>
                 <p className="text-white/70 leading-relaxed text-sm">
-                  Harvard Business School. Designed and deployed AI systems
-                  across admissions and operations. Real institutional
-                  workflows, real constraints, real accountability.
+                  Designed and deployed AI systems across admissions and
+                  operations at Harvard Business School.
                 </p>
               </GlassCard>
             </AnimateIn>
@@ -178,10 +169,8 @@ export default function AboutPage() {
                   Data &amp; Analysis
                 </h3>
                 <p className="text-white/70 leading-relaxed text-sm">
-                  Renowned consulting firm. Fraud detection and financial
-                  transaction analysis at scale for major institutional
-                  clients. SQL, Python, large datasets. The analytical
-                  foundation behind every system I build.
+                  Fraud detection and financial transaction analysis at scale.
+                  The analytical foundation behind every system I build.
                 </p>
               </GlassCard>
             </AnimateIn>
@@ -198,9 +187,8 @@ export default function AboutPage() {
                   Growth &amp; Operations
                 </h3>
                 <p className="text-white/70 leading-relaxed text-sm">
-                  From nonprofit fundraising with national press coverage to
-                  product development and growth strategy. Every engagement is
-                  informed by real operational experience.
+                  Nonprofit fundraising, product development, and growth
+                  strategy. Every engagement is informed by real operational experience.
                 </p>
               </GlassCard>
             </AnimateIn>
@@ -225,9 +213,7 @@ export default function AboutPage() {
                   Methodology over tools.
                 </h3>
                 <p className="text-white/80 leading-relaxed">
-                  We lead with a strategic framework that determines where AI
-                  creates the most leverage, then build the right tools for that
-                  application. The methodology is the product.
+                  Strategy determines what gets built. The methodology is the product.
                 </p>
               </GlassCard>
             </AnimateIn>
@@ -238,8 +224,7 @@ export default function AboutPage() {
                   Single-outcome precision.
                 </h3>
                 <p className="text-white/80 leading-relaxed">
-                  Every engagement targets one measurable outcome. One system,
-                  one KPI, clear results. Then we expand based on data.
+                  One system, one KPI, clear results. Then expand based on data.
                 </p>
               </GlassCard>
             </AnimateIn>
@@ -250,9 +235,8 @@ export default function AboutPage() {
                   Absolute executive control.
                 </h3>
                 <p className="text-white/80 leading-relaxed">
-                  Nothing executes without human approval. Every action is
-                  logged, every output reviewable. AI amplifies your judgment,
-                  never replaces it.
+                  Nothing executes without human approval. AI amplifies your
+                  judgment, never replaces it.
                 </p>
               </GlassCard>
             </AnimateIn>
