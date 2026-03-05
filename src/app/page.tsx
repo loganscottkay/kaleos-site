@@ -49,25 +49,6 @@ const methodology = [
   },
 ]
 
-const leverage = [
-  {
-    title: 'Revenue Operations',
-    desc: 'Invoice auditing, reconciliation, and financial workflows that recover revenue and reduce errors.',
-  },
-  {
-    title: 'Client Intelligence',
-    desc: 'Proposals, briefs, and communications generated in your voice, reviewed by you before they reach anyone.',
-  },
-  {
-    title: 'Pipeline and Growth',
-    desc: 'Lead qualification, intake automation, and opportunity scoring. Stop losing deals to slow follow-up.',
-  },
-  {
-    title: 'Operational Infrastructure',
-    desc: 'Workflows, approvals, and reporting encoded into repeatable processes. Add capacity without headcount.',
-  },
-]
-
 const trustBadges = [
   {
     label: 'Human-in-the-Loop',
@@ -271,35 +252,6 @@ export default function Home() {
                     {item.phase}
                   </div>
                   <h3 className="text-xl font-semibold tracking-tight mb-3 text-white">
-                    {item.title}
-                  </h3>
-                  <p className="text-white/70 leading-relaxed text-sm">
-                    {item.desc}
-                  </p>
-                </GlassCard>
-              </AnimateIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <SectionChevron />
-
-      {/* Where AI Creates Leverage */}
-      <section className="relative py-24 bg-navy dot-grid-dark">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
-          <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-14 text-white">
-              Where AI Creates Leverage
-            </h2>
-          </AnimateIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {leverage.map((item, i) => (
-              <AnimateIn key={i} delay={i * 100} className="h-full">
-                <GlassCard hover className="p-8 h-full">
-                  <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
                     {item.title}
                   </h3>
                   <p className="text-white/70 leading-relaxed text-sm">
