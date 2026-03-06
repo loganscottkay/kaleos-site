@@ -83,7 +83,7 @@ export function AuthorityTimeline() {
             transform: phase >= 1 ? 'translateY(0)' : 'translateY(20px)',
           }}
         >
-          Trained at Harvard Business School. Built for Your Business.
+          Enterprise-Grade AI. Built for Your Business.
         </h2>
 
         {/* Timeline — desktop: horizontal, mobile: vertical */}
@@ -104,7 +104,7 @@ export function AuthorityTimeline() {
             </div>
             <p className="text-white font-semibold text-sm mb-1.5">Harvard Business School</p>
             <p className="text-white/45 text-xs leading-relaxed max-w-[180px]">
-              AI implementation across admissions and operations. Real workflows. Real constraints.
+              Complex organizations. High-stakes workflows. Real constraints.
             </p>
           </div>
 
@@ -168,7 +168,7 @@ export function AuthorityTimeline() {
             </div>
             <p className="text-white font-semibold text-sm mb-1.5">Kaleos</p>
             <p className="text-white/45 text-xs leading-relaxed max-w-[180px]">
-              Same methodology. Same precision. Now available to your business.
+              Rigorous methodology. Precise execution. Built for businesses like yours.
             </p>
           </div>
         </div>
@@ -181,7 +181,7 @@ export function AuthorityTimeline() {
             transform: phase >= 4 ? 'translateY(0)' : 'translateY(12px)',
           }}
         >
-          The same principles that drive AI inside one of the world&apos;s most complex institutions now drive yours.
+          The principles that drive AI inside the world&apos;s most complex organizations, now applied to yours.
         </p>
       </div>
 
