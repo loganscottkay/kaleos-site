@@ -41,9 +41,8 @@ export default function BlogPage() {
     <main className="min-h-screen">
       <NavBar />
 
-      {/* Hero */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-navy" />
+      {/* Full-page dark background */}
+      <section className="relative pt-32 pb-16 overflow-hidden bg-[#1B2A4A]">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.08]"
           style={{ backgroundImage: `url('${HERO_BG}')` }}
@@ -72,16 +71,9 @@ export default function BlogPage() {
             </p>
           </AnimateIn>
         </div>
-      </section>
 
-      {/* Posts */}
-      <section className="relative py-24 bg-navy dot-grid-dark">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.04]"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
-
-        <div className="relative z-10 max-w-5xl mx-auto px-4">
+        {/* Posts */}
+        <div className="relative z-10 max-w-5xl mx-auto px-4 mt-10">
           {posts.length === 0 && (
             <p className="text-white/50 text-center">
               No posts yet. Check back soon.
@@ -140,7 +132,7 @@ export default function BlogPage() {
 
           {/* Post grid */}
           {rest.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8">
               {rest.map((post, i) => (
                 <AnimateIn key={post.slug} delay={100 + i * 80}>
                   <Link href={`/blog/${post.slug}`} className="block group h-full">
@@ -177,7 +169,6 @@ export default function BlogPage() {
           )}
         </div>
       </section>
-
       <Footer />
     </main>
   )
