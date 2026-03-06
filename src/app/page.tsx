@@ -8,6 +8,7 @@ import { QuickAssessment } from '@/components/QuickAssessment'
 import { StickyCTA } from '@/components/StickyCTA'
 import { BuiltToDemo } from '@/components/BuiltToDemo'
 import { AuthorityTimeline } from '@/components/AuthorityTimeline'
+import { NewsletterSignup } from '@/components/NewsletterSignup'
 
 const HERO_BG =
   'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2070&q=80'
@@ -300,6 +301,7 @@ export default function Home() {
         </div>
       </section>
 
+      <NewsletterSignup />
       <Footer />
     </main>
   )

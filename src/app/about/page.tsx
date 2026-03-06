@@ -5,6 +5,7 @@ import { Footer, SocialIcons } from '@/components/Footer'
 import { GlassCard } from '@/components/GlassCard'
 import { AnimateIn } from '@/components/AnimateIn'
 import { StrategyGraph } from '@/components/StrategyGraph'
+import { NewsletterSignup } from '@/components/NewsletterSignup'
 
 export const metadata: Metadata = {
   title: 'About',
@@ -290,6 +291,7 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <NewsletterSignup />
       <Footer />
     </main>
   )

@@ -5,6 +5,7 @@ import { GlassCard } from '@/components/GlassCard'
 import { AnimateIn } from '@/components/AnimateIn'
 import { AuditForm } from '@/components/AuditForm'
 import { FAQ } from '@/components/FAQ'
+import { NewsletterSignup } from '@/components/NewsletterSignup'
 
 export const metadata: Metadata = {
   title: 'Strategic AI Assessment',
@@ -355,6 +356,7 @@ export default function AuditPage() {
         </div>
       </section>
 
+      <NewsletterSignup />
       <Footer />
     </main>
   )
