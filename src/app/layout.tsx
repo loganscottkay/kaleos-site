@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Fraunces, JetBrains_Mono } from 'next/font/google'
+import { Inter, Bricolage_Grotesque, JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import TalkToLogan from "@/components/TalkToLogan";
@@ -9,10 +9,10 @@ const inter = Inter({
   display: 'swap',
 })
 
-const fraunces = Fraunces({
+const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-fraunces',
+  variable: '--font-display',
   axes: ['opsz'],
 })
 
@@ -74,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${bricolage.variable} ${jetbrainsMono.variable}`}>
       <body
         className={`${inter.className} antialiased bg-paper text-slate-700`}
       >

@@ -64,3 +64,6 @@ Logan flagged the warm-cream plus high-contrast-serif look as the current defaul
 Rationale: keeps the premium, established temperature and the approval-gate signature exactly as is, but swaps the two elements that pattern-match to the AI-default look (warm cream field, high-contrast display serif) for a cool, machined engineering feel that matches "systems firm" better than "editorial studio." Nothing else changes: layout, motion budget, gate motif, and card system carry over 1:1.
 
 If approved, the sitewide swap is a token update in globals.css plus the font change in layout.tsx, roughly 30 minutes including re-verification and a fresh OG image.
+
+### Decision: Machined Graphite APPLIED (2026-07-11)
+Logan approved the proposal on preview review. Applied sitewide: graphite token set (ink #10161E, navy #1F2A3C, porcelain #EDF0F4), Bricolage Grotesque as the display face via next/font (variable --font-display), hero h1 at 600 weight, OG image regenerated. Fraunces removed. Live captures: audits/screenshots/hero-graphite-live.jpeg and dark-graphite-live.jpeg.

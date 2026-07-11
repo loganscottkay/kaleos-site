@@ -40,7 +40,7 @@ export function NavBar() {
           />
           <span
             className="text-navy font-semibold text-lg tracking-tight"
-            style={{ fontFamily: 'var(--font-fraunces), Georgia, serif' }}
+            style={{ fontFamily: 'var(--font-display), sans-serif' }}
           >
             Kaleos HQ
           </span>

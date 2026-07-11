@@ -1,24 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #0E1B2E;
-  --color-navy: #1B2A4A;
+  --color-ink: #10161E;
+  --color-navy: #1F2A3C;
   --color-accent: #0D9488;
   --color-amber: #B45309;
-  --color-paper: #F7F5F1;
+  --color-paper: #EDF0F4;
   --color-mist: #93A5BE;
   /* Legacy aliases still referenced in a few spots */
-  --color-navy-dark: #0E1B2E;
-  --color-navy-deeper: #162035;
+  --color-navy-dark: #10161E;
+  --color-navy-deeper: #161F2E;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Display serif headings */
+/* Display headings: Machined Graphite direction */
 h1, h2, h3 {
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-display), 'Helvetica Neue', sans-serif;
+  letter-spacing: -0.02em;
 }
 
 /* Mono for system labels and operator UI */

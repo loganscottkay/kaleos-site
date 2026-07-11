@@ -109,7 +109,7 @@ export default function Home() {
       {/* Hero */}
       <section className="relative bg-paper pt-40 pb-24">
         <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight leading-[1.1] mb-8 text-ink">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.1] mb-8 text-ink">
             AI doesn&apos;t fail because of the technology.
             <br />
             It fails because of the implementation.
