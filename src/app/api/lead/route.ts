@@ -1,27 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import Airtable from 'airtable'
+import { createRateLimiter, clientIp } from '@/lib/rate-limit'
 
 // Swap to a kaleoshq.com sender once the domain is verified in Resend
 const FROM_ADDRESS = 'Kaleos HQ Website <onboarding@resend.dev>'
 const NOTIFY_ADDRESS = 'logan@kaleoshq.com'
 
-/* Simple in-memory rate limiter: 10 submissions per IP per hour */
-const RATE_LIMIT_MAX = 10
-const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000
-
-const rateLimitStore = new Map<string, { count: number; resetAt: number }>()
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now()
-  const entry = rateLimitStore.get(ip)
-  if (!entry || now > entry.resetAt) {
-    rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
-    return false
-  }
-  entry.count++
-  return entry.count > RATE_LIMIT_MAX
-}
+// 10 submissions per IP per hour
+const isRateLimited = createRateLimiter(10, 60 * 60 * 1000)
 
 type LeadPayload = {
   name: string
@@ -69,8 +56,7 @@ function validate(body: unknown): { lead: LeadPayload | null; error: string | nu
 }
 
 export async function POST(req: NextRequest) {
-  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
-  if (isRateLimited(ip)) {
+  if (isRateLimited(clientIp(req))) {
     return NextResponse.json(
       { error: 'Too many submissions from this connection. Try again in an hour.' },
       { status: 429 }
@@ -98,39 +84,49 @@ export async function POST(req: NextRequest) {
   const submittedDate = submittedAt.slice(0, 10)
   const challenges = lead.lookingToSolve.join(', ')
 
-  const airtablePromise = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY })
-    .base(process.env.AIRTABLE_BASE_ID!)('Leads')
-    .create([
-      {
-        fields: {
-          Name: lead.name,
-          Email: lead.email,
-          Company: lead.company,
-          'Company Size': lead.companySize,
-          'Looking To Solve': challenges,
-          'Desired Outcome': lead.desiredOutcome,
-          'Source Page': lead.sourcePage,
-          'Submitted At': submittedDate,
+  // async wrappers so constructor/config errors reject instead of throwing
+  const airtablePromise = (async () =>
+    new Airtable({ apiKey: process.env.AIRTABLE_API_KEY })
+      .base(process.env.AIRTABLE_BASE_ID!)('Leads')
+      .create([
+        {
+          fields: {
+            Name: lead.name,
+            Email: lead.email,
+            Company: lead.company,
+            'Company Size': lead.companySize,
+            'Looking To Solve': challenges,
+            'Desired Outcome': lead.desiredOutcome,
+            'Source Page': lead.sourcePage,
+            'Submitted At': submittedDate,
+          },
         },
-      },
-    ])
+      ]))()
 
-  const emailPromise = new Resend(process.env.RESEND_API_KEY).emails.send({
-    from: FROM_ADDRESS,
-    to: NOTIFY_ADDRESS,
-    replyTo: lead.email,
-    subject: `New lead: ${lead.name} at ${lead.company}`,
-    text: [
-      `Name: ${lead.name}`,
-      `Email: ${lead.email}`,
-      `Company: ${lead.company}`,
-      `Company size: ${lead.companySize || 'Not given'}`,
-      `Looking to solve: ${challenges}`,
-      `Desired outcome: ${lead.desiredOutcome || 'Not given'}`,
-      `Source page: ${lead.sourcePage || 'Unknown'}`,
-      `Submitted: ${submittedAt}`,
-    ].join('\n'),
-  })
+  // The Resend SDK reports API failures as a resolved { error } value, not a
+  // rejection, so surface that as a failure explicitly.
+  const emailPromise = (async () => {
+    const result = await new Resend(process.env.RESEND_API_KEY).emails.send({
+      from: FROM_ADDRESS,
+      to: NOTIFY_ADDRESS,
+      replyTo: lead.email,
+      subject: `New lead: ${lead.name} at ${lead.company}`,
+      text: [
+        `Name: ${lead.name}`,
+        `Email: ${lead.email}`,
+        `Company: ${lead.company}`,
+        `Company size: ${lead.companySize || 'Not given'}`,
+        `Looking to solve: ${challenges}`,
+        `Desired outcome: ${lead.desiredOutcome || 'Not given'}`,
+        `Source page: ${lead.sourcePage || 'Unknown'}`,
+        `Submitted: ${submittedAt}`,
+      ].join('\n'),
+    })
+    if (result.error) {
+      throw new Error(`Resend API error: ${result.error.name}: ${result.error.message}`)
+    }
+    return result
+  })()
 
   const [airtableResult, emailResult] = await Promise.allSettled([airtablePromise, emailPromise])
 

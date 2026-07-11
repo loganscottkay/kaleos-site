@@ -22,7 +22,7 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-center gap-4 text-slate-400 text-sm tracking-wide">
         <span>
           &copy; 2026 Kaleos HQ &middot;{' '}
-          <a href="https://kaleoshq.com" className="hover:text-slate-600 transition-colors">
+          <a href="https://www.kaleoshq.com" className="hover:text-slate-600 transition-colors">
             kaleoshq.com
           </a>
           {' '}&middot;{' '}

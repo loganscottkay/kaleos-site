@@ -1,30 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createRateLimiter, clientIp } from "@/lib/rate-limit";
 
-/* ── Simple in-memory rate limiter: 20 requests per IP per hour ── */
-const RATE_LIMIT_MAX = 20;
-const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+// 20 requests per IP per hour
+const isRateLimited = createRateLimiter(20, 60 * 60 * 1000);
 
-const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
+const MAX_MESSAGES = 30;
+const MAX_MESSAGE_CHARS = 4000;
 
-// Clean up expired entries every 10 minutes to prevent memory leak
-setInterval(() => {
-  const now = Date.now();
-  for (const [key, value] of rateLimitStore) {
-    if (now > value.resetAt) rateLimitStore.delete(key);
+type ChatMessage = { role: "user" | "assistant"; content: string };
+
+function sanitizeMessages(raw: unknown): ChatMessage[] | null {
+  if (!Array.isArray(raw) || raw.length === 0 || raw.length > MAX_MESSAGES) return null;
+  const clean: ChatMessage[] = [];
+  for (const item of raw) {
+    if (typeof item !== "object" || item === null) return null;
+    const { role, content } = item as Record<string, unknown>;
+    if (role !== "user" && role !== "assistant") return null;
+    if (typeof content !== "string" || content.length === 0) return null;
+    clean.push({ role, content: content.slice(0, MAX_MESSAGE_CHARS) });
   }
-}, 10 * 60 * 1000);
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const entry = rateLimitStore.get(ip);
-
-  if (!entry || now > entry.resetAt) {
-    rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
-    return false;
-  }
-
-  entry.count++;
-  return entry.count > RATE_LIMIT_MAX;
+  return clean;
 }
 
 const SYSTEM_PROMPT = `You are Logan Kay's AI assistant on the Kaleos HQ website. Kaleos HQ is an agentic AI implementation and applied AI consulting practice, not a generic automation agency.
@@ -47,8 +42,7 @@ Book a free call links to Calendly. Email me directly opens mailto:logan@kaleosh
 
 export async function POST(req: NextRequest) {
   // Rate limiting
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  if (isRateLimited(ip)) {
+  if (isRateLimited(clientIp(req))) {
     return NextResponse.json(
       { error: "Too many requests. Please try again later." },
       { status: 429 }
@@ -56,12 +50,10 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { messages } = await req.json();
-    if (!messages || !Array.isArray(messages)) {
+    const body = await req.json();
+    const messages = sanitizeMessages(body?.messages);
+    if (!messages) {
       return NextResponse.json({ error: "Invalid request" }, { status: 400 });
-    }
-    if (messages.length > 30) {
-      return NextResponse.json({ error: "Conversation too long" }, { status: 400 });
     }
 
     // Easter egg

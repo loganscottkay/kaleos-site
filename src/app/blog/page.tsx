@@ -11,13 +11,13 @@ export const metadata: Metadata = {
   description:
     'Frameworks, lessons, and perspectives on AI implementation that actually works.',
   alternates: {
-    canonical: 'https://kaleoshq.com/blog',
+    canonical: 'https://www.kaleoshq.com/blog',
   },
   openGraph: {
     title: 'Thinking | Kaleos HQ',
     description:
       'Frameworks, lessons, and perspectives on AI implementation that actually works.',
-    url: 'https://kaleoshq.com/blog',
+    url: 'https://www.kaleoshq.com/blog',
   },
 }
 

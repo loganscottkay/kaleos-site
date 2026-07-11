@@ -23,12 +23,12 @@ export async function generateMetadata({
     title: post.title,
     description: post.description,
     alternates: {
-      canonical: `https://kaleoshq.com/blog/${post.slug}`,
+      canonical: `https://www.kaleoshq.com/blog/${post.slug}`,
     },
     openGraph: {
       title: `${post.title} | Kaleos HQ`,
       description: post.description,
-      url: `https://kaleoshq.com/blog/${post.slug}`,
+      url: `https://www.kaleoshq.com/blog/${post.slug}`,
       type: 'article',
       publishedTime: post.date,
       tags: post.tags,

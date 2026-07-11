@@ -40,6 +40,7 @@ export function OutreachDemo() {
   const [log, setLog] = useState<Decision[]>([])
   const [displayScore, setDisplayScore] = useState(leads[0].score - 20)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const advanceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const lead = leads[index]
 
@@ -62,11 +63,17 @@ export function OutreachDemo() {
     }
   }, [index])
 
+  useEffect(() => {
+    return () => {
+      if (advanceRef.current) clearTimeout(advanceRef.current)
+    }
+  }, [])
+
   const advance = (action: 'Sent' | 'Rejected') => {
     const time = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
     setDecided(action === 'Sent' ? 'approved' : 'rejected')
     setLog((prev) => [{ lead: lead.name, action, time }, ...prev].slice(0, 3))
-    setTimeout(() => {
+    advanceRef.current = setTimeout(() => {
       const next = (index + 1) % leads.length
       setIndex(next)
       setDraft(leads[next].draft)
