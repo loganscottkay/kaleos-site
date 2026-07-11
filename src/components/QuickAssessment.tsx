@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
 
 /* ── Question data ── */
 
@@ -204,22 +203,6 @@ export function QuickAssessment() {
     const newAnswers = [...answers]
     newAnswers[step] = [option]
     setAnswers(newAnswers)
-
-    // Log on final question
-    if (step === 2) {
-      const result = getResult(newAnswers)
-      supabase
-        .from('quiz_responses')
-        .insert({
-          q1_time_spent: newAnswers[0].join(', '),
-          q2_ai_situation: newAnswers[1].join(', '),
-          q3_biggest_change: newAnswers[2].join(', '),
-          result_headline: result.headline,
-          result_body: result.body,
-          result_key: result.key,
-        })
-        .then(() => {})
-    }
 
     setTimeout(() => advanceStep(), 400)
   }

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, type FormEvent } from 'react'
-import { supabase } from '@/lib/supabase'
 
 const challengeOptions = [
   'Revenue Operations',
@@ -60,23 +59,37 @@ export function AuditForm() {
     setErrorMessage('')
 
     try {
-      const painType = formData.company_size
-        ? `${formData.challenges.join(', ')} | Team: ${formData.company_size}`
-        : formData.challenges.join(', ')
-
-      const { error } = await supabase.from('leads').insert({
-        name: formData.name,
-        email: formData.email,
-        company: formData.company,
-        pain_type: painType,
-        desired_outcome: formData.desired_outcome,
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          companySize: formData.company_size,
+          lookingToSolve: formData.challenges,
+          desiredOutcome: formData.desired_outcome,
+          sourcePage: window.location.pathname,
+          honeypot: formData.honeypot,
+        }),
       })
 
-      if (error) throw error
+      if (!res.ok) {
+        const data = await res.json().catch(() => null)
+        setStatus('error')
+        setErrorMessage(
+          data?.error ||
+            'The form could not submit. Email logan@kaleoshq.com directly and you will get a reply today.'
+        )
+        return
+      }
+
       setStatus('success')
     } catch {
       setStatus('error')
-      setErrorMessage('Something went wrong. Please try again.')
+      setErrorMessage(
+        'The form could not submit. Check your connection and try once more, or email logan@kaleoshq.com.'
+      )
     }
   }
 

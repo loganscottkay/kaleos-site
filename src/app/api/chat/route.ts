@@ -1,12 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
-
-function getSupabase() {
-  return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
-}
 
 /* ── Simple in-memory rate limiter: 20 requests per IP per hour ── */
 const RATE_LIMIT_MAX = 20;
@@ -43,7 +35,7 @@ What Kaleos does: We deploy AI systems designed around how a business actually o
 
 Key differentiators: Strategy-first methodology (not tool-first). Single-outcome precision (one system, one KPI, measurable results). Absolute executive control (nothing executes without human approval). Every output logged, every action reviewable.
 
-Engagement tiers: Assessment ($5,000+, one-time deep operational analysis), Implementation (starting at $6,500/month, 3-month minimum, hands-on system builds), Strategic Partner (starting at $15,000/month, 6-month minimum, full-stack with unlimited builds).
+Engagement structure: Three tiers. Assessment (one-time deep operational analysis), Implementation (hands-on system builds deployed month over month), Strategic Partner (ongoing full-stack implementation and strategic oversight). Every engagement is scoped to the specific business, so never quote dollar amounts. If someone asks about pricing, explain that scope drives cost and the right move is a short discovery call where Logan can give them a real number.
 
 Logan's background: Helped spearhead AI implementation initiatives at Harvard Business School. Founder of Kaleos. Works with founders, CEOs, and operators running established businesses who need AI implemented strategically, not experimentally.
 
@@ -64,7 +56,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { messages, session_id } = await req.json();
+    const { messages } = await req.json();
     if (!messages || !Array.isArray(messages)) {
       return NextResponse.json({ error: "Invalid request" }, { status: 400 });
     }
@@ -72,29 +64,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Conversation too long" }, { status: 400 });
     }
 
-    // Log the user's message
-    const lastUserMsg = messages[messages.length - 1];
-    if (lastUserMsg?.role === "user" && session_id) {
-      getSupabase().from("chat_logs").insert({
-        session_id,
-        role: "user",
-        message: lastUserMsg.content,
-        email: null,
-      }).then();
-    }
-
     // Easter egg
+    const lastUserMsg = messages[messages.length - 1];
     if (lastUserMsg && lastUserMsg.content.trim().toLowerCase() === "chungus aioli") {
-      const easterEggReply = "Congratulations you have unlocked mollick doing tricks on it";
-      if (session_id) {
-        getSupabase().from("chat_logs").insert({
-          session_id,
-          role: "assistant",
-          message: easterEggReply,
-          email: null,
-        }).then();
-      }
-      return NextResponse.json({ content: easterEggReply });
+      return NextResponse.json({ content: "Congratulations you have unlocked mollick doing tricks on it" });
     }
 
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -120,16 +93,6 @@ export async function POST(req: NextRequest) {
     }
 
     const assistantContent = data.choices[0].message.content;
-
-    // Log the assistant's response
-    if (session_id) {
-      getSupabase().from("chat_logs").insert({
-        session_id,
-        role: "assistant",
-        message: assistantContent,
-        email: null,
-      }).then();
-    }
 
     return NextResponse.json({ content: assistantContent });
   } catch (error) {

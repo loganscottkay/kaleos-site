@@ -6,8 +6,7 @@ import { usePathname } from 'next/navigation'
 
 const links = [
   { href: '/', label: 'Home' },
-  { href: '/audit', label: 'Audit' },
-  { href: '/blog', label: 'Blog' },
+  { href: '/audit', label: 'Assessment' },
   { href: '/about', label: 'About' },
 ]
 
@@ -48,7 +47,7 @@ export function NavBar() {
   const trailRef = useRef<HTMLDivElement>(null)
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([])
   const triggeredLinks = useRef<Set<number>>(new Set())
-  const hasAnimated = useRef(false)
+  const [hasAnimated, setHasAnimated] = useState(false)
   const pathname = usePathname()
 
   const isHome = pathname === '/'
@@ -61,18 +60,18 @@ export function NavBar() {
 
   // Phase progression — home page only, once per session
   useEffect(() => {
-    if (!isHome || hasAnimated.current) return
+    if (!isHome || hasAnimated) return
     const timers = [
       setTimeout(() => setSkyPhase('flight'), 300),
       setTimeout(() => setSkyPhase('hold'), 2800),
       setTimeout(() => setSkyPhase('morph'), 3100),
       setTimeout(() => {
-        hasAnimated.current = true
+        setHasAnimated(true)
         setSkyPhase(null)
       }, 4200),
     ]
     return () => timers.forEach(clearTimeout)
-  }, [isHome])
+  }, [isHome, hasAnimated])
 
   // Clip wordmark behind jet during flight
   useLayoutEffect(() => {
@@ -110,7 +109,7 @@ export function NavBar() {
   }, [skyPhase])
 
   // Cloud state: during flight/hold, or on home before animation has played
-  const isCloud = skyPhase === 'flight' || skyPhase === 'hold' || (isHome && skyPhase === null && !hasAnimated.current)
+  const isCloud = skyPhase === 'flight' || skyPhase === 'hold' || (isHome && skyPhase === null && !hasAnimated)
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b border-slate-200/60 transition-all duration-300 ${scrolled ? 'bg-white/90 shadow-sm' : 'bg-white/70'}`}>

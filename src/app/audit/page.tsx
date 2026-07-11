@@ -5,7 +5,6 @@ import { GlassCard } from '@/components/GlassCard'
 import { AnimateIn } from '@/components/AnimateIn'
 import { AuditForm } from '@/components/AuditForm'
 import { FAQ } from '@/components/FAQ'
-import { NewsletterSignup } from '@/components/NewsletterSignup'
 
 export const metadata: Metadata = {
   title: 'Strategic AI Assessment',
@@ -161,157 +160,58 @@ export default function AuditPage() {
         </div>
       </section>
 
-      {/* Engagement Tiers */}
+      {/* How Engagements Work */}
       <section className="relative py-24 bg-navy dot-grid-dark">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
         <div className="relative z-10 max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-3 text-white">
-              Engagement Tiers
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-6 text-white">
+              How Engagements Work
             </h2>
-            <div className="mb-14" />
+            <p className="text-white/70 text-center max-w-3xl mx-auto mb-14 leading-relaxed">
+              Every engagement is scoped to your business. No packages off a
+              shelf, no rate card. Three ways to work together, priced on a
+              call once we understand what you actually need.
+            </p>
           </AnimateIn>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-            {/* Tier 1: Assessment */}
-            <AnimateIn className="h-full">
-              <GlassCard hover className="p-8 h-full">
-                <div className="flex flex-col h-full">
-                  <h3 className="text-lg font-semibold tracking-tight text-white mb-4">
-                    Assessment
-                  </h3>
-                  <p className="text-4xl font-bold tracking-tight text-white mb-1">
-                    $5,000+
-                  </p>
-                  <p className="text-white/40 text-sm mb-4">one-time</p>
-                  <p className="text-white/60 text-sm leading-relaxed mb-6">
-                    A deep operational analysis that tells you exactly where AI
-                    creates leverage in your business.
-                  </p>
-                  <div className="space-y-2.5 mb-8 flex-1">
-                    {[
-                      'Operational workflow mapping',
-                      'AI readiness evaluation',
-                      'Prioritized opportunity matrix',
-                      'ROI projections + implementation roadmap',
-                      'Executive summary PDF + strategy presentation',
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-start gap-2.5">
-                        <svg className="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-white/60 text-sm">{item}</span>
-                      </div>
-                    ))}
+            {[
+              {
+                name: 'Assessment',
+                desc: 'A deep operational analysis that tells you exactly where AI creates leverage in your business. Workflow mapping, a prioritized opportunity matrix, and a roadmap with projected ROI.',
+              },
+              {
+                name: 'Implementation',
+                desc: 'The assessment plus hands-on builds. Precision-scoped AI systems designed, built, tested, and deployed into your operations, each with human-in-the-loop controls.',
+              },
+              {
+                name: 'Strategic Partner',
+                desc: 'Ongoing full-stack implementation with strategic oversight. Continuous builds, priority response, and quarterly reviews tied to your business goals.',
+              },
+            ].map((tier, i) => (
+              <AnimateIn key={tier.name} delay={i * 100} className="h-full">
+                <GlassCard hover className="p-8 h-full">
+                  <div className="flex flex-col h-full">
+                    <h3 className="text-lg font-semibold tracking-tight text-white mb-4">
+                      {tier.name}
+                    </h3>
+                    <p className="text-white/60 text-sm leading-relaxed mb-8 flex-1">
+                      {tier.desc}
+                    </p>
+                    <a
+                      href="https://calendly.com/logan-kaleoshq/30min"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-sm transition-all duration-300 border border-white/10 hover:border-white/20"
+                    >
+                      Book a Discovery Call
+                    </a>
                   </div>
-                  <a
-                    href="#form"
-                    className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-sm transition-all duration-300 border border-white/10 hover:border-white/20"
-                  >
-                    Start Here
-                  </a>
-                </div>
-              </GlassCard>
-            </AnimateIn>
-
-            {/* Tier 2: Implementation (Featured) */}
-            <AnimateIn delay={100} className="h-full md:scale-[1.03] relative z-10">
-              <div className="hidden md:block absolute -inset-[3px] rounded-2xl bg-accent/20 blur-md pointer-events-none" />
-              <GlassCard hover className="p-8 h-full">
-                <div className="flex flex-col h-full">
-                  <div className="inline-block self-start px-3 py-1 rounded-full bg-accent/20 text-accent text-xs font-medium tracking-wide mb-4">
-                    Recommended
-                  </div>
-                  <h3 className="text-lg font-semibold tracking-tight text-white mb-4">
-                    Implementation
-                  </h3>
-                  <p className="text-white/40 text-sm mb-1">Starting at</p>
-                  <p className="text-4xl font-bold tracking-tight text-white mb-1">
-                    $6,500
-                  </p>
-                  <p className="text-white/40 text-sm mb-4">
-                    /month &middot; 3-month minimum
-                  </p>
-                  <p className="text-white/60 text-sm leading-relaxed mb-6">
-                    Assessment plus hands-on system builds deployed into your
-                    operations every month.
-                  </p>
-                  <div className="space-y-2.5 mb-8 flex-1">
-                    {[
-                      'Everything in Assessment',
-                      '1 precision-scoped AI system per month',
-                      'Full build, testing, and deployment',
-                      'Human-in-the-loop controls',
-                      'Weekly check-ins + 30-day optimization',
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-start gap-2.5">
-                        <svg className="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-white/60 text-sm">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <a
-                    href="https://calendly.com/logan-kaleoshq/30min"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl bg-accent hover:bg-accent/90 text-white font-medium text-sm transition-all duration-300 shadow-lg shadow-accent/20"
-                  >
-                    Book a Call
-                  </a>
-                </div>
-              </GlassCard>
-            </AnimateIn>
-
-            {/* Tier 3: Strategic Partner */}
-            <AnimateIn delay={200} className="h-full">
-              <GlassCard hover className="p-8 h-full">
-                <div className="flex flex-col h-full">
-                  <h3 className="text-lg font-semibold tracking-tight text-white mb-4">
-                    Strategic Partner
-                  </h3>
-                  <p className="text-white/40 text-sm mb-1">Starting at</p>
-                  <p className="text-4xl font-bold tracking-tight text-white mb-1">
-                    $15,000
-                  </p>
-                  <p className="text-white/40 text-sm mb-4">
-                    /month &middot; 6-month minimum
-                  </p>
-                  <p className="text-white/60 text-sm leading-relaxed mb-6">
-                    Full-stack AI implementation with unlimited builds and
-                    strategic oversight.
-                  </p>
-                  <div className="space-y-2.5 mb-8 flex-1">
-                    {[
-                      'Everything in Implementation',
-                      'Unlimited system builds',
-                      'Priority response',
-                      'Quarterly business reviews',
-                      'Performance-linked component',
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-start gap-2.5">
-                        <svg className="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-white/60 text-sm">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <a
-                    href="#form"
-                    className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-sm transition-all duration-300 border border-white/10 hover:border-white/20"
-                  >
-                    Apply
-                  </a>
-                </div>
-              </GlassCard>
-            </AnimateIn>
+                </GlassCard>
+              </AnimateIn>
+            ))}
           </div>
-
-          <div className="mt-12" />
-
-
         </div>
       </section>
 
@@ -356,7 +256,6 @@ export default function AuditPage() {
         </div>
       </section>
 
-      <NewsletterSignup />
       <Footer />
     </main>
   )
