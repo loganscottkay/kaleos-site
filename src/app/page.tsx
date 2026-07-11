@@ -7,7 +7,7 @@ import { WorkflowDiagram } from '@/components/WorkflowDiagram'
 import { QuickAssessment } from '@/components/QuickAssessment'
 import { StickyCTA } from '@/components/StickyCTA'
 import { BuiltToDemo } from '@/components/BuiltToDemo'
-import { AuthorityTimeline } from '@/components/AuthorityTimeline'
+import { InProduction } from '@/components/InProduction'
 
 const HERO_BG =
   'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2070&q=80'
@@ -117,13 +117,24 @@ export default function Home() {
             </h1>
           </AnimateIn>
 
-          <AnimateIn delay={700} distance={10}>
+          <AnimateIn delay={600} distance={10}>
             <p
-              className="text-base text-white/85 tracking-wide font-normal"
+              className="text-lg text-white/90 tracking-wide font-normal max-w-2xl mx-auto mb-6"
               style={{ fontFamily: "'Inter', sans-serif", textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}
             >
-              Logan Kay | Founder, Kaleos | AI &amp; Operations @ Harvard
-              Business School
+              Everyone wants AI. Most of it never leaves the slide deck.
+              Kaleos is the implementation partner that gets it into
+              production.
+            </p>
+          </AnimateIn>
+
+          <AnimateIn delay={900} distance={10}>
+            <p
+              className="text-base text-white/80 tracking-wide font-normal"
+              style={{ fontFamily: "'Inter', sans-serif", textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}
+            >
+              Logan Kay &middot; Founder, Kaleos &middot; Agentic AI systems,
+              built and deployed
             </p>
           </AnimateIn>
         </div>
@@ -141,9 +152,10 @@ export default function Home() {
 
           <AnimateIn delay={100}>
             <p className="text-white/70 text-center max-w-3xl mx-auto mb-14 leading-relaxed">
-              Most companies that start with AI fail. Not because the technology
-              doesn&apos;t work, but because nobody connected it to what
-              actually matters.
+              Most companies that start with AI never get past the demo. Not
+              because the technology doesn&apos;t work, but because nobody
+              connected it to how the business actually operates. That gap is
+              what Kaleos exists to close.
             </p>
           </AnimateIn>
 
@@ -164,17 +176,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Authority Timeline */}
-      <AuthorityTimeline />
+      {/* In Production */}
+      <InProduction />
 
       {/* Our Methodology */}
       <section id="methodology" className="relative py-24 bg-navy dot-grid-dark">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
         <div className="relative z-10 max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-14 text-white">
-              A framework for AI that actually works.
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-6 text-white">
+              Agentic AI implementation, done as a discipline.
             </h2>
+            <p className="text-white/70 text-center max-w-3xl mx-auto mb-14 leading-relaxed">
+              Agents do the work. Humans make the calls. Everything is logged.
+              Every system we ship runs through the same architecture: AI
+              processing, an approval gate, and a full audit log.
+            </p>
           </AnimateIn>
 
           <WorkflowDiagram />

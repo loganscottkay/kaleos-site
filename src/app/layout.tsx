@@ -18,11 +18,11 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL('https://kaleoshq.com'),
   title: {
-    default: 'Kaleos | Strategic AI Implementation',
+    default: 'Kaleos | Agentic AI Implementation',
     template: '%s | Kaleos',
   },
   description:
-    "AI doesn't fail because of the technology. It fails because of the implementation. Kaleos deploys AI systems designed around how your business actually operates.",
+    "AI doesn't fail because of the technology. It fails because of the implementation. Kaleos is an agentic AI implementation and applied AI consulting practice: agents do the work, humans make the calls, everything is logged.",
   icons: {
     icon: '/icon.svg',
     apple: '/apple-icon',
@@ -32,23 +32,23 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://kaleoshq.com',
     siteName: 'Kaleos',
-    title: 'Kaleos | Strategic AI Implementation',
+    title: 'Kaleos | Agentic AI Implementation',
     description:
-      "AI doesn't fail because of the technology. It fails because of the implementation.",
+      "Agentic AI implementation and applied AI consulting. Agents do the work, humans make the calls, everything is logged.",
     images: [
       {
         url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'Kaleos - Strategic AI Implementation',
+        alt: 'Kaleos - Agentic AI Implementation',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kaleos | Strategic AI Implementation',
+    title: 'Kaleos | Agentic AI Implementation',
     description:
-      "AI doesn't fail because of the technology. It fails because of the implementation.",
+      "Agentic AI implementation and applied AI consulting. Agents do the work, humans make the calls, everything is logged.",
     images: ['/opengraph-image.png'],
   },
   alternates: {
@@ -65,7 +65,7 @@ const jsonLd = {
   name: 'Kaleos',
   url: 'https://kaleoshq.com',
   description:
-    "AI doesn't fail because of the technology. It fails because of the implementation. Kaleos deploys AI systems designed around how your business actually operates.",
+    "Agentic AI implementation and applied AI consulting. Kaleos deploys AI systems designed around how your business actually operates.",
   founder: {
     '@type': 'Person',
     name: 'Logan Kay',

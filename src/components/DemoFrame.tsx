@@ -183,7 +183,7 @@ export function DemoFrame() {
                   Match
                 </span>
                 <span className="text-white/60 text-sm">
-                  Revenue Operations — High-value fit
+                  Revenue Operations, high-value fit
                 </span>
               </div>
               <div className="h-px bg-white/[0.05]" />

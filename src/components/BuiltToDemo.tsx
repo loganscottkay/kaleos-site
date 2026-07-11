@@ -553,7 +553,8 @@ export function BuiltToDemo() {
           Built to Demonstrate
         </h2>
         <p className="text-white/50 text-center max-w-2xl mx-auto mb-14 text-sm">
-          These aren&apos;t mockups. They&apos;re live systems running on this page right now.
+          Working demos modeled on systems Kaleos has deployed for clients.
+          Sample data, real behavior.
         </p>
 
         {/* cards grid — auto-rows-fr forces equal height */}

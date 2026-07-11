@@ -24,8 +24,8 @@ const faqs = [
     a: "Any business with complex operations and a genuine need for AI. The methodology adapts across industries.",
   },
   {
-    q: "What if I'm not sure which tier is right?",
-    a: "Start with a conversation. We'll tell you honestly which tier fits or if we're not the right fit at all.",
+    q: 'How does pricing work?',
+    a: "Every engagement is scoped to your business, so pricing happens on a call once we understand the work. You'll get a real number, not a rate card.",
   },
   {
     q: 'Do I need to be technical?',

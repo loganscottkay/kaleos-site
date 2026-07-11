@@ -9,14 +9,14 @@ import { StrategyGraph } from '@/components/StrategyGraph'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'I helped spearhead AI implementation at Harvard Business School. Now I help founders and executives deploy AI where it creates real strategic leverage.',
+    'Logan Kay builds and personally delivers every system Kaleos ships. Agentic AI implementation and applied AI consulting for founders who want AI in production, not on a slide.',
   alternates: {
     canonical: 'https://kaleoshq.com/about',
   },
   openGraph: {
     title: 'About | Kaleos',
     description:
-      'I helped spearhead AI implementation at Harvard Business School. Now I help founders and executives deploy AI where it creates real strategic leverage.',
+      'Logan Kay builds and personally delivers every system Kaleos ships. Agentic AI implementation and applied AI consulting for founders who want AI in production, not on a slide.',
     url: 'https://kaleoshq.com/about',
   },
 }
@@ -83,9 +83,10 @@ export default function AboutPage() {
                 <div className="flex-1">
                   <AnimateIn>
                     <p className="text-xl text-slate-800 font-medium leading-relaxed mb-8 tracking-tight">
-                      I helped spearhead AI implementation initiatives at Harvard Business School. Now I work
-                      with founders who understand the AI advantage isn&apos;t about
-                      the best tools. It&apos;s about the best implementation.
+                      I build and personally deliver every system Kaleos
+                      ships, and I run my own business on the same
+                      architecture. The AI advantage isn&apos;t about the best
+                      tools. It&apos;s about the best implementation.
                     </p>
                   </AnimateIn>
 
@@ -118,7 +119,7 @@ export default function AboutPage() {
                       Logan Kay, Founder
                     </p>
                     <p className="text-slate-500 text-sm text-center">
-                      AI &amp; Operations, Harvard Business School
+                      Builds and delivers every Kaleos system personally
                     </p>
                     <div className="flex justify-center mt-3">
                       <SocialIcons className="[&_a]:text-slate-400/50 [&_a:hover]:text-accent" />
@@ -151,11 +152,13 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
-                  AI Implementation
+                  Production Systems
                 </h3>
                 <p className="text-white/70 leading-relaxed text-sm">
-                  Designed and deployed AI systems across admissions and
-                  operations at Harvard Business School.
+                  Shipped agentic AI systems that real businesses run on
+                  every day: client portals, coaching platforms, and outreach
+                  engines, all with human approval built in. Earlier, AI and
+                  operations work at Harvard Business School.
                 </p>
               </GlassCard>
             </AnimateIn>

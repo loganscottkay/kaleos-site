@@ -9,14 +9,14 @@ import { FAQ } from '@/components/FAQ'
 export const metadata: Metadata = {
   title: 'Strategic AI Assessment',
   description:
-    'Before we build anything, we need to understand everything. Deep operational analysis, prioritized opportunities, and a clear implementation roadmap.',
+    'The starting point for agentic AI implementation: a deep operational analysis that maps your workflows, ranks your opportunities, and hands you a roadmap with projected ROI.',
   alternates: {
     canonical: 'https://kaleoshq.com/audit',
   },
   openGraph: {
     title: 'Strategic AI Assessment | Kaleos',
     description:
-      'Before we build anything, we need to understand everything. Deep operational analysis, prioritized opportunities, and a clear implementation roadmap.',
+      'The starting point for agentic AI implementation: a deep operational analysis that maps your workflows, ranks your opportunities, and hands you a roadmap with projected ROI.',
     url: 'https://kaleoshq.com/audit',
   },
 }
