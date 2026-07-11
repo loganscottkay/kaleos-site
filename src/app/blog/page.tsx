@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     canonical: 'https://kaleoshq.com/blog',
   },
   openGraph: {
-    title: 'Thinking | Kaleos',
+    title: 'Thinking | Kaleos HQ',
     description:
       'Frameworks, lessons, and perspectives on AI implementation that actually works.',
     url: 'https://kaleoshq.com/blog',

@@ -3,7 +3,7 @@ import { Resend } from 'resend'
 import Airtable from 'airtable'
 
 // Swap to a kaleoshq.com sender once the domain is verified in Resend
-const FROM_ADDRESS = 'Kaleos Website <onboarding@resend.dev>'
+const FROM_ADDRESS = 'Kaleos HQ Website <onboarding@resend.dev>'
 const NOTIFY_ADDRESS = 'logan@kaleoshq.com'
 
 /* Simple in-memory rate limiter: 10 submissions per IP per hour */

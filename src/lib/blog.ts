@@ -41,7 +41,7 @@ export function getAllPosts(): PostMeta[] {
       title: data.title,
       date: data.date,
       description: data.description,
-      author: data.author ?? 'Kaleos',
+      author: data.author ?? 'Kaleos HQ',
       tags: data.tags ?? [],
       category: data.category ?? '',
       readTime: estimateReadTime(content),

@@ -38,3 +38,29 @@ Global :focus-visible outline in teal on every interactive element. prefers-redu
 
 ## What this buys performance
 The 2070px Unsplash background (previous LCP, 12.8s) is gone from every page. Hero LCP is now text. Backdrop-filter blur, fixed grain overlay, and the always-running canvas particles are removed, which cuts paint cost on mid phones.
+
+---
+
+## Feedback-pass addendum (2026-07-11, after Logan's preview review)
+
+### Applied in this pass
+- Brand renamed to Kaleos HQ across logo, nav, titles, metadata, footer, JSON-LD, OG image, chat prompt, and body copy.
+- Hero gate strip rebalanced: four stops distributed evenly at 12.5 / 37.5 / 62.5 / 87.5 percent of the track, one label column centered under each stop, the check chip sitting on its own stop, pulse animation retimed to pause at the gate stop.
+- About page reframed as a firm, HBS restored as a first-class credential, consistent we-voice.
+- Casing system: sentence case for all headings and card titles, uppercase reserved for small mono eyebrow labels. Type scale: hero h1 4xl-6xl, page h1 4xl-5xl, section h2 3xl-4xl, card h3 lg-xl, eyebrows xs. About text column tightened (max-w-xl, lg lead, space-y-4).
+
+### Proposed direction: "Machined Graphite" (awaiting Logan's call)
+Logan flagged the warm-cream plus high-contrast-serif look as the current default AI aesthetic. Proposed replacement, shown in audits/screenshots/hero-current.jpeg (before) vs hero-proposal.jpeg (after):
+
+| Token | Current | Proposed |
+|---|---|---|
+| paper | #F7F5F1 warm | #EDF0F4 cool porcelain |
+| ink | #0E1B2E navy-ink | #10161E graphite |
+| navy | #1B2A4A | #1F2A3C graphite-blue |
+| teal accent | #0D9488 | unchanged (brand equity, logo stays correct) |
+| display face | Fraunces (serif) | Bricolage Grotesque 500-600, tight tracking |
+| body / mono | Inter / JetBrains Mono | unchanged |
+
+Rationale: keeps the premium, established temperature and the approval-gate signature exactly as is, but swaps the two elements that pattern-match to the AI-default look (warm cream field, high-contrast display serif) for a cool, machined engineering feel that matches "systems firm" better than "editorial studio." Nothing else changes: layout, motion budget, gate motif, and card system carry over 1:1.
+
+If approved, the sitewide swap is a token update in globals.css plus the font change in layout.tsx, roughly 30 minutes including re-verification and a fresh OG image.

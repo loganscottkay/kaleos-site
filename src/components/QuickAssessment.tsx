@@ -63,7 +63,7 @@ function getResult(answers: string[][]) {
     key = 'foundation_precision'
   } else if (q2 === 'Advanced, want to optimize') {
     headline = "Time to compound what's working."
-    body = `At your stage, the biggest gains come from expansion and optimization, not new experiments. Your team is still spending time on ${q1Text}, and you told us ${q3Lower} would change your business the most. A Kaleos engagement maps your next highest-leverage system based on what's already delivering.`
+    body = `At your stage, the biggest gains come from expansion and optimization, not new experiments. Your team is still spending time on ${q1Text}, and you told us ${q3Lower} would change your business the most. A Kaleos HQ engagement maps your next highest-leverage system based on what's already delivering.`
     key = 'compound'
   } else {
     headline = "Let's figure it out together."
@@ -162,7 +162,7 @@ export function QuickAssessment() {
             transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
           }}
         >
-          <h2 className="text-4xl sm:text-5xl font-medium tracking-tight text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-white mb-4">
             Where does AI create leverage in your business?
           </h2>
           <p className="text-white/50 text-lg tracking-wide">
@@ -334,7 +334,7 @@ export function QuickAssessment() {
                       ))}
                     </div>
 
-                    <h3 className="text-2xl sm:text-3xl font-medium text-white mb-5">
+                    <h3 className="text-2xl font-medium text-white mb-5">
                       {result.headline}
                     </h3>
                     <p className="text-white/70 leading-relaxed mb-10 max-w-lg mx-auto text-base sm:text-lg">
@@ -343,7 +343,7 @@ export function QuickAssessment() {
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                       <a
-                        href="https://calendly.com/logan-kaleoshq/30min"
+                        href={`https://calendly.com/logan-kaleoshq/30min?utm_source=kaleoshq&utm_medium=quiz&utm_content=${result.key}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl font-medium transition-all duration-300 shadow-lg hover:scale-[1.03] active:scale-[0.97]"
@@ -353,7 +353,7 @@ export function QuickAssessment() {
                           boxShadow: '0 4px 20px rgba(13,148,136,0.35)',
                         }}
                       >
-                        Book a Call
+                        Book a Discovery Call
                       </a>
                       <a
                         href="#methodology"

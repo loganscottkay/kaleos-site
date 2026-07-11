@@ -9,21 +9,43 @@ import { StrategyGraph } from '@/components/StrategyGraph'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Logan Kay builds and personally delivers every system Kaleos ships. Agentic AI implementation and applied AI consulting for founders who want AI in production, not on a slide.',
+    'Kaleos HQ is an agentic AI implementation firm founded by Logan Kay, who designed and deployed AI systems across admissions and operations at Harvard Business School.',
   alternates: {
-    canonical: 'https://kaleoshq.com/about',
+    canonical: 'https://www.kaleoshq.com/about',
   },
   openGraph: {
-    title: 'About | Kaleos',
+    title: 'About | Kaleos HQ',
     description:
-      'Logan Kay builds and personally delivers every system Kaleos ships. Agentic AI implementation and applied AI consulting for founders who want AI in production, not on a slide.',
-    url: 'https://kaleoshq.com/about',
+      'Kaleos HQ is an agentic AI implementation firm founded by Logan Kay, who designed and deployed AI systems across admissions and operations at Harvard Business School.',
+    url: 'https://www.kaleoshq.com/about',
   },
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Logan Kay',
+  url: 'https://www.kaleoshq.com/about',
+  jobTitle: 'Founder & CEO',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Kaleos HQ',
+    url: 'https://www.kaleoshq.com',
+  },
+  alumniOf: {
+    '@type': 'Organization',
+    name: 'Harvard Business School',
+  },
+  sameAs: ['https://x.com/KaleosHQ'],
 }
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <NavBar />
 
       {/* Hero */}
@@ -31,7 +53,7 @@ export default function AboutPage() {
         <div className="relative max-w-6xl mx-auto px-4 text-center">
           <AnimateIn distance={16}>
             <h1 className="text-4xl sm:text-5xl font-medium tracking-tight text-ink">
-              Who We Are
+              Who we are
             </h1>
           </AnimateIn>
         </div>
@@ -57,28 +79,30 @@ export default function AboutPage() {
                 {/* Text */}
                 <div className="flex-1">
                   <AnimateIn>
-                    <p className="text-xl text-slate-800 font-medium leading-relaxed mb-8 tracking-tight">
-                      I build and personally deliver every system Kaleos
-                      ships, and I run my own business on the same
-                      architecture. The AI advantage isn&apos;t about the best
-                      tools. It&apos;s about the best implementation.
+                    <p className="text-lg text-slate-800 font-medium leading-relaxed mb-6 tracking-tight max-w-xl">
+                      Kaleos HQ exists because wanting AI and running AI are
+                      different problems. The AI advantage isn&apos;t about the
+                      best tools. It&apos;s about the best implementation.
                     </p>
                   </AnimateIn>
 
-                  <div className="space-y-6 text-slate-600 leading-relaxed">
+                  <div className="space-y-4 text-slate-600 leading-relaxed max-w-xl">
                     <AnimateIn delay={100}>
                       <p>
-                        Kaleos exists because brilliant executives keep getting
-                        stuck. They have the vision but nobody to translate it into
-                        AI systems that actually run in production.
+                        Brilliant executives keep getting stuck. They have the
+                        vision but nobody to translate it into AI systems that
+                        actually run in production. We close that gap: strategy
+                        first, then precision-scoped systems with human
+                        approval on every consequential call.
                       </p>
                     </AnimateIn>
 
                     <AnimateIn delay={200}>
                       <p>
-                        Every system starts with one question: what is this business
-                        actually trying to accomplish? The AI comes second. The
-                        strategy comes first.
+                        Kaleos HQ was founded by Logan Kay, who designed and
+                        deployed AI systems across admissions and operations at
+                        Harvard Business School. The implementation methodology
+                        we run today comes directly from that work.
                       </p>
                     </AnimateIn>
                   </div>
@@ -88,13 +112,13 @@ export default function AboutPage() {
                 <AnimateIn delay={200} className="w-full md:w-auto shrink-0">
                   <div className="max-w-[400px] mx-auto md:mx-0 md:w-[280px] xl:w-[260px]">
                     <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-xl shadow-black/10 relative">
-                      <Image src="/photo.png" alt="Logan Kay, Founder of Kaleos" fill className="object-cover" sizes="(max-width: 1280px) 100vw, 280px" />
+                      <Image src="/photo.png" alt="Logan Kay, Founder of Kaleos HQ" fill className="object-cover" sizes="(max-width: 1280px) 100vw, 280px" />
                     </div>
                     <p className="mt-4 text-navy font-semibold text-center">
-                      Logan Kay, Founder
+                      Logan Kay
                     </p>
                     <p className="text-slate-500 text-sm text-center">
-                      Builds and delivers every Kaleos system personally
+                      Founder &amp; CEO, Kaleos HQ
                     </p>
                     <div className="flex justify-center mt-3">
                       <SocialIcons className="[&_a]:text-slate-400/50 [&_a:hover]:text-accent" />
@@ -126,13 +150,12 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
-                  Production Systems
+                  AI at Harvard Business School
                 </h3>
                 <p className="text-mist leading-relaxed text-sm">
-                  Shipped agentic AI systems that real businesses run on
-                  every day: client portals, coaching platforms, and outreach
-                  engines, all with human approval built in. Earlier, AI and
-                  operations work at Harvard Business School.
+                  Logan designed and deployed AI systems across admissions and
+                  operations at Harvard Business School. The Kaleos HQ
+                  implementation methodology comes from that work.
                 </p>
               </GlassCard>
             </AnimateIn>
@@ -146,11 +169,12 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
-                  Data &amp; Analysis
+                  Production systems
                 </h3>
                 <p className="text-mist leading-relaxed text-sm">
-                  Fraud detection and financial transaction analysis at scale.
-                  The analytical foundation behind every system I build.
+                  Agentic AI systems that real businesses run on every day:
+                  client portals, coaching platforms, and outreach engines,
+                  each with human approval built in.
                 </p>
               </GlassCard>
             </AnimateIn>
@@ -164,11 +188,12 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
-                  Growth &amp; Operations
+                  Data and operations
                 </h3>
                 <p className="text-mist leading-relaxed text-sm">
-                  Nonprofit fundraising, product development, and growth
-                  strategy. Every engagement is informed by real operational experience.
+                  Fraud detection and financial transaction analysis at scale,
+                  plus hands-on operating experience. Every engagement is
+                  informed by real operational work, not theory.
                 </p>
               </GlassCard>
             </AnimateIn>
@@ -181,7 +206,7 @@ export default function AboutPage() {
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-white">
-              How We&apos;re Different
+              How we&apos;re different
             </h2>
           </AnimateIn>
 
@@ -228,10 +253,11 @@ export default function AboutPage() {
         <div className="relative max-w-6xl mx-auto px-4">
           <div className="max-w-3xl mx-auto text-slate-600 leading-relaxed">
             <AnimateIn>
-              <p>
-                Kaleos is currently a focused operation. Every engagement is
-                personally delivered. The systems I build for clients run on the
-                same architecture I use for my own business.
+              <p className="text-center">
+                Kaleos HQ is a focused firm by design. Every engagement gets
+                senior attention from strategy through deployment, and the
+                systems we ship for clients run on the same architecture we
+                use to run Kaleos HQ itself.
               </p>
             </AnimateIn>
           </div>

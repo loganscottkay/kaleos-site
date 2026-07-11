@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Fraunces, JetBrains_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import TalkToLogan from "@/components/TalkToLogan";
 
@@ -23,13 +24,13 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://kaleoshq.com'),
+  metadataBase: new URL('https://www.kaleoshq.com'),
   title: {
-    default: 'Kaleos | Agentic AI Implementation',
-    template: '%s | Kaleos',
+    default: 'Kaleos HQ | Agentic AI Implementation',
+    template: '%s | Kaleos HQ',
   },
   description:
-    "AI doesn't fail because of the technology. It fails because of the implementation. Kaleos is an agentic AI implementation and applied AI consulting practice: agents do the work, humans make the calls, everything is logged.",
+    "AI doesn't fail because of the technology. It fails because of the implementation. Kaleos HQ is an agentic AI implementation and applied AI consulting practice: agents do the work, humans make the calls, everything is logged.",
   icons: {
     icon: '/icon.svg',
     apple: '/apple-icon',
@@ -37,9 +38,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://kaleoshq.com',
-    siteName: 'Kaleos',
-    title: 'Kaleos | Agentic AI Implementation',
+    url: 'https://www.kaleoshq.com',
+    siteName: 'Kaleos HQ',
+    title: 'Kaleos HQ | Agentic AI Implementation',
     description:
       "Agentic AI implementation and applied AI consulting. Agents do the work, humans make the calls, everything is logged.",
     images: [
@@ -47,37 +48,25 @@ export const metadata: Metadata = {
         url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'Kaleos - Agentic AI Implementation',
+        alt: 'Kaleos HQ - Agentic AI Implementation',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kaleos | Agentic AI Implementation',
+    title: 'Kaleos HQ | Agentic AI Implementation',
     description:
       "Agentic AI implementation and applied AI consulting. Agents do the work, humans make the calls, everything is logged.",
     images: ['/opengraph-image.png'],
   },
   alternates: {
-    canonical: 'https://kaleoshq.com',
+    canonical: 'https://www.kaleoshq.com',
   },
   verification: {
     google: 'u9TYfcPGp3i-VQfEiGwIpZQjFveJoI0uijF9d0rev4U',
   },
 }
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'Kaleos',
-  url: 'https://kaleoshq.com',
-  description:
-    "Agentic AI implementation and applied AI consulting. Kaleos deploys AI systems designed around how your business actually operates.",
-  founder: {
-    '@type': 'Person',
-    name: 'Logan Kay',
-  },
-}
 
 export default function RootLayout({
   children,
@@ -89,12 +78,9 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased bg-paper text-slate-700`}
       >
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
         {children}
         <TalkToLogan />
+        <Analytics />
       </body>
     </html>
   )

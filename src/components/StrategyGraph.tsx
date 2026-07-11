@@ -47,7 +47,7 @@ const config = {
     ],
   },
   growth: {
-    header: 'AI With Kaleos',
+    header: 'AI With Kaleos HQ',
     subtitle: 'Strategy first. Compounding returns.',
     headerColor: 'text-emerald-400/90',
     lineColor: '#10b981',

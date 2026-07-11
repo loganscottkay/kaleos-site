@@ -11,15 +11,15 @@ import { GateRule } from '@/components/GateRule'
 
 const implementationGap = [
   {
-    title: 'The Strategy Problem',
+    title: 'The strategy problem',
     desc: "Most vendors start with the tool and look for a problem. We start with your strategy and work backwards.",
   },
   {
-    title: 'The Trust Problem',
+    title: 'The trust problem',
     desc: "Approval gates, audit trails, and human checkpoints on every system. You see everything before it executes.",
   },
   {
-    title: 'The Execution Problem',
+    title: 'The execution problem',
     desc: "Most firms tell you what AI can do. We build it, deploy it, and hand you a working system.",
   },
 ]
@@ -27,29 +27,29 @@ const implementationGap = [
 const methodology = [
   {
     phase: 'Phase 1',
-    title: 'Strategic Assessment',
+    title: 'Strategic assessment',
     desc: "Map every workflow, separate essential human judgment from procedural execution, and prioritize by impact.",
   },
   {
     phase: 'Phase 2',
-    title: 'Precision Architecture',
+    title: 'Precision architecture',
     desc: "One system, one measurable outcome, designed around your specific workflows and operational reality.",
   },
   {
     phase: 'Phase 3',
-    title: 'Deployment and Control',
+    title: 'Deployment and control',
     desc: "Approval gates, audit logging, and human-in-the-loop controls. Nothing executes without your sign-off.",
   },
   {
     phase: 'Phase 4',
-    title: 'Measurement and Expansion',
+    title: 'Measurement and expansion',
     desc: "Track performance against KPIs. When results compound, expand to the next highest-leverage opportunity.",
   },
 ]
 
 const trustBadges = [
   {
-    label: 'Human-in-the-Loop',
+    label: 'Human in the loop',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 3a4 4 0 100 8 4 4 0 000-8z" />
@@ -57,7 +57,7 @@ const trustBadges = [
     ),
   },
   {
-    label: 'Full Audit Trail',
+    label: 'Full audit trail',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M12 12h.01M12 16h.01M8 12h.01M8 16h.01M16 12h.01M16 16h.01" />
@@ -65,7 +65,7 @@ const trustBadges = [
     ),
   },
   {
-    label: 'Complete Transparency',
+    label: 'Complete transparency',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -73,7 +73,7 @@ const trustBadges = [
     ),
   },
   {
-    label: 'Strategy-First Approach',
+    label: 'Strategy-first approach',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -82,9 +82,28 @@ const trustBadges = [
   },
 ]
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Kaleos HQ',
+  url: 'https://www.kaleoshq.com',
+  description:
+    'Agentic AI implementation and applied AI consulting. Kaleos HQ deploys AI systems designed around how your business actually operates, with human approval on everything.',
+  founder: {
+    '@type': 'Person',
+    name: 'Logan Kay',
+  },
+  areaServed: 'United States',
+  sameAs: ['https://x.com/KaleosHQ'],
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <NavBar />
 
       {/* Hero */}
@@ -101,7 +120,7 @@ export default function Home() {
           <AnimateIn delay={300} distance={10}>
             <p className="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-10">
               Everyone wants AI. Most of it never leaves the slide deck.
-              Kaleos is the implementation partner that gets it into
+              Kaleos HQ is the implementation partner that gets it into
               production.
             </p>
           </AnimateIn>
@@ -122,8 +141,8 @@ export default function Home() {
               Book a Discovery Call
             </a>
             <p className="mt-8 text-sm text-slate-500 tracking-wide">
-              Logan Kay &middot; Founder, Kaleos &middot; Agentic AI systems,
-              built and deployed
+              Logan Kay &middot; Founder &amp; CEO, Kaleos HQ &middot; Agentic AI
+              systems, built and deployed
             </p>
           </AnimateIn>
         </div>
@@ -134,7 +153,7 @@ export default function Home() {
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-5 text-white">
-              The Implementation Gap
+              The implementation gap
             </h2>
             <div className="mb-6">
               <GateRule onDark />
@@ -146,7 +165,7 @@ export default function Home() {
               Most companies that start with AI never get past the demo. Not
               because the technology doesn&apos;t work, but because nobody
               connected it to how the business actually operates. That gap is
-              what Kaleos exists to close.
+              what Kaleos HQ exists to close.
             </p>
           </AnimateIn>
 
@@ -217,7 +236,7 @@ export default function Home() {
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-5 text-ink">
-              Who This Is For
+              Who this is for
             </h2>
             <div className="mb-10">
               <GateRule />

@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { AnimateIn } from '@/components/AnimateIn'
 import { GateRule } from '@/components/GateRule'
-import { StickyCTA } from '@/components/StickyCTA'
 
 // Below the fold on every viewport: load each demo only when the section nears view.
 // Fixed-height placeholders reserve the space so nothing shifts.
@@ -84,9 +83,9 @@ export function BuiltToDemo() {
             <GateRule onDark />
           </div>
           <p className="text-mist text-center max-w-2xl mx-auto mb-14 text-sm leading-relaxed">
-            Working demos, modeled on systems Kaleos has deployed. Sample data.
+            Working demos, modeled on systems Kaleos HQ has deployed. Sample data.
             Click around: the approve button is real, and it is the same gate
-            every Kaleos system ships with.
+            every Kaleos HQ system ships with.
           </p>
         </AnimateIn>
 
@@ -112,7 +111,6 @@ export function BuiltToDemo() {
           ))}
         </div>
 
-        <StickyCTA />
       </div>
     </section>
   )

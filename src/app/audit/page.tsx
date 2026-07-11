@@ -11,13 +11,13 @@ export const metadata: Metadata = {
   description:
     'The starting point for agentic AI implementation: a deep operational analysis that maps your workflows, ranks your opportunities, and hands you a roadmap with projected ROI.',
   alternates: {
-    canonical: 'https://kaleoshq.com/audit',
+    canonical: 'https://www.kaleoshq.com/audit',
   },
   openGraph: {
-    title: 'Strategic AI Assessment | Kaleos',
+    title: 'Strategic AI Assessment | Kaleos HQ',
     description:
       'The starting point for agentic AI implementation: a deep operational analysis that maps your workflows, ranks your opportunities, and hands you a roadmap with projected ROI.',
-    url: 'https://kaleoshq.com/audit',
+    url: 'https://www.kaleoshq.com/audit',
   },
 }
 
@@ -57,7 +57,7 @@ export default function AuditPage() {
         <div className="relative max-w-6xl mx-auto px-4 text-center">
           <AnimateIn distance={16}>
             <h1 className="text-4xl sm:text-5xl font-medium tracking-tight mb-6 text-ink">
-              Strategic AI Assessment
+              Strategic AI assessment
             </h1>
           </AnimateIn>
           <AnimateIn delay={200} distance={12}>
@@ -74,7 +74,7 @@ export default function AuditPage() {
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-ink">
-              Assessment Deliverables
+              Assessment deliverables
             </h2>
           </AnimateIn>
 
@@ -110,7 +110,7 @@ export default function AuditPage() {
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-white">
-              How It Works
+              How it works
             </h2>
           </AnimateIn>
 
@@ -139,7 +139,7 @@ export default function AuditPage() {
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-6 text-white">
-              How Engagements Work
+              How engagements work
             </h2>
             <p className="text-mist text-center max-w-3xl mx-auto mb-14 leading-relaxed">
               Every engagement is scoped to your business. No packages off a
@@ -193,7 +193,7 @@ export default function AuditPage() {
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-12 text-white">
-              Frequently Asked Questions
+              Frequently asked questions
             </h2>
           </AnimateIn>
 
@@ -208,7 +208,7 @@ export default function AuditPage() {
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-white">
-              Start a Conversation
+              Start a conversation
             </h2>
           </AnimateIn>
 
