@@ -3,8 +3,8 @@ import { Resend } from 'resend'
 import Airtable from 'airtable'
 import { createRateLimiter, clientIp } from '@/lib/rate-limit'
 
-// Swap to a kaleoshq.com sender once the domain is verified in Resend
-const FROM_ADDRESS = 'Kaleos HQ Website <onboarding@resend.dev>'
+// kaleoshq.com is verified in Resend (SPF/DKIM), so send from the real domain
+const FROM_ADDRESS = 'Kaleos HQ Website <leads@kaleoshq.com>'
 const NOTIFY_ADDRESS = 'logan@kaleoshq.com'
 
 // 10 submissions per IP per hour
