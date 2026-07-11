@@ -21,8 +21,8 @@ export function Footer() {
     <footer className="border-t border-slate-200/60 py-8">
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-center gap-4 text-slate-400 text-sm tracking-wide">
         <span>
-          &copy; 2026 Kaleos &middot;{' '}
-          <a href="https://kaleoshq.com" className="hover:text-slate-600 transition-colors">
+          &copy; 2026 Kaleos HQ &middot;{' '}
+          <a href="https://www.kaleoshq.com" className="hover:text-slate-600 transition-colors">
             kaleoshq.com
           </a>
           {' '}&middot;{' '}

@@ -23,21 +23,18 @@ export async function generateMetadata({
     title: post.title,
     description: post.description,
     alternates: {
-      canonical: `https://kaleoshq.com/blog/${post.slug}`,
+      canonical: `https://www.kaleoshq.com/blog/${post.slug}`,
     },
     openGraph: {
-      title: `${post.title} | Kaleos`,
+      title: `${post.title} | Kaleos HQ`,
       description: post.description,
-      url: `https://kaleoshq.com/blog/${post.slug}`,
+      url: `https://www.kaleoshq.com/blog/${post.slug}`,
       type: 'article',
       publishedTime: post.date,
       tags: post.tags,
     },
   }
 }
-
-const HERO_BG =
-  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2070&q=80'
 
 export default async function BlogPostPage({
   params,
@@ -60,10 +57,6 @@ export default async function BlogPostPage({
       {/* Hero */}
       <section className="relative pt-32 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-navy" />
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.08]"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
         <div
           className="absolute inset-0"
           style={{
@@ -105,11 +98,7 @@ export default async function BlogPostPage({
       </section>
 
       {/* Article content */}
-      <section className="relative py-20 bg-navy dot-grid-dark">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.04]"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
+      <section className="relative py-20 bg-navy">
 
         <div className="relative z-10 max-w-[720px] mx-auto px-4">
           <AnimateIn>

@@ -5,25 +5,21 @@ import { GlassCard } from '@/components/GlassCard'
 import { AnimateIn } from '@/components/AnimateIn'
 import { AuditForm } from '@/components/AuditForm'
 import { FAQ } from '@/components/FAQ'
-import { NewsletterSignup } from '@/components/NewsletterSignup'
 
 export const metadata: Metadata = {
   title: 'Strategic AI Assessment',
   description:
-    'Before we build anything, we need to understand everything. Deep operational analysis, prioritized opportunities, and a clear implementation roadmap.',
+    'The starting point for agentic AI implementation: a deep operational analysis that maps your workflows, ranks your opportunities, and hands you a roadmap with projected ROI.',
   alternates: {
-    canonical: 'https://kaleoshq.com/audit',
+    canonical: 'https://www.kaleoshq.com/audit',
   },
   openGraph: {
-    title: 'Strategic AI Assessment | Kaleos',
+    title: 'Strategic AI Assessment | Kaleos HQ',
     description:
-      'Before we build anything, we need to understand everything. Deep operational analysis, prioritized opportunities, and a clear implementation roadmap.',
-    url: 'https://kaleoshq.com/audit',
+      'The starting point for agentic AI implementation: a deep operational analysis that maps your workflows, ranks your opportunities, and hands you a roadmap with projected ROI.',
+    url: 'https://www.kaleoshq.com/audit',
   },
 }
-
-const HERO_BG =
-  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2070&q=80'
 
 const deliverables = [
   'Operational workflow mapping',
@@ -57,50 +53,24 @@ export default function AuditPage() {
       <NavBar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 overflow-hidden hero-vignette">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
-        <div className="absolute inset-0 bg-white/30" />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse at center, rgba(255,255,255,0.15) 0%, transparent 70%)',
-          }}
-        />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
-          <AnimateIn distance={20}>
-            <h1
-              className="text-4xl sm:text-5xl font-semibold tracking-tight mb-6 text-white drop-shadow-lg"
-              style={{ textShadow: '0 2px 40px rgba(0,0,0,0.15)' }}
-            >
-              Strategic AI Assessment
-            </h1>
-          </AnimateIn>
-          <AnimateIn delay={200} distance={15}>
-            <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
-              We map your business, identify your highest-leverage AI
-              opportunities, and deliver a clear roadmap with projected ROI.
-            </p>
-          </AnimateIn>
+      <section className="relative bg-paper pt-36 pb-16">
+        <div className="relative max-w-6xl mx-auto px-4 text-center">
+          <h1 className="text-4xl sm:text-5xl font-medium tracking-tight mb-6 text-ink">
+            Strategic AI assessment
+          </h1>
+          <p className="hero-rise hero-rise-1 text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            We map your business, identify your highest-leverage AI
+            opportunities, and deliver a clear roadmap with projected ROI.
+          </p>
         </div>
       </section>
 
       {/* Assessment Deliverables */}
-      <section className="relative py-24 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
-        <div className="absolute inset-0 bg-white/70 backdrop-blur-sm" />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <section className="relative py-24 bg-paper">
+        <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-10 text-navy">
-              Assessment Deliverables
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-ink">
+              Assessment deliverables
             </h2>
           </AnimateIn>
 
@@ -132,12 +102,11 @@ export default function AuditPage() {
       </section>
 
       {/* How It Works */}
-      <section className="relative py-24 bg-navy dot-grid-dark">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <section className="relative py-24 bg-ink">
+        <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-10 text-white">
-              How It Works
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-white">
+              How it works
             </h2>
           </AnimateIn>
 
@@ -161,168 +130,66 @@ export default function AuditPage() {
         </div>
       </section>
 
-      {/* Engagement Tiers */}
-      <section className="relative py-24 bg-navy dot-grid-dark">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
+      {/* How Engagements Work */}
+      <section className="relative py-24 bg-navy">
+        <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-3 text-white">
-              Engagement Tiers
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-6 text-white">
+              How engagements work
             </h2>
-            <div className="mb-14" />
+            <p className="text-mist text-center max-w-3xl mx-auto mb-14 leading-relaxed">
+              Every engagement is scoped to your business. No packages off a
+              shelf, no rate card. Three ways to work together, priced on a
+              call once we understand what you actually need.
+            </p>
           </AnimateIn>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-            {/* Tier 1: Assessment */}
-            <AnimateIn className="h-full">
-              <GlassCard hover className="p-8 h-full">
-                <div className="flex flex-col h-full">
-                  <h3 className="text-lg font-semibold tracking-tight text-white mb-4">
-                    Assessment
-                  </h3>
-                  <p className="text-4xl font-bold tracking-tight text-white mb-1">
-                    $5,000+
-                  </p>
-                  <p className="text-white/40 text-sm mb-4">one-time</p>
-                  <p className="text-white/60 text-sm leading-relaxed mb-6">
-                    A deep operational analysis that tells you exactly where AI
-                    creates leverage in your business.
-                  </p>
-                  <div className="space-y-2.5 mb-8 flex-1">
-                    {[
-                      'Operational workflow mapping',
-                      'AI readiness evaluation',
-                      'Prioritized opportunity matrix',
-                      'ROI projections + implementation roadmap',
-                      'Executive summary PDF + strategy presentation',
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-start gap-2.5">
-                        <svg className="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-white/60 text-sm">{item}</span>
-                      </div>
-                    ))}
+            {[
+              {
+                name: 'Assessment',
+                desc: 'A deep operational analysis that tells you exactly where AI creates leverage in your business. Workflow mapping, a prioritized opportunity matrix, and a roadmap with projected ROI.',
+              },
+              {
+                name: 'Implementation',
+                desc: 'The assessment plus hands-on builds. Precision-scoped AI systems designed, built, tested, and deployed into your operations, each with human-in-the-loop controls.',
+              },
+              {
+                name: 'Strategic Partner',
+                desc: 'Ongoing full-stack implementation with strategic oversight. Continuous builds, priority response, and quarterly reviews tied to your business goals.',
+              },
+            ].map((tier, i) => (
+              <AnimateIn key={tier.name} delay={i * 100} className="h-full">
+                <GlassCard hover className="p-8 h-full">
+                  <div className="flex flex-col h-full">
+                    <h3 className="text-lg font-semibold tracking-tight text-white mb-4">
+                      {tier.name}
+                    </h3>
+                    <p className="text-white/60 text-sm leading-relaxed mb-8 flex-1">
+                      {tier.desc}
+                    </p>
+                    <a
+                      href="https://calendly.com/logan-kaleoshq/30min"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-sm transition-all duration-300 border border-white/10 hover:border-white/20"
+                    >
+                      Book a Discovery Call
+                    </a>
                   </div>
-                  <a
-                    href="#form"
-                    className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-sm transition-all duration-300 border border-white/10 hover:border-white/20"
-                  >
-                    Start Here
-                  </a>
-                </div>
-              </GlassCard>
-            </AnimateIn>
-
-            {/* Tier 2: Implementation (Featured) */}
-            <AnimateIn delay={100} className="h-full md:scale-[1.03] relative z-10">
-              <div className="hidden md:block absolute -inset-[3px] rounded-2xl bg-accent/20 blur-md pointer-events-none" />
-              <GlassCard hover className="p-8 h-full">
-                <div className="flex flex-col h-full">
-                  <div className="inline-block self-start px-3 py-1 rounded-full bg-accent/20 text-accent text-xs font-medium tracking-wide mb-4">
-                    Recommended
-                  </div>
-                  <h3 className="text-lg font-semibold tracking-tight text-white mb-4">
-                    Implementation
-                  </h3>
-                  <p className="text-white/40 text-sm mb-1">Starting at</p>
-                  <p className="text-4xl font-bold tracking-tight text-white mb-1">
-                    $6,500
-                  </p>
-                  <p className="text-white/40 text-sm mb-4">
-                    /month &middot; 3-month minimum
-                  </p>
-                  <p className="text-white/60 text-sm leading-relaxed mb-6">
-                    Assessment plus hands-on system builds deployed into your
-                    operations every month.
-                  </p>
-                  <div className="space-y-2.5 mb-8 flex-1">
-                    {[
-                      'Everything in Assessment',
-                      '1 precision-scoped AI system per month',
-                      'Full build, testing, and deployment',
-                      'Human-in-the-loop controls',
-                      'Weekly check-ins + 30-day optimization',
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-start gap-2.5">
-                        <svg className="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-white/60 text-sm">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <a
-                    href="https://calendly.com/logan-kaleoshq/30min"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl bg-accent hover:bg-accent/90 text-white font-medium text-sm transition-all duration-300 shadow-lg shadow-accent/20"
-                  >
-                    Book a Call
-                  </a>
-                </div>
-              </GlassCard>
-            </AnimateIn>
-
-            {/* Tier 3: Strategic Partner */}
-            <AnimateIn delay={200} className="h-full">
-              <GlassCard hover className="p-8 h-full">
-                <div className="flex flex-col h-full">
-                  <h3 className="text-lg font-semibold tracking-tight text-white mb-4">
-                    Strategic Partner
-                  </h3>
-                  <p className="text-white/40 text-sm mb-1">Starting at</p>
-                  <p className="text-4xl font-bold tracking-tight text-white mb-1">
-                    $15,000
-                  </p>
-                  <p className="text-white/40 text-sm mb-4">
-                    /month &middot; 6-month minimum
-                  </p>
-                  <p className="text-white/60 text-sm leading-relaxed mb-6">
-                    Full-stack AI implementation with unlimited builds and
-                    strategic oversight.
-                  </p>
-                  <div className="space-y-2.5 mb-8 flex-1">
-                    {[
-                      'Everything in Implementation',
-                      'Unlimited system builds',
-                      'Priority response',
-                      'Quarterly business reviews',
-                      'Performance-linked component',
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-start gap-2.5">
-                        <svg className="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-white/60 text-sm">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <a
-                    href="#form"
-                    className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-sm transition-all duration-300 border border-white/10 hover:border-white/20"
-                  >
-                    Apply
-                  </a>
-                </div>
-              </GlassCard>
-            </AnimateIn>
+                </GlassCard>
+              </AnimateIn>
+            ))}
           </div>
-
-          <div className="mt-12" />
-
-
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="relative py-24 bg-navy overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <section className="relative py-24 bg-ink">
+        <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-12 text-white">
-              Frequently Asked Questions
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-12 text-white">
+              Frequently asked questions
             </h2>
           </AnimateIn>
 
@@ -333,30 +200,24 @@ export default function AuditPage() {
       </section>
 
       {/* Intake Form */}
-      <section className="relative py-24 bg-navy overflow-hidden" id="form">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <section className="relative py-24 bg-navy" id="form">
+        <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-10 text-white">
-              Start a Conversation
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-white">
+              Start a conversation
             </h2>
           </AnimateIn>
 
           <AnimateIn delay={100}>
             <div className="max-w-lg mx-auto">
-              <div className="relative overflow-hidden rounded-2xl bg-white/[0.06] backdrop-blur-2xl border border-white/[0.12] shadow-2xl shadow-black/20 p-8">
-                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.04] via-transparent to-transparent pointer-events-none" />
-                <div className="relative">
-                  <AuditForm />
-                </div>
+              <div className="rounded-xl bg-white/[0.045] border border-white/[0.1] p-8">
+                <AuditForm />
               </div>
             </div>
           </AnimateIn>
         </div>
       </section>
 
-      <NewsletterSignup />
       <Footer />
     </main>
   )

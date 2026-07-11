@@ -263,12 +263,12 @@ export function WorkflowDiagram() {
         {/* Connection 1 */}
         <ConnectionLine visible={visible} delay={400} />
 
-        {/* CENTER — Kaleos System */}
+        {/* CENTER — Kaleos HQ System */}
         <GlassBox visible={visible} delay={300} glow className="p-6 w-[280px]">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(13,148,136,0.6)]"
               style={{ animation: visible ? 'corePulse 2s ease-in-out infinite' : 'none' }} />
-            <p className="text-white font-semibold text-sm tracking-tight">Kaleos System</p>
+            <p className="text-white font-semibold text-sm tracking-tight">Kaleos HQ System</p>
           </div>
           <div className="flex flex-col gap-2.5">
             <InternalNode icon={<CpuIcon />} label="AI Processing" visible={visible} delay={600} />
@@ -307,12 +307,12 @@ export function WorkflowDiagram() {
 
         <ConnectionLine visible={visible} delay={300} vertical />
 
-        {/* Kaleos System */}
+        {/* Kaleos HQ System */}
         <GlassBox visible={visible} delay={300} glow className="p-5 w-[260px]">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(13,148,136,0.6)]"
               style={{ animation: visible ? 'corePulse 2s ease-in-out infinite' : 'none' }} />
-            <p className="text-white font-semibold text-sm tracking-tight">Kaleos System</p>
+            <p className="text-white font-semibold text-sm tracking-tight">Kaleos HQ System</p>
           </div>
           <div className="flex flex-col gap-2">
             <InternalNode icon={<CpuIcon />} label="AI Processing" visible={visible} delay={500} />

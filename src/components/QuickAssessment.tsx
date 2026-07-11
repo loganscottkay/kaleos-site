@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
 
 /* ── Question data ── */
 
@@ -64,7 +63,7 @@ function getResult(answers: string[][]) {
     key = 'foundation_precision'
   } else if (q2 === 'Advanced, want to optimize') {
     headline = "Time to compound what's working."
-    body = `At your stage, the biggest gains come from expansion and optimization, not new experiments. Your team is still spending time on ${q1Text}, and you told us ${q3Lower} would change your business the most. A Kaleos engagement maps your next highest-leverage system based on what's already delivering.`
+    body = `At your stage, the biggest gains come from expansion and optimization, not new experiments. Your team is still spending time on ${q1Text}, and you told us ${q3Lower} would change your business the most. A Kaleos HQ engagement maps your next highest-leverage system based on what's already delivering.`
     key = 'compound'
   } else {
     headline = "Let's figure it out together."
@@ -73,87 +72,6 @@ function getResult(answers: string[][]) {
   }
 
   return { headline, body, key, q1Text, q3 }
-}
-
-/* ── Sparkle canvas ── */
-
-function SparkleCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    let animId: number
-    const particles: { x: number; y: number; vx: number; vy: number; life: number; maxLife: number; size: number }[] = []
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth * 2
-      canvas.height = canvas.offsetHeight * 2
-      ctx.scale(2, 2)
-    }
-    resize()
-
-    const spawn = () => {
-      if (particles.length > 30) return
-      particles.push({
-        x: Math.random() * canvas.offsetWidth,
-        y: Math.random() * canvas.offsetHeight,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        life: 0,
-        maxLife: 80 + Math.random() * 120,
-        size: 1 + Math.random() * 1.5,
-      })
-    }
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight)
-
-      if (Math.random() < 0.15) spawn()
-
-      for (let i = particles.length - 1; i >= 0; i--) {
-        const p = particles[i]
-        p.x += p.vx
-        p.y += p.vy
-        p.life++
-
-        if (p.life >= p.maxLife) {
-          particles.splice(i, 1)
-          continue
-        }
-
-        const progress = p.life / p.maxLife
-        const alpha = progress < 0.3 ? progress / 0.3 : progress > 0.7 ? (1 - progress) / 0.3 : 1
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(13,148,136,${alpha * 0.35})`
-        ctx.fill()
-      }
-
-      animId = requestAnimationFrame(draw)
-    }
-
-    draw()
-
-    const resizeObs = new ResizeObserver(resize)
-    resizeObs.observe(canvas)
-
-    return () => {
-      cancelAnimationFrame(animId)
-      resizeObs.disconnect()
-    }
-  }, [])
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 0 }}
-    />
-  )
 }
 
 /* ── Main component ── */
@@ -205,22 +123,6 @@ export function QuickAssessment() {
     newAnswers[step] = [option]
     setAnswers(newAnswers)
 
-    // Log on final question
-    if (step === 2) {
-      const result = getResult(newAnswers)
-      supabase
-        .from('quiz_responses')
-        .insert({
-          q1_time_spent: newAnswers[0].join(', '),
-          q2_ai_situation: newAnswers[1].join(', '),
-          q3_biggest_change: newAnswers[2].join(', '),
-          result_headline: result.headline,
-          result_body: result.body,
-          result_key: result.key,
-        })
-        .then(() => {})
-    }
-
     setTimeout(() => advanceStep(), 400)
   }
 
@@ -250,14 +152,7 @@ export function QuickAssessment() {
 
   return (
     <section ref={sectionRef} className="relative py-28 bg-navy">
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2070&q=80')",
-        }}
-      />
-      <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <div className="relative max-w-6xl mx-auto px-4">
         {/* Header */}
         <div
           className="text-center mb-14"
@@ -267,10 +162,7 @@ export function QuickAssessment() {
             transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
           }}
         >
-          <h2
-            className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-4"
-            style={{ fontFamily: 'var(--font-playfair)' }}
-          >
+          <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-white mb-4">
             Where does AI create leverage in your business?
           </h2>
           <p className="text-white/50 text-lg tracking-wide">
@@ -287,16 +179,8 @@ export function QuickAssessment() {
             transition: 'opacity 0.6s ease-out 200ms, transform 0.6s ease-out 200ms',
           }}
         >
-          <div className="relative group">
-            <div
-              className="hidden md:block absolute -inset-[3px] rounded-2xl opacity-30 blur-[8px] transition-opacity duration-[400ms] group-hover:opacity-70 pointer-events-none"
-              style={{
-                background:
-                  'linear-gradient(135deg, rgba(13,148,136,0.4), rgba(13,148,136,0.1))',
-              }}
-            />
-            <div className="relative z-10 bg-white/[0.08] backdrop-blur-xl border border-white/[0.15] shadow-lg shadow-black/10 ring-1 ring-inset ring-white/10 rounded-2xl p-10 sm:p-14 overflow-hidden min-h-[340px]">
-              <SparkleCanvas />
+          <div className="relative">
+            <div className="relative bg-white/[0.045] border border-white/[0.1] rounded-xl p-10 sm:p-14 overflow-hidden min-h-[340px]">
 
               {/* Progress bar */}
               <div className="relative z-10 mb-10">
@@ -450,10 +334,7 @@ export function QuickAssessment() {
                       ))}
                     </div>
 
-                    <h3
-                      className="text-2xl sm:text-3xl font-bold text-white mb-5"
-                      style={{ fontFamily: 'var(--font-playfair)' }}
-                    >
+                    <h3 className="text-2xl font-medium text-white mb-5">
                       {result.headline}
                     </h3>
                     <p className="text-white/70 leading-relaxed mb-10 max-w-lg mx-auto text-base sm:text-lg">
@@ -462,7 +343,7 @@ export function QuickAssessment() {
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                       <a
-                        href="https://calendly.com/logan-kaleoshq/30min"
+                        href={`https://calendly.com/logan-kaleoshq/30min?utm_source=kaleoshq&utm_medium=quiz&utm_content=${result.key}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl font-medium transition-all duration-300 shadow-lg hover:scale-[1.03] active:scale-[0.97]"
@@ -472,7 +353,7 @@ export function QuickAssessment() {
                           boxShadow: '0 4px 20px rgba(13,148,136,0.35)',
                         }}
                       >
-                        Book a Call
+                        Book a Discovery Call
                       </a>
                       <a
                         href="#methodology"
@@ -493,18 +374,6 @@ export function QuickAssessment() {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes quizResultIn {
-          from {
-            opacity: 0;
-            transform: scale(0.93);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-      `}</style>
     </section>
   )
 }

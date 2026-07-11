@@ -5,67 +5,61 @@ import { Footer, SocialIcons } from '@/components/Footer'
 import { GlassCard } from '@/components/GlassCard'
 import { AnimateIn } from '@/components/AnimateIn'
 import { StrategyGraph } from '@/components/StrategyGraph'
-import { NewsletterSignup } from '@/components/NewsletterSignup'
 
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'I helped spearhead AI implementation at Harvard Business School. Now I help founders and executives deploy AI where it creates real strategic leverage.',
+    'Kaleos HQ is an agentic AI implementation firm founded by Logan Kay, who designed and deployed AI systems across admissions and operations at Harvard Business School.',
   alternates: {
-    canonical: 'https://kaleoshq.com/about',
+    canonical: 'https://www.kaleoshq.com/about',
   },
   openGraph: {
-    title: 'About | Kaleos',
+    title: 'About | Kaleos HQ',
     description:
-      'I helped spearhead AI implementation at Harvard Business School. Now I help founders and executives deploy AI where it creates real strategic leverage.',
-    url: 'https://kaleoshq.com/about',
+      'Kaleos HQ is an agentic AI implementation firm founded by Logan Kay, who designed and deployed AI systems across admissions and operations at Harvard Business School.',
+    url: 'https://www.kaleoshq.com/about',
   },
 }
 
-const HERO_BG =
-  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2070&q=80'
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Logan Kay',
+  url: 'https://www.kaleoshq.com/about',
+  jobTitle: 'Founder & CEO',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Kaleos HQ',
+    url: 'https://www.kaleoshq.com',
+  },
+  alumniOf: {
+    '@type': 'Organization',
+    name: 'Harvard Business School',
+  },
+  sameAs: ['https://x.com/KaleosHQ'],
+}
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <NavBar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 overflow-hidden hero-vignette">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
-        <div className="absolute inset-0 bg-white/30" />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse at center, rgba(255,255,255,0.15) 0%, transparent 70%)',
-          }}
-        />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
-          <AnimateIn distance={20}>
-            <h1
-              className="text-4xl sm:text-5xl font-semibold tracking-tight text-white drop-shadow-lg"
-              style={{ textShadow: '0 2px 40px rgba(0,0,0,0.15)' }}
-            >
-              Who We Are
-            </h1>
-          </AnimateIn>
+      <section className="relative bg-paper pt-36 pb-12">
+        <div className="relative max-w-6xl mx-auto px-4 text-center">
+          <h1 className="text-4xl sm:text-5xl font-medium tracking-tight text-ink">
+            Who we are
+          </h1>
         </div>
       </section>
 
       {/* Origin + Photo */}
-      <section className="relative py-24 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
-        <div className="absolute inset-0 bg-white/70 backdrop-blur-sm" />
-
-        <div className="relative z-10 max-w-[92rem] mx-auto px-4">
+      <section className="relative py-24 bg-paper">
+        <div className="relative max-w-[92rem] mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_3fr_1fr] gap-8 xl:gap-24 items-stretch">
             {/* Left Graph — The Decline */}
             <div className="order-1">
@@ -83,27 +77,30 @@ export default function AboutPage() {
                 {/* Text */}
                 <div className="flex-1">
                   <AnimateIn>
-                    <p className="text-xl text-slate-800 font-medium leading-relaxed mb-8 tracking-tight">
-                      I helped spearhead AI implementation initiatives at Harvard Business School. Now I work
-                      with founders who understand the AI advantage isn&apos;t about
-                      the best tools. It&apos;s about the best implementation.
+                    <p className="text-lg text-slate-800 font-medium leading-relaxed mb-6 tracking-tight max-w-xl">
+                      Kaleos HQ exists because wanting AI and running AI are
+                      different problems. The AI advantage isn&apos;t about the
+                      best tools. It&apos;s about the best implementation.
                     </p>
                   </AnimateIn>
 
-                  <div className="space-y-6 text-slate-600 leading-relaxed">
+                  <div className="space-y-4 text-slate-600 leading-relaxed max-w-xl">
                     <AnimateIn delay={100}>
                       <p>
-                        Kaleos exists because brilliant executives keep getting
-                        stuck. They have the vision but nobody to translate it into
-                        AI systems that actually run in production.
+                        Brilliant executives keep getting stuck. They have the
+                        vision but nobody to translate it into AI systems that
+                        actually run in production. We close that gap: strategy
+                        first, then precision-scoped systems with human
+                        approval on every consequential call.
                       </p>
                     </AnimateIn>
 
                     <AnimateIn delay={200}>
                       <p>
-                        Every system starts with one question: what is this business
-                        actually trying to accomplish? The AI comes second. The
-                        strategy comes first.
+                        Kaleos HQ was founded by Logan Kay, who designed and
+                        deployed AI systems across admissions and operations at
+                        Harvard Business School. The implementation methodology
+                        we run today comes directly from that work.
                       </p>
                     </AnimateIn>
                   </div>
@@ -113,13 +110,13 @@ export default function AboutPage() {
                 <AnimateIn delay={200} className="w-full md:w-auto shrink-0">
                   <div className="max-w-[400px] mx-auto md:mx-0 md:w-[280px] xl:w-[260px]">
                     <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-xl shadow-black/10 relative">
-                      <Image src="/photo.png" alt="Logan Kay, Founder of Kaleos" fill className="object-cover" sizes="(max-width: 1280px) 100vw, 280px" />
+                      <Image src="/photo.png" alt="Logan Kay, Founder of Kaleos HQ" fill className="object-cover" sizes="(max-width: 1280px) 100vw, 280px" />
                     </div>
                     <p className="mt-4 text-navy font-semibold text-center">
-                      Logan Kay, Founder
+                      Logan Kay
                     </p>
                     <p className="text-slate-500 text-sm text-center">
-                      AI &amp; Operations, Harvard Business School
+                      Founder &amp; CEO, Kaleos HQ
                     </p>
                     <div className="flex justify-center mt-3">
                       <SocialIcons className="[&_a]:text-slate-400/50 [&_a:hover]:text-accent" />
@@ -133,11 +130,10 @@ export default function AboutPage() {
       </section>
 
       {/* Background */}
-      <section className="relative py-24 bg-navy dot-grid-dark">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <section className="relative py-24 bg-ink">
+        <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-10 text-white">
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-white">
               Background
             </h2>
           </AnimateIn>
@@ -152,11 +148,12 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
-                  AI Implementation
+                  AI at Harvard Business School
                 </h3>
-                <p className="text-white/70 leading-relaxed text-sm">
-                  Designed and deployed AI systems across admissions and
-                  operations at Harvard Business School.
+                <p className="text-mist leading-relaxed text-sm">
+                  Logan designed and deployed AI systems across admissions and
+                  operations at Harvard Business School. The Kaleos HQ
+                  implementation methodology comes from that work.
                 </p>
               </GlassCard>
             </AnimateIn>
@@ -170,11 +167,12 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
-                  Data &amp; Analysis
+                  Production systems
                 </h3>
-                <p className="text-white/70 leading-relaxed text-sm">
-                  Fraud detection and financial transaction analysis at scale.
-                  The analytical foundation behind every system I build.
+                <p className="text-mist leading-relaxed text-sm">
+                  Agentic AI systems that real businesses run on every day:
+                  client portals, coaching platforms, and outreach engines,
+                  each with human approval built in.
                 </p>
               </GlassCard>
             </AnimateIn>
@@ -188,11 +186,12 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
-                  Growth &amp; Operations
+                  Data and operations
                 </h3>
-                <p className="text-white/70 leading-relaxed text-sm">
-                  Nonprofit fundraising, product development, and growth
-                  strategy. Every engagement is informed by real operational experience.
+                <p className="text-mist leading-relaxed text-sm">
+                  Fraud detection and financial transaction analysis at scale,
+                  plus hands-on operating experience. Every engagement is
+                  informed by real operational work, not theory.
                 </p>
               </GlassCard>
             </AnimateIn>
@@ -201,12 +200,11 @@ export default function AboutPage() {
       </section>
 
       {/* How We're Different */}
-      <section className="relative py-24 bg-navy dot-grid-dark">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <section className="relative py-24 bg-navy">
+        <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-10 text-white">
-              How We&apos;re Different
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-white">
+              How we&apos;re different
             </h2>
           </AnimateIn>
 
@@ -249,20 +247,15 @@ export default function AboutPage() {
       </section>
 
       {/* The Operation */}
-      <section className="relative py-24 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
-        <div className="absolute inset-0 bg-white/80 backdrop-blur-sm" />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <section className="relative py-24 bg-paper">
+        <div className="relative max-w-6xl mx-auto px-4">
           <div className="max-w-3xl mx-auto text-slate-600 leading-relaxed">
             <AnimateIn>
-              <p>
-                Kaleos is currently a focused operation. Every engagement is
-                personally delivered. The systems I build for clients run on the
-                same architecture I use for my own business.
+              <p className="text-center">
+                Kaleos HQ is a focused firm by design. Every engagement gets
+                senior attention from strategy through deployment, and the
+                systems we ship for clients run on the same architecture we
+                use to run Kaleos HQ itself.
               </p>
             </AnimateIn>
           </div>
@@ -270,11 +263,10 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-24 bg-navy">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
-        <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
+      <section className="relative py-24 bg-ink">
+        <div className="relative max-w-6xl mx-auto px-4 text-center">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight mb-6 text-white">
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight mb-6 text-white">
               Want to see if AI can help your business?
             </h2>
           </AnimateIn>
@@ -283,7 +275,7 @@ export default function AboutPage() {
               href="https://calendly.com/logan-kaleoshq/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-3.5 rounded-xl bg-[#1B2A4A] border border-white/[0.15] text-white font-medium transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-[0_0_20px_rgba(13,148,136,0.4)] hover:scale-[1.03] hover:border-accent/30 active:scale-[0.97]"
+              className="inline-flex items-center px-8 py-3.5 rounded-lg bg-accent text-white font-medium transition-colors duration-300 hover:bg-teal-700"
             >
               Book a Discovery Call
             </a>
@@ -291,7 +283,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <NewsletterSignup />
       <Footer />
     </main>
   )

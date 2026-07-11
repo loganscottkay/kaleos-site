@@ -1,6 +1,28 @@
 'use client'
 
-import { useRef, useEffect, useState, type ReactNode } from 'react'
+import {
+  useRef,
+  useEffect,
+  useState,
+  useSyncExternalStore,
+  type ReactNode,
+} from 'react'
+
+const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)'
+
+function subscribeReducedMotion(callback: () => void) {
+  const mql = window.matchMedia(REDUCED_MOTION_QUERY)
+  mql.addEventListener('change', callback)
+  return () => mql.removeEventListener('change', callback)
+}
+
+function useReducedMotion() {
+  return useSyncExternalStore(
+    subscribeReducedMotion,
+    () => window.matchMedia(REDUCED_MOTION_QUERY).matches,
+    () => false
+  )
+}
 
 interface AnimateInProps {
   children: ReactNode
@@ -16,7 +38,8 @@ export function AnimateIn({
   className = '',
 }: AnimateInProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
+  const [inView, setInView] = useState(false)
+  const reducedMotion = useReducedMotion()
 
   useEffect(() => {
     const el = ref.current
@@ -25,7 +48,7 @@ export function AnimateIn({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true)
+          setInView(true)
           observer.disconnect()
         }
       },
@@ -36,15 +59,21 @@ export function AnimateIn({
     return () => observer.disconnect()
   }, [])
 
+  const visible = inView || reducedMotion
+
   return (
     <div
       ref={ref}
       className={className}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : `translateY(${distance}px)`,
-        transition: `opacity 0.6s ease-out ${delay}ms, transform 0.6s ease-out ${delay}ms`,
-      }}
+      style={
+        reducedMotion
+          ? undefined
+          : {
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'translateY(0)' : `translateY(${distance}px)`,
+              transition: `opacity 0.6s ease-out ${delay}ms, transform 0.6s ease-out ${delay}ms`,
+            }
+      }
     >
       {children}
     </div>

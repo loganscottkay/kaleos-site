@@ -1,57 +1,19 @@
 'use client'
 
-import { useState, useEffect, useLayoutEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const links = [
   { href: '/', label: 'Home' },
-  { href: '/audit', label: 'Audit' },
-  { href: '/blog', label: 'Blog' },
+  { href: '/audit', label: 'Assessment' },
   { href: '/about', label: 'About' },
 ]
-
-function JetIcon() {
-  return (
-    <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
-      {/* Engine glow */}
-      <ellipse cx="1" cy="8" rx="3.5" ry="2.5" fill="#0d9488" opacity="0.4">
-        <animate attributeName="rx" values="3;4;3" dur="0.6s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.3;0.5;0.3" dur="0.6s" repeatCount="indefinite" />
-      </ellipse>
-      {/* Fuselage */}
-      <path d="M32 8 C29 6.2, 22 5.2, 14 5.8 L6 6.2 L0 8 L6 9.8 L14 10.2 C22 10.8, 29 9.8, 32 8Z" fill="#1B2A4A" />
-      {/* Port wing */}
-      <path d="M17 5.8 L11 0.5 L7 1.8 L12 6Z" fill="#1B2A4A" opacity="0.88" />
-      {/* Starboard wing */}
-      <path d="M17 10.2 L11 15.5 L7 14.2 L12 10Z" fill="#1B2A4A" opacity="0.88" />
-      {/* Port tail fin */}
-      <path d="M5 6.2 L2 2 L0.5 3.2 L3.5 6.8Z" fill="#1B2A4A" opacity="0.8" />
-      {/* Starboard tail fin */}
-      <path d="M5 9.8 L2 14 L0.5 12.8 L3.5 9.2Z" fill="#1B2A4A" opacity="0.8" />
-      {/* Canopy */}
-      <ellipse cx="23" cy="7.2" rx="3" ry="0.9" fill="#3a5a8a" opacity="0.35" />
-      {/* Intake lines */}
-      <line x1="18" y1="6.5" x2="14" y2="6.2" stroke="#0F1A2E" strokeWidth="0.3" opacity="0.4" />
-      <line x1="18" y1="9.5" x2="14" y2="9.8" stroke="#0F1A2E" strokeWidth="0.3" opacity="0.4" />
-    </svg>
-  )
-}
-
-type SkyPhase = 'flight' | 'hold' | 'morph'
 
 export function NavBar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [skyPhase, setSkyPhase] = useState<SkyPhase | null>(null)
-  const jetRef = useRef<HTMLDivElement>(null)
-  const trailRef = useRef<HTMLDivElement>(null)
-  const linkRefs = useRef<(HTMLAnchorElement | null)[]>([])
-  const triggeredLinks = useRef<Set<number>>(new Set())
-  const hasAnimated = useRef(false)
   const pathname = usePathname()
-
-  const isHome = pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80)
@@ -59,102 +21,43 @@ export function NavBar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Phase progression — home page only, once per session
-  useEffect(() => {
-    if (!isHome || hasAnimated.current) return
-    const timers = [
-      setTimeout(() => setSkyPhase('flight'), 300),
-      setTimeout(() => setSkyPhase('hold'), 2800),
-      setTimeout(() => setSkyPhase('morph'), 3100),
-      setTimeout(() => {
-        hasAnimated.current = true
-        setSkyPhase(null)
-      }, 4200),
-    ]
-    return () => timers.forEach(clearTimeout)
-  }, [isHome])
-
-  // Clip wordmark behind jet during flight
-  useLayoutEffect(() => {
-    if (skyPhase !== 'flight') {
-      if (trailRef.current) trailRef.current.style.clipPath = 'none'
-      return
-    }
-    if (trailRef.current) trailRef.current.style.clipPath = 'inset(0 100% 0 0)'
-    triggeredLinks.current.clear()
-    let rafId: number
-    const update = () => {
-      if (jetRef.current && trailRef.current) {
-        const jetRect = jetRef.current.getBoundingClientRect()
-        const tRect = trailRef.current.getBoundingClientRect()
-        const visible = Math.max(0, jetRect.left - tRect.left - 10)
-        const clipRight = Math.max(0, tRect.width - visible)
-        trailRef.current.style.clipPath = `inset(0 ${clipRight}px 0 0)`
-
-        // Rumble nav links as jet passes over them
-        const jetCenterX = jetRect.left + 16
-        linkRefs.current.forEach((el, i) => {
-          if (!el || triggeredLinks.current.has(i)) return
-          const r = el.getBoundingClientRect()
-          if (jetCenterX >= r.left && jetCenterX <= r.right) {
-            triggeredLinks.current.add(i)
-            el.classList.add('nav-rumble')
-            setTimeout(() => el.classList.remove('nav-rumble'), 300)
-          }
-        })
-      }
-      rafId = requestAnimationFrame(update)
-    }
-    rafId = requestAnimationFrame(update)
-    return () => cancelAnimationFrame(rafId)
-  }, [skyPhase])
-
-  // Cloud state: during flight/hold, or on home before animation has played
-  const isCloud = skyPhase === 'flight' || skyPhase === 'hold' || (isHome && skyPhase === null && !hasAnimated.current)
-
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b border-slate-200/60 transition-all duration-300 ${scrolled ? 'bg-white/90 shadow-sm' : 'bg-white/70'}`}>
-      <div className="mx-auto px-5 h-16 flex items-center justify-between">
-        {/* K icon only */}
-        <Link href="/" className="flex items-center">
-          <img src="/kaleos-logo.png" width={28} height={28} alt="Kaleos" style={{ borderRadius: 6, objectFit: 'cover' }} />
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
+        scrolled
+          ? 'bg-paper/95 border-slate-200 shadow-sm'
+          : 'bg-paper/80 border-transparent'
+      } backdrop-blur-sm`}
+    >
+      <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2.5">
+          <img
+            src="/kaleos-logo.png"
+            width={28}
+            height={28}
+            alt=""
+            style={{ borderRadius: 6, objectFit: 'cover' }}
+          />
+          <span
+            className="text-navy font-semibold text-lg tracking-tight"
+            style={{ fontFamily: 'var(--font-display), sans-serif' }}
+          >
+            Kaleos HQ
+          </span>
         </Link>
-
-        {/* Centered wordmark — permanent, animated on home */}
-        <div ref={trailRef} className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <Link href="/" className="pointer-events-auto" tabIndex={-1}>
-            <span className={`skywriting-wordmark ${isCloud ? 'is-cloud' : ''}`}>
-              Kaleos
-            </span>
-          </Link>
-        </div>
-
-        {/* Jet flyover — home page, during flight only */}
-        {skyPhase === 'flight' && (
-          <div className="hidden md:block absolute inset-0 pointer-events-none overflow-hidden">
-            <div
-              ref={jetRef}
-              className="skywriting-jet absolute flex items-center"
-              style={{ top: '50%', transform: 'translateY(-50%)' }}
-            >
-              <JetIcon />
-            </div>
-          </div>
-        )}
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
-          {links.map((link, i) => {
-            const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
+          {links.map((link) => {
+            const isActive =
+              pathname === link.href ||
+              (link.href !== '/' && pathname.startsWith(link.href))
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                ref={(el: HTMLAnchorElement | null) => { linkRefs.current[i] = el }}
                 className={`group/nav relative text-sm font-medium tracking-wide transition-colors duration-300 ease-in-out pb-1 ${
-                  isActive
-                    ? 'text-navy'
-                    : 'text-slate-400 hover:text-navy'
+                  isActive ? 'text-navy' : 'text-slate-500 hover:text-navy'
                 }`}
               >
                 {link.label}
@@ -166,6 +69,14 @@ export function NavBar() {
               </Link>
             )
           })}
+          <a
+            href="https://calendly.com/logan-kaleoshq/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-4 py-2 rounded-lg bg-navy text-white text-sm font-medium transition-colors duration-300 hover:bg-accent"
+          >
+            Book a Discovery Call
+          </a>
         </div>
 
         {/* Mobile toggle */}
@@ -173,27 +84,13 @@ export function NavBar() {
           onClick={() => setOpen(!open)}
           className="md:hidden text-navy/70 hover:text-navy transition-colors"
           aria-label="Toggle menu"
+          aria-expanded={open}
         >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {open ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M6 18L18 6M6 6l12 12"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
             ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
             )}
           </svg>
         </button>
@@ -201,22 +98,31 @@ export function NavBar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-white/95 backdrop-blur-xl border-b border-slate-200/60">
-          <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-paper border-b border-slate-200">
+          <div className="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-4">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className={`text-sm font-medium tracking-wide transition-colors duration-300 ease-in-out ${
-                  pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
+                className={`text-sm font-medium tracking-wide transition-colors duration-300 ${
+                  pathname === link.href ||
+                  (link.href !== '/' && pathname.startsWith(link.href))
                     ? 'text-navy'
-                    : 'text-slate-400 hover:text-navy'
+                    : 'text-slate-500 hover:text-navy'
                 }`}
               >
                 {link.label}
               </Link>
             ))}
+            <a
+              href="https://calendly.com/logan-kaleoshq/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-navy text-white text-sm font-medium"
+            >
+              Book a Discovery Call
+            </a>
           </div>
         </div>
       )}
