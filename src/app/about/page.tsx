@@ -21,35 +21,16 @@ export const metadata: Metadata = {
   },
 }
 
-const HERO_BG =
-  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2070&q=80'
-
 export default function AboutPage() {
   return (
     <main className="min-h-screen">
       <NavBar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 overflow-hidden hero-vignette">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
-        <div className="absolute inset-0 bg-white/30" />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse at center, rgba(255,255,255,0.15) 0%, transparent 70%)',
-          }}
-        />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
-          <AnimateIn distance={20}>
-            <h1
-              className="text-4xl sm:text-5xl font-semibold tracking-tight text-white drop-shadow-lg"
-              style={{ textShadow: '0 2px 40px rgba(0,0,0,0.15)' }}
-            >
+      <section className="relative bg-paper pt-36 pb-12">
+        <div className="relative max-w-6xl mx-auto px-4 text-center">
+          <AnimateIn distance={16}>
+            <h1 className="text-4xl sm:text-5xl font-medium tracking-tight text-ink">
               Who We Are
             </h1>
           </AnimateIn>
@@ -57,14 +38,8 @@ export default function AboutPage() {
       </section>
 
       {/* Origin + Photo */}
-      <section className="relative py-24 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
-        <div className="absolute inset-0 bg-white/70 backdrop-blur-sm" />
-
-        <div className="relative z-10 max-w-[92rem] mx-auto px-4">
+      <section className="relative py-24 bg-paper">
+        <div className="relative max-w-[92rem] mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_3fr_1fr] gap-8 xl:gap-24 items-stretch">
             {/* Left Graph — The Decline */}
             <div className="order-1">
@@ -133,11 +108,10 @@ export default function AboutPage() {
       </section>
 
       {/* Background */}
-      <section className="relative py-24 bg-navy dot-grid-dark">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <section className="relative py-24 bg-ink">
+        <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-10 text-white">
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-white">
               Background
             </h2>
           </AnimateIn>
@@ -154,7 +128,7 @@ export default function AboutPage() {
                 <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
                   Production Systems
                 </h3>
-                <p className="text-white/70 leading-relaxed text-sm">
+                <p className="text-mist leading-relaxed text-sm">
                   Shipped agentic AI systems that real businesses run on
                   every day: client portals, coaching platforms, and outreach
                   engines, all with human approval built in. Earlier, AI and
@@ -174,7 +148,7 @@ export default function AboutPage() {
                 <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
                   Data &amp; Analysis
                 </h3>
-                <p className="text-white/70 leading-relaxed text-sm">
+                <p className="text-mist leading-relaxed text-sm">
                   Fraud detection and financial transaction analysis at scale.
                   The analytical foundation behind every system I build.
                 </p>
@@ -192,7 +166,7 @@ export default function AboutPage() {
                 <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
                   Growth &amp; Operations
                 </h3>
-                <p className="text-white/70 leading-relaxed text-sm">
+                <p className="text-mist leading-relaxed text-sm">
                   Nonprofit fundraising, product development, and growth
                   strategy. Every engagement is informed by real operational experience.
                 </p>
@@ -203,11 +177,10 @@ export default function AboutPage() {
       </section>
 
       {/* How We're Different */}
-      <section className="relative py-24 bg-navy dot-grid-dark">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <section className="relative py-24 bg-navy">
+        <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-10 text-white">
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-white">
               How We&apos;re Different
             </h2>
           </AnimateIn>
@@ -251,14 +224,8 @@ export default function AboutPage() {
       </section>
 
       {/* The Operation */}
-      <section className="relative py-24 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
-        <div className="absolute inset-0 bg-white/80 backdrop-blur-sm" />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <section className="relative py-24 bg-paper">
+        <div className="relative max-w-6xl mx-auto px-4">
           <div className="max-w-3xl mx-auto text-slate-600 leading-relaxed">
             <AnimateIn>
               <p>
@@ -272,11 +239,10 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-24 bg-navy">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
-        <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
+      <section className="relative py-24 bg-ink">
+        <div className="relative max-w-6xl mx-auto px-4 text-center">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight mb-6 text-white">
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight mb-6 text-white">
               Want to see if AI can help your business?
             </h2>
           </AnimateIn>
@@ -285,7 +251,7 @@ export default function AboutPage() {
               href="https://calendly.com/logan-kaleoshq/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-3.5 rounded-xl bg-[#1B2A4A] border border-white/[0.15] text-white font-medium transition-all duration-300 shadow-lg shadow-black/10 hover:shadow-[0_0_20px_rgba(13,148,136,0.4)] hover:scale-[1.03] hover:border-accent/30 active:scale-[0.97]"
+              className="inline-flex items-center px-8 py-3.5 rounded-lg bg-accent text-white font-medium transition-colors duration-300 hover:bg-teal-700"
             >
               Book a Discovery Call
             </a>

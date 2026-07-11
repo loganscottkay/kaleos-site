@@ -1,18 +1,25 @@
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Inter, Fraunces, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import TalkToLogan from "@/components/TalkToLogan";
-import { ScrollProgress } from '@/components/ScrollProgress';
 
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
 })
 
-const playfair = Playfair_Display({
+const fraunces = Fraunces({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-playfair',
+  variable: '--font-fraunces',
+  axes: ['opsz'],
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
+  weight: ['400', '600'],
 })
 
 export const metadata: Metadata = {
@@ -78,15 +85,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={playfair.variable}>
+    <html lang="en" className={`${fraunces.variable} ${jetbrainsMono.variable}`}>
       <body
-        className={`${inter.className} antialiased bg-white text-slate-700`}
+        className={`${inter.className} antialiased bg-paper text-slate-700`}
       >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <ScrollProgress />
         {children}
         <TalkToLogan />
       </body>

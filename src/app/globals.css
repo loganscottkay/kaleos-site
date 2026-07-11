@@ -1,174 +1,170 @@
 @import "tailwindcss";
 
 @theme {
+  --color-ink: #0E1B2E;
   --color-navy: #1B2A4A;
-  --color-navy-dark: #0F1A2E;
+  --color-accent: #0D9488;
+  --color-amber: #B45309;
+  --color-paper: #F7F5F1;
+  --color-mist: #93A5BE;
+  /* Legacy aliases still referenced in a few spots */
+  --color-navy-dark: #0E1B2E;
   --color-navy-deeper: #162035;
-  --color-accent: #0d9488;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Serif headings */
+/* Display serif headings */
 h1, h2, h3 {
-  font-family: var(--font-playfair), Georgia, serif;
+  font-family: var(--font-fraunces), Georgia, serif;
 }
 
-/* Grain overlay */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.022;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
+/* Mono for system labels and operator UI */
+.font-system {
+  font-family: var(--font-mono), ui-monospace, monospace;
 }
 
-/* Dot grid for light sections */
-.dot-grid {
-  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-  background-size: 24px 24px;
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
-/* Dot grid for dark sections */
-.dot-grid-dark {
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
+/* ── Signature: the Gate Rule ── */
 
-/* Section divider for light bg */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.06), transparent);
-}
-
-/* Section divider for dark bg */
-.section-divider-dark {
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.06), transparent);
-}
-
-/* Hero vignette overlay */
-.hero-vignette::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.25) 100%);
-}
-
-/* Radiant glow border for glass cards */
-@keyframes glow-drift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.glow-layer {
-  background: linear-gradient(135deg, #1B2A4A, #0d9488);
-  background-size: 200% 200%;
-}
-
-.group:hover .glow-layer {
-  animation: glow-drift 4s ease infinite;
-}
-
-/* Nav link rumble when jet passes over */
-@keyframes nav-rumble {
-  0%, 100% { transform: translateX(0); text-shadow: none; }
-  25% { transform: translateX(-2px); text-shadow: 0 0 8px #0d9488; }
-  50% { transform: translateX(2px); text-shadow: 0 0 8px #0d9488; }
-  75% { transform: translateX(-1px); text-shadow: 0 0 4px #0d9488; }
-}
-
-.nav-rumble {
-  animation: nav-rumble 0.2s ease-out !important;
-}
-
-/* Skywriting flyover animation */
-@keyframes skywriting-fly {
-  0% { left: 10%; }
-  100% { left: 105%; }
-}
-
-.skywriting-jet {
-  animation: skywriting-fly 2.5s ease-out forwards;
-  left: 10%;
-  z-index: 2;
-}
-
-/* Centered wordmark: morphs from blurry cloud → readable text */
-.skywriting-wordmark {
-  font-family: var(--font-playfair), Georgia, serif;
-  font-weight: 600;
-  font-size: 1.25rem;
-  white-space: nowrap;
-  transition: filter 1s ease-out, opacity 1s ease-out, color 1s ease-out, letter-spacing 1s ease-out;
-  /* Text state (default) */
-  filter: blur(0px);
-  opacity: 0.8;
-  color: #1B2A4A;
-  letter-spacing: -0.025em;
-  text-shadow: 0 0 8px rgba(27, 42, 74, 0.15);
-}
-
-.skywriting-wordmark.is-cloud {
-  filter: blur(8px);
-  opacity: 0.5;
-  color: rgba(255, 255, 255, 0.9);
-  letter-spacing: 0.5em;
-  text-shadow: 0 0 16px rgba(255, 255, 255, 0.5);
-}
-
-/* Subtle button shimmer */
-@keyframes shimmer {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-
-.btn-shimmer {
-  animation: shimmer 3s ease-in-out infinite;
-}
-
-/* DemoFrame floating animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-/* Glass card shimmer on hover */
-.glass-shimmer {
+.gate-rule {
   position: relative;
+  height: 1px;
+  max-width: 160px;
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(to right, transparent, rgba(13, 148, 136, 0.45), transparent);
 }
 
-.glass-shimmer::after {
+.gate-rule::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.06) 45%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.06) 55%,
-    transparent 60%
-  );
-  background-size: 250% 100%;
-  background-position: 100% 0;
-  border-radius: inherit;
-  transition: background-position 0.8s ease;
-  pointer-events: none;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%) rotate(0deg);
+  border-radius: 4px;
+  border: 1.5px solid var(--color-accent);
+  background: var(--color-paper);
 }
 
-.glass-shimmer:hover::after {
-  background-position: -50% 0;
+.gate-rule.on-dark::after {
+  background: var(--color-ink);
 }
 
-/* Prose styles for rendered markdown */
+/* ── The one orchestrated moment: hero gate flow ── */
+
+@keyframes gate-pulse-travel {
+  0% { left: 0%; opacity: 0; }
+  8% { opacity: 1; }
+  38% { left: calc(50% - 4px); }
+  55% { left: calc(50% - 4px); }
+  92% { opacity: 1; }
+  100% { left: calc(100% - 8px); opacity: 0; }
+}
+
+@keyframes gate-chip-approve {
+  0%, 45% { border-color: rgba(180, 83, 9, 0.9); box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
+  60%, 100% { border-color: var(--color-accent); box-shadow: 0 0 12px 0 rgba(13, 148, 136, 0.35); }
+}
+
+@keyframes gate-check-in {
+  0%, 50% { opacity: 0; transform: scale(0.5); }
+  62%, 100% { opacity: 1; transform: scale(1); }
+}
+
+.gate-flow-pulse {
+  animation: gate-pulse-travel 3.2s ease-in-out 0.9s both;
+}
+
+.gate-flow-chip {
+  animation: gate-chip-approve 3.2s ease-in-out 0.9s both;
+}
+
+.gate-flow-check {
+  animation: gate-check-in 3.2s ease-in-out 0.9s both;
+}
+
+/* ── Demo system utilities (used by the live demos) ── */
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-blink {
+  animation: blink 0.8s step-end infinite;
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0); opacity: 0; }
+  70% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.pop-in {
+  animation: pop-in 0.3s ease-out both;
+}
+
+@keyframes fade-slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-slide-up {
+  animation: fade-slide-up 0.5s ease-out both;
+}
+
+.fade-in {
+  animation: fade-slide-up 0.5s ease-out both;
+}
+
+/* ── Reduced motion: decorative animation off, content visible ── */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .gate-flow-pulse {
+    animation: none;
+    opacity: 0;
+  }
+  .gate-flow-chip {
+    animation: none;
+    border-color: var(--color-accent);
+  }
+  .gate-flow-check {
+    animation: none;
+    opacity: 1;
+    transform: scale(1);
+  }
+  .animate-pulse-slow,
+  .animate-blink,
+  .pop-in,
+  .fade-slide-up,
+  .fade-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Prose styles for rendered markdown (blog posts stay live) ── */
+
 .prose {
   line-height: 1.8;
   font-size: 1.0625rem;
@@ -274,7 +270,6 @@ body::before {
   margin: 2em 0;
 }
 
-/* Dark background variant */
 .prose.prose-invert {
   color: rgba(255, 255, 255, 0.75);
 }
@@ -301,86 +296,8 @@ body::before {
   background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
 }
 
-/* ── Built to Demonstrate section ── */
-
-@keyframes pulse-slow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-.animate-pulse-slow {
-  animation: pulse-slow 2s ease-in-out infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-.animate-blink {
-  animation: blink 0.8s step-end infinite;
-}
-
-/* shimmer sweep on progress bars */
-@keyframes shimmer-sweep {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-.shimmer-bar {
-  background-image: linear-gradient(90deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
-  background-size: 200% 100%;
-  animation: shimmer-sweep 1.5s ease-in-out infinite;
-}
-
-.shimmer-text {
-  background: linear-gradient(90deg, #0d9488 30%, #5eead4 50%, #0d9488 70%);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer-sweep 2s ease-in-out infinite;
-}
-
-@keyframes pop-in {
-  0% { transform: scale(0); opacity: 0; }
-  70% { transform: scale(1.15); }
-  100% { transform: scale(1); opacity: 1; }
-}
-.pop-in {
-  animation: pop-in 0.3s ease-out both;
-}
-
-@keyframes flash-in {
-  0% { opacity: 0; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.1); }
-  100% { opacity: 1; transform: scale(1); }
-}
-.flash-in {
-  animation: flash-in 0.4s ease-out both;
-}
-
-@keyframes fade-slide-up {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.fade-slide-up {
-  animation: fade-slide-up 0.5s ease-out both;
-}
-
-.fade-in {
-  animation: fade-slide-up 0.5s ease-out both;
-}
-
-/* sparkline draw */
-@keyframes draw-line {
-  from { stroke-dashoffset: 500; }
-  to { stroke-dashoffset: 0; }
-}
-.sparkline-draw {
-  animation: draw-line 3s ease-out forwards;
-}
-@keyframes fill-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.sparkline-fill {
-  animation: fill-fade 3s ease-out forwards;
+/* Quiz result entrance */
+@keyframes quizResultIn {
+  from { opacity: 0; transform: scale(0.93); }
+  to { opacity: 1; transform: scale(1); }
 }

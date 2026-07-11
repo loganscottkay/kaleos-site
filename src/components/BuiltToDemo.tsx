@@ -549,7 +549,7 @@ export function BuiltToDemo() {
       <div className="relative z-10 max-w-6xl mx-auto px-4">
         {/* heading */}
         <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-3 text-white"
-            style={{ fontFamily: "'Playfair Display', serif" }}>
+            style={{ fontFamily: 'var(--font-fraunces), Georgia, serif' }}>
           Built to Demonstrate
         </h2>
         <p className="text-white/50 text-center max-w-2xl mx-auto mb-14 text-sm">

@@ -21,9 +21,6 @@ export const metadata: Metadata = {
   },
 }
 
-const HERO_BG =
-  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2070&q=80'
-
 function formatDate(dateStr: string) {
   return new Date(dateStr + 'T00:00:00').toLocaleDateString('en-US', {
     year: 'numeric',
@@ -43,10 +40,6 @@ export default function BlogPage() {
 
       {/* Full-page dark background */}
       <section className="relative pt-32 pb-16 overflow-hidden bg-[#1B2A4A]">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.08]"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
         <div
           className="absolute inset-0"
           style={{

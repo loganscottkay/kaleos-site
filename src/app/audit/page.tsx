@@ -21,9 +21,6 @@ export const metadata: Metadata = {
   },
 }
 
-const HERO_BG =
-  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2070&q=80'
-
 const deliverables = [
   'Operational workflow mapping',
   'AI readiness evaluation across every business function',
@@ -56,31 +53,15 @@ export default function AuditPage() {
       <NavBar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 overflow-hidden hero-vignette">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
-        <div className="absolute inset-0 bg-white/30" />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse at center, rgba(255,255,255,0.15) 0%, transparent 70%)',
-          }}
-        />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
-          <AnimateIn distance={20}>
-            <h1
-              className="text-4xl sm:text-5xl font-semibold tracking-tight mb-6 text-white drop-shadow-lg"
-              style={{ textShadow: '0 2px 40px rgba(0,0,0,0.15)' }}
-            >
+      <section className="relative bg-paper pt-36 pb-16">
+        <div className="relative max-w-6xl mx-auto px-4 text-center">
+          <AnimateIn distance={16}>
+            <h1 className="text-4xl sm:text-5xl font-medium tracking-tight mb-6 text-ink">
               Strategic AI Assessment
             </h1>
           </AnimateIn>
-          <AnimateIn delay={200} distance={15}>
-            <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
+          <AnimateIn delay={200} distance={12}>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
               We map your business, identify your highest-leverage AI
               opportunities, and deliver a clear roadmap with projected ROI.
             </p>
@@ -89,16 +70,10 @@ export default function AuditPage() {
       </section>
 
       {/* Assessment Deliverables */}
-      <section className="relative py-24 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${HERO_BG}')` }}
-        />
-        <div className="absolute inset-0 bg-white/70 backdrop-blur-sm" />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <section className="relative py-24 bg-paper">
+        <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-10 text-navy">
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-ink">
               Assessment Deliverables
             </h2>
           </AnimateIn>
@@ -131,11 +106,10 @@ export default function AuditPage() {
       </section>
 
       {/* How It Works */}
-      <section className="relative py-24 bg-navy dot-grid-dark">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <section className="relative py-24 bg-ink">
+        <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-10 text-white">
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-white">
               How It Works
             </h2>
           </AnimateIn>
@@ -161,14 +135,13 @@ export default function AuditPage() {
       </section>
 
       {/* How Engagements Work */}
-      <section className="relative py-24 bg-navy dot-grid-dark">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <section className="relative py-24 bg-navy">
+        <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-6 text-white">
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-6 text-white">
               How Engagements Work
             </h2>
-            <p className="text-white/70 text-center max-w-3xl mx-auto mb-14 leading-relaxed">
+            <p className="text-mist text-center max-w-3xl mx-auto mb-14 leading-relaxed">
               Every engagement is scoped to your business. No packages off a
               shelf, no rate card. Three ways to work together, priced on a
               call once we understand what you actually need.
@@ -216,12 +189,10 @@ export default function AuditPage() {
       </section>
 
       {/* FAQ */}
-      <section className="relative py-24 bg-navy overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <section className="relative py-24 bg-ink">
+        <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-12 text-white">
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-12 text-white">
               Frequently Asked Questions
             </h2>
           </AnimateIn>
@@ -233,23 +204,18 @@ export default function AuditPage() {
       </section>
 
       {/* Intake Form */}
-      <section className="relative py-24 bg-navy overflow-hidden" id="form">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.06]" style={{ backgroundImage: `url('${HERO_BG}')` }} />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4">
+      <section className="relative py-24 bg-navy" id="form">
+        <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-center mb-10 text-white">
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-white">
               Start a Conversation
             </h2>
           </AnimateIn>
 
           <AnimateIn delay={100}>
             <div className="max-w-lg mx-auto">
-              <div className="relative overflow-hidden rounded-2xl bg-white/[0.06] backdrop-blur-2xl border border-white/[0.12] shadow-2xl shadow-black/20 p-8">
-                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.04] via-transparent to-transparent pointer-events-none" />
-                <div className="relative">
-                  <AuditForm />
-                </div>
+              <div className="rounded-xl bg-white/[0.045] border border-white/[0.1] p-8">
+                <AuditForm />
               </div>
             </div>
           </AnimateIn>
