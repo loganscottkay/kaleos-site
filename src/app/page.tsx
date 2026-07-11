@@ -109,29 +109,23 @@ export default function Home() {
       {/* Hero */}
       <section className="relative bg-paper pt-40 pb-24">
         <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <AnimateIn delay={100} distance={16}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight leading-[1.1] mb-8 text-ink">
-              AI doesn&apos;t fail because of the technology.
-              <br />
-              It fails because of the implementation.
-            </h1>
-          </AnimateIn>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight leading-[1.1] mb-8 text-ink">
+            AI doesn&apos;t fail because of the technology.
+            <br />
+            It fails because of the implementation.
+          </h1>
 
-          <AnimateIn delay={300} distance={10}>
-            <p className="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-10">
-              Everyone wants AI. Most of it never leaves the slide deck.
-              Kaleos HQ is the implementation partner that gets it into
-              production.
-            </p>
-          </AnimateIn>
+          <p className="hero-rise hero-rise-1 text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-10">
+            Everyone wants AI. Most of it never leaves the slide deck.
+            Kaleos HQ is the implementation partner that gets it into
+            production.
+          </p>
 
-          <AnimateIn delay={500} distance={8}>
-            <div className="mb-12">
-              <GateFlow />
-            </div>
-          </AnimateIn>
+          <div className="hero-rise hero-rise-2 mb-12">
+            <GateFlow />
+          </div>
 
-          <AnimateIn delay={650} distance={8}>
+          <div className="hero-rise hero-rise-3">
             <a
               href="https://calendly.com/logan-kaleoshq/30min"
               target="_blank"
@@ -144,7 +138,7 @@ export default function Home() {
               Logan Kay &middot; Founder &amp; CEO, Kaleos HQ &middot; Agentic AI
               systems, built and deployed
             </p>
-          </AnimateIn>
+          </div>
         </div>
       </section>
 

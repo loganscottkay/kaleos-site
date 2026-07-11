@@ -51,11 +51,9 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="relative bg-paper pt-36 pb-12">
         <div className="relative max-w-6xl mx-auto px-4 text-center">
-          <AnimateIn distance={16}>
-            <h1 className="text-4xl sm:text-5xl font-medium tracking-tight text-ink">
-              Who we are
-            </h1>
-          </AnimateIn>
+          <h1 className="text-4xl sm:text-5xl font-medium tracking-tight text-ink">
+            Who we are
+          </h1>
         </div>
       </section>
 

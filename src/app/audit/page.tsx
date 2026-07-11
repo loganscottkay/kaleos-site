@@ -55,17 +55,13 @@ export default function AuditPage() {
       {/* Hero */}
       <section className="relative bg-paper pt-36 pb-16">
         <div className="relative max-w-6xl mx-auto px-4 text-center">
-          <AnimateIn distance={16}>
-            <h1 className="text-4xl sm:text-5xl font-medium tracking-tight mb-6 text-ink">
-              Strategic AI assessment
-            </h1>
-          </AnimateIn>
-          <AnimateIn delay={200} distance={12}>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              We map your business, identify your highest-leverage AI
-              opportunities, and deliver a clear roadmap with projected ROI.
-            </p>
-          </AnimateIn>
+          <h1 className="text-4xl sm:text-5xl font-medium tracking-tight mb-6 text-ink">
+            Strategic AI assessment
+          </h1>
+          <p className="hero-rise hero-rise-1 text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            We map your business, identify your highest-leverage AI
+            opportunities, and deliver a clear roadmap with projected ROI.
+          </p>
         </div>
       </section>
 
