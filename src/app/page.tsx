@@ -1,11 +1,9 @@
 import { NavBar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
 import { GlassCard } from '@/components/GlassCard'
-import { DemoFrame } from '@/components/DemoFrame'
 import { AnimateIn } from '@/components/AnimateIn'
 import { WorkflowDiagram } from '@/components/WorkflowDiagram'
 import { QuickAssessment } from '@/components/QuickAssessment'
-import { StickyCTA } from '@/components/StickyCTA'
 import { BuiltToDemo } from '@/components/BuiltToDemo'
 import { InProduction } from '@/components/InProduction'
 import { GateFlow } from '@/components/GateFlow'
@@ -208,28 +206,6 @@ export default function Home() {
               </AnimateIn>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Proof Section */}
-      <section className="relative py-24 bg-navy">
-        <div className="relative max-w-6xl mx-auto px-4">
-          <AnimateIn>
-            <p className="font-system text-accent text-xs tracking-widest text-center mb-3 uppercase">
-              What it looks like in practice
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-center mb-12 text-white">
-              AI does the work. You make the call.
-            </h2>
-          </AnimateIn>
-
-          <AnimateIn delay={150}>
-            <div className="max-w-4xl mx-auto">
-              <DemoFrame />
-            </div>
-          </AnimateIn>
-
-          <StickyCTA />
         </div>
       </section>
 
