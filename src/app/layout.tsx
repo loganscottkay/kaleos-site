@@ -31,10 +31,6 @@ export const metadata: Metadata = {
   },
   description:
     "AI doesn't fail because of the technology. It fails because of the implementation. Kaleos HQ is an agentic AI implementation and applied AI consulting practice: agents do the work, humans make the calls, everything is logged.",
-  icons: {
-    icon: '/icon.svg',
-    apple: '/apple-icon',
-  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
