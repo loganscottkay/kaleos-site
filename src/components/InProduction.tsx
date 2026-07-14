@@ -9,7 +9,7 @@ const systems = [
   },
   {
     label: 'Client Portal',
-    desc: 'A client-facing project portal for a contracting business. Clients see live project status, milestones, and documents without a single status-update phone call.',
+    desc: 'A client-facing project portal for a project-based services business. Clients see live project status, milestones, and documents without a single status-update phone call.',
   },
   {
     label: 'Outreach Engine',

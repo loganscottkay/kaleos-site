@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { DemoShell, DemoButton, GateStatus } from './GateAction'
 
 const DRAFT_TEXT =
-  'Framing inspection passed this morning. Electrical rough-in starts Wednesday, and we are still tracking to the June 28 drywall date. Photos from today are in your documents folder.'
+  'Phase 3 review wrapped up this morning. Vendor deliverables land Wednesday, and we are still tracking to the June 28 milestone date. Photos from today are in your documents folder.'
 
 export function ClientPortalDemo() {
   const [approved, setApproved] = useState(false)
@@ -25,7 +25,7 @@ export function ClientPortalDemo() {
       {/* Project snapshot: seeded, never zero */}
       <div className="px-4 pt-3.5 pb-3 border-b border-white/5">
         <div className="flex items-baseline justify-between mb-2">
-          <span className="text-white/85 text-xs font-medium">Riverside kitchen renovation</span>
+          <span className="text-white/85 text-xs font-medium">Riverside office buildout</span>
           <span className="font-system text-[10px] text-white/40">Phase 3 of 5</span>
         </div>
         <div className="h-1.5 rounded-full bg-white/[0.06] overflow-hidden mb-2.5">
