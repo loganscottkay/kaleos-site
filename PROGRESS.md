@@ -6,4 +6,8 @@
 - 2026-07-31T11:06:00Z nav: added /what-we-fix link to NavBar between Home and Assessment
 - 2026-07-31T11:07:00Z nav: added site pages navigation section to Footer with What we fix link
 - 2026-07-31T11:08:00Z nav: done, end state holds
+- 2026-07-31T11:10:00Z meta: added page title and description to what-we-fix/page.tsx
+- 2026-07-31T11:11:00Z meta: added /what-we-fix entry to sitemap.ts
+- 2026-07-31T11:12:00Z meta: done, end state holds
+ALL ASSIGNED DONE
 - group cheap (nav, meta) spawned
