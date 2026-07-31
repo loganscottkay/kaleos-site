@@ -11,3 +11,7 @@
 - 2026-07-31T11:12:00Z meta: done, end state holds
 ALL ASSIGNED DONE
 - group cheap (nav, meta) spawned
+- group cheap (titlefix) spawned
+- 2026-07-31T14:30:00Z titlefix: removed doubled brand name from what-we-fix page metadata title
+- 2026-07-31T14:31:00Z titlefix: built and verified page title is exactly 'What we fix | Kaleos HQ'
+- 2026-07-31T14:32:00Z titlefix: done, end state holds
