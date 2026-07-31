@@ -8,6 +8,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
+      url: 'https://www.kaleoshq.com/what-we-fix',
+      lastModified: new Date(),
+    },
+    {
       url: 'https://www.kaleoshq.com/audit',
       lastModified: new Date(),
     },

@@ -1,7 +1,13 @@
+import type { Metadata } from 'next'
 import { NavBar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
 import { AnimateIn } from '@/components/AnimateIn'
 import { GateRule } from '@/components/GateRule'
+
+export const metadata: Metadata = {
+  title: 'What we fix | Kaleos HQ',
+  description: 'The operational problems Kaleos HQ fixes with agentic AI implementation: follow-ups that fall through, manual reporting, repetitive admin, and a business that runs on memory. Agents do the work, humans make the calls, everything is logged.',
+}
 
 const problems = [
   {
