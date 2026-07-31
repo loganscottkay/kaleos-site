@@ -1,3 +1,7 @@
+'use client'
+
+import Link from 'next/link'
+
 export function SocialIcons({ className = '' }: { className?: string }) {
   return (
     <span className={`inline-flex items-center gap-3 ${className}`}>
@@ -19,8 +23,17 @@ export function SocialIcons({ className = '' }: { className?: string }) {
 export function Footer() {
   return (
     <footer className="border-t border-slate-200/60 py-8">
-      <div className="max-w-6xl mx-auto px-4 flex items-center justify-center gap-4 text-slate-400 text-sm tracking-wide">
-        <span>
+      <div className="max-w-6xl mx-auto px-4 flex flex-col gap-4 items-center">
+        <div className="flex flex-wrap items-center justify-center gap-2 text-slate-500 text-sm tracking-wide">
+          <Link href="/" className="hover:text-navy transition-colors">Home</Link>
+          <span className="text-slate-300">/</span>
+          <Link href="/what-we-fix" className="hover:text-navy transition-colors">What we fix</Link>
+          <span className="text-slate-300">/</span>
+          <Link href="/audit" className="hover:text-navy transition-colors">Assessment</Link>
+          <span className="text-slate-300">/</span>
+          <Link href="/about" className="hover:text-navy transition-colors">About</Link>
+        </div>
+        <span className="text-slate-400 text-sm tracking-wide">
           &copy; 2026 Kaleos HQ &middot;{' '}
           <a href="https://www.kaleoshq.com" className="hover:text-slate-600 transition-colors">
             kaleoshq.com
