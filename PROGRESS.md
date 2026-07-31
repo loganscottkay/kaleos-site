@@ -2,4 +2,8 @@
 - 2026-07-31T00:05:00Z page: design-excellence applied: sources read: taste.md plus 1 inspiration note(s)
 - 2026-07-31T00:20:00Z page: built src/app/what-we-fix/page.tsx (hero, five problem blocks with gate rules between them, industry line, navy CTA section); npm run lint and npm run build both pass
 - 2026-07-31T00:21:00Z page: done, end state holds
-ALL ASSIGNED DONE
+- 2026-07-31T11:05:00Z nav: design-excellence applied, sources read: taste.md plus 1 inspiration note
+- 2026-07-31T11:06:00Z nav: added /what-we-fix link to NavBar between Home and Assessment
+- 2026-07-31T11:07:00Z nav: added site pages navigation section to Footer with What we fix link
+- 2026-07-31T11:08:00Z nav: done, end state holds
+- group cheap (nav, meta) spawned
