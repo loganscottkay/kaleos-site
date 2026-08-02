@@ -6,3 +6,6 @@
 - 2026-08-02T21:50:16Z depbump: instead added a scoped "overrides" block in package.json pinning postcss to ^8.5.25 and sharp to ^0.35.0 (both still within their current major line: postcss stays 8.x, sharp stays pre-1.0 with only a minor bump, not a next major-version change). npm install applied cleanly, deduped the nested postcss under next entirely and bumped node_modules/sharp to 0.35.3. `npm audit` now reports 0 vulnerabilities.
 - 2026-08-02T21:50:32Z depbump: ending npm audit recorded: 0 vulnerabilities (0 low, 0 moderate, 0 high, 0 critical). No advisories remain; no forced major bump was needed.
 - 2026-08-02T21:52:00Z depbump: npm run build passed clean on next@16.2.12, all 18 routes generated, no errors. npm run lint and npx tsc --noEmit both pass (3 pre-existing no-img-element warnings only, unrelated to this change, 0 errors). Zero source-code changes were needed; only package.json and package-lock.json changed.
+- 2026-08-02T21:53:10Z depbump: committed package.json, package-lock.json, and PROGRESS.md as 81fd4b0 chore(deps): remediate npm advisories, next to 16.2.12 and pin postcss/sharp.
+- 2026-08-02T21:53:10Z depbump: done, end state holds
+ALL ASSIGNED DONE
