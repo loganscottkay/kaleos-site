@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Bohan Client Journey Portal · Roadmap</title>
+<style>
+  :root{
+    --evergreen:#14532D;
+    --moss:#3F7D5C;
+    --ink:#1F2937;
+    --slate:#5B6470;
+    --paper:#FAFAF7;
+    --card:#FFFFFF;
+    --rule:#E3E5E0;
+    --chip:#EEF1EC;
+    --amber:#A16207;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto} *{transition:none!important;animation:none!important}}
+  body{background:var(--paper);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .serif{font-family:Georgia,"Times New Roman",serif}
+  a{color:var(--evergreen)}
+  button{font:inherit;cursor:pointer}
+  :focus-visible{outline:2px solid var(--evergreen);outline-offset:2px;border-radius:4px}
+
+  /* ---------- password gate ---------- */
+  #gate{position:fixed;inset:0;background:var(--paper);display:flex;align-items:center;justify-content:center;z-index:50;padding:24px}
+  .gate-card{width:100%;max-width:380px;text-align:center}
+  .wordmark{font-family:Georgia,serif;font-weight:700;letter-spacing:.32em;color:var(--evergreen);font-size:15px}
+  .gate-card h1{font-family:Georgia,serif;font-size:26px;color:var(--ink);margin:18px 0 6px;font-weight:700}
+  .gate-card p{color:var(--slate);font-size:14px;margin-bottom:22px}
+  .gate-card input{width:100%;padding:12px 14px;border:1px solid var(--rule);border-radius:8px;background:#fff;font-size:15px;text-align:center;letter-spacing:.08em}
+  .gate-card input:focus{outline:2px solid var(--evergreen);outline-offset:1px}
+  .gate-card button{width:100%;margin-top:10px;padding:12px;border:none;border-radius:8px;background:var(--evergreen);color:#fff;font-weight:600;font-size:15px}
+  .gate-card button:hover{background:#0F4023}
+  #gate-error{color:#9B2C2C;font-size:13px;margin-top:10px;min-height:18px}
+
+  /* ---------- shell ---------- */
+  #app{display:none;max-width:1180px;margin:0 auto;padding:28px 20px 64px}
+  header.top{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;border-bottom:1px solid var(--rule);padding-bottom:18px}
+  .top .wordmark{font-size:13px}
+  .top h1{font-family:Georgia,serif;font-size:clamp(24px,3.4vw,34px);font-weight:700;color:var(--ink);width:100%}
+  .top .sub{color:var(--slate);font-size:14px}
+  .top .updated{margin-left:auto;color:var(--slate);font-size:13px}
+
+  /* signature: the build rail */
+  .rail-wrap{margin:22px 0 6px}
+  .rail{display:flex;height:10px;border-radius:6px;overflow:hidden;border:1px solid var(--rule)}
+  .rail span{display:block;height:100%}
+  .rail .r-built{background:var(--evergreen)}
+  .rail .r-inbuild{background:var(--moss)}
+  .rail .r-next{background:#CBD5C6}
+  .rail .r-future{background:#EDEFEA}
+  .rail-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-size:13px;color:var(--slate)}
+  .rail-legend b{color:var(--ink);font-weight:600}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:baseline}
+
+  /* tabs */
+  nav.tabs{display:flex;gap:4px;margin:26px 0 22px;border-bottom:1px solid var(--rule)}
+  .tab{background:none;border:none;padding:10px 16px;font-size:15px;font-weight:600;color:var(--slate);border-bottom:2px solid transparent;margin-bottom:-1px}
+  .tab[aria-selected="true"]{color:var(--evergreen);border-bottom-color:var(--evergreen)}
+  .tab:hover{color:var(--ink)}
+
+  /* ---------- roadmap board ---------- */
+  .board{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media (max-width:980px){.board{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:600px){.board{grid-template-columns:1fr}}
+  .col h2{font-family:Georgia,serif;font-size:17px;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .col h2 .count{font-family:inherit;font-size:12px;color:var(--slate);background:var(--chip);border-radius:10px;padding:1px 8px;font-weight:400}
+  .col .col-sub{font-size:12.5px;color:var(--slate);margin:4px 0 12px;min-height:34px}
+  .card{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:13px 14px;margin-bottom:10px;transition:box-shadow .15s ease, transform .15s ease}
+  .card:hover{box-shadow:0 3px 14px rgba(20,83,45,.08);transform:translateY(-1px)}
+  .card h3{font-size:14.5px;font-weight:650;line-height:1.35}
+  .card p{font-size:13px;color:var(--slate);margin-top:5px}
+  .card .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;align-items:center}
+  .chip{font-size:11.5px;padding:2px 9px;border-radius:10px;background:var(--chip);color:var(--slate);font-weight:600;letter-spacing:.01em}
+  .chip.shipped{background:var(--evergreen);color:#fff}
+  .chip.size-s{background:#EEF3EE;color:var(--moss)}
+  .chip.size-m{background:#F5EFE1;color:var(--amber)}
+  .chip.size-l{background:#EFEAF5;color:#5B4A8A}
+  .chip.date{background:transparent;color:#8A9086;font-weight:500;padding-left:0}
+  .col.c-built .card{border-left:3px solid var(--evergreen)}
+  .col.c-inbuild .card{border-left:3px solid var(--moss)}
+  .col.c-future .card{border-style:dashed}
+
+  /* ---------- activity ---------- */
+  .activity-intro{color:var(--slate);font-size:14px;max-width:640px;margin-bottom:26px}
+  .timeline{position:relative;max-width:720px;padding-left:26px}
+  .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--rule)}
+  .entry{position:relative;padding:0 0 26px 8px}
+  .entry::before{content:"";position:absolute;left:-24px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--card);border:3px solid var(--moss)}
+  .entry.milestone::before{border-color:var(--evergreen);background:var(--evergreen)}
+  .entry .e-date{font-size:12.5px;color:var(--slate);letter-spacing:.02em;text-transform:uppercase;font-weight:600}
+  .entry h3{font-family:Georgia,serif;font-size:16.5px;margin:3px 0 4px;color:var(--ink)}
+  .entry p{font-size:14px;color:var(--slate);max-width:60ch}
+  .entry .e-tag{display:inline-block;margin-top:8px;font-size:11.5px;padding:2px 9px;border-radius:10px;background:var(--chip);color:var(--slate);font-weight:600}
+
+  footer{margin-top:48px;border-top:1px solid var(--rule);padding-top:16px;color:#8A9086;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     EDIT ME: everything the board shows lives in this one block.
+     To update the board:
+       1) add / move / edit a card in CARDS
+       2) add a matching entry to ACTIVITY (newest first) with a note
+       3) bump LAST_UPDATED
+     Statuses: "built" | "inbuild" | "next" | "future"
+     Sizes (optional): "S" | "M" | "L"  (Small / Medium / Large build)
+     SECURITY NOTE: the password below is a courtesy gate for a
+     shared link, not real security. Set it before deploying.
+     ============================================================ -->
+<script>
+const BOARD_PASSWORD = "bohanai";
+const LAST_UPDATED  = "August 6, 2026";
+
+const CARDS = [
+  /* ---------------- BUILT ---------------- */
+  {s:"built", t:"Homeowner journey view", d:"Your nine-step journey with per-step status, what is complete, what is next, and what is needed from the homeowner.", date:"Demoed Jul 17"},
+  {s:"built", t:"Staff console, PM Operations layout", d:"All projects at a glance with the project manager and coordinator lens, matched to your PM Operations design.", date:"Shipped Jul 30"},
+  {s:"built", t:"Budget tracker, your methodology", d:"Replicates your spreadsheet structure and calculations, including the 25% gross profit treatment of overages, shown on a phase timeline. Verified against the pilot project's real numbers.", date:"Shipped Jul 28"},
+  {s:"built", t:"Selections with version history", d:"Good, better, best direction from the homeowner, allowance pricing per category, final selections recorded with full history.", date:"Shipped Jul 28"},
+  {s:"built", t:"Action items in your vocabulary", d:"Two-direction items per step: EWRs, change orders, selections, and sign-offs, tracked to completion.", date:"Shipped Jul 30"},
+  {s:"built", t:"Notes and questions", d:"Attributed, timestamped message threads between homeowner and staff on each step.", date:"Shipped Jul 28"},
+  {s:"built", t:"Activity log with revert", d:"A searchable audit trail of every change, with staff revert.", date:"Shipped Jul 28"},
+  {s:"built", t:"Per-project activity feed", d:"One filterable timeline per project: step changes, messages, action items, budget edits, selections.", date:"Shipped Jul 30"},
+  {s:"built", t:"Meeting agenda view", d:"A weekly agenda assembled automatically from each project's open items.", date:"Shipped Jul 30"},
+  {s:"built", t:"Project setup and admin", d:"Create and configure projects, people, and links without a developer.", date:"Shipped Jul 30"},
+  {s:"built", t:"Inspiration photos", d:"Homeowner uploads with a staff gallery view.", date:"Shipped Jul 28"},
+
+  /* ------------- IN THE VERSION 1 BUILD ------------- */
+  {s:"inbuild", t:"Secure logins and access control", d:"Staff and homeowner accounts; each homeowner sees only their own project."},
+  {s:"inbuild", t:"Production database", d:"Everything saved permanently; the portal becomes the durable record."},
+  {s:"inbuild", t:"Real file storage for photos", d:"Uploaded images stored safely, not just previewed."},
+  {s:"inbuild", t:"Google Sheets sync", d:"One-way sync from the budget tracker to your Google Sheet."},
+  {s:"inbuild", t:"Email notifications", d:"Automatic emails for new messages, assigned action items, and step changes."},
+  {s:"inbuild", t:"BuilderTrend and Drive links", d:"Real per-project links into BuilderTrend and your named Drive documents."},
+  {s:"inbuild", t:"Deployment to your hosting", d:"Live URL on Bohan-owned accounts, with backups and error monitoring."},
+  {s:"inbuild", t:"Walkthrough and operating guide", d:"A live team session plus written documentation for day-to-day use."},
+
+  /* ---------------- UP NEXT ---------------- */
+  {s:"next", t:"Text alerts to clients", d:"SMS notifications alongside email for time-sensitive updates.", size:"S"},
+  {s:"next", t:"Two-way Google Sheets sync", d:"Edits in the Sheet flow back into the portal, with agreed conflict rules.", size:"S"},
+  {s:"next", t:"Load your existing projects", d:"Bring current jobs into the portal so everything lives in one place.", size:"S"},
+  {s:"next", t:"Project email inbox", d:"A dedicated address per project; forwarded emails land on the project record.", size:"M"},
+
+  /* ---------------- DOWN THE ROAD ---------------- */
+  {s:"future", t:"AI project assistant", d:"Ask questions about a project in plain English and get answers from its own data.", size:"M"},
+  {s:"future", t:"Team text number", d:"A dedicated number so client texts land on the project record.", size:"M"},
+  {s:"future", t:"Meeting notes to commitments", d:"Capture call transcripts and turn commitments into tracked action items.", size:"L"},
+  {s:"future", t:"Cross-project insights", d:"Patterns and forecasts across all jobs: budgets, timelines, selections.", size:"L"},
+  {s:"future", t:"BuilderTrend integration", d:"Live schedule and daily log data, pending API access on your BuilderTrend plan.", size:"L"},
+  {s:"future", t:"Supplier catalog integration", d:"Pull product and pricing data from suppliers into selections.", size:"L"}
+];
+
+const ACTIVITY = [
+  {date:"Aug 6, 2026", tag:"Update", milestone:false,
+   title:"Roadmap published",
+   note:"This board went live alongside the agreement. Remaining Version 1 work is listed under In the Version 1 build; everything in Up next and Down the road is optional future work."},
+  {date:"Jul 30, 2026", tag:"Shipped", milestone:true,
+   title:"Build round three complete",
+   note:"Staff console rebuilt to your PM Operations layout, action items switched to your vocabulary (EWRs, change orders, selections, sign-offs), meeting agenda view, per-project activity feed, and project admin all shipped."},
+  {date:"Jul 28, 2026", tag:"Shipped", milestone:true,
+   title:"Build round two complete",
+   note:"Nine-step journey engine, budget tracker verified against the pilot project's real numbers, selections with version history, message threads, activity log, and inspiration photos all shipped."},
+  {date:"Jul 24, 2026", tag:"Review", milestone:false,
+   title:"Progress review call",
+   note:"Walked the current build with the team and confirmed the budget tracker direction."},
+  {date:"Jul 21, 2026", tag:"Decision", milestone:false,
+   title:"Working session with George and Jaime",
+   note:"Journey content, console layout, and pilot project details agreed and folded into the build plan."},
+  {date:"Jul 17, 2026", tag:"Milestone", milestone:true,
+   title:"First working prototype demoed",
+   note:"The first clickable version of the portal was walked through with the Bohan team."}
+];
+</script>
+<!-- ================= end of editable data ================= -->
+
+<div id="gate">
+  <div class="gate-card">
+    <div class="wordmark">KALEOS HQ</div>
+    <h1>Bohan Roadmap</h1>
+    <p>This board is shared privately with the Bohan Contracting team. Enter the password you were given.</p>
+    <input id="pw" type="password" autocomplete="off" aria-label="Board password">
+    <button id="pw-go">View the roadmap</button>
+    <div id="gate-error" role="alert"></div>
+  </div>
+</div>
+
+<div id="app">
+  <header class="top">
+    <span class="wordmark">KALEOS HQ</span>
+    <span class="sub">for Bohan Contracting</span>
+    <span class="updated">Updated <span id="upd"></span></span>
+    <h1 class="serif">Bohan Client Journey Portal, Roadmap</h1>
+  </header>
+
+  <div class="rail-wrap" aria-hidden="true">
+    <div class="rail" id="rail"></div>
+    <div class="rail-legend" id="rail-legend"></div>
+  </div>
+
+  <nav class="tabs" role="tablist" aria-label="Roadmap sections">
+    <button class="tab" id="tab-board" role="tab" aria-selected="true" aria-controls="panel-board">Roadmap</button>
+    <button class="tab" id="tab-activity" role="tab" aria-selected="false" aria-controls="panel-activity">Activity</button>
+  </nav>
+
+  <section id="panel-board" role="tabpanel" aria-labelledby="tab-board">
+    <div class="board" id="board"></div>
+  </section>
+
+  <section id="panel-activity" role="tabpanel" aria-labelledby="tab-activity" hidden>
+    <p class="activity-intro">Every change to this board gets an entry here: what moved, what shipped, what was agreed, and when. If something changed, you can see it below.</p>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <footer>
+    <span>Kaleos HQ LLC · Bohan Client Journey Portal</span>
+    <span>This roadmap is informational and updated as the work moves.</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  /* ---- gate ---- */
+  var gate=document.getElementById('gate'), app=document.getElementById('app'),
+      pw=document.getElementById('pw'), go=document.getElementById('pw-go'),
+      err=document.getElementById('gate-error');
+  function unlock(){gate.style.display='none';app.style.display='block';render();}
+  function tryPw(){
+    if(pw.value===BOARD_PASSWORD){try{sessionStorage.setItem('bohan-roadmap','1')}catch(e){} unlock();}
+    else{err.textContent='That password did not match. Check the note from Kaleos and try again.';pw.select();}
+  }
+  go.addEventListener('click',tryPw);
+  pw.addEventListener('keydown',function(e){if(e.key==='Enter')tryPw()});
+  try{if(sessionStorage.getItem('bohan-roadmap')==='1'){unlock();}else{pw.focus();}}catch(e){pw.focus();}
+
+  /* ---- render ---- */
+  var COLS=[
+    {key:'built',  cls:'c-built',  title:'Built',                  sub:'Working today in the current version, demoed to your team.'},
+    {key:'inbuild',cls:'c-inbuild',title:'In the Version 1 build', sub:'Included in this engagement, being completed before handoff.'},
+    {key:'next',   cls:'c-next',   title:'Up next',                sub:'Available after Version 1, whenever you want them. Nothing here is committed.'},
+    {key:'future', cls:'c-future', title:'Down the road',          sub:'Bigger ideas we have discussed. For consideration, not commitments.'}
+  ];
+  var SIZE={S:['size-s','Small build'],M:['size-m','Medium build'],L:['size-l','Large build']};
+  function esc(x){var d=document.createElement('div');d.textContent=x;return d.innerHTML;}
+
+  function render(){
+    document.getElementById('upd').textContent=LAST_UPDATED;
+
+    /* rail */
+    var counts={built:0,inbuild:0,next:0,future:0};
+    CARDS.forEach(function(c){counts[c.s]++;});
+    var total=CARDS.length, rail=document.getElementById('rail'), leg=document.getElementById('rail-legend');
+    rail.innerHTML=''; leg.innerHTML='';
+    var railCls={built:'r-built',inbuild:'r-inbuild',next:'r-next',future:'r-future'};
+    var railColor={built:'var(--evergreen)',inbuild:'var(--moss)',next:'#CBD5C6',future:'#EDEFEA'};
+    COLS.forEach(function(col){
+      var s=document.createElement('span');
+      s.className=railCls[col.key];
+      s.style.width=(counts[col.key]/total*100)+'%';
+      rail.appendChild(s);
+      var li=document.createElement('span');
+      li.innerHTML='<span class="dot" style="background:'+railColor[col.key]+';border:1px solid var(--rule)"></span><b>'+counts[col.key]+'</b> '+esc(col.title.toLowerCase());
+      leg.appendChild(li);
+    });
+
+    /* board */
+    var board=document.getElementById('board'); board.innerHTML='';
+    COLS.forEach(function(col){
+      var div=document.createElement('div'); div.className='col '+col.cls;
+      var cards=CARDS.filter(function(c){return c.s===col.key;});
+      var html='<h2 class="serif">'+esc(col.title)+' <span class="count">'+cards.length+'</span></h2><p class="col-sub">'+esc(col.sub)+'</p>';
+      cards.forEach(function(c){
+        html+='<div class="card"><h3>'+esc(c.t)+'</h3><p>'+esc(c.d)+'</p><div class="meta">';
+        if(col.key==='built') html+='<span class="chip shipped">Shipped</span>';
+        if(c.size&&SIZE[c.size]) html+='<span class="chip '+SIZE[c.size][0]+'">'+SIZE[c.size][1]+'</span>';
+        if(c.date) html+='<span class="chip date">'+esc(c.date)+'</span>';
+        html+='</div></div>';
+      });
+      div.innerHTML=html; board.appendChild(div);
+    });
+
+    /* activity */
+    var tl=document.getElementById('timeline'); tl.innerHTML='';
+    ACTIVITY.forEach(function(e){
+      var d=document.createElement('div');
+      d.className='entry'+(e.milestone?' milestone':'');
+      d.innerHTML='<div class="e-date">'+esc(e.date)+'</div><h3>'+esc(e.title)+'</h3><p>'+esc(e.note)+'</p><span class="e-tag">'+esc(e.tag)+'</span>';
+      tl.appendChild(d);
+    });
+  }
+
+  /* ---- tabs ---- */
+  var tb=document.getElementById('tab-board'), ta=document.getElementById('tab-activity'),
+      pb=document.getElementById('panel-board'), pa=document.getElementById('panel-activity');
+  function pick(which){
+    var boardOn=which==='board';
+    tb.setAttribute('aria-selected',boardOn); ta.setAttribute('aria-selected',!boardOn);
+    pb.hidden=!boardOn; pa.hidden=boardOn;
+  }
+  tb.addEventListener('click',function(){pick('board')});
+  ta.addEventListener('click',function(){pick('activity')});
+})();
+</script>
+</body>
+</html>
