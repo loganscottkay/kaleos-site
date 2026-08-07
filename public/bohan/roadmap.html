@@ -116,11 +116,12 @@
      ============================================================ -->
 <script>
 const BOARD_PASSWORD = "bohanai";
-const LAST_UPDATED  = "August 6, 2026";
+const LAST_UPDATED  = "August 7, 2026";
 
 const CARDS = [
   /* ---------------- BUILT ---------------- */
   {s:"built", t:"Homeowner journey view", d:"Your nine-step journey with per-step status, what is complete, what is next, and what is needed from the homeowner.", date:"Demoed Jul 17"},
+  {s:"built", t:"Customer journey prototype", d:"A live, click-through preview of the full portal shared with the Bohan team to explore and give feedback on.", date:"Shipped Aug 7"},
   {s:"built", t:"Staff console, PM Operations layout", d:"All projects at a glance with the project manager and coordinator lens, matched to your PM Operations design.", date:"Shipped Jul 30"},
   {s:"built", t:"Budget tracker, your methodology", d:"Replicates your spreadsheet structure and calculations, including the 25% gross profit treatment of overages, shown on a phase timeline. Verified against the pilot project's real numbers.", date:"Shipped Jul 28"},
   {s:"built", t:"Selections with version history", d:"Good, better, best direction from the homeowner, allowance pricing per category, final selections recorded with full history.", date:"Shipped Jul 28"},
@@ -158,6 +159,9 @@ const CARDS = [
 ];
 
 const ACTIVITY = [
+  {date:"Aug 7, 2026", tag:"Shipped", milestone:true,
+   title:"Live preview link shared",
+   note:"A working preview of the full portal went out to the Bohan team to click through and give feedback. It runs on demo data with no live backend yet, so nothing entered in it is saved and nothing can be broken. Feedback from this preview feeds the Version 1 close-out."},
   {date:"Aug 6, 2026", tag:"Update", milestone:false,
    title:"Roadmap published",
    note:"This board went live alongside the agreement. Remaining Version 1 work is listed under In the Version 1 build; everything in Up next and Down the road is optional future work."},
