@@ -116,10 +116,11 @@
      ============================================================ -->
 <script>
 const BOARD_PASSWORD = "bohanai";
-const LAST_UPDATED  = "August 7, 2026";
+const LAST_UPDATED  = "August 14, 2026";
 
 const CARDS = [
   /* ---------------- BUILT ---------------- */
+  {s:"built", t:"Client dashboard redesign from Bohan's walkthrough feedback", d:"The client portal now opens to a centered project timeline with one dynamic view for the current step, a one-time welcome page for new homeowners, a live status banner showing what needs attention, item-by-item discussion threads on selections, and a meeting agenda that assembles itself from live project data.", size:"L", date:"Shipped Aug 14"},
   {s:"built", t:"Homeowner journey view", d:"Your nine-step journey with per-step status, what is complete, what is next, and what is needed from the homeowner.", date:"Demoed Jul 17"},
   {s:"built", t:"Customer journey prototype", d:"A live, click-through preview of the full portal shared with the Bohan team to explore and give feedback on.", date:"Shipped Aug 7"},
   {s:"built", t:"Staff console, PM Operations layout", d:"All projects at a glance with the project manager and coordinator lens, matched to your PM Operations design.", date:"Shipped Jul 30"},
@@ -144,12 +145,16 @@ const CARDS = [
   {s:"inbuild", t:"Walkthrough and operating guide", d:"A live team session plus written documentation for day-to-day use."},
 
   /* ---------------- UP NEXT ---------------- */
+  {s:"next", t:"Extra Work Request document engine", d:"Interactive EWR documents generated straight from project data, with client e-signature, automatic deposit and balance calculations, and a Change Order option.", size:"L"},
+  {s:"next", t:"Agenda PDF export", d:"One-click export of the auto-assembled meeting agenda to a clean printable page for site walks.", size:"S"},
   {s:"next", t:"Text alerts to clients", d:"SMS notifications alongside email for time-sensitive updates.", size:"S"},
   {s:"next", t:"Two-way Google Sheets sync", d:"Edits in the Sheet flow back into the portal, with agreed conflict rules.", size:"S"},
   {s:"next", t:"Load your existing projects", d:"Bring current jobs into the portal so everything lives in one place.", size:"S"},
   {s:"next", t:"Project email inbox", d:"A dedicated address per project; forwarded emails land on the project record.", size:"M"},
 
   /* ---------------- DOWN THE ROAD ---------------- */
+  {s:"future", t:"Master checklist templates", d:"Admin-managed master checklists per project type that apply automatically to new projects, with per-project customization.", size:"M"},
+  {s:"future", t:"1-Year Warranty module", d:"A post-completion checklist where homeowners log settling items with photos and locations, plus a staff view for tracking them and scheduling the one-year walkthrough.", size:"M"},
   {s:"future", t:"AI project assistant", d:"Ask questions about a project in plain English and get answers from its own data.", size:"M"},
   {s:"future", t:"Team text number", d:"A dedicated number so client texts land on the project record.", size:"M"},
   {s:"future", t:"Meeting notes to commitments", d:"Capture call transcripts and turn commitments into tracked action items.", size:"L"},
@@ -159,6 +164,9 @@ const CARDS = [
 ];
 
 const ACTIVITY = [
+  {date:"Aug 14, 2026", tag:"Shipped", milestone:true,
+   title:"Build round four complete",
+   note:"Reviewed George's full portal walkthrough. His interface and workflow feedback is built and headed to the client preview. Four larger capabilities from that review were added to this roadmap: the Extra Work Request document engine, agenda PDF export, master checklist templates, and the 1-Year Warranty module. Also new: every card on this board now has an Ask a question button that sends your question straight to Logan."},
   {date:"Aug 7, 2026", tag:"Shipped", milestone:true,
    title:"Live preview link shared",
    note:"A working preview of the full portal went out to the Bohan team to click through and give feedback. It runs on demo data with no live backend yet, so nothing entered in it is saved and nothing can be broken. Feedback from this preview feeds the Version 1 close-out."},
@@ -252,6 +260,7 @@ const ACTIVITY = [
   ];
   var SIZE={S:['size-s','Small build'],M:['size-m','Medium build'],L:['size-l','Large build']};
   function esc(x){var d=document.createElement('div');d.textContent=x;return d.innerHTML;}
+  function escAttr(x){return esc(x).replace(/"/g,'&quot;');}
 
   function render(){
     document.getElementById('upd').textContent=LAST_UPDATED;
