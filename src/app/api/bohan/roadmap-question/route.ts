@@ -35,7 +35,7 @@ function validate(body: unknown): { question: QuestionPayload | null; error: str
   const pageTimestamp = typeof b.pageTimestamp === 'string' ? b.pageTimestamp.trim().slice(0, 40) : ''
 
   if (!question) {
-    return { question: null, error: 'A question is required.' }
+    return { question: null, error: 'A question or idea is required.' }
   }
 
   return {
@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
     const result = await new Resend(process.env.RESEND_API_KEY).emails.send({
       from: FROM_ADDRESS,
       to: NOTIFY_ADDRESS,
-      subject: `Bohan roadmap question: ${cardTitle}`,
+      subject: `Bohan roadmap: ${cardTitle}`,
       text: [
         `Card: ${cardTitle}`,
         `Column: ${question.cardColumn || 'Unknown'}`,
@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
         `Received: ${receivedAt}`,
         `Page time: ${question.pageTimestamp || 'Not given'}`,
         '',
-        'Question:',
+        'Question or idea, exactly as submitted:',
         question.question,
       ].join('\n'),
     })

@@ -86,7 +86,7 @@
   .col.c-inbuild .card{border-left:3px solid var(--moss)}
   .col.c-future .card{border-style:dashed}
 
-  /* ---------- ask a question (per card) ---------- */
+  /* ---------- ask a question or share an idea (per card) ---------- */
   .ask-btn{background:none;border:1px solid var(--rule);border-radius:10px;color:var(--slate);font-size:11.5px;font-weight:600;padding:2px 9px;line-height:1.5}
   .ask-btn:hover{border-color:var(--moss);color:var(--evergreen)}
   .ask-form{margin-top:10px;border-top:1px solid var(--rule);padding-top:10px}
@@ -170,6 +170,7 @@ const CARDS = [
   {s:"next", t:"Project email inbox", d:"A dedicated address per project; forwarded emails land on the project record.", size:"M"},
 
   /* ---------------- DOWN THE ROAD ---------------- */
+  {s:"future", t:"Offline site-visit mode", d:"A downloadable read-only view of a project you can open on a site visit with no internet.", size:"M"},
   {s:"future", t:"Master checklist templates", d:"Admin-managed master checklists per project type that apply automatically to new projects, with per-project customization.", size:"M"},
   {s:"future", t:"1-Year Warranty module", d:"A post-completion checklist where homeowners log settling items with photos and locations, plus a staff view for tracking them and scheduling the one-year walkthrough.", size:"M"},
   {s:"future", t:"AI project assistant", d:"Ask questions about a project in plain English and get answers from its own data.", size:"M"},
@@ -183,7 +184,7 @@ const CARDS = [
 const ACTIVITY = [
   {date:"Aug 14, 2026", tag:"Shipped", milestone:true,
    title:"Build round four complete",
-   note:"Reviewed George's full portal walkthrough. His interface and workflow feedback is built and headed to the client preview. Four larger capabilities from that review were added to this roadmap: the Extra Work Request document engine, agenda PDF export, master checklist templates, and the 1-Year Warranty module. Also new: every card on this board now has an Ask a question button that sends your question straight to Logan."},
+   note:"Reviewed George's full portal walkthrough. His interface and workflow feedback is built and headed to the client preview. Four larger capabilities from that review were added to this roadmap: the Extra Work Request document engine, agenda PDF export, master checklist templates, and the 1-Year Warranty module. Also new, from what the team asked for on the August 7 call: every card on this board now has a button to ask a question or share an idea, which goes straight to Logan without anyone having to send an email. Offline site-visit mode was added to the roadmap from that same call. Meeting transcript ingestion came up on that call too and is already on the board as Meeting notes to commitments."},
   {date:"Aug 7, 2026", tag:"Shipped", milestone:true,
    title:"Live preview link shared",
    note:"A working preview of the full portal went out to the Bohan team to click through and give feedback. It runs on demo data with no live backend yet, so nothing entered in it is saved and nothing can be broken. Feedback from this preview feeds the Version 1 close-out."},
@@ -311,7 +312,7 @@ const ACTIVITY = [
         if(col.key==='built') html+='<span class="chip shipped">Shipped</span>';
         if(c.size&&SIZE[c.size]) html+='<span class="chip '+SIZE[c.size][0]+'">'+SIZE[c.size][1]+'</span>';
         if(c.date) html+='<span class="chip date">'+esc(c.date)+'</span>';
-        html+='<button type="button" class="ask-btn" aria-expanded="false">+ Ask a question</button>';
+        html+='<button type="button" class="ask-btn" aria-expanded="false">+ Ask a question or share an idea</button>';
         html+='</div><div class="ask-slot"></div></div>';
       });
       div.innerHTML=html; board.appendChild(div);
@@ -338,7 +339,7 @@ const ACTIVITY = [
   tb.addEventListener('click',function(){pick('board')});
   ta.addEventListener('click',function(){pick('activity')});
 
-  /* ---- ask a question, per card ----
+  /* ---- ask a question or share an idea, per card ----
      The only network call this page makes. If the API is unreachable the
      board still works; the form just reports that it could not send. */
   var QUESTION_ENDPOINT='/api/bohan/roadmap-question';
@@ -361,7 +362,7 @@ const ACTIVITY = [
     var slot=card.querySelector('.ask-slot');
     slot.innerHTML=
       '<form class="ask-form" novalidate>'
-      +'<textarea class="ask-q" rows="3" maxlength="2000" placeholder="What would you like to know about this?" aria-label="Your question"></textarea>'
+      +'<textarea class="ask-q" rows="3" maxlength="2000" placeholder="Ask a question or share an idea about this." aria-label="Your question or idea"></textarea>'
       +'<input class="ask-name" type="text" maxlength="120" placeholder="Your name (optional)" aria-label="Your name, optional">'
       +'<input class="ask-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">'
       +'<div class="ask-actions"><button type="submit" class="ask-send">Send</button>'
@@ -398,7 +399,7 @@ const ACTIVITY = [
     /* hidden field only a bot would fill: look successful, send nothing */
     if(hp.value){confirmSent();return;}
 
-    if(!text){msg.textContent='Type your question first.';q.focus();return;}
+    if(!text){msg.textContent='Type your question or idea first.';q.focus();return;}
 
     send.disabled=true; send.textContent='Sending'; msg.textContent='';
     fetch(QUESTION_ENDPOINT,{
