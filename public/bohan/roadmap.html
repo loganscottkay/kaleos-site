@@ -86,6 +86,23 @@
   .col.c-inbuild .card{border-left:3px solid var(--moss)}
   .col.c-future .card{border-style:dashed}
 
+  /* ---------- ask a question (per card) ---------- */
+  .ask-btn{background:none;border:1px solid var(--rule);border-radius:10px;color:var(--slate);font-size:11.5px;font-weight:600;padding:2px 9px;line-height:1.5}
+  .ask-btn:hover{border-color:var(--moss);color:var(--evergreen)}
+  .ask-form{margin-top:10px;border-top:1px solid var(--rule);padding-top:10px}
+  .ask-form textarea,.ask-form input.ask-name{width:100%;border:1px solid var(--rule);border-radius:7px;padding:8px 9px;font:inherit;font-size:13px;background:#fff;color:var(--ink)}
+  .ask-form textarea{resize:vertical;min-height:64px}
+  .ask-form input.ask-name{margin-top:7px}
+  .ask-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  .ask-actions{display:flex;align-items:center;gap:8px;margin-top:8px}
+  .ask-send{border:none;border-radius:7px;background:var(--evergreen);color:#fff;font-size:13px;font-weight:600;padding:7px 14px}
+  .ask-send:hover{background:#0F4023}
+  .ask-send[disabled]{opacity:.6;cursor:default}
+  .ask-cancel{background:none;border:none;color:var(--slate);font-size:13px;padding:7px 2px;text-decoration:underline}
+  .ask-cancel:hover{color:var(--ink)}
+  .ask-msg{font-size:12.5px;margin-top:7px;min-height:16px;color:#9B2C2C}
+  .ask-done{font-size:12.5px;color:var(--evergreen);margin-top:9px;border-top:1px solid var(--rule);padding-top:9px;font-weight:600}
+
   /* ---------- activity ---------- */
   .activity-intro{color:var(--slate);font-size:14px;max-width:640px;margin-bottom:26px}
   .timeline{position:relative;max-width:720px;padding-left:26px}
@@ -289,11 +306,13 @@ const ACTIVITY = [
       var cards=CARDS.filter(function(c){return c.s===col.key;});
       var html='<h2 class="serif">'+esc(col.title)+' <span class="count">'+cards.length+'</span></h2><p class="col-sub">'+esc(col.sub)+'</p>';
       cards.forEach(function(c){
-        html+='<div class="card"><h3>'+esc(c.t)+'</h3><p>'+esc(c.d)+'</p><div class="meta">';
+        html+='<div class="card" data-card-title="'+escAttr(c.t)+'" data-card-col="'+escAttr(col.title)+'">'
+             +'<h3>'+esc(c.t)+'</h3><p>'+esc(c.d)+'</p><div class="meta">';
         if(col.key==='built') html+='<span class="chip shipped">Shipped</span>';
         if(c.size&&SIZE[c.size]) html+='<span class="chip '+SIZE[c.size][0]+'">'+SIZE[c.size][1]+'</span>';
         if(c.date) html+='<span class="chip date">'+esc(c.date)+'</span>';
-        html+='</div></div>';
+        html+='<button type="button" class="ask-btn" aria-expanded="false">+ Ask a question</button>';
+        html+='</div><div class="ask-slot"></div></div>';
       });
       div.innerHTML=html; board.appendChild(div);
     });
@@ -318,6 +337,88 @@ const ACTIVITY = [
   }
   tb.addEventListener('click',function(){pick('board')});
   ta.addEventListener('click',function(){pick('activity')});
+
+  /* ---- ask a question, per card ----
+     The only network call this page makes. If the API is unreachable the
+     board still works; the form just reports that it could not send. */
+  var QUESTION_ENDPOINT='/api/bohan/roadmap-question';
+  var openSlot=null;
+
+  function showAskBtn(slot,shown){
+    var btn=slot.parentNode.querySelector('.ask-btn');
+    if(!btn)return;
+    btn.style.display=shown?'':'none';
+    btn.setAttribute('aria-expanded',shown?'false':'true');
+  }
+  function closeOpen(){
+    if(!openSlot)return;
+    openSlot.innerHTML='';
+    showAskBtn(openSlot,true);
+    openSlot=null;
+  }
+  function openForm(card){
+    closeOpen();
+    var slot=card.querySelector('.ask-slot');
+    slot.innerHTML=
+      '<form class="ask-form" novalidate>'
+      +'<textarea class="ask-q" rows="3" maxlength="2000" placeholder="What would you like to know about this?" aria-label="Your question"></textarea>'
+      +'<input class="ask-name" type="text" maxlength="120" placeholder="Your name (optional)" aria-label="Your name, optional">'
+      +'<input class="ask-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">'
+      +'<div class="ask-actions"><button type="submit" class="ask-send">Send</button>'
+      +'<button type="button" class="ask-cancel">Cancel</button></div>'
+      +'<div class="ask-msg" role="status"></div>'
+      +'</form>';
+    showAskBtn(slot,false);
+    openSlot=slot;
+    slot.querySelector('.ask-q').focus();
+  }
+
+  var boardEl=document.getElementById('board');
+  boardEl.addEventListener('click',function(ev){
+    var t=ev.target;
+    if(t.classList.contains('ask-btn')){openForm(t.closest('.card'));}
+    else if(t.classList.contains('ask-cancel')){closeOpen();}
+  });
+
+  boardEl.addEventListener('submit',function(ev){
+    if(!ev.target.classList||!ev.target.classList.contains('ask-form'))return;
+    ev.preventDefault();
+    var form=ev.target, card=form.closest('.card'), slot=card.querySelector('.ask-slot'),
+        q=form.querySelector('.ask-q'), nm=form.querySelector('.ask-name'),
+        hp=form.querySelector('.ask-hp'), send=form.querySelector('.ask-send'),
+        msg=form.querySelector('.ask-msg');
+    var text=q.value.trim();
+
+    function confirmSent(){
+      slot.innerHTML='<p class="ask-done">Sent to Logan. He will follow up.</p>';
+      showAskBtn(slot,true);
+      openSlot=null;
+    }
+
+    /* hidden field only a bot would fill: look successful, send nothing */
+    if(hp.value){confirmSent();return;}
+
+    if(!text){msg.textContent='Type your question first.';q.focus();return;}
+
+    send.disabled=true; send.textContent='Sending'; msg.textContent='';
+    fetch(QUESTION_ENDPOINT,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        cardTitle:card.getAttribute('data-card-title')||'',
+        cardColumn:card.getAttribute('data-card-col')||'',
+        question:text,
+        name:nm.value.trim(),
+        pageTimestamp:new Date().toISOString()
+      })
+    }).then(function(r){
+      if(!r.ok)throw new Error('status '+r.status);
+      confirmSent();
+    }).catch(function(){
+      send.disabled=false; send.textContent='Send';
+      msg.textContent='That did not send. Try again, or email logan@kaleoshq.com.';
+    });
+  });
 })();
 </script>
 </body>
