@@ -26,7 +26,7 @@ export function ClientPortalDemo() {
       <div className="px-4 pt-4 pb-3 border-b border-white/5">
         <div className="flex items-baseline justify-between mb-2">
           <span className="text-white/85 text-caption font-medium">Riverside office buildout</span>
-          <span className="font-system text-caption text-white/40">Phase 3 of 5</span>
+          <span className="font-system text-caption text-white/60">Phase 3 of 5</span>
         </div>
         <div className="h-1.5 rounded-full bg-white/[0.06] overflow-hidden mb-3">
           <div
@@ -34,7 +34,7 @@ export function ClientPortalDemo() {
             style={{ width: approved ? '72%' : '68%' }}
           />
         </div>
-        <div className="flex gap-4 font-system text-caption text-white/45">
+        <div className="flex gap-4 font-system text-caption text-white/60">
           <span>{approved ? '72%' : '68%'} complete</span>
           <span>24 documents</span>
           <span>3 messages</span>
@@ -44,7 +44,7 @@ export function ClientPortalDemo() {
       {/* Agent draft at the gate */}
       <div className="px-4 py-4 flex-1 flex flex-col">
         <div className="flex items-center justify-between mb-2">
-          <span className="font-system text-caption tracking-wide uppercase text-white/40">
+          <span className="font-system text-caption tracking-wide uppercase text-white/60">
             Status update drafted by agent
           </span>
           <GateStatus
@@ -85,9 +85,9 @@ export function ClientPortalDemo() {
           </div>
         ) : (
           <div className="mt-auto rounded-control bg-white/[0.03] border border-white/[0.07] p-3">
-            <p className="font-system text-caption text-white/40 mb-1">What the client sees</p>
+            <p className="font-system text-caption text-white/60 mb-1">What the client sees</p>
             <p className="text-caption text-white/70 leading-relaxed mb-2">{draft}</p>
-            <p className="font-system text-caption text-white/30">
+            <p className="font-system text-caption text-white/60">
               Posted {publishedAt} · Approved by operator · Audit log updated
             </p>
           </div>

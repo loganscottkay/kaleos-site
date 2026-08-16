@@ -123,6 +123,7 @@
   --color-body-text: #475569;
   --color-muted-text: #556275;
   --color-link: #0F766E;
+  --color-accent-deep: #0B7C72; /* accent surface carrying white body text: 5.07:1 (warden QA round 2, finding 1) */
   --color-pending: #B45309;
   --color-pending-text: #92400E;
   --color-pending-bright: #F59E0B;

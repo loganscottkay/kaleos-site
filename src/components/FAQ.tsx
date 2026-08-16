@@ -46,11 +46,9 @@ export function FAQ() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          faqs.forEach((_, i) => {
-            setTimeout(() => {
-              setVisibleItems((prev) => new Set([...prev, i]))
-            }, i * 100)
-          })
+          // One motion moment per page belongs to the gate; the FAQ reveals
+          // in a single step (warden QA round 2, finding 3).
+          setVisibleItems(new Set(faqs.map((_, i) => i)))
           observer.disconnect()
         }
       },

@@ -57,7 +57,7 @@ export function NavBar() {
                 key={link.href}
                 href={link.href}
                 className={`group/nav relative inline-flex items-center text-body font-medium tracking-wide transition-colors duration-300 ease-in-out py-3 -my-3 ${
-                  isActive ? 'text-navy' : 'text-slate-500 hover:text-navy'
+                  isActive ? 'text-navy' : 'text-muted-text hover:text-navy'
                 }`}
               >
                 {link.label}
@@ -109,7 +109,7 @@ export function NavBar() {
                   pathname === link.href ||
                   (link.href !== '/' && pathname.startsWith(link.href))
                     ? 'text-navy'
-                    : 'text-slate-500 hover:text-navy'
+                    : 'text-muted-text hover:text-navy'
                 }`}
               >
                 {link.label}

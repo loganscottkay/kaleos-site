@@ -115,7 +115,7 @@ export default function AboutPage() {
                     <p className="mt-4 text-navy font-semibold text-center">
                       Logan Kay
                     </p>
-                    <p className="text-slate-500 text-body text-center">
+                    <p className="text-muted-text text-body text-center">
                       Founder &amp; CEO, Kaleos HQ
                     </p>
                     <div className="flex justify-center mt-3">

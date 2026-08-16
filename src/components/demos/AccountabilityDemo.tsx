@@ -36,7 +36,7 @@ export function AccountabilityDemo() {
                 style={{ width: `${(m.done / m.goals) * 100}%` }}
               />
             </div>
-            <span className="font-system text-caption text-white/45 w-12 text-right shrink-0">
+            <span className="font-system text-caption text-white/60 w-12 text-right shrink-0">
               {m.done}/{m.goals} goals
             </span>
             <span className="font-system text-caption text-amber-500/80 w-14 text-right shrink-0">
@@ -44,7 +44,7 @@ export function AccountabilityDemo() {
             </span>
           </div>
         ))}
-        <div className="flex justify-between pt-1 font-system text-caption text-white/40">
+        <div className="flex justify-between pt-1 font-system text-caption text-white/60">
           <span>Weekly targets: 87%</span>
           <span>Check-ins logged: 34</span>
         </div>
@@ -53,7 +53,7 @@ export function AccountabilityDemo() {
       {/* Agent weekly summary at the gate */}
       <div className="px-4 py-4 flex-1 flex flex-col">
         <div className="flex items-center justify-between mb-2">
-          <span className="font-system text-caption tracking-wide uppercase text-white/40">
+          <span className="font-system text-caption tracking-wide uppercase text-white/60">
             Weekly summary drafted by agent
           </span>
           <GateStatus approved={approved} approvedLabel="Sent to team" />
@@ -74,7 +74,7 @@ export function AccountabilityDemo() {
             <DemoButton onClick={approve}>Approve & send to team</DemoButton>
           </div>
         ) : (
-          <p className="mt-auto font-system text-caption text-white/30">
+          <p className="mt-auto font-system text-caption text-white/60">
             Sent {sentAt} · 3 recipients · Approved by manager · Audit log updated
           </p>
         )}

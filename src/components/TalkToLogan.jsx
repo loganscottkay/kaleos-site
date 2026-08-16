@@ -14,7 +14,7 @@ export default function TalkToLogan() {
   const turns = useRef(0);
   const sessionId = useRef(crypto.randomUUID());
 
-  useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);
+  useEffect(() => { endRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); }, [messages]);
   useEffect(() => { if (isOpen && inputRef.current) inputRef.current.focus(); }, [isOpen]);
 
   const send = async () => {
@@ -104,7 +104,7 @@ export default function TalkToLogan() {
                 className={`max-w-[85%] py-3 px-4 text-body leading-relaxed ${
                   m.role === "assistant"
                     ? "ltl-bubble-assistant bg-white/6 border border-white/4 text-white/88 self-start"
-                    : "ltl-bubble-user bg-accent text-white self-end"
+                    : "ltl-bubble-user bg-accent-deep text-white self-end"
                 }`}
                 style={{ animation: "ltlFadeUp .25s ease" }}
               >
@@ -162,7 +162,7 @@ export default function TalkToLogan() {
               disabled={!input.trim() || loading}
               aria-label="Send message"
               className={`w-11 h-11 rounded-control border-none flex items-center justify-center shrink-0 transition-all duration-200 ${
-                input.trim() ? "bg-accent text-white cursor-pointer" : "bg-white/6 text-white/20 cursor-default"
+                input.trim() ? "bg-accent-deep text-white cursor-pointer" : "bg-white/6 text-white/20 cursor-default"
               }`}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

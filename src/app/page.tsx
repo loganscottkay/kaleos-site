@@ -134,7 +134,7 @@ export default function Home() {
             >
               Book a Discovery Call
             </a>
-            <p className="mt-8 text-caption text-slate-500 tracking-wide">
+            <p className="mt-8 text-caption text-muted-text tracking-wide">
               Logan Kay &middot; Founder &amp; CEO, Kaleos HQ &middot; Agentic AI
               systems, built and deployed
             </p>

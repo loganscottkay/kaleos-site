@@ -24,7 +24,7 @@ export function InProduction() {
         <AnimateIn>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
             <div className="md:col-span-6">
-              <p className="font-system text-accent text-caption tracking-widest mb-3 uppercase">
+              <p className="font-system text-teal-bright text-caption tracking-widest mb-3 uppercase">
                 In production
               </p>
               <h2 className="text-h2 font-medium text-ink">
@@ -46,7 +46,7 @@ export function InProduction() {
           {systems.map((item, i) => (
             <AnimateIn key={item.label} delay={i * 100} className="h-full">
               <GlassCard light hover className="p-8 h-full">
-                <p className="font-system text-accent text-caption tracking-widest uppercase mb-3">
+                <p className="font-system text-teal-bright text-caption tracking-widest uppercase mb-3">
                   {item.label}
                 </p>
                 <p className="text-slate-600 text-body">
@@ -58,7 +58,7 @@ export function InProduction() {
         </div>
 
         <AnimateIn delay={300}>
-          <p className="text-slate-500 text-center text-caption mt-12 max-w-2xl mx-auto">
+          <p className="text-muted-text text-center text-caption mt-12 max-w-2xl mx-auto">
             The same discipline behind AI initiatives at Harvard Business
             School, applied to businesses like yours.
           </p>

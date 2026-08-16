@@ -92,13 +92,13 @@ export default function BlogPage() {
                           {featured.readTime}
                         </span>
                       </div>
-                      <h2 className="text-h2 font-semibold text-white mb-4 group-hover:text-accent transition-colors duration-300">
+                      <h2 className="text-h2 font-semibold text-white mb-4 group-hover:text-teal-bright transition-colors duration-300">
                         {featured.title}
                       </h2>
                       <p className="text-white/60 leading-relaxed max-w-2xl line-clamp-2">
                         {featured.description}
                       </p>
-                      <span className="inline-block mt-6 text-accent text-body font-medium group-hover:underline">
+                      <span className="inline-block mt-6 text-teal-bright text-body font-medium group-hover:underline">
                         Read post &rarr;
                       </span>
                     </div>
@@ -125,7 +125,7 @@ export default function BlogPage() {
                           {formatDate(post.date)}
                         </span>
                       </div>
-                      <h3 className="text-h4 font-semibold text-white mb-2 group-hover:text-accent transition-colors duration-300">
+                      <h3 className="text-h4 font-semibold text-white mb-2 group-hover:text-teal-bright transition-colors duration-300">
                         {post.title}
                       </h3>
                       <p className="text-white/50 text-body line-clamp-1 flex-1">
@@ -135,7 +135,7 @@ export default function BlogPage() {
                         <span className="text-caption text-white/30">
                           {post.readTime}
                         </span>
-                        <span className="text-caption text-accent font-medium group-hover:underline">
+                        <span className="text-caption text-teal-bright font-medium group-hover:underline">
                           Read &rarr;
                         </span>
                       </div>

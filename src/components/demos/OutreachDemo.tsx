@@ -89,20 +89,20 @@ export function OutreachDemo() {
         <div className="flex items-center justify-between mb-2">
           <div>
             <span className="text-white/85 text-caption font-medium">{lead.name}</span>
-            <span className="text-white/40 text-caption ml-2">{lead.role}</span>
+            <span className="text-white/60 text-caption ml-2">{lead.role}</span>
           </div>
           <span className="font-system text-body font-semibold text-accent tabular-nums">
             {displayScore}
-            <span className="text-white/25 text-caption font-normal">/100</span>
+            <span className="text-white/60 text-caption font-normal">/100</span>
           </span>
         </div>
-        <p className="font-system text-caption text-white/45">{lead.fit}</p>
+        <p className="font-system text-caption text-white/60">{lead.fit}</p>
       </div>
 
       {/* Draft at the gate */}
       <div className="px-4 py-4 flex-1 flex flex-col">
         <div className="flex items-center justify-between mb-2">
-          <span className="font-system text-caption tracking-wide uppercase text-white/40">
+          <span className="font-system text-caption tracking-wide uppercase text-white/60">
             Personalized draft
           </span>
           <GateStatus
@@ -125,7 +125,7 @@ export function OutreachDemo() {
               decided === 'approved'
                 ? 'bg-accent/[0.07] border-accent/25 text-white/75'
                 : decided === 'rejected'
-                  ? 'bg-white/[0.02] border-white/[0.05] text-white/30 line-through'
+                  ? 'bg-white/[0.02] border-white/[0.05] text-white/60 line-through'
                   : 'bg-white/[0.03] border-white/[0.07] text-white/60'
             }`}
           >
@@ -151,15 +151,15 @@ export function OutreachDemo() {
 
         {/* Audit trail */}
         <div className="mt-auto pt-3">
-          <p className="font-system text-caption text-white/30 mb-1">Audit log</p>
+          <p className="font-system text-caption text-white/60 mb-1">Audit log</p>
           {log.length === 0 ? (
-            <p className="font-system text-caption text-white/20">
+            <p className="font-system text-caption text-white/60">
               12 sends approved this week · 2 rejected · every action logged
             </p>
           ) : (
             <ul className="space-y-1">
               {log.map((entry, i) => (
-                <li key={i} className="font-system text-caption text-white/35">
+                <li key={i} className="font-system text-caption text-white/60">
                   {entry.time} · {entry.lead} · {entry.action} by operator
                 </li>
               ))}

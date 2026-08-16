@@ -186,7 +186,7 @@ export function QuickAssessment() {
               <div className="relative z-10 mb-12">
                 <div className="h-1 w-full rounded-full bg-white/10 overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-teal-bright transition-all duration-700 ease-out"
+                    className="h-full rounded-full bg-teal-bright transition-all duration-200 ease-out"
                     style={{ width: `${progress}%` }}
                   />
                 </div>
@@ -194,7 +194,7 @@ export function QuickAssessment() {
                   {[1, 2, 3].map((n) => (
                     <span
                       key={n}
-                      className={`font-system text-caption font-medium transition-colors duration-300 ${
+                      className={`font-system text-caption font-medium transition-colors duration-200 ${
                         step + 1 >= n ? 'text-teal-bright/80' : 'text-white/60'
                       }`}
                     >
@@ -274,7 +274,7 @@ export function QuickAssessment() {
                   <div
                     className="text-center"
                     style={{
-                      animation: 'quizResultIn 0.5s ease-out both',
+                      
                     }}
                   >
                     <p className="font-system text-teal-bright text-caption font-semibold tracking-widest uppercase mb-6">
