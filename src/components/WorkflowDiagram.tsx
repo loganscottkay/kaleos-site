@@ -100,7 +100,7 @@ function GlassBox({
       className={`card-dark relative bg-white/6 ${className}`}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(20px)',
+        transform: visible ? 'translateY(0)' : 'translateY(var(--space-24))',
         transition: `opacity 0.6s ease-out ${delay}ms, transform 0.6s ease-out ${delay}ms`,
       }}
     >

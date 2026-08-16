@@ -407,6 +407,47 @@ h1, h2, h3 {
 .hero-rise-2 { animation-delay: 300ms; }
 .hero-rise-3 { animation-delay: 450ms; }
 
+/* ── Talk to Logan chat widget ── */
+
+@keyframes ltlPulse {
+  0%, 100% { box-shadow: 0 8px 32px color-mix(in srgb, var(--teal) 30%, transparent); }
+  50% { box-shadow: 0 8px 48px color-mix(in srgb, var(--teal) 55%, transparent); }
+}
+@keyframes ltlBounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-4px); }
+}
+@keyframes ltlFadeUp {
+  from { opacity: 0; transform: translateY(var(--space-8)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.ltl-launcher {
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--teal) 30%, transparent),
+    0 2px 8px color-mix(in srgb, var(--ink) 20%, transparent);
+}
+.ltl-panel {
+  width: min(27.5rem, calc(100vw - var(--space-48)));
+  height: min(42.5rem, calc(100vh - var(--space-48)));
+  box-shadow: 0 24px 80px color-mix(in srgb, var(--ink) 50%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--teal) 10%, transparent);
+}
+.ltl-bubble-assistant {
+  border-radius: var(--radius-card) var(--radius-card) var(--radius-card) 4px;
+}
+.ltl-bubble-user {
+  border-radius: var(--radius-card) var(--radius-card) 4px var(--radius-card);
+}
+.ltl-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.ltl-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+.ltl-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 /* ── Reduced motion: decorative animation off, content visible ── */
 
 @media (prefers-reduced-motion: reduce) {
@@ -439,7 +480,10 @@ h1, h2, h3 {
   [style*="flowDotH"],
   [style*="flowDotVertical"],
   [style*="systemGlow"],
-  [style*="corePulse"] {
+  [style*="corePulse"],
+  [style*="ltlPulse"],
+  [style*="ltlBounce"],
+  [style*="ltlFadeUp"] {
     animation: none !important;
   }
 }
