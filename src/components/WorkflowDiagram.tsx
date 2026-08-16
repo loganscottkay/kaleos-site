@@ -194,7 +194,7 @@ export function WorkflowDiagram() {
       {/* ===== MOBILE ===== */}
       <div className="flex md:hidden flex-col items-center gap-0">
         {/* Your Business */}
-        <GlassBox className="p-6 w-65">
+        <GlassBox className="p-6 w-65 max-w-full">
           <p className="text-white font-semibold text-body mb-3 tracking-tight">Your Business</p>
           <div className="flex flex-wrap gap-x-4 gap-y-2">
             <SmallItem icon={<MailIcon />} label="Emails" />
@@ -207,7 +207,7 @@ export function WorkflowDiagram() {
         <ConnectionLine vertical />
 
         {/* Kaleos HQ System */}
-        <GlassBox glow className="p-6 w-65">
+        <GlassBox glow className="p-6 w-65 max-w-full">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-2 h-2 rounded-full bg-accent animate-pulse-slow" />
             <p className="text-white font-semibold text-body tracking-tight">Kaleos HQ System</p>
@@ -222,7 +222,7 @@ export function WorkflowDiagram() {
         <ConnectionLine vertical />
 
         {/* Output */}
-        <GlassBox className="p-6 w-65">
+        <GlassBox className="p-6 w-65 max-w-full">
           <p className="text-white font-semibold text-body mb-3 tracking-tight">Output</p>
           <div className="flex flex-wrap gap-x-4 gap-y-2">
             <SmallItem icon={<PaperPlaneIcon />} label="Proposals sent" />
