@@ -70,3 +70,54 @@ npm run build passes; npm run lint 0 errors (3 pre-existing
 no-img-element warnings, untouched); npx tsc --noEmit clean.
 
 design-excellence applied: 01-tokens-foundation, sources read: taste.md plus 4 inspiration note(s)
+
+## 02-component-craft
+
+Components touched: GlassCard, NavBar, Footer, GateRule, GateFlow,
+GateAction (GateChip, GateStatus, DemoButton, DemoShell), AuditForm,
+FAQ, QuickAssessment, BuiltToDemo, InProduction, StrategyGraph,
+WorkflowDiagram, TalkToLogan, demos (ClientPortal, Accountability,
+Outreach), plus the call sites in page.tsx, audit, about, and blog
+pages so every button, card, and input instance sitewide runs through
+the same three systems.
+
+Signature decision: the amber-to-teal state change now runs through the
+entire gate grammar with one voice; the hero pulse itself travels amber
+(pending) to the gate, waits for approval, and leaves teal (approved),
+while every GateChip and GateStatus in the demos speaks the same
+pending-bright amber to teal-bright grammar on dark grounds, so the
+one identity moment reads identically from the hero to the operator
+demos.
+
+Detail: exactly one button system (.btn with primary and ghost-dark
+variants, 40px hit floor, 6px radius, mono microcopy on operator
+buttons), one card system (.card / .card-dark, 10px radius, slate
+hairline, near-shadowless on paper, white-at-opacity on navy, no
+glassmorphism or glow shadows anywhere), one input system (.input-dark,
+6px radius, no focus-ring suppression). The demo cards alone carry
+--shadow-demo-card. Grid asymmetry: home, InProduction, BuiltToDemo,
+and QuickAssessment headers moved from centered stacks to
+lead-and-support twelve-column splits with the gate rule left-aligned
+under the lead. JetBrains Mono routed onto existing metadata, system
+labels, timestamps, form labels, step markers, footer metadata, and
+demo button microcopy; no new copy added. The chatbot launcher became a
+real keyboard-focusable button on brand navys with the live dot in
+teal-bright. Two recorded exceptions: the demo reject affordance and
+the StrategyGraph decline series keep red (no brand token exists for
+danger or decline; both are pre-existing meanings, unchanged).
+
+New dark-ground token pairs verified (WCAG math by script):
+| token on ground | ratio | bar | verdict |
+| --- | --- | --- | --- |
+| pending-bright #F59E0B on navy-950 | 8.45:1 | 4.5 | PASS |
+| pending-bright #F59E0B on navy-800 | 6.72:1 | 4.5 | PASS |
+| pending-bright #F59E0B on ink | 8.46:1 | 4.5 | PASS |
+
+npm run build passes; npm run lint 0 errors (3 pre-existing
+no-img-element warnings); npx tsc --noEmit clean. Smoke test on the
+built server: all four routes 200 and the system classes render in the
+served HTML. Content-frozen check: the diff moves copy only for
+re-indentation, zero wording or asset changes; em dashes scrubbed from
+legacy comments.
+
+design-excellence applied: 02-component-craft, sources read: taste.md plus 4 inspiration note(s)
