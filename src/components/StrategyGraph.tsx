@@ -34,7 +34,7 @@ const config = {
     borderColor: 'border-red-500/[0.25]',
     glowBorder: 'rgba(239, 68, 68, 0.15)',
     labelColor: '#f87171',
-    cardBg: 'rgba(50, 15, 15, 0.65)',
+    cardBg: 'rgba(255, 255, 255, 0.045)',
     linePath: 'M 25,18 C 50,20 70,30 95,55 C 120,80 145,105 165,118 C 175,124 182,127 185,128',
     fillPath:
       'M 25,18 C 50,20 70,30 95,55 C 120,80 145,105 165,118 C 175,124 182,127 185,128 L 185,140 L 25,140 Z',
@@ -49,15 +49,15 @@ const config = {
   growth: {
     header: 'AI With Kaleos HQ',
     subtitle: 'Strategy first. Compounding returns.',
-    headerColor: 'text-emerald-400/90',
-    lineColor: '#10b981',
-    glowColor: 'rgba(16, 185, 129, 0.45)',
+    headerColor: 'text-teal-bright/90',
+    lineColor: '#0D9488',
+    glowColor: 'rgba(13, 148, 136, 0.45)',
     gradientId: 'growthFill',
-    gradientColor: '#10b981',
-    borderColor: 'border-emerald-500/[0.25]',
-    glowBorder: 'rgba(16, 185, 129, 0.15)',
-    labelColor: '#6ee7b7',
-    cardBg: 'rgba(10, 35, 30, 0.65)',
+    gradientColor: '#0D9488',
+    borderColor: 'border-accent/25',
+    glowBorder: 'rgba(13, 148, 136, 0.15)',
+    labelColor: '#2DD4BF',
+    cardBg: 'rgba(255, 255, 255, 0.045)',
     linePath: 'M 25,128 C 50,127 75,124 100,112 C 125,95 145,65 160,40 C 172,22 180,15 185,12',
     fillPath:
       'M 25,128 C 50,127 75,124 100,112 C 125,95 145,65 160,40 C 172,22 180,15 185,12 L 185,140 L 25,140 Z',
@@ -128,22 +128,10 @@ export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
   return (
     <div ref={containerRef} className="h-full">
       <div className="relative h-full">
-        {/* Pulsing glow border */}
-        <div
-          className="absolute -inset-px rounded-2xl"
-          style={{
-            background: `linear-gradient(145deg, ${c.lineColor}35, transparent 40%, transparent 60%, ${c.lineColor}25)`,
-            animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          }}
-        />
-
         {/* Card */}
         <div
-          className={`relative rounded-2xl backdrop-blur-2xl border ${c.borderColor} overflow-hidden h-full flex flex-col`}
-          style={{
-            backgroundColor: c.cardBg,
-            boxShadow: `0 0 40px ${c.glowBorder}, inset 0 1px 0 rgba(255,255,255,0.07)`,
-          }}
+          className={`relative rounded-card border ${c.borderColor} overflow-hidden h-full flex flex-col`}
+          style={{ backgroundColor: c.cardBg }}
         >
           {/* Top highlight */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.07] via-transparent to-transparent pointer-events-none" />

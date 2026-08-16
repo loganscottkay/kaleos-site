@@ -73,10 +73,10 @@ export function FAQ() {
         return (
           <div
             key={i}
-            className={`rounded-2xl backdrop-blur-xl border overflow-hidden transition-all duration-500 ${
+            className={`card-dark overflow-hidden transition-all duration-500 ${
               isOpen
-                ? 'bg-white/[0.08] border-accent/30 shadow-[0_0_20px_rgba(13,148,136,0.15)]'
-                : 'bg-white/[0.05] border-white/[0.1] shadow-lg shadow-black/10 hover:border-white/[0.2]'
+                ? 'bg-white/[0.08] border-accent/30'
+                : 'hover:border-white/[0.2]'
             } ${
               isVisible
                 ? 'opacity-100 translate-y-0'

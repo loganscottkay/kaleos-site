@@ -97,7 +97,7 @@ function GlassBox({
 }) {
   return (
     <div
-      className={`relative rounded-2xl backdrop-blur-2xl border border-white/[0.12] bg-white/[0.06] shadow-lg shadow-black/10 ${className}`}
+      className={`card-dark relative bg-white/[0.06] ${className}`}
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(20px)',
@@ -105,11 +105,11 @@ function GlassBox({
       }}
     >
       {/* Inner highlight */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/[0.06] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 rounded-card bg-gradient-to-b from-white/[0.06] via-transparent to-transparent pointer-events-none" />
       {/* Optional pulsing glow border */}
       {glow && (
         <div
-          className="absolute -inset-px rounded-2xl pointer-events-none"
+          className="absolute -inset-px rounded-card pointer-events-none"
           style={{
             boxShadow: '0 0 24px rgba(13,148,136,0.3), inset 0 0 24px rgba(13,148,136,0.05)',
             animation: 'systemGlow 3s ease-in-out infinite',
@@ -150,9 +150,9 @@ function ConnectionLine({
           }}
         />
         {/* Arrow */}
-        <svg className="absolute -bottom-1" width="10" height="8" viewBox="0 0 10 8"
+        <svg className="absolute -bottom-1 text-accent" width="10" height="8" viewBox="0 0 10 8"
           style={{ opacity: visible ? 0.6 : 0, transition: `opacity 0.3s ease-out ${delay + 300}ms` }}>
-          <path d="M1 1L5 6L9 1" stroke="#0d9488" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M1 1L5 6L9 1" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
     )
@@ -179,9 +179,9 @@ function ConnectionLine({
         />
       ))}
       {/* Arrow */}
-      <svg className="absolute -right-1 top-1/2 -translate-y-1/2" width="8" height="10" viewBox="0 0 8 10"
+      <svg className="absolute -right-1 top-1/2 -translate-y-1/2 text-accent" width="8" height="10" viewBox="0 0 8 10"
         style={{ opacity: visible ? 0.6 : 0, transition: `opacity 0.3s ease-out ${delay + 300}ms` }}>
-        <path d="M1 1L6 5L1 9" stroke="#0d9488" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M1 1L6 5L1 9" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </div>
   )
@@ -201,7 +201,7 @@ function InternalNode({
 }) {
   return (
     <div
-      className="flex items-center gap-2.5 rounded-lg bg-white/[0.06] border border-white/[0.1] px-3 py-2"
+      className="flex items-center gap-2.5 rounded-control bg-white/[0.06] border border-white/[0.1] px-3 py-2"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'scale(1)' : 'scale(0.9)',

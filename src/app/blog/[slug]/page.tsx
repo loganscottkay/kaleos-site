@@ -83,7 +83,7 @@ export default async function BlogPostPage({
             <div className="mt-5 flex items-center justify-center gap-3 text-sm text-white/40">
               {post.category && (
                 <>
-                  <span className="px-3 py-1 text-xs font-semibold rounded-full bg-accent/15 text-accent">
+                  <span className="px-3 py-1 text-xs font-semibold rounded-control bg-accent/15 text-teal-bright">
                     {post.category}
                   </span>
                   <span className="text-white/20">·</span>
@@ -102,14 +102,7 @@ export default async function BlogPostPage({
 
         <div className="relative z-10 max-w-[720px] mx-auto px-4">
           <AnimateIn>
-            <div
-              className="relative rounded-2xl backdrop-blur-2xl border border-white/[0.12] overflow-hidden"
-              style={{
-                backgroundColor: 'rgba(255,255,255,0.05)',
-                boxShadow:
-                  '0 0 40px rgba(13,148,136,0.06), inset 0 1px 0 rgba(255,255,255,0.07)',
-              }}
-            >
+            <div className="card-dark relative bg-white/[0.05] overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-white/[0.05] via-transparent to-transparent pointer-events-none" />
               <div className="relative p-8 sm:p-12">
                 <article
@@ -127,7 +120,7 @@ export default async function BlogPostPage({
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-3 py-1 text-xs font-medium rounded-full bg-accent/10 text-accent"
+                    className="px-3 py-1 text-xs font-medium rounded-control bg-accent/10 text-teal-bright"
                   >
                     {tag}
                   </span>

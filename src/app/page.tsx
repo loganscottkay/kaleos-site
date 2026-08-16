@@ -259,7 +259,7 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
             {trustBadges.map((badge, i) => (
               <AnimateIn key={i} delay={i * 100}>
-                <div className="flex items-center justify-center gap-3 px-5 py-5 rounded-xl bg-white/[0.045] border border-white/[0.1] transition-colors duration-300 hover:border-accent/40">
+                <div className="card-dark card-hover flex items-center justify-center gap-3 px-5 py-5">
                   <span className="text-accent">{badge.icon}</span>
                   <span className="text-white/80 text-sm font-medium tracking-wide">
                     {badge.label}

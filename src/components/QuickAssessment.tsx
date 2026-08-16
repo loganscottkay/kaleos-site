@@ -180,30 +180,23 @@ export function QuickAssessment() {
           }}
         >
           <div className="relative">
-            <div className="relative bg-white/[0.045] border border-white/[0.1] rounded-xl p-10 sm:p-14 overflow-hidden min-h-[340px]">
+            <div className="card-dark relative p-10 sm:p-14 overflow-hidden min-h-[340px]">
 
               {/* Progress bar */}
               <div className="relative z-10 mb-10">
                 <div className="h-1 w-full rounded-full bg-white/10 overflow-hidden">
                   <div
-                    className="h-full rounded-full transition-all duration-700 ease-out"
-                    style={{
-                      width: `${progress}%`,
-                      background: 'linear-gradient(90deg, #0d9488, #2dd4bf)',
-                    }}
+                    className="h-full rounded-full bg-teal-bright transition-all duration-700 ease-out"
+                    style={{ width: `${progress}%` }}
                   />
                 </div>
                 <div className="flex justify-between mt-2">
                   {[1, 2, 3].map((n) => (
                     <span
                       key={n}
-                      className="text-xs font-medium transition-colors duration-300"
-                      style={{
-                        color:
-                          step + 1 >= n
-                            ? 'rgba(45,212,191,0.8)'
-                            : 'rgba(255,255,255,0.25)',
-                      }}
+                      className={`font-system text-xs font-medium transition-colors duration-300 ${
+                        step + 1 >= n ? 'text-teal-bright/80' : 'text-white/25'
+                      }`}
                     >
                       Q{n}
                     </span>
@@ -246,22 +239,11 @@ export function QuickAssessment() {
                                 : handleSingleSelect(opt.label)
                             }
                             disabled={transitioning}
-                            className="relative px-6 py-3.5 rounded-full border text-sm sm:text-base font-medium transition-all duration-200 cursor-pointer min-w-[280px] text-center"
-                            style={{
-                              background: isSelected
-                                ? 'rgba(13,148,136,0.25)'
-                                : 'rgba(255,255,255,0.08)',
-                              borderColor: isSelected
-                                ? 'rgb(45,212,191)'
-                                : 'rgba(255,255,255,0.18)',
-                              color: isSelected ? 'rgb(45,212,191)' : 'white',
-                              boxShadow: isSelected
-                                ? '0 0 16px rgba(13,148,136,0.35)'
-                                : 'none',
-                              transform: isSelected
-                                ? 'scale(1.04)'
-                                : 'scale(1)',
-                            }}
+                            className={`btn relative px-6 py-3.5 border text-sm sm:text-base min-w-[280px] text-center ${
+                              isSelected
+                                ? 'bg-accent/25 border-teal-bright text-teal-bright'
+                                : 'bg-white/[0.08] border-white/[0.18] text-white hover:border-white/[0.35]'
+                            }`}
                           >
                             {opt.label}
                             {isSelected && currentQ.multi && (
@@ -278,25 +260,7 @@ export function QuickAssessment() {
                         <button
                           onClick={handleMultiConfirm}
                           disabled={multiSelected.size === 0 || transitioning}
-                          className="px-8 py-3 rounded-xl text-sm font-medium transition-all duration-300"
-                          style={{
-                            background:
-                              multiSelected.size > 0
-                                ? 'linear-gradient(135deg, #0d9488, #0f766e)'
-                                : 'rgba(255,255,255,0.06)',
-                            color:
-                              multiSelected.size > 0
-                                ? 'white'
-                                : 'rgba(255,255,255,0.3)',
-                            cursor:
-                              multiSelected.size > 0
-                                ? 'pointer'
-                                : 'not-allowed',
-                            boxShadow:
-                              multiSelected.size > 0
-                                ? '0 0 20px rgba(13,148,136,0.3)'
-                                : 'none',
-                          }}
+                          className="btn btn-primary px-8 text-sm"
                         >
                           Continue →
                         </button>
@@ -313,7 +277,7 @@ export function QuickAssessment() {
                       animation: 'quizResultIn 0.5s ease-out both',
                     }}
                   >
-                    <p className="text-teal-400 text-xs font-semibold tracking-widest uppercase mb-6">
+                    <p className="font-system text-teal-bright text-xs font-semibold tracking-widest uppercase mb-6">
                       Personalized for you
                     </p>
 
@@ -322,12 +286,7 @@ export function QuickAssessment() {
                       {[...answers[0], ...answers[1], ...answers[2]].map((tag) => (
                         <span
                           key={tag}
-                          className="px-3 py-1.5 rounded-full text-xs font-medium"
-                          style={{
-                            background: 'rgba(13,148,136,0.15)',
-                            border: '1px solid rgba(45,212,191,0.3)',
-                            color: 'rgb(45,212,191)',
-                          }}
+                          className="px-3 py-1.5 rounded-control text-xs font-medium bg-accent/15 border border-teal-bright/30 text-teal-bright"
                         >
                           {tag}
                         </span>
@@ -346,18 +305,13 @@ export function QuickAssessment() {
                         href={`https://calendly.com/logan-kaleoshq/30min?utm_source=kaleoshq&utm_medium=quiz&utm_content=${result.key}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl font-medium transition-all duration-300 shadow-lg hover:scale-[1.03] active:scale-[0.97]"
-                        style={{
-                          background: 'linear-gradient(135deg, #0d9488, #0f766e)',
-                          color: 'white',
-                          boxShadow: '0 4px 20px rgba(13,148,136,0.35)',
-                        }}
+                        className="btn btn-primary px-8 py-3.5"
                       >
                         Book a Discovery Call
                       </a>
                       <a
                         href="#methodology"
-                        className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl border border-white/20 text-white/80 font-medium transition-all duration-300 hover:bg-white/[0.08] hover:border-white/30 hover:scale-[1.03] active:scale-[0.97]"
+                        className="btn btn-ghost-dark px-8 py-3.5"
                       >
                         See Our Framework
                       </a>

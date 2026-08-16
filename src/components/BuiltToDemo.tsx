@@ -12,7 +12,7 @@ const DEMO_MIN_H = 420
 function DemoPlaceholder() {
   return (
     <div
-      className="rounded-lg bg-[#0B1626] border border-white/[0.06] flex-1"
+      className="rounded-card bg-navy-950 border border-white/[0.06] flex-1"
       style={{ minHeight: DEMO_MIN_H }}
     />
   )
@@ -96,7 +96,7 @@ export function BuiltToDemo() {
               delay={i * 100}
               className={`h-full ${i === 2 ? 'md:col-span-2 lg:col-span-1 md:max-w-[calc(50%-0.75rem)] md:mx-auto md:w-full lg:max-w-none' : ''}`}
             >
-              <div className="rounded-xl p-5 bg-white/[0.045] border border-white/[0.1] transition-colors duration-300 hover:border-accent/30 flex flex-col h-full">
+              <div className="card-dark card-hover shadow-demo-card p-5 flex flex-col h-full">
                 <h3 className="font-system text-[11px] font-semibold text-accent mb-4 tracking-widest uppercase">
                   {demo.title}
                 </h3>
