@@ -68,7 +68,7 @@ export default function AboutPage() {
 
             {/* Right Graph: The Growth */}
             <div className="order-2 xl:order-3">
-              <StrategyGraph variant="growth" delay={500} />
+              <StrategyGraph variant="growth" />
             </div>
 
             {/* Bio + Photo (center content) */}

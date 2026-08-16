@@ -1,26 +1,6 @@
-'use client'
-
-import { useRef, useEffect, useState } from 'react'
-
 interface StrategyGraphProps {
   variant: 'decline' | 'growth'
-  delay?: number
 }
-
-const particles = [
-  { x: 30, y: 120, dx: 2, dur: 5.2 },
-  { x: 65, y: 105, dx: -1.5, dur: 4.6 },
-  { x: 95, y: 130, dx: 1, dur: 5.8 },
-  { x: 125, y: 95, dx: -2, dur: 4.3 },
-  { x: 160, y: 115, dx: 1.5, dur: 5.5 },
-  { x: 45, y: 85, dx: -1, dur: 6.1 },
-  { x: 110, y: 75, dx: 2, dur: 4.8 },
-  { x: 145, y: 135, dx: -1.5, dur: 5.0 },
-  { x: 75, y: 110, dx: 1, dur: 5.4 },
-  { x: 175, y: 100, dx: -2, dur: 4.5 },
-  { x: 50, y: 125, dx: 1.5, dur: 5.9 },
-  { x: 135, y: 90, dx: -1, dur: 4.7 },
-]
 
 const config = {
   decline: {
@@ -32,18 +12,17 @@ const config = {
     gradientId: 'declineFill',
     gradientColor: 'var(--decline)',
     borderColor: 'border-decline/25',
-    glowBorder: 'color-mix(in srgb, var(--decline) 15%, transparent)',
     labelColor: 'var(--decline-bright)',
     cardBg: 'rgba(255, 255, 255, 0.045)',
     linePath: 'M 25,18 C 50,20 70,30 95,55 C 120,80 145,105 165,118 C 175,124 182,127 185,128',
     fillPath:
       'M 25,18 C 50,20 70,30 95,55 C 120,80 145,105 165,118 C 175,124 182,127 185,128 L 185,140 L 25,140 Z',
     dataPoints: [
-      { cx: 25, cy: 18, pct: 0 },
-      { cx: 58, cy: 25, pct: 0.17 },
-      { cx: 95, cy: 55, pct: 0.42 },
-      { cx: 148, cy: 108, pct: 0.75 },
-      { cx: 185, cy: 128, pct: 1.0 },
+      { cx: 25, cy: 18 },
+      { cx: 58, cy: 25 },
+      { cx: 95, cy: 55 },
+      { cx: 148, cy: 108 },
+      { cx: 185, cy: 128 },
     ],
   },
   growth: {
@@ -55,18 +34,17 @@ const config = {
     gradientId: 'growthFill',
     gradientColor: 'var(--teal)',
     borderColor: 'border-accent/25',
-    glowBorder: 'color-mix(in srgb, var(--teal) 15%, transparent)',
     labelColor: 'var(--teal-bright)',
     cardBg: 'rgba(255, 255, 255, 0.045)',
     linePath: 'M 25,128 C 50,127 75,124 100,112 C 125,95 145,65 160,40 C 172,22 180,15 185,12',
     fillPath:
       'M 25,128 C 50,127 75,124 100,112 C 125,95 145,65 160,40 C 172,22 180,15 185,12 L 185,140 L 25,140 Z',
     dataPoints: [
-      { cx: 25, cy: 128, pct: 0 },
-      { cx: 62, cy: 125, pct: 0.18 },
-      { cx: 100, cy: 112, pct: 0.42 },
-      { cx: 150, cy: 52, pct: 0.78 },
-      { cx: 185, cy: 12, pct: 1.0 },
+      { cx: 25, cy: 128 },
+      { cx: 62, cy: 125 },
+      { cx: 100, cy: 112 },
+      { cx: 150, cy: 52 },
+      { cx: 185, cy: 12 },
     ],
   },
 }
@@ -75,58 +53,14 @@ const CHART_LEFT = 25
 const CHART_RIGHT = 185
 const CHART_TOP = 8
 const CHART_BOTTOM = 140
-const DRAW_DURATION = 2500
 
-export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
+export function StrategyGraph({ variant }: StrategyGraphProps) {
   const c = config[variant]
-  const pathRef = useRef<SVGPathElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
-  const [revealedDots, setRevealedDots] = useState<Set<number>>(new Set())
-  const [pathLength, setPathLength] = useState(500)
-
-  useEffect(() => {
-    if (pathRef.current) {
-      setPathLength(pathRef.current.getTotalLength())
-    }
-  }, [])
-
-  useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setIsVisible(true), delay)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.15 },
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [delay])
-
-  useEffect(() => {
-    if (!isVisible) return
-
-    const timers = c.dataPoints.map((p, i) =>
-      setTimeout(
-        () => setRevealedDots((prev) => new Set([...prev, i])),
-        p.pct * DRAW_DURATION,
-      ),
-    )
-
-    return () => timers.forEach(clearTimeout)
-  }, [isVisible, variant, c.dataPoints])
-
   const hGridCount = 6
   const vGridCount = 6
 
   return (
-    <div ref={containerRef} className="h-full">
+    <div className="h-full">
       <div className="relative h-full">
         {/* Card */}
         <div
@@ -196,27 +130,6 @@ export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
                     />
                   </radialGradient>
                 </defs>
-
-                {/* Floating particles */}
-                {particles.map((p, i) => (
-                  <circle key={`p${i}`} cx={p.x} cy={p.y} r={0.7} fill="white">
-                    <animateTransform
-                      attributeName="transform"
-                      type="translate"
-                      values={`0,0;${p.dx},${-28}`}
-                      dur={`${p.dur}s`}
-                      begin={`${(i * 0.7) % 3}s`}
-                      repeatCount="indefinite"
-                    />
-                    <animate
-                      attributeName="opacity"
-                      values="0;0.18;0.12;0"
-                      dur={`${p.dur}s`}
-                      begin={`${(i * 0.7) % 3}s`}
-                      repeatCount="indefinite"
-                    />
-                  </circle>
-                ))}
 
                 {/* Horizontal grid lines */}
                 {Array.from({ length: hGridCount }, (_, i) => {
@@ -294,14 +207,7 @@ export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
                 </text>
 
                 {/* Fill area under curve */}
-                <path
-                  d={c.fillPath}
-                  fill={`url(#${c.gradientId})`}
-                  style={{
-                    opacity: isVisible ? 1 : 0,
-                    transition: 'opacity 1.5s ease-out 0.4s',
-                  }}
-                />
+                <path d={c.fillPath} fill={`url(#${c.gradientId})`} />
 
                 {/* Glow behind main line */}
                 <path
@@ -311,95 +217,30 @@ export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
                   strokeWidth={10}
                   strokeLinecap="round"
                   filter={`url(#glow-${variant})`}
-                  style={{
-                    strokeDasharray: pathLength,
-                    strokeDashoffset: isVisible ? 0 : pathLength,
-                    transition: `stroke-dashoffset ${DRAW_DURATION}ms ease-in-out`,
-                    opacity: 0.35,
-                  }}
+                  style={{ opacity: 0.35 }}
                 />
 
                 {/* Main line */}
                 <path
-                  ref={pathRef}
                   d={c.linePath}
                   fill="none"
                   stroke={c.lineColor}
                   strokeWidth={3}
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  style={{
-                    strokeDasharray: pathLength,
-                    strokeDashoffset: isVisible ? 0 : pathLength,
-                    transition: `stroke-dashoffset ${DRAW_DURATION}ms ease-in-out`,
-                  }}
                 />
 
-                {/* Data points: appear sequentially as line reaches them */}
-                {c.dataPoints.map((p, i) => {
-                  const show = revealedDots.has(i)
-                  return (
-                    <g key={`dot${i}`}>
-                      {/* Outer glow ring */}
-                      <circle
-                        cx={p.cx}
-                        cy={p.cy}
-                        r={9}
-                        fill={`url(#dotGlow-${variant})`}
-                        style={{
-                          opacity: show ? 1 : 0,
-                          transition: 'opacity 0.5s ease-out',
-                        }}
-                      >
-                        <animate
-                          attributeName="r"
-                          values="9;13;9"
-                          dur="3s"
-                          begin={`${i * 0.4}s`}
-                          repeatCount="indefinite"
-                        />
-                      </circle>
-                      {/* Core dot */}
-                      <circle
-                        cx={p.cx}
-                        cy={p.cy}
-                        r={3.5}
-                        fill={c.lineColor}
-                        style={{
-                          opacity: show ? 1 : 0,
-                          transition: 'opacity 0.5s ease-out',
-                        }}
-                      >
-                        <animate
-                          attributeName="r"
-                          values="3.5;4.5;3.5"
-                          dur="3s"
-                          begin={`${i * 0.4}s`}
-                          repeatCount="indefinite"
-                        />
-                      </circle>
-                      {/* Bright center */}
-                      <circle
-                        cx={p.cx}
-                        cy={p.cy}
-                        r={1.5}
-                        fill="white"
-                        style={{
-                          opacity: show ? 0.7 : 0,
-                          transition: 'opacity 0.5s ease-out',
-                        }}
-                      >
-                        <animate
-                          attributeName="opacity"
-                          values="0.7;0.4;0.7"
-                          dur="3s"
-                          begin={`${i * 0.4}s`}
-                          repeatCount="indefinite"
-                        />
-                      </circle>
-                    </g>
-                  )
-                })}
+                {/* Data points */}
+                {c.dataPoints.map((p, i) => (
+                  <g key={`dot${i}`}>
+                    {/* Outer glow ring */}
+                    <circle cx={p.cx} cy={p.cy} r={9} fill={`url(#dotGlow-${variant})`} />
+                    {/* Core dot */}
+                    <circle cx={p.cx} cy={p.cy} r={3.5} fill={c.lineColor} />
+                    {/* Bright center */}
+                    <circle cx={p.cx} cy={p.cy} r={1.5} fill="white" fillOpacity={0.7} />
+                  </g>
+                ))}
               </svg>
             </div>
           </div>

@@ -312,9 +312,12 @@ h1, h2, h3 {
   100% { left: calc(100% - 8px); opacity: 0; background-color: var(--state-approved); }
 }
 
+/* The amber-to-teal state change itself: a 192ms window (52%-58% of the
+   3.2s travel animation, inside the 150-250ms spec) centered on the
+   pulse's own color flip at 55%. */
 @keyframes gate-chip-approve {
-  0%, 45% { border-color: color-mix(in srgb, var(--state-pending) 90%, transparent); box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
-  60%, 100% { border-color: var(--state-approved); box-shadow: 0 0 12px 0 rgba(13, 148, 136, 0.35); }
+  0%, 52% { border-color: color-mix(in srgb, var(--state-pending) 90%, transparent); box-shadow: 0 0 0 0 transparent; }
+  58%, 100% { border-color: var(--state-approved); box-shadow: 0 0 12px 0 color-mix(in srgb, var(--teal) 35%, transparent); }
 }
 
 @keyframes gate-check-in {
@@ -334,30 +337,11 @@ h1, h2, h3 {
   animation: gate-check-in 3.2s ease-in-out 0.9s both;
 }
 
-/* ── Workflow diagram: connection-line dots, system glow, core pulse ── */
+/* ── Workflow diagram: static system-box glow ── */
 
-@keyframes flowDotH {
-  0% { left: 0; }
-  100% { left: calc(100% - 5px); }
-}
-@keyframes flowDotVertical {
-  0% { top: 0; }
-  100% { top: calc(100% - 5px); }
-}
-@keyframes systemGlow {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; }
-}
-@keyframes corePulse {
-  0%, 100% { box-shadow: 0 0 8px color-mix(in srgb, var(--teal) 60%, transparent); transform: scale(1); }
-  50% { box-shadow: 0 0 16px color-mix(in srgb, var(--teal) 90%, transparent); transform: scale(1.2); }
-}
 .system-glow-border {
   box-shadow: 0 0 24px color-mix(in srgb, var(--teal) 30%, transparent),
     inset 0 0 24px color-mix(in srgb, var(--teal) 5%, transparent);
-}
-.core-pulse-glow {
-  box-shadow: 0 0 8px color-mix(in srgb, var(--teal) 60%, transparent);
 }
 
 /* ── Demo system utilities (used by the live demos) ── */

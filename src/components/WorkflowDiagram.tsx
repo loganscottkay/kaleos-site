@@ -1,7 +1,3 @@
-'use client'
-
-import { useRef, useEffect, useState } from 'react'
-
 // --- Icons ---
 function MailIcon() {
   return (
@@ -85,70 +81,32 @@ function PaperPlaneIcon() {
 function GlassBox({
   children,
   className = '',
-  delay = 0,
-  visible,
   glow = false,
 }: {
   children: React.ReactNode
   className?: string
-  delay?: number
-  visible: boolean
   glow?: boolean
 }) {
   return (
-    <div
-      className={`card-dark relative bg-white/6 ${className}`}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(var(--space-24))',
-        transition: `opacity 0.6s ease-out ${delay}ms, transform 0.6s ease-out ${delay}ms`,
-      }}
-    >
+    <div className={`card-dark relative bg-white/6 ${className}`}>
       {/* Inner highlight */}
       <div className="absolute inset-0 rounded-card bg-gradient-to-b from-white/6 via-transparent to-transparent pointer-events-none" />
-      {/* Optional pulsing glow border */}
+      {/* Optional static glow border, marking the center system box */}
       {glow && (
-        <div
-          className="absolute -inset-px rounded-card system-glow-border pointer-events-none"
-          style={{ animation: 'systemGlow 3s ease-in-out infinite' }}
-        />
+        <div className="absolute -inset-px rounded-card system-glow-border pointer-events-none" />
       )}
       <div className="relative z-10">{children}</div>
     </div>
   )
 }
 
-// --- Animated connection line with flowing dots ---
-function ConnectionLine({
-  visible,
-  delay = 0,
-  vertical = false,
-}: {
-  visible: boolean
-  delay?: number
-  vertical?: boolean
-}) {
+// --- Connection line with a static flowing-direction arrow ---
+function ConnectionLine({ vertical = false }: { vertical?: boolean }) {
   if (vertical) {
     return (
-      <div className="relative flex flex-col items-center" style={{ height: 40 }}>
-        <div
-          className="w-0.5 bg-gradient-to-b from-accent/60 to-accent/30"
-          style={{
-            height: visible ? '100%' : '0%',
-            transition: `height 0.5s ease-out ${delay}ms`,
-          }}
-        />
-        {/* Flowing dot */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-teal-bright"
-          style={{
-            opacity: visible ? 1 : 0,
-            animation: visible ? `flowDotVertical 2s ease-in-out ${delay + 400}ms infinite` : 'none',
-          }}
-        />
-        {/* Arrow */}
-        <svg className="absolute -bottom-1 text-accent" width="10" height="8" viewBox="0 0 10 8"
-          style={{ opacity: visible ? 0.6 : 0, transition: `opacity 0.3s ease-out ${delay + 300}ms` }}>
+      <div className="relative flex flex-col items-center h-10">
+        <div className="w-0.5 h-full bg-gradient-to-b from-accent/60 to-accent/30" />
+        <svg className="absolute -bottom-1 text-accent/60" width="10" height="8" viewBox="0 0 10 8">
           <path d="M1 1L5 6L9 1" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
@@ -156,28 +114,9 @@ function ConnectionLine({
   }
 
   return (
-    <div className="relative flex items-center shrink-0" style={{ width: 56 }}>
-      <div
-        className="h-0.5 bg-gradient-to-r from-accent/60 to-accent/30"
-        style={{
-          width: visible ? '100%' : '0%',
-          transition: `width 0.5s ease-out ${delay}ms`,
-        }}
-      />
-      {/* Flowing dots: two staggered */}
-      {[0, 1000].map((extraDelay, i) => (
-        <div
-          key={i}
-          className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-teal-bright"
-          style={{
-            opacity: visible ? 1 : 0,
-            animation: visible ? `flowDotH 2s ease-in-out ${delay + 400 + extraDelay}ms infinite` : 'none',
-          }}
-        />
-      ))}
-      {/* Arrow */}
-      <svg className="absolute -right-1 top-1/2 -translate-y-1/2 text-accent" width="8" height="10" viewBox="0 0 8 10"
-        style={{ opacity: visible ? 0.6 : 0, transition: `opacity 0.3s ease-out ${delay + 300}ms` }}>
+    <div className="relative flex items-center shrink-0 w-14">
+      <div className="h-0.5 w-full bg-gradient-to-r from-accent/60 to-accent/30" />
+      <svg className="absolute -right-1 top-1/2 -translate-y-1/2 text-accent/60" width="8" height="10" viewBox="0 0 8 10">
         <path d="M1 1L6 5L1 9" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </div>
@@ -185,26 +124,9 @@ function ConnectionLine({
 }
 
 // --- Internal node inside the center system box ---
-function InternalNode({
-  icon,
-  label,
-  visible,
-  delay,
-}: {
-  icon: React.ReactNode
-  label: string
-  visible: boolean
-  delay: number
-}) {
+function InternalNode({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
-    <div
-      className="flex items-center gap-3 rounded-control bg-white/6 border border-white/10 px-3 py-2"
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'scale(1)' : 'scale(0.9)',
-        transition: `opacity 0.4s ease-out ${delay}ms, transform 0.4s ease-out ${delay}ms`,
-      }}
-    >
+    <div className="flex items-center gap-3 rounded-control bg-white/6 border border-white/10 px-3 py-2">
       <span className="text-accent">{icon}</span>
       <span className="text-white/80 text-caption font-medium whitespace-nowrap">{label}</span>
     </div>
@@ -223,31 +145,12 @@ function SmallItem({ icon, label }: { icon: React.ReactNode; label: string }) {
 
 // ===================== MAIN COMPONENT =====================
 export function WorkflowDiagram() {
-  const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.15, rootMargin: '50px' }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <div ref={ref} className="mb-16">
+    <div className="mb-16">
       {/* ===== DESKTOP / TABLET ===== */}
       <div className="hidden md:flex items-stretch justify-center gap-0">
         {/* LEFT: Your Business */}
-        <GlassBox visible={visible} delay={0} className="p-6 w-43 flex flex-col justify-center">
+        <GlassBox className="p-6 w-43 flex flex-col justify-center">
           <p className="text-white font-semibold text-body mb-3 tracking-tight">Your Business</p>
           <div className="flex flex-col gap-2">
             <SmallItem icon={<MailIcon />} label="Emails" />
@@ -258,27 +161,26 @@ export function WorkflowDiagram() {
         </GlassBox>
 
         {/* Connection 1 */}
-        <ConnectionLine visible={visible} delay={400} />
+        <ConnectionLine />
 
         {/* CENTER: Kaleos HQ System */}
-        <GlassBox visible={visible} delay={300} glow className="p-6 w-70">
+        <GlassBox glow className="p-6 w-70">
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-2 h-2 rounded-full bg-accent core-pulse-glow"
-              style={{ animation: visible ? 'corePulse 2s ease-in-out infinite' : 'none' }} />
+            <div className="w-2 h-2 rounded-full bg-accent animate-pulse-slow" />
             <p className="text-white font-semibold text-body tracking-tight">Kaleos HQ System</p>
           </div>
           <div className="flex flex-col gap-3">
-            <InternalNode icon={<CpuIcon />} label="AI Processing" visible={visible} delay={600} />
-            <InternalNode icon={<ShieldIcon />} label="Approval Gate" visible={visible} delay={750} />
-            <InternalNode icon={<ClipboardIcon />} label="Audit Log" visible={visible} delay={900} />
+            <InternalNode icon={<CpuIcon />} label="AI Processing" />
+            <InternalNode icon={<ShieldIcon />} label="Approval Gate" />
+            <InternalNode icon={<ClipboardIcon />} label="Audit Log" />
           </div>
         </GlassBox>
 
         {/* Connection 2 */}
-        <ConnectionLine visible={visible} delay={800} />
+        <ConnectionLine />
 
         {/* RIGHT: Output */}
-        <GlassBox visible={visible} delay={600} className="p-6 w-43 flex flex-col justify-center">
+        <GlassBox className="p-6 w-43 flex flex-col justify-center">
           <p className="text-white font-semibold text-body mb-3 tracking-tight">Output</p>
           <div className="flex flex-col gap-2">
             <SmallItem icon={<PaperPlaneIcon />} label="Proposals sent" />
@@ -292,7 +194,7 @@ export function WorkflowDiagram() {
       {/* ===== MOBILE ===== */}
       <div className="flex md:hidden flex-col items-center gap-0">
         {/* Your Business */}
-        <GlassBox visible={visible} delay={0} className="p-6 w-65">
+        <GlassBox className="p-6 w-65">
           <p className="text-white font-semibold text-body mb-3 tracking-tight">Your Business</p>
           <div className="flex flex-wrap gap-x-4 gap-y-2">
             <SmallItem icon={<MailIcon />} label="Emails" />
@@ -302,26 +204,25 @@ export function WorkflowDiagram() {
           </div>
         </GlassBox>
 
-        <ConnectionLine visible={visible} delay={300} vertical />
+        <ConnectionLine vertical />
 
         {/* Kaleos HQ System */}
-        <GlassBox visible={visible} delay={300} glow className="p-6 w-65">
+        <GlassBox glow className="p-6 w-65">
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-2 h-2 rounded-full bg-accent core-pulse-glow"
-              style={{ animation: visible ? 'corePulse 2s ease-in-out infinite' : 'none' }} />
+            <div className="w-2 h-2 rounded-full bg-accent animate-pulse-slow" />
             <p className="text-white font-semibold text-body tracking-tight">Kaleos HQ System</p>
           </div>
           <div className="flex flex-col gap-2">
-            <InternalNode icon={<CpuIcon />} label="AI Processing" visible={visible} delay={500} />
-            <InternalNode icon={<ShieldIcon />} label="Approval Gate" visible={visible} delay={650} />
-            <InternalNode icon={<ClipboardIcon />} label="Audit Log" visible={visible} delay={800} />
+            <InternalNode icon={<CpuIcon />} label="AI Processing" />
+            <InternalNode icon={<ShieldIcon />} label="Approval Gate" />
+            <InternalNode icon={<ClipboardIcon />} label="Audit Log" />
           </div>
         </GlassBox>
 
-        <ConnectionLine visible={visible} delay={700} vertical />
+        <ConnectionLine vertical />
 
         {/* Output */}
-        <GlassBox visible={visible} delay={600} className="p-6 w-65">
+        <GlassBox className="p-6 w-65">
           <p className="text-white font-semibold text-body mb-3 tracking-tight">Output</p>
           <div className="flex flex-wrap gap-x-4 gap-y-2">
             <SmallItem icon={<PaperPlaneIcon />} label="Proposals sent" />
@@ -333,13 +234,7 @@ export function WorkflowDiagram() {
       </div>
 
       {/* Summary line */}
-      <p
-        className="text-center text-white/50 text-body mt-12 max-w-xl mx-auto leading-relaxed"
-        style={{
-          opacity: visible ? 1 : 0,
-          transition: 'opacity 0.6s ease-out 1100ms',
-        }}
-      >
+      <p className="text-center text-white/50 text-body mt-12 max-w-xl mx-auto leading-relaxed">
         Every system we build follows this architecture. AI processes, humans approve, everything logged.
       </p>
     </div>
