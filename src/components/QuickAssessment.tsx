@@ -158,7 +158,7 @@ export function QuickAssessment() {
           className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-4 items-end mb-16"
           style={{
             opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(10px)',
+            transform: visible ? 'translateY(0)' : 'translateY(var(--space-12))',
             transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
           }}
         >
@@ -172,15 +172,15 @@ export function QuickAssessment() {
 
         {/* Quiz card */}
         <div
-          className="max-w-[800px] mx-auto"
+          className="max-w-200 mx-auto"
           style={{
             opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(15px)',
+            transform: visible ? 'translateY(0)' : 'translateY(var(--space-16))',
             transition: 'opacity 0.6s ease-out 200ms, transform 0.6s ease-out 200ms',
           }}
         >
           <div className="relative">
-            <div className="card-dark relative p-12 sm:p-16 overflow-hidden min-h-[340px]">
+            <div className="card-dark relative p-12 sm:p-16 overflow-hidden min-h-85">
 
               {/* Progress bar */}
               <div className="relative z-10 mb-12">
@@ -215,8 +215,8 @@ export function QuickAssessment() {
                         slideDir === 'enter' && !transitioning
                           ? 'translateX(0)'
                           : slideDir === 'exit'
-                            ? 'translateX(-60px)'
-                            : 'translateX(60px)',
+                            ? 'translateX(calc(-1 * var(--space-64)))'
+                            : 'translateX(var(--space-64))',
                       transition: 'opacity 0.3s ease, transform 0.3s ease',
                     }}
                   >
@@ -239,10 +239,10 @@ export function QuickAssessment() {
                                 : handleSingleSelect(opt.label)
                             }
                             disabled={transitioning}
-                            className={`btn relative px-6 py-4 border text-sm sm:text-base min-w-[280px] text-center ${
+                            className={`btn relative px-6 py-4 border text-sm sm:text-base min-w-70 text-center ${
                               isSelected
                                 ? 'bg-accent/25 border-teal-bright text-teal-bright'
-                                : 'bg-white/[0.08] border-white/[0.18] text-white hover:border-white/[0.35]'
+                                : 'bg-white/8 border-white/18 text-white hover:border-white/35'
                             }`}
                           >
                             {opt.label}

@@ -97,7 +97,7 @@ function GlassBox({
 }) {
   return (
     <div
-      className={`card-dark relative bg-white/[0.06] ${className}`}
+      className={`card-dark relative bg-white/6 ${className}`}
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(20px)',
@@ -105,15 +105,12 @@ function GlassBox({
       }}
     >
       {/* Inner highlight */}
-      <div className="absolute inset-0 rounded-card bg-gradient-to-b from-white/[0.06] via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 rounded-card bg-gradient-to-b from-white/6 via-transparent to-transparent pointer-events-none" />
       {/* Optional pulsing glow border */}
       {glow && (
         <div
-          className="absolute -inset-px rounded-card pointer-events-none"
-          style={{
-            boxShadow: '0 0 24px rgba(13,148,136,0.3), inset 0 0 24px rgba(13,148,136,0.05)',
-            animation: 'systemGlow 3s ease-in-out infinite',
-          }}
+          className="absolute -inset-px rounded-card system-glow-border pointer-events-none"
+          style={{ animation: 'systemGlow 3s ease-in-out infinite' }}
         />
       )}
       <div className="relative z-10">{children}</div>
@@ -135,7 +132,7 @@ function ConnectionLine({
     return (
       <div className="relative flex flex-col items-center" style={{ height: 40 }}>
         <div
-          className="w-[2px] bg-gradient-to-b from-accent/60 to-accent/30"
+          className="w-0.5 bg-gradient-to-b from-accent/60 to-accent/30"
           style={{
             height: visible ? '100%' : '0%',
             transition: `height 0.5s ease-out ${delay}ms`,
@@ -143,7 +140,7 @@ function ConnectionLine({
         />
         {/* Flowing dot */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 w-[5px] h-[5px] rounded-full bg-teal-bright"
+          className="absolute left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-teal-bright"
           style={{
             opacity: visible ? 1 : 0,
             animation: visible ? `flowDotVertical 2s ease-in-out ${delay + 400}ms infinite` : 'none',
@@ -161,7 +158,7 @@ function ConnectionLine({
   return (
     <div className="relative flex items-center shrink-0" style={{ width: 56 }}>
       <div
-        className="h-[2px] bg-gradient-to-r from-accent/60 to-accent/30"
+        className="h-0.5 bg-gradient-to-r from-accent/60 to-accent/30"
         style={{
           width: visible ? '100%' : '0%',
           transition: `width 0.5s ease-out ${delay}ms`,
@@ -171,7 +168,7 @@ function ConnectionLine({
       {[0, 1000].map((extraDelay, i) => (
         <div
           key={i}
-          className="absolute top-1/2 -translate-y-1/2 w-[5px] h-[5px] rounded-full bg-teal-bright"
+          className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-teal-bright"
           style={{
             opacity: visible ? 1 : 0,
             animation: visible ? `flowDotH 2s ease-in-out ${delay + 400 + extraDelay}ms infinite` : 'none',
@@ -201,7 +198,7 @@ function InternalNode({
 }) {
   return (
     <div
-      className="flex items-center gap-3 rounded-control bg-white/[0.06] border border-white/[0.1] px-3 py-2"
+      className="flex items-center gap-3 rounded-control bg-white/6 border border-white/10 px-3 py-2"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'scale(1)' : 'scale(0.9)',
@@ -219,7 +216,7 @@ function SmallItem({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
     <div className="flex items-center gap-2">
       <span className="text-white/40">{icon}</span>
-      <span className="text-white/50 text-[11px]">{label}</span>
+      <span className="text-white/50 text-caption">{label}</span>
     </div>
   )
 }
@@ -250,7 +247,7 @@ export function WorkflowDiagram() {
       {/* ===== DESKTOP / TABLET ===== */}
       <div className="hidden md:flex items-stretch justify-center gap-0">
         {/* LEFT: Your Business */}
-        <GlassBox visible={visible} delay={0} className="p-6 w-[170px] flex flex-col justify-center">
+        <GlassBox visible={visible} delay={0} className="p-6 w-43 flex flex-col justify-center">
           <p className="text-white font-semibold text-sm mb-3 tracking-tight">Your Business</p>
           <div className="flex flex-col gap-2">
             <SmallItem icon={<MailIcon />} label="Emails" />
@@ -264,9 +261,9 @@ export function WorkflowDiagram() {
         <ConnectionLine visible={visible} delay={400} />
 
         {/* CENTER: Kaleos HQ System */}
-        <GlassBox visible={visible} delay={300} glow className="p-6 w-[280px]">
+        <GlassBox visible={visible} delay={300} glow className="p-6 w-70">
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(13,148,136,0.6)]"
+            <div className="w-2 h-2 rounded-full bg-accent core-pulse-glow"
               style={{ animation: visible ? 'corePulse 2s ease-in-out infinite' : 'none' }} />
             <p className="text-white font-semibold text-sm tracking-tight">Kaleos HQ System</p>
           </div>
@@ -281,7 +278,7 @@ export function WorkflowDiagram() {
         <ConnectionLine visible={visible} delay={800} />
 
         {/* RIGHT: Output */}
-        <GlassBox visible={visible} delay={600} className="p-6 w-[170px] flex flex-col justify-center">
+        <GlassBox visible={visible} delay={600} className="p-6 w-43 flex flex-col justify-center">
           <p className="text-white font-semibold text-sm mb-3 tracking-tight">Output</p>
           <div className="flex flex-col gap-2">
             <SmallItem icon={<PaperPlaneIcon />} label="Proposals sent" />
@@ -295,7 +292,7 @@ export function WorkflowDiagram() {
       {/* ===== MOBILE ===== */}
       <div className="flex md:hidden flex-col items-center gap-0">
         {/* Your Business */}
-        <GlassBox visible={visible} delay={0} className="p-6 w-[260px]">
+        <GlassBox visible={visible} delay={0} className="p-6 w-65">
           <p className="text-white font-semibold text-sm mb-3 tracking-tight">Your Business</p>
           <div className="flex flex-wrap gap-x-4 gap-y-2">
             <SmallItem icon={<MailIcon />} label="Emails" />
@@ -308,9 +305,9 @@ export function WorkflowDiagram() {
         <ConnectionLine visible={visible} delay={300} vertical />
 
         {/* Kaleos HQ System */}
-        <GlassBox visible={visible} delay={300} glow className="p-6 w-[260px]">
+        <GlassBox visible={visible} delay={300} glow className="p-6 w-65">
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(13,148,136,0.6)]"
+            <div className="w-2 h-2 rounded-full bg-accent core-pulse-glow"
               style={{ animation: visible ? 'corePulse 2s ease-in-out infinite' : 'none' }} />
             <p className="text-white font-semibold text-sm tracking-tight">Kaleos HQ System</p>
           </div>
@@ -324,7 +321,7 @@ export function WorkflowDiagram() {
         <ConnectionLine visible={visible} delay={700} vertical />
 
         {/* Output */}
-        <GlassBox visible={visible} delay={600} className="p-6 w-[260px]">
+        <GlassBox visible={visible} delay={600} className="p-6 w-65">
           <p className="text-white font-semibold text-sm mb-3 tracking-tight">Output</p>
           <div className="flex flex-wrap gap-x-4 gap-y-2">
             <SmallItem icon={<PaperPlaneIcon />} label="Proposals sent" />
@@ -345,26 +342,6 @@ export function WorkflowDiagram() {
       >
         Every system we build follows this architecture. AI processes, humans approve, everything logged.
       </p>
-
-      {/* Keyframes */}
-      <style>{`
-        @keyframes flowDotH {
-          0% { left: 0; }
-          100% { left: calc(100% - 5px); }
-        }
-        @keyframes flowDotVertical {
-          0% { top: 0; }
-          100% { top: calc(100% - 5px); }
-        }
-        @keyframes systemGlow {
-          0%, 100% { opacity: 0.4; }
-          50% { opacity: 1; }
-        }
-        @keyframes corePulse {
-          0%, 100% { box-shadow: 0 0 8px rgba(13,148,136,0.6); transform: scale(1); }
-          50% { box-shadow: 0 0 16px rgba(13,148,136,0.9); transform: scale(1.2); }
-        }
-      `}</style>
     </div>
   )
 }

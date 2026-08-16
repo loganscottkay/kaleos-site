@@ -26,14 +26,14 @@ const config = {
   decline: {
     header: 'AI Without Strategy',
     subtitle: 'Tools without direction. Budget spent, nothing to show.',
-    headerColor: 'text-red-400/90',
-    lineColor: '#ef4444',
-    glowColor: 'rgba(239, 68, 68, 0.45)',
+    headerColor: 'text-decline/90',
+    lineColor: 'var(--decline)',
+    glowColor: 'color-mix(in srgb, var(--decline) 45%, transparent)',
     gradientId: 'declineFill',
-    gradientColor: '#ef4444',
-    borderColor: 'border-red-500/[0.25]',
-    glowBorder: 'rgba(239, 68, 68, 0.15)',
-    labelColor: '#f87171',
+    gradientColor: 'var(--decline)',
+    borderColor: 'border-decline/25',
+    glowBorder: 'color-mix(in srgb, var(--decline) 15%, transparent)',
+    labelColor: 'var(--decline-bright)',
     cardBg: 'rgba(255, 255, 255, 0.045)',
     linePath: 'M 25,18 C 50,20 70,30 95,55 C 120,80 145,105 165,118 C 175,124 182,127 185,128',
     fillPath:
@@ -50,13 +50,13 @@ const config = {
     header: 'AI With Kaleos HQ',
     subtitle: 'Strategy first. Compounding returns.',
     headerColor: 'text-teal-bright/90',
-    lineColor: '#0D9488',
-    glowColor: 'rgba(13, 148, 136, 0.45)',
+    lineColor: 'var(--teal)',
+    glowColor: 'color-mix(in srgb, var(--teal) 45%, transparent)',
     gradientId: 'growthFill',
-    gradientColor: '#0D9488',
+    gradientColor: 'var(--teal)',
     borderColor: 'border-accent/25',
-    glowBorder: 'rgba(13, 148, 136, 0.15)',
-    labelColor: '#2DD4BF',
+    glowBorder: 'color-mix(in srgb, var(--teal) 15%, transparent)',
+    labelColor: 'var(--teal-bright)',
     cardBg: 'rgba(255, 255, 255, 0.045)',
     linePath: 'M 25,128 C 50,127 75,124 100,112 C 125,95 145,65 160,40 C 172,22 180,15 185,12',
     fillPath:
@@ -142,11 +142,11 @@ export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
             >
               {c.header}
             </p>
-            <p className="text-[10px] text-white/40 mb-3">
+            <p className="text-caption text-white/40 mb-3">
               {c.subtitle}
             </p>
 
-            <div className="flex-1 min-h-[200px]">
+            <div className="flex-1 min-h-50">
               <svg
                 viewBox="0 0 200 158"
                 className="w-full h-full"

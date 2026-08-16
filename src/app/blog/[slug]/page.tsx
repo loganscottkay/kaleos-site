@@ -61,7 +61,7 @@ export default async function BlogPostPage({
           className="absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse at center, rgba(13,148,136,0.08) 0%, transparent 70%)',
+              'radial-gradient(ellipse at center, color-mix(in srgb, var(--teal) 8%, transparent) 0%, transparent 70%)',
           }}
         />
 
@@ -74,7 +74,7 @@ export default async function BlogPostPage({
               &larr; Back to Thinking
             </Link>
           </AnimateIn>
-          <AnimateIn distance={20} delay={50}>
+          <AnimateIn distance={24} delay={50}>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white">
               {post.title}
             </h1>
@@ -100,9 +100,9 @@ export default async function BlogPostPage({
       {/* Article content */}
       <section className="relative py-24 bg-navy">
 
-        <div className="relative z-10 max-w-[720px] mx-auto px-4">
+        <div className="relative z-10 max-w-180 mx-auto px-4">
           <AnimateIn>
-            <div className="card-dark relative bg-white/[0.05] overflow-hidden">
+            <div className="card-dark relative bg-white/5 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-white/[0.05] via-transparent to-transparent pointer-events-none" />
               <div className="relative p-8 sm:p-12">
                 <article

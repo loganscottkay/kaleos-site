@@ -24,3 +24,4 @@ design-excellence applied: 02-component-craft, sources read: taste.md plus 4 ins
 ALL ASSIGNED DONE
 - group mid (03-spacing-type-sweep, 04-polish-motion-responsive) spawned
 - 2026-08-16T19:05:00Z 03-spacing-type-sweep: off-grid margin/padding/gap utilities snapped to the 8pt scale across every route and component (85 replacements, 17 files); npm run build green
+- 2026-08-16T19:20:00Z 03-spacing-type-sweep: all arbitrary Tailwind bracket px/rem/em values eliminated (system labels to text-caption, gate-chip borders to shared .gate-chip-ring, decorative dot/underline sizes to the spacing scale, entrance-transform distances to var(--space-*), wide containers to Tailwind's dynamic spacing scale); added a decline/danger token pair (non-brand exception, documented) replacing raw hex reds in StrategyGraph and the demo reject affordance; moved WorkflowDiagram's local keyframes into globals.css using color-mix(var(--teal)) instead of raw rgba; npm run build green

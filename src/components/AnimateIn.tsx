@@ -27,14 +27,14 @@ function useReducedMotion() {
 interface AnimateInProps {
   children: ReactNode
   delay?: number
-  distance?: number
+  distance?: 24 | 32
   className?: string
 }
 
 export function AnimateIn({
   children,
   delay = 0,
-  distance = 30,
+  distance = 32,
   className = '',
 }: AnimateInProps) {
   const ref = useRef<HTMLDivElement>(null)
@@ -70,7 +70,7 @@ export function AnimateIn({
           ? undefined
           : {
               opacity: visible ? 1 : 0,
-              transform: visible ? 'translateY(0)' : `translateY(${distance}px)`,
+              transform: visible ? 'translateY(0)' : `translateY(var(--space-${distance}))`,
               transition: `opacity 0.6s ease-out ${delay}ms, transform 0.6s ease-out ${delay}ms`,
             }
       }

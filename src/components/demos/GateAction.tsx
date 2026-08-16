@@ -7,7 +7,7 @@ import type { ReactNode } from 'react'
 export function GateChip({ approved }: { approved: boolean }) {
   return (
     <span
-      className={`inline-flex items-center justify-center w-5 h-5 rounded-control border-[1.5px] transition-colors duration-200 ${
+      className={`inline-flex items-center justify-center w-5 h-5 rounded-control gate-chip-ring transition-colors duration-200 ${
         approved ? 'border-approved bg-approved/15' : 'border-pending-bright/80 bg-transparent'
       }`}
       aria-hidden="true"
@@ -36,7 +36,7 @@ export function GateStatus({
     <div className="flex items-center gap-2">
       <GateChip approved={approved} />
       <span
-        className={`font-system text-[10px] tracking-wide uppercase transition-colors duration-200 ${
+        className={`font-system text-caption tracking-wide uppercase transition-colors duration-200 ${
           approved ? 'text-teal-bright' : 'text-pending-bright/90'
         }`}
       >
@@ -60,9 +60,8 @@ export function DemoButton({
   const styles = {
     primary: 'btn-primary',
     ghost: 'btn-ghost-dark',
-    // Reject affordance in the demos; red has no brand token, kept as the
-    // one explicit exception
-    danger: 'bg-white/[0.04] text-red-300/80 border border-red-400/20 hover:border-red-400/40',
+    // Reject affordance in the demos, on the decline token
+    danger: 'bg-white/4 text-decline-bright/80 border border-decline/20 hover:border-decline/40',
   }
   return (
     <button
@@ -85,13 +84,13 @@ export function DemoShell({
   children: ReactNode
 }) {
   return (
-    <div className="rounded-card bg-navy-950 border border-white/[0.06] flex-1 flex flex-col overflow-hidden">
+    <div className="rounded-card bg-navy-950 border border-white/6 flex-1 flex flex-col overflow-hidden">
       <div className="flex items-center justify-between px-4 py-3 border-b border-white/5">
-        <span className="font-system text-[10px] text-white/60 tracking-wide">{title}</span>
+        <span className="font-system text-caption text-white/60 tracking-wide">{title}</span>
         {live !== false && (
           <span className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-approved animate-pulse-slow" />
-            <span className="font-system text-[10px] text-teal-bright/80">Live</span>
+            <span className="font-system text-caption text-teal-bright/80">Live</span>
           </span>
         )}
       </div>

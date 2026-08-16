@@ -101,13 +101,13 @@ export function BuiltToDemo() {
               className={`h-full ${i === 2 ? 'md:col-span-2 lg:col-span-1 md:max-w-[calc(50%-0.75rem)] md:mx-auto md:w-full lg:max-w-none' : ''}`}
             >
               <div className="card-dark card-hover shadow-demo-card p-6 flex flex-col h-full">
-                <h3 className="font-system text-[11px] font-semibold text-accent mb-4 tracking-widest uppercase">
+                <h3 className="font-system text-caption font-semibold text-accent mb-4 tracking-widest uppercase">
                   {demo.title}
                 </h3>
                 <div className="flex-1 flex flex-col" style={{ minHeight: DEMO_MIN_H }}>
                   {near ? <demo.Component /> : <DemoPlaceholder />}
                 </div>
-                <p className="text-[11px] text-mist/80 leading-relaxed mt-4 pt-3 border-t border-white/5">
+                <p className="text-caption text-mist/80 leading-relaxed mt-4 pt-3 border-t border-white/5">
                   {demo.desc}
                 </p>
               </div>

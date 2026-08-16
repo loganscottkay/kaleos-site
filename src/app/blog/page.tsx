@@ -44,12 +44,12 @@ export default function BlogPage() {
           className="absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse at center, rgba(13,148,136,0.08) 0%, transparent 70%)',
+              'radial-gradient(ellipse at center, color-mix(in srgb, var(--teal) 8%, transparent) 0%, transparent 70%)',
           }}
         />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
-          <AnimateIn distance={20}>
+          <AnimateIn distance={24}>
             <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-white">
               Thinking
             </h1>
@@ -72,7 +72,7 @@ export default function BlogPage() {
 
           {/* Featured post */}
           {featured && (
-            <AnimateIn distance={30}>
+            <AnimateIn>
               <Link href={`/blog/${featured.slug}`} className="block group">
                 <div className="relative">
                   <div className="card-dark card-hover relative bg-white/[0.06] overflow-hidden">
@@ -117,11 +117,11 @@ export default function BlogPage() {
                     <GlassCard hover className="p-8 h-full flex flex-col">
                       <div className="flex items-center gap-3 mb-4">
                         {post.category && (
-                          <span className="px-3 py-1 text-[10px] font-semibold rounded-control bg-accent/15 text-teal-bright tracking-wide uppercase">
+                          <span className="px-3 py-1 text-caption font-semibold rounded-control bg-accent/15 text-teal-bright tracking-wide uppercase">
                             {post.category}
                           </span>
                         )}
-                        <span className="text-[11px] text-white/35 tracking-wide">
+                        <span className="text-caption text-white/35 tracking-wide">
                           {formatDate(post.date)}
                         </span>
                       </div>
@@ -132,7 +132,7 @@ export default function BlogPage() {
                         {post.description}
                       </p>
                       <div className="mt-4 pt-4 border-t border-white/[0.08] flex items-center justify-between">
-                        <span className="text-[11px] text-white/30">
+                        <span className="text-caption text-white/30">
                           {post.readTime}
                         </span>
                         <span className="text-xs text-accent font-medium group-hover:underline">

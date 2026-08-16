@@ -62,7 +62,7 @@ export function NavBar() {
               >
                 {link.label}
                 <span
-                  className={`absolute left-0 bottom-2 h-[2px] bg-accent transition-all duration-300 ease-in-out ${
+                  className={`absolute left-0 bottom-2 h-0.5 bg-accent transition-all duration-300 ease-in-out ${
                     isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
                   }`}
                 />

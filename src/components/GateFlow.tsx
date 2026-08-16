@@ -22,7 +22,7 @@ export function GateFlow() {
           return stop.gate ? (
             <div
               key={stop.label}
-              className="gate-flow-chip absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-control border-[1.5px] bg-paper flex items-center justify-center"
+              className="gate-flow-chip absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-control gate-chip-ring bg-paper flex items-center justify-center"
               style={{ left }}
             >
               <svg
@@ -48,7 +48,7 @@ export function GateFlow() {
       </div>
 
       {/* Labels: one centered column per stop */}
-      <div className="grid grid-cols-4 mt-2 font-system text-[10px] tracking-[0.15em] uppercase text-ink/40">
+      <div className="grid grid-cols-4 mt-2 font-system text-caption tracking-widest uppercase text-ink/40">
         {stops.map((stop) => (
           <span
             key={stop.label}

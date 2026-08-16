@@ -54,6 +54,13 @@
   --slate-500: #64748B; /* caption, UI-size only on paper */
   --slate-600: #475569; /* body */
 
+  /* Status exception: decline/danger. No brand primitive carries this
+     meaning (teal is approved, amber is pending); kept as one isolated,
+     named exception instead of raw hex at each call site. Pre-existing
+     meaning from the demos and StrategyGraph, unchanged by this token. */
+  --decline: #EF4444;
+  --decline-bright: #F87171;
+
   /* Radius: rules and tables 0, buttons and inputs 6, cards 10. */
   --radius-none: 0px;
   --radius-control: 6px;
@@ -83,6 +90,8 @@
   --state-approved: var(--teal); /* chips, dots, rules; 3:1 bar */
   --state-approved-text: #0F766E; /* darkened for body-size text; 4.79:1 */
   --state-approved-bright: var(--teal-bright); /* approved on dark; 7.76:1+ */
+  --state-declined: var(--decline); /* reject affordance, decline chart line */
+  --state-declined-bright: var(--decline-bright); /* declined on dark grounds */
 
   /* ── LAYER 3: COMPONENT ── */
   --button-bg: var(--teal); /* solid button ground; label bar is 3:1 */
@@ -120,6 +129,8 @@
   --color-approved: #0D9488;
   --color-approved-text: #0F766E;
   --color-hairline: #E2E8F0;
+  --color-decline: #EF4444;
+  --color-decline-bright: #F87171;
   /* Fluid Major Third type utilities (text-caption ... text-display) */
   --text-caption: clamp(0.775rem, 0.7667rem + 0.037vw, 0.8rem);
   --text-caption--line-height: 1.5;
@@ -282,6 +293,12 @@ h1, h2, h3 {
   margin-left: 0;
 }
 
+/* Shared gate-chip ring width: the same hairline weight as the gate
+   rule's own chip, reused everywhere the motif repeats. */
+.gate-chip-ring {
+  border-width: 1.5px;
+}
+
 /* ── The one orchestrated moment: hero gate flow ──
    The signature grammar: the pulse runs amber (pending) up to the gate,
    waits, the gate approves, and the pulse leaves teal (approved). */
@@ -315,6 +332,32 @@ h1, h2, h3 {
 
 .gate-flow-check {
   animation: gate-check-in 3.2s ease-in-out 0.9s both;
+}
+
+/* ── Workflow diagram: connection-line dots, system glow, core pulse ── */
+
+@keyframes flowDotH {
+  0% { left: 0; }
+  100% { left: calc(100% - 5px); }
+}
+@keyframes flowDotVertical {
+  0% { top: 0; }
+  100% { top: calc(100% - 5px); }
+}
+@keyframes systemGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+@keyframes corePulse {
+  0%, 100% { box-shadow: 0 0 8px color-mix(in srgb, var(--teal) 60%, transparent); transform: scale(1); }
+  50% { box-shadow: 0 0 16px color-mix(in srgb, var(--teal) 90%, transparent); transform: scale(1.2); }
+}
+.system-glow-border {
+  box-shadow: 0 0 24px color-mix(in srgb, var(--teal) 30%, transparent),
+    inset 0 0 24px color-mix(in srgb, var(--teal) 5%, transparent);
+}
+.core-pulse-glow {
+  box-shadow: 0 0 8px color-mix(in srgb, var(--teal) 60%, transparent);
 }
 
 /* ── Demo system utilities (used by the live demos) ── */
@@ -392,6 +435,12 @@ h1, h2, h3 {
     animation: none;
     opacity: 1;
     transform: none;
+  }
+  [style*="flowDotH"],
+  [style*="flowDotVertical"],
+  [style*="systemGlow"],
+  [style*="corePulse"] {
+    animation: none !important;
   }
 }
 
