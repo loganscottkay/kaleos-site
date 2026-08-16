@@ -168,3 +168,108 @@ npm run build, npm run lint (0 errors, the same 3 pre-existing no-img-element wa
 npx tsc --noEmit all green.
 
 design-excellence applied: 03-spacing-type-sweep, sources read: taste.md plus 4 inspiration note(s)
+
+## 04-polish-motion-responsive
+
+### Fluid type scale confirmed, motion cut to the one signature moment
+
+Every text-h*/text-body*/text-caption/text-display token already resolves through
+clamp() (defined in task 01); task 03's sweep put every heading and body element onto
+those tokens, so there were no remaining bypass elements to fix here. The
+amber-to-teal gate-chip color flip was narrowed from spanning ~480ms of the 3.2s hero
+travel animation to a 192ms window (inside the 150-250ms spec), keyframe-synced to the
+pulse's own color change.
+
+Per the taste file ("one orchestrated motion moment per page, maximum... no scattered
+scroll effects") and this task's explicit rule, every OTHER scroll or entrance effect
+was removed, restrained hover/focus micro-interactions from task 02 kept:
+- AnimateIn (wrapping dozens of sections per page with an IntersectionObserver
+  fade+translateY reveal) neutralized to a static passthrough; content renders in its
+  final state immediately. Call sites untouched (stable API).
+- WorkflowDiagram: removed its scroll-gated stagger reveal, connection-line draw-in,
+  and flowing-dot animations; the "Kaleos HQ System" live dot now uses the same
+  animate-pulse-slow pattern as the demo "Live" indicators elsewhere, instead of a
+  bespoke scale+shadow pulse. Diagram is visually identical, just static.
+- StrategyGraph: removed the scroll-gated line-draw animation, the twelve floating
+  SVG particles, and the pulsing dot-glow radius animation; chart renders complete and
+  static. Visual design unchanged.
+- TalkToLogan: removed the 8-second idle glow-pulse that auto-ran on every page load
+  with no user interaction (a second continuously-running decorative animation). Kept
+  the user-triggered open/close transition, the per-message fade-in (direct feedback
+  to sending/receiving a message), and the typing-indicator bounce (a functional
+  loading signal, same category as the sanctioned live-dot pulses).
+- hero-rise (CSS-only, above-the-fold, load-once) and the demo grammar's
+  animate-pulse-slow/animate-blink pending/live indicators are pre-existing sanctioned
+  exceptions (task 01/02) and were left as-is; they are not scroll or entrance effects.
+
+Dead keyframes (flowDotH, flowDotVertical, systemGlow's animation usage, corePulse,
+ltlPulse) and their reduced-motion overrides removed from globals.css along with the
+code that referenced them.
+
+### Responsive spacing step-down
+
+Every `<section>`'s vertical rhythm padding now steps down on small viewports instead
+of running the same 96/128px value from 0px up: pt-32/py-32 to pt-24 md:pt-32 / py-24
+md:py-32, py-24 to py-16 md:py-24, pb-24 to pb-16 md:pb-24, pb-16 to pb-12 md:pb-16.
+29 section-level classes updated across every route and component with a `<section>`.
+
+Fixed a real 320px overflow while verifying this: QuickAssessment's quiz card carried
+p-12 sm:p-16 (48px+ padding at every width, mobile included) plus option buttons with a
+flat min-w-70 (280px) floor; at a 320px viewport the two together leave less width than
+the button's own minimum, forcing horizontal overflow. Card padding now steps p-6
+sm:p-12 md:p-16, and the button's min-width now only applies from sm: up
+(min-w-0 sm:min-w-70), so buttons shrink and wrap their label at the smallest widths
+instead of forcing scroll.
+
+Static audit (no browser available in this environment; verified structurally): no
+other fixed-width element exceeds its container's available width after page padding
+and card padding are subtracted, at a 320px viewport. Every font-size and spacing value
+sitewide is rem-based (Tailwind's default spacing scale plus the clamp() type tokens),
+so browser text-resize to 200% scales through normally with no fixed-px sizing to
+break layout.
+
+### Navy sections: white-at-opacity confirmed
+
+Grepped for `gray-`/`slate-` Tailwind classes and gray rgba literals: the only
+slate-200 hairline usage sitewide is on paper-ground nav/footer borders (the
+sanctioned paper hairline token), never on a navy ground. Zero gray hex or rgba
+anywhere in src/. Every navy-ground texture/border already uses white-at-opacity
+(bg-white/N, border-white/N) or the teal/decline color-mix tokens.
+
+### Keyboard focus walk
+
+No `outline-none` or `outline: none` exists anywhere in src/ (verified by grep), so
+globals.css's single `:focus-visible { outline: 2px solid var(--focus-ring);
+outline-offset: 2px; }` rule reaches every interactive element sitewide. Every
+clickable surface is a native `<a>`/`<Link>`/`<button>`/`<input>`/`<textarea>`
+element (verified: no `<div onClick>` stands in for a control except the chat
+overlay's click-to-dismiss backdrop, which is a scrim, not a control, and the panel
+also has a labeled Close button reachable by tab).
+
+Tab order confirmed per route (desktop width; NavBar/Footer/TalkToLogan present on
+every route so listed once):
+- NavBar: logo link -> Home -> Assessment -> About -> "Book a Discovery Call" -> (mobile
+  width only: hamburger button, then the same links plus CTA again in the mobile panel).
+- Home: hero CTA -> GateFlow (decorative, aria-hidden, correctly skipped) -> section CTAs
+  -> WorkflowDiagram (no controls, decorative) -> QuickAssessment (quiz option buttons ->
+  Continue -> result CTAs) -> trust-strip cards (no controls) -> bottom CTA.
+- About: StrategyGraph charts (decorative, no controls) -> social icon -> Background
+  cards (no controls) -> closing CTA.
+- Assessment (audit): step cards (no controls) -> tier cards (no controls) -> FAQ toggle
+  buttons (each opens/closes independently, focus stays on the clicked button) ->
+  AuditForm: name -> email -> company -> company-size pill buttons -> challenge pill
+  buttons -> "what would winning look like" textarea -> submit button.
+- Blog index: featured post card link -> each post-grid card link.
+- Blog post: back link -> tag links (if present) -> bottom back link.
+- TalkToLogan (every route): launcher button -> (on open) Close button -> message
+  textarea -> send button -> CTA buttons once shown.
+- Footer (every route): kaleoshq.com link -> logan@kaleoshq.com link -> X/Twitter
+  social icon.
+
+No element was found with a suppressed or missing focus ring; the walk required no
+code changes beyond what the motion and spacing passes above already touched.
+
+npm run build and npm run lint green (0 errors, the same 3 pre-existing
+no-img-element warnings).
+
+design-excellence applied: 04-polish-motion-responsive, sources read: taste.md plus 4 inspiration note(s)

@@ -19,7 +19,7 @@ const systems = [
 
 export function InProduction() {
   return (
-    <section className="relative py-24 bg-paper">
+    <section className="relative py-16 md:py-24 bg-paper">
       <div className="relative max-w-6xl mx-auto px-4">
         <AnimateIn>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">

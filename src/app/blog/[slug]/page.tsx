@@ -55,7 +55,7 @@ export default async function BlogPostPage({
       <NavBar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
+      <section className="relative pt-24 md:pt-32 pb-12 md:pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-navy" />
         <div
           className="absolute inset-0"
@@ -98,7 +98,7 @@ export default async function BlogPostPage({
       </section>
 
       {/* Article content */}
-      <section className="relative py-24 bg-navy">
+      <section className="relative py-16 md:py-24 bg-navy">
 
         <div className="relative z-10 max-w-180 mx-auto px-4">
           <AnimateIn>

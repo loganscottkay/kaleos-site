@@ -70,7 +70,7 @@ export function BuiltToDemo() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative py-24 bg-navy">
+    <section ref={sectionRef} className="relative py-16 md:py-24 bg-navy">
       <div className="relative max-w-6xl mx-auto px-4">
         <AnimateIn>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">

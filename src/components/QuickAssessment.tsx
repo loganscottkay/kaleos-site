@@ -151,7 +151,7 @@ export function QuickAssessment() {
   const currentQ = step < 3 ? questions[step] : null
 
   return (
-    <section ref={sectionRef} className="relative py-32 bg-navy">
+    <section ref={sectionRef} className="relative py-24 md:py-32 bg-navy">
       <div className="relative max-w-6xl mx-auto px-4">
         {/* Header */}
         <div
@@ -180,7 +180,7 @@ export function QuickAssessment() {
           }}
         >
           <div className="relative">
-            <div className="card-dark relative p-12 sm:p-16 overflow-hidden min-h-85">
+            <div className="card-dark relative p-6 sm:p-12 md:p-16 overflow-hidden min-h-85">
 
               {/* Progress bar */}
               <div className="relative z-10 mb-12">
@@ -239,7 +239,7 @@ export function QuickAssessment() {
                                 : handleSingleSelect(opt.label)
                             }
                             disabled={transitioning}
-                            className={`btn relative px-6 py-4 border text-body min-w-70 text-center ${
+                            className={`btn relative px-6 py-4 border text-body min-w-0 sm:min-w-70 text-center ${
                               isSelected
                                 ? 'bg-accent/25 border-teal-bright text-teal-bright'
                                 : 'bg-white/8 border-white/18 text-white hover:border-white/35'

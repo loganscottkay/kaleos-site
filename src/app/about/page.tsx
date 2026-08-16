@@ -49,7 +49,7 @@ export default function AboutPage() {
       <NavBar />
 
       {/* Hero */}
-      <section className="relative bg-paper pt-32 pb-12">
+      <section className="relative bg-paper pt-24 md:pt-32 pb-12">
         <div className="relative max-w-6xl mx-auto px-4 text-center">
           <h1 className="text-h1 font-medium text-ink">
             Who we are
@@ -58,7 +58,7 @@ export default function AboutPage() {
       </section>
 
       {/* Origin + Photo */}
-      <section className="relative py-24 bg-paper">
+      <section className="relative py-16 md:py-24 bg-paper">
         <div className="relative max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_3fr_1fr] gap-8 xl:gap-24 items-stretch">
             {/* Left Graph: The Decline */}
@@ -130,7 +130,7 @@ export default function AboutPage() {
       </section>
 
       {/* Background */}
-      <section className="relative py-24 bg-ink">
+      <section className="relative py-16 md:py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
@@ -200,7 +200,7 @@ export default function AboutPage() {
       </section>
 
       {/* How We're Different */}
-      <section className="relative py-24 bg-navy">
+      <section className="relative py-16 md:py-24 bg-navy">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
@@ -247,7 +247,7 @@ export default function AboutPage() {
       </section>
 
       {/* The Operation */}
-      <section className="relative py-24 bg-paper">
+      <section className="relative py-16 md:py-24 bg-paper">
         <div className="relative max-w-6xl mx-auto px-4">
           <div className="max-w-3xl mx-auto text-slate-600 leading-relaxed">
             <AnimateIn>
@@ -263,7 +263,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-24 bg-ink">
+      <section className="relative py-16 md:py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4 text-center">
           <AnimateIn>
             <h2 className="text-h2 font-medium mb-6 text-white">

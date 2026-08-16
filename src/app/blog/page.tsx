@@ -39,7 +39,7 @@ export default function BlogPage() {
       <NavBar />
 
       {/* Full-page dark background */}
-      <section className="relative pt-32 pb-16 overflow-hidden bg-navy">
+      <section className="relative pt-24 md:pt-32 pb-12 md:pb-16 overflow-hidden bg-navy">
         <div
           className="absolute inset-0"
           style={{

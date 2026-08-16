@@ -107,7 +107,7 @@ export default function Home() {
       <NavBar />
 
       {/* Hero */}
-      <section className="relative bg-paper pt-32 pb-24">
+      <section className="relative bg-paper pt-24 md:pt-32 pb-16 md:pb-24">
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-display font-semibold mb-8 text-ink">
             AI doesn&apos;t fail because of the technology.
@@ -143,7 +143,7 @@ export default function Home() {
       </section>
 
       {/* The Implementation Gap */}
-      <section className="relative py-24 bg-ink">
+      <section className="relative py-16 md:py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
@@ -185,7 +185,7 @@ export default function Home() {
       <InProduction />
 
       {/* Our Methodology */}
-      <section id="methodology" className="relative py-24 bg-ink">
+      <section id="methodology" className="relative py-16 md:py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
@@ -231,7 +231,7 @@ export default function Home() {
       <BuiltToDemo />
 
       {/* Who This Is For */}
-      <section className="relative py-24 bg-paper">
+      <section className="relative py-16 md:py-24 bg-paper">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end">
@@ -258,7 +258,7 @@ export default function Home() {
       <QuickAssessment />
 
       {/* Trust strip + Bottom CTA */}
-      <section className="relative py-24 bg-ink">
+      <section className="relative py-16 md:py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-24">
             {trustBadges.map((badge, i) => (

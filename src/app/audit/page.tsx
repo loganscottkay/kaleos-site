@@ -53,7 +53,7 @@ export default function AuditPage() {
       <NavBar />
 
       {/* Hero */}
-      <section className="relative bg-paper pt-32 pb-16">
+      <section className="relative bg-paper pt-24 md:pt-32 pb-12 md:pb-16">
         <div className="relative max-w-6xl mx-auto px-4 text-center">
           <h1 className="text-h1 font-medium mb-6 text-ink">
             Strategic AI assessment
@@ -66,7 +66,7 @@ export default function AuditPage() {
       </section>
 
       {/* Assessment Deliverables */}
-      <section className="relative py-24 bg-paper">
+      <section className="relative py-16 md:py-24 bg-paper">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-12 text-ink">
@@ -102,7 +102,7 @@ export default function AuditPage() {
       </section>
 
       {/* How It Works */}
-      <section className="relative py-24 bg-ink">
+      <section className="relative py-16 md:py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
@@ -131,7 +131,7 @@ export default function AuditPage() {
       </section>
 
       {/* How Engagements Work */}
-      <section className="relative py-24 bg-navy">
+      <section className="relative py-16 md:py-24 bg-navy">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-6 text-white">
@@ -185,7 +185,7 @@ export default function AuditPage() {
       </section>
 
       {/* FAQ */}
-      <section className="relative py-24 bg-ink">
+      <section className="relative py-16 md:py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
@@ -200,7 +200,7 @@ export default function AuditPage() {
       </section>
 
       {/* Intake Form */}
-      <section className="relative py-24 bg-navy" id="form">
+      <section className="relative py-16 md:py-24 bg-navy" id="form">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
