@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 
 const faqs = [
   {
@@ -39,28 +39,9 @@ const faqs = [
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
-  const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set())
+  const [visibleItems] = useState<Set<number>>(new Set(faqs.map((_, i) => i)))
   const sectionRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          // One motion moment per page belongs to the gate; the FAQ reveals
-          // in a single step (warden QA round 2, finding 3).
-          setVisibleItems(new Set(faqs.map((_, i) => i)))
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
 
   return (
     <div ref={sectionRef} className="space-y-3">

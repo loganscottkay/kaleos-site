@@ -13,7 +13,7 @@ const config = {
     gradientColor: 'var(--decline)',
     borderColor: 'border-decline/25',
     labelColor: 'var(--decline-bright)',
-    cardBg: 'rgba(255, 255, 255, 0.045)',
+    cardBg: 'rgba(50, 15, 15, 0.9)',
     linePath: 'M 25,18 C 50,20 70,30 95,55 C 120,80 145,105 165,118 C 175,124 182,127 185,128',
     fillPath:
       'M 25,18 C 50,20 70,30 95,55 C 120,80 145,105 165,118 C 175,124 182,127 185,128 L 185,140 L 25,140 Z',
@@ -35,7 +35,7 @@ const config = {
     gradientColor: 'var(--teal)',
     borderColor: 'border-accent/25',
     labelColor: 'var(--teal-bright)',
-    cardBg: 'rgba(255, 255, 255, 0.045)',
+    cardBg: 'rgba(10, 35, 30, 0.9)',
     linePath: 'M 25,128 C 50,127 75,124 100,112 C 125,95 145,65 160,40 C 172,22 180,15 185,12',
     fillPath:
       'M 25,128 C 50,127 75,124 100,112 C 125,95 145,65 160,40 C 172,22 180,15 185,12 L 185,140 L 25,140 Z',
