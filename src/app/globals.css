@@ -167,8 +167,11 @@ h1, h2, h3 {
   border-radius: 2px;
 }
 
-/* ══ Component systems: the one button, one card, one input ══ */
+/* ══ Component systems: the one button, one card, one input ══
+   Layered as components so spacing and color utilities at call sites
+   can still override individual declarations. */
 
+@layer components {
 /* Button system. Shape, hit target, and motion live here; sizes come
    from spacing utilities at the call site. */
 .btn {
@@ -243,6 +246,7 @@ h1, h2, h3 {
 }
 .input-dark:focus {
   border-color: color-mix(in srgb, var(--teal) 50%, transparent);
+}
 }
 
 /* ── Signature: the Gate Rule ── */

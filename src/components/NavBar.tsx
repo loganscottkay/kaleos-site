@@ -56,13 +56,13 @@ export function NavBar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`group/nav relative text-sm font-medium tracking-wide transition-colors duration-300 ease-in-out pb-1 ${
+                className={`group/nav relative inline-flex items-center text-sm font-medium tracking-wide transition-colors duration-300 ease-in-out py-3 -my-3 ${
                   isActive ? 'text-navy' : 'text-slate-500 hover:text-navy'
                 }`}
               >
                 {link.label}
                 <span
-                  className={`absolute left-0 bottom-0 h-[2px] bg-accent transition-all duration-300 ease-in-out ${
+                  className={`absolute left-0 bottom-2 h-[2px] bg-accent transition-all duration-300 ease-in-out ${
                     isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
                   }`}
                 />
@@ -73,7 +73,7 @@ export function NavBar() {
             href="https://calendly.com/logan-kaleoshq/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 rounded-lg bg-navy text-white text-sm font-medium transition-colors duration-300 hover:bg-accent"
+            className="btn btn-primary px-4 text-sm"
           >
             Book a Discovery Call
           </a>
@@ -82,7 +82,7 @@ export function NavBar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden text-navy/70 hover:text-navy transition-colors"
+          className="md:hidden flex items-center justify-center w-10 h-10 -mr-2 text-navy/70 hover:text-navy transition-colors"
           aria-label="Toggle menu"
           aria-expanded={open}
         >
@@ -119,7 +119,7 @@ export function NavBar() {
               href="https://calendly.com/logan-kaleoshq/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-navy text-white text-sm font-medium"
+              className="btn btn-primary px-4 text-sm"
             >
               Book a Discovery Call
             </a>

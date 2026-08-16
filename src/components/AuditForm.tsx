@@ -125,8 +125,9 @@ export function AuditForm() {
     )
   }
 
-  const inputClass =
-    'w-full px-4 py-3 rounded-xl bg-white/[0.06] border border-white/[0.1] text-white placeholder-white/25 focus:outline-none focus:border-accent/50 focus:shadow-[0_0_15px_rgba(13,148,136,0.12)] transition-all duration-300'
+  const inputClass = 'input-dark px-4 py-3'
+  const labelClass =
+    'block font-system text-white/50 text-xs tracking-wide uppercase mb-2'
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -146,7 +147,7 @@ export function AuditForm() {
       </div>
 
       <div>
-        <label className="block text-white/50 text-sm mb-2">Name *</label>
+        <label className={labelClass}>Name *</label>
         <input
           type="text"
           required
@@ -158,7 +159,7 @@ export function AuditForm() {
       </div>
 
       <div>
-        <label className="block text-white/50 text-sm mb-2">Email *</label>
+        <label className={labelClass}>Email *</label>
         <input
           type="email"
           required
@@ -170,7 +171,7 @@ export function AuditForm() {
       </div>
 
       <div>
-        <label className="block text-white/50 text-sm mb-2">Company *</label>
+        <label className={labelClass}>Company *</label>
         <input
           type="text"
           required
@@ -182,7 +183,7 @@ export function AuditForm() {
       </div>
 
       <div>
-        <label className="block text-white/50 text-sm mb-2">
+        <label className={labelClass}>
           Company Size
         </label>
         <div className="flex flex-wrap gap-2">
@@ -195,9 +196,9 @@ export function AuditForm() {
                 onClick={() =>
                   update('company_size', selected ? '' : size)
                 }
-                className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 active:scale-[0.95] cursor-pointer ${
+                className={`btn px-4 text-sm border ${
                   selected
-                    ? 'bg-accent/20 text-accent border-accent/40 shadow-[0_0_12px_rgba(13,148,136,0.2)]'
+                    ? 'bg-accent/20 text-teal-bright border-accent/50'
                     : 'bg-white/[0.04] text-white/40 border-white/[0.08] hover:border-white/[0.18] hover:text-white/60'
                 }`}
               >
@@ -209,7 +210,7 @@ export function AuditForm() {
       </div>
 
       <div>
-        <label className="block text-white/50 text-sm mb-2">
+        <label className={labelClass}>
           What are you looking to solve? *
         </label>
         <div className="flex flex-wrap gap-2">
@@ -220,9 +221,9 @@ export function AuditForm() {
                 key={challenge}
                 type="button"
                 onClick={() => toggleChallenge(challenge)}
-                className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 active:scale-[0.95] cursor-pointer ${
+                className={`btn px-4 text-sm border ${
                   selected
-                    ? 'bg-accent/20 text-accent border-accent/40 shadow-[0_0_12px_rgba(13,148,136,0.2)]'
+                    ? 'bg-accent/20 text-teal-bright border-accent/50'
                     : 'bg-white/[0.04] text-white/40 border-white/[0.08] hover:border-white/[0.18] hover:text-white/60'
                 }`}
               >
@@ -234,7 +235,7 @@ export function AuditForm() {
       </div>
 
       <div>
-        <label className="block text-white/50 text-sm mb-2">
+        <label className={labelClass}>
           Desired Outcome
         </label>
         <textarea
@@ -247,7 +248,7 @@ export function AuditForm() {
       </div>
 
       {status === 'error' && (
-        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+        <div className="flex items-center gap-2 px-4 py-3 rounded-control bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
           <svg
             className="w-4 h-4 shrink-0"
             fill="none"
@@ -268,9 +269,9 @@ export function AuditForm() {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full py-3.5 rounded-xl bg-navy text-white font-medium transition-all duration-300 hover:shadow-[0_0_25px_rgba(13,148,136,0.2)] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 relative overflow-hidden group border border-white/[0.08] hover:border-accent/30 cursor-pointer"
+        className="btn btn-primary w-full py-3.5"
       >
-        <span className="relative z-10">
+        <span>
           {status === 'loading' ? (
             <span className="flex items-center gap-2">
               <svg
@@ -298,7 +299,6 @@ export function AuditForm() {
             "Let's Talk"
           )}
         </span>
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.04] to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
       </button>
 
       <p className="text-white/25 text-xs text-center">

@@ -117,7 +117,7 @@ export function OutreachDemo() {
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             rows={5}
-            className="w-full text-[11px] leading-relaxed rounded-md bg-white/[0.05] border border-accent/40 text-white/80 p-2.5 mb-3 resize-none focus:outline-none"
+            className="input-dark text-[11px] leading-relaxed border-accent/40 p-2.5 mb-3 resize-none"
           />
         ) : (
           <p

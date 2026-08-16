@@ -14,3 +14,4 @@ ALL ASSIGNED DONE
 design-excellence applied: 01-tokens-foundation, sources read: taste.md plus 4 inspiration note(s)
 - 2026-08-16T18:36:28Z 01-tokens-foundation: done, end state holds
 - 2026-08-16T18:43:13Z 02-component-craft: system classes landed in globals.css (btn/card/input, 40px hit floor, token radii, card-hover), GlassCard now the one card system, GateRule gains start alignment, hero gate pulse now runs amber to teal
+- 2026-08-16T18:46:04Z 02-component-craft: button and input systems rolled out (NavBar, page CTAs, audit ghost, DemoButton to mono microcopy, AuditForm inputs/chips/submit, demo textareas keep the keyboard focus ring); gate chip and status consume pending-bright and approved tokens; systems layered under @layer components so call-site utilities still win

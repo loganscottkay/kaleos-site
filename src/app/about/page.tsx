@@ -275,7 +275,7 @@ export default function AboutPage() {
               href="https://calendly.com/logan-kaleoshq/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-3.5 rounded-lg bg-accent text-white font-medium transition-colors duration-300 hover:bg-teal-700"
+              className="btn btn-primary px-8 py-3.5"
             >
               Book a Discovery Call
             </a>
