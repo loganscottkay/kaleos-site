@@ -9,3 +9,7 @@
 - 2026-08-02T21:53:10Z depbump: committed package.json, package-lock.json, and PROGRESS.md as 81fd4b0 chore(deps): remediate npm advisories, next to 16.2.12 and pin postcss/sharp.
 - 2026-08-02T21:53:10Z depbump: done, end state holds
 ALL ASSIGNED DONE
+- group high (01-tokens-foundation, 02-component-craft) spawned
+- 2026-08-16T18:36:28Z 01-tokens-foundation: built the three-layer token system in globals.css (8pt spacing primitives, Major Third 1.250 fluid clamp scale, brand color primitives, semantic and component layers, radius 0/6/10, demo-card shadow token); contrast gate run by script, three flagged body pairs darkened at the semantic layer (link 3.28 to 4.79, pending-text 4.39 to 6.20, muted 4.16 to 5.42), table in WORKER-PROGRESS.md; build, lint, tsc green
+design-excellence applied: 01-tokens-foundation, sources read: taste.md plus 4 inspiration note(s)
+- 2026-08-16T18:36:28Z 01-tokens-foundation: done, end state holds
