@@ -273,3 +273,97 @@ npm run build and npm run lint green (0 errors, the same 3 pre-existing
 no-img-element warnings).
 
 design-excellence applied: 04-polish-motion-responsive, sources read: taste.md plus 4 inspiration note(s)
+
+## 05-freeze-verify
+
+Branch: pipeline/kaleos-site-ui-revamp
+Commits on this branch: 15
+Files touched total: 26 (22 tsx, 1 css, 2 md, 1 jsx)
+
+### Content Freeze Proof
+
+git diff main...HEAD shows:
+- Zero changes to files under public/ or brand-assets/
+- Zero image/asset files changed (.png/.jpg/.gif/.webp/.svg all count: 0)
+- Zero wording changes: diff contains only Tailwind class name replacements,
+  typography token migrations (text-sm -> text-body), spacing updates
+  (mb-14 -> mb-12, etc.), and motion-system refactors. No JSX text nodes,
+  string literals, or copy changed. Em dashes were removed from code comments
+  (7 instances, all removed, zero added). Pre-swap and post-swap text is
+  identical for every human-visible line.
+
+Result: PASS - Content freeze verified, zero image and zero wording changes.
+
+### Anti-generic Gate Checklist
+
+Scanned all routes (/, /about, /audit, /blog) against taste.md never list:
+
+| Tell | Verdict |
+| --- | --- |
+| Cream background, serif display, terracotta accent | PASS - Paper (#EDF0F4), Bricolage Grotesque display, no terracotta anywhere |
+| Near-black page with acid green/purple + glassy cards | PASS - Navy palette, teal brand voice, no glassy/glass morphism effects |
+| Purple-to-blue gradients on white, giant rounded, 3D blobs | PASS - No gradients with purple/blue, radius tokens 0/6/10, zero 3D effects |
+| Fake-broadsheet hairlines, faux-editorial pretension | PASS - Hairlines are functional (slate-200 on paper, white/10 on navy), not decorative |
+| Stock shadcn spacing/shadows/grays untouched | PASS - All shadows (demo card only, none elsewhere) and grays are semantic tokens, not defaults |
+| Zeroed metrics, lorem, emoji decoration, sparkle icons | PASS - No zero-state renders as proof, all data real, zero emoji in copy, zero sparkle icons |
+| Copy: unlock, seamless, supercharge, empower, em dashes, rhetorical triads | PASS - Zero forbidden words found, em dashes removed from comments, copy remains specific and direct |
+
+Result: PASS - Anti-generic checklist complete, zero violations.
+
+### Build Output (tail)
+
+```
+▲ Next.js 16.2.12 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 6.3s
+  Running TypeScript ...
+  Finished TypeScript in 4.0s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (19/19) in 532ms
+✓ Generating static pages using 3 workers (19/19) in 532ms
+  Finalizing page optimization ...
+
+Route (app)
+├ ○ /
+├ ○ /about
+├ ○ /audit
+├ ○ /blog
+├ ● /blog/[slug] with 7 prerendered paths
+├ ƒ /api/chat
+├ ƒ /api/lead
+└ ○ / sitemap and robots routes
+```
+
+npm run build: PASS
+npm run lint: PASS (0 errors, 3 pre-existing warnings)
+npx tsc --noEmit: PASS
+
+### Contrast Re-proof
+
+Re-ran WCAG 2.1 relative-luminance checks from task 01 against final CSS tokens.
+All flagged pairs and every other pair still meet or exceed requirements:
+
+| pair (on paper #EDF0F4) | ratio | bar | verdict |
+| --- | --- | --- | --- |
+| link #0F766E | 4.79:1 | 4.5 | PASS |
+| amber #92400E | 6.20:1 | 4.5 | PASS |
+| text-muted #556275 | 5.42:1 | 4.5 | PASS |
+| ink on paper | 15.90:1 | 4.5 | PASS |
+| slate-600 on paper | 6.63:1 | 4.5 | PASS |
+| white on navy-800 | 14.44:1 | 4.5 | PASS |
+| white on navy-900 | 16.54:1 | 4.5 | PASS |
+| white on navy-950 | 18.15:1 | 4.5 | PASS |
+| teal-bright on navy-800 | 7.76:1 | 4.5 | PASS |
+| teal-bright on navy-900 | 8.89:1 | 4.5 | PASS |
+| teal-bright on navy-950 | 9.75:1 | 4.5 | PASS |
+
+All ratios verified, zero regressions.
+
+### Summary
+
+Freeze proof confirms zero image and zero wording changes across all 26 touched
+files. Anti-generic checklist shows zero violations of taste.md never list on
+all four routes. Build passes clean (6.3s, 19 routes generated, 0 errors).
+Contrast re-proof confirms all WCAG 2.1 tokens meet 4.5:1 requirement on all
+grounds. Content-frozen, design-guardrails-held, build-proof recorded.
