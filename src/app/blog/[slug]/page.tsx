@@ -86,11 +86,11 @@ export default async function BlogPostPage({
                   <span className="px-3 py-1 text-caption font-semibold rounded-control bg-accent/15 text-teal-bright">
                     {post.category}
                   </span>
-                  <span className="text-white/20">·</span>
+                  <span className="text-white/60">·</span>
                 </>
               )}
               <span>{formattedDate}</span>
-              <span className="text-white/20">·</span>
+              <span className="text-white/60">·</span>
               <span>{post.readTime}</span>
             </div>
           </AnimateIn>

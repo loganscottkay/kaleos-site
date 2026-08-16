@@ -211,7 +211,7 @@ export default function Home() {
             {methodology.map((item, i) => (
               <AnimateIn key={i} delay={i * 100} className="h-full">
                 <GlassCard hover className="p-8 h-full">
-                  <div className="font-system text-accent/80 text-caption uppercase tracking-widest mb-3">
+                  <div className="font-system text-teal-bright text-caption uppercase tracking-widest mb-3">
                     {item.phase}
                   </div>
                   <h3 className="text-h4 font-semibold mb-3 text-white">
@@ -264,7 +264,7 @@ export default function Home() {
             {trustBadges.map((badge, i) => (
               <AnimateIn key={i} delay={i * 100}>
                 <div className="card-dark card-hover flex items-center justify-center gap-3 px-6 py-6">
-                  <span className="text-accent">{badge.icon}</span>
+                  <span className="text-teal-bright">{badge.icon}</span>
                   <span className="text-white/80 text-caption font-medium tracking-wide">
                     {badge.label}
                   </span>

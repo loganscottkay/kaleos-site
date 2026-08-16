@@ -98,7 +98,7 @@ export function AuditForm() {
       <div className="text-center py-12">
         <div className="mx-auto mb-6 w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center">
           <svg
-            className="w-7 h-7 text-accent"
+            className="w-7 h-7 text-teal-bright"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -127,7 +127,7 @@ export function AuditForm() {
 
   const inputClass = 'input-dark px-4 py-3'
   const labelClass =
-    'block font-system text-white/50 text-caption tracking-wide uppercase mb-2'
+    'block font-system text-white/60 text-caption tracking-wide uppercase mb-2'
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">

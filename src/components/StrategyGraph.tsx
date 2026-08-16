@@ -76,7 +76,7 @@ export function StrategyGraph({ variant }: StrategyGraphProps) {
             >
               {c.header}
             </p>
-            <p className="text-caption text-white/40 mb-3">
+            <p className="text-caption text-white/60 mb-3">
               {c.subtitle}
             </p>
 

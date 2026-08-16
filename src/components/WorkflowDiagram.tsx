@@ -106,7 +106,7 @@ function ConnectionLine({ vertical = false }: { vertical?: boolean }) {
     return (
       <div className="relative flex flex-col items-center h-10">
         <div className="w-0.5 h-full bg-gradient-to-b from-accent/60 to-accent/30" />
-        <svg className="absolute -bottom-1 text-accent/60" width="10" height="8" viewBox="0 0 10 8">
+        <svg className="absolute -bottom-1 text-accent" width="10" height="8" viewBox="0 0 10 8">
           <path d="M1 1L5 6L9 1" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
@@ -116,7 +116,7 @@ function ConnectionLine({ vertical = false }: { vertical?: boolean }) {
   return (
     <div className="relative flex items-center shrink-0 w-14">
       <div className="h-0.5 w-full bg-gradient-to-r from-accent/60 to-accent/30" />
-      <svg className="absolute -right-1 top-1/2 -translate-y-1/2 text-accent/60" width="8" height="10" viewBox="0 0 8 10">
+      <svg className="absolute -right-1 top-1/2 -translate-y-1/2 text-accent" width="8" height="10" viewBox="0 0 8 10">
         <path d="M1 1L6 5L1 9" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </div>
@@ -127,7 +127,7 @@ function ConnectionLine({ vertical = false }: { vertical?: boolean }) {
 function InternalNode({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
     <div className="flex items-center gap-3 rounded-control bg-white/6 border border-white/10 px-3 py-2">
-      <span className="text-accent">{icon}</span>
+      <span className="text-teal-bright">{icon}</span>
       <span className="text-white/80 text-caption font-medium whitespace-nowrap">{label}</span>
     </div>
   )
@@ -137,8 +137,8 @@ function InternalNode({ icon, label }: { icon: React.ReactNode; label: string })
 function SmallItem({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
     <div className="flex items-center gap-2">
-      <span className="text-white/40">{icon}</span>
-      <span className="text-white/50 text-caption">{label}</span>
+      <span className="text-white/60">{icon}</span>
+      <span className="text-white/60 text-caption">{label}</span>
     </div>
   )
 }
@@ -234,7 +234,7 @@ export function WorkflowDiagram() {
       </div>
 
       {/* Summary line */}
-      <p className="text-center text-white/50 text-body mt-12 max-w-xl mx-auto leading-relaxed">
+      <p className="text-center text-white/60 text-body mt-12 max-w-xl mx-auto leading-relaxed">
         Every system we build follows this architecture. AI processes, humans approve, everything logged.
       </p>
     </div>

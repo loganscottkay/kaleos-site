@@ -165,7 +165,7 @@ export function QuickAssessment() {
           <h2 className="md:col-span-7 text-h2 font-medium text-white">
             Where does AI create leverage in your business?
           </h2>
-          <p className="md:col-span-4 md:col-start-9 font-system text-white/50 text-body tracking-wide">
+          <p className="md:col-span-4 md:col-start-9 font-system text-white/60 text-body tracking-wide">
             3 questions. 60 seconds. A clear answer.
           </p>
         </div>
@@ -217,7 +217,7 @@ export function QuickAssessment() {
                           : slideDir === 'exit'
                             ? 'translateX(calc(-1 * var(--space-64)))'
                             : 'translateX(var(--space-64))',
-                      transition: 'opacity 0.3s ease, transform 0.3s ease',
+                      transition: 'opacity 0.2s ease, transform 0.2s ease',
                     }}
                   >
                     <p className="text-white text-h4 font-semibold mb-12 text-center">
@@ -281,7 +281,7 @@ export function QuickAssessment() {
                       Personalized for you
                     </p>
 
-                    <p className="text-white/50 text-body mb-3">Based on your answers:</p>
+                    <p className="text-white/60 text-body mb-3">Based on your answers:</p>
                     <div className="flex flex-wrap gap-2 justify-center mb-8">
                       {[...answers[0], ...answers[1], ...answers[2]].map((tag) => (
                         <span

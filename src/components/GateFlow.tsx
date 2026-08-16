@@ -26,7 +26,7 @@ export function GateFlow() {
               style={{ left }}
             >
               <svg
-                className="gate-flow-check w-3.5 h-3.5 text-accent"
+                className="gate-flow-check w-3.5 h-3.5 text-teal-bright"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -52,7 +52,7 @@ export function GateFlow() {
         {stops.map((stop) => (
           <span
             key={stop.label}
-            className={`text-center ${stop.gate ? 'text-accent/80' : ''}`}
+            className={`text-center ${stop.gate ? 'text-teal-bright' : ''}`}
           >
             {stop.label}
           </span>

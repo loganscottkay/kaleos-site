@@ -90,7 +90,7 @@ export function FAQ() {
             >
               <span className="text-white font-medium text-body-lg pr-4">{faq.q}</span>
               <svg
-                className={`w-5 h-5 text-accent/70 transition-transform duration-200 ease-in-out shrink-0 ${
+                className={`w-5 h-5 text-accent transition-transform duration-200 ease-in-out shrink-0 ${
                   isOpen ? 'rotate-180' : ''
                 }`}
                 fill="none"

@@ -80,7 +80,7 @@ export default function AuditPage() {
                 {deliverables.map((item, i) => (
                   <div key={i} className="flex items-start gap-4">
                     <svg
-                      className="w-5 h-5 text-accent shrink-0 mt-1"
+                      className="w-5 h-5 text-teal-bright shrink-0 mt-1"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

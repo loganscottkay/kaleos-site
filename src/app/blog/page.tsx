@@ -55,7 +55,7 @@ export default function BlogPage() {
             </h1>
           </AnimateIn>
           <AnimateIn delay={100}>
-            <p className="mt-4 text-white/50 text-body-lg max-w-xl mx-auto text-center">
+            <p className="mt-4 text-white/60 text-body-lg max-w-xl mx-auto text-center">
               Frameworks, lessons, and perspectives on AI implementation that
               actually works.
             </p>
@@ -65,7 +65,7 @@ export default function BlogPage() {
         {/* Posts */}
         <div className="relative z-10 max-w-5xl mx-auto px-4 mt-12">
           {posts.length === 0 && (
-            <p className="text-white/50 text-center">
+            <p className="text-white/60 text-center">
               No posts yet. Check back soon.
             </p>
           )}
@@ -128,7 +128,7 @@ export default function BlogPage() {
                       <h3 className="text-h4 font-semibold text-white mb-2 group-hover:text-teal-bright transition-colors duration-200">
                         {post.title}
                       </h3>
-                      <p className="text-white/50 text-body line-clamp-1 flex-1">
+                      <p className="text-white/60 text-body line-clamp-1 flex-1">
                         {post.description}
                       </p>
                       <div className="mt-4 pt-4 border-t border-white/[0.08] flex items-center justify-between">

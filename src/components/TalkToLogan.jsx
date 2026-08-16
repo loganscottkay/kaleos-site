@@ -61,7 +61,7 @@ export default function TalkToLogan() {
           </div>
           <div>
             <div className="text-body font-semibold text-white tracking-tight">Talk to Logan</div>
-            <div className="text-caption text-white/55 mt-1">Free AI consultation</div>
+            <div className="text-caption text-white/60 mt-1">Free AI consultation</div>
           </div>
         </button>
       )}
@@ -91,7 +91,7 @@ export default function TalkToLogan() {
             <button
               onClick={() => setIsOpen(false)}
               aria-label="Close chat"
-              className="w-10 h-10 rounded-control border-none bg-white/6 text-white/50 cursor-pointer flex items-center justify-center text-body"
+              className="w-10 h-10 rounded-control border-none bg-white/6 text-white/60 cursor-pointer flex items-center justify-center text-body"
             >
               ✕
             </button>
@@ -162,7 +162,7 @@ export default function TalkToLogan() {
               disabled={!input.trim() || loading}
               aria-label="Send message"
               className={`w-11 h-11 rounded-control border-none flex items-center justify-center shrink-0 transition-all duration-200 ${
-                input.trim() ? "bg-accent-deep text-white cursor-pointer" : "bg-white/6 text-white/20 cursor-default"
+                input.trim() ? "bg-accent-deep text-white cursor-pointer" : "bg-white/6 text-white/60 cursor-default"
               }`}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

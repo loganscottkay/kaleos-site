@@ -91,7 +91,7 @@ export function OutreachDemo() {
             <span className="text-white/85 text-caption font-medium">{lead.name}</span>
             <span className="text-white/60 text-caption ml-2">{lead.role}</span>
           </div>
-          <span className="font-system text-body font-semibold text-accent tabular-nums">
+          <span className="font-system text-body font-semibold text-teal-bright tabular-nums">
             {displayScore}
             <span className="text-white/60 text-caption font-normal">/100</span>
           </span>

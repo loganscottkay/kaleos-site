@@ -30,7 +30,7 @@ export function Footer() {
             logan@kaleoshq.com
           </a>
         </span>
-        <SocialIcons className="[&_a]:text-muted-text [&_a:hover]:text-accent" />
+        <SocialIcons className="[&_a]:text-muted-text [&_a:hover]:text-teal-bright" />
       </div>
     </footer>
   )
