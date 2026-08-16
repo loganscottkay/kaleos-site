@@ -13,3 +13,4 @@ ALL ASSIGNED DONE
 - 2026-08-16T18:36:28Z 01-tokens-foundation: built the three-layer token system in globals.css (8pt spacing primitives, Major Third 1.250 fluid clamp scale, brand color primitives, semantic and component layers, radius 0/6/10, demo-card shadow token); contrast gate run by script, three flagged body pairs darkened at the semantic layer (link 3.28 to 4.79, pending-text 4.39 to 6.20, muted 4.16 to 5.42), table in WORKER-PROGRESS.md; build, lint, tsc green
 design-excellence applied: 01-tokens-foundation, sources read: taste.md plus 4 inspiration note(s)
 - 2026-08-16T18:36:28Z 01-tokens-foundation: done, end state holds
+- 2026-08-16T18:43:13Z 02-component-craft: system classes landed in globals.css (btn/card/input, 40px hit floor, token radii, card-hover), GlassCard now the one card system, GateRule gains start alignment, hero gate pulse now runs amber to teal

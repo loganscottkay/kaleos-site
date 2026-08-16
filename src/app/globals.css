@@ -79,8 +79,10 @@
   --focus-ring: var(--teal); /* non-text UI, 3:1 met on every ground */
   --state-pending: var(--amber); /* chips, dots, rules; 3:1 bar */
   --state-pending-text: #92400E; /* darkened for body-size text; 6.20:1 */
+  --state-pending-bright: #F59E0B; /* pending on dark grounds; 6.72:1+ */
   --state-approved: var(--teal); /* chips, dots, rules; 3:1 bar */
   --state-approved-text: #0F766E; /* darkened for body-size text; 4.79:1 */
+  --state-approved-bright: var(--teal-bright); /* approved on dark; 7.76:1+ */
 
   /* ── LAYER 3: COMPONENT ── */
   --button-bg: var(--teal); /* solid button ground; label bar is 3:1 */
@@ -114,6 +116,7 @@
   --color-link: #0F766E;
   --color-pending: #B45309;
   --color-pending-text: #92400E;
+  --color-pending-bright: #F59E0B;
   --color-approved: #0D9488;
   --color-approved-text: #0F766E;
   --color-hairline: #E2E8F0;
@@ -164,6 +167,84 @@ h1, h2, h3 {
   border-radius: 2px;
 }
 
+/* ══ Component systems: the one button, one card, one input ══ */
+
+/* Button system. Shape, hit target, and motion live here; sizes come
+   from spacing utilities at the call site. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  min-height: 40px;
+  min-width: 40px;
+  border-radius: var(--radius-control);
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--button-bg);
+  color: var(--button-text);
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--link);
+}
+/* Ghost variant on navy grounds: white at opacity, never gray hexes */
+.btn-ghost-dark {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.btn-ghost-dark:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Card system. On paper: white surface, slate hairline, near-shadowless.
+   On navy: white at opacity. Radius 10 everywhere a card appears. */
+.card {
+  background: var(--card-surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+}
+.card-dark {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-card);
+}
+.card-hover {
+  transition: border-color 250ms ease;
+}
+.card-hover:hover {
+  border-color: color-mix(in srgb, var(--teal) 40%, transparent);
+}
+
+/* Input system. Text inputs and textareas on navy grounds; the global
+   focus-visible ring stays reachable (no outline suppression). */
+.input-dark {
+  width: 100%;
+  min-height: 44px;
+  border-radius: var(--radius-control);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  transition: border-color 200ms ease;
+}
+.input-dark::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+.input-dark:focus {
+  border-color: color-mix(in srgb, var(--teal) 50%, transparent);
+}
+
 /* ── Signature: the Gate Rule ── */
 
 .gate-rule {
@@ -183,7 +264,7 @@ h1, h2, h3 {
   width: 14px;
   height: 14px;
   transform: translate(-50%, -50%) rotate(0deg);
-  border-radius: 4px;
+  border-radius: var(--radius-control);
   border: 1.5px solid var(--color-accent);
   background: var(--color-paper);
 }
@@ -192,20 +273,27 @@ h1, h2, h3 {
   background: var(--color-ink);
 }
 
-/* ── The one orchestrated moment: hero gate flow ── */
+/* Lead-and-support headers left-align the rule; the chip stays on it. */
+.gate-rule.align-start {
+  margin-left: 0;
+}
+
+/* ── The one orchestrated moment: hero gate flow ──
+   The signature grammar: the pulse runs amber (pending) up to the gate,
+   waits, the gate approves, and the pulse leaves teal (approved). */
 
 @keyframes gate-pulse-travel {
-  0% { left: 0%; opacity: 0; }
+  0% { left: 0%; opacity: 0; background-color: var(--state-pending-bright); }
   8% { opacity: 1; }
-  38% { left: calc(50% - 4px); }
-  55% { left: calc(50% - 4px); }
+  38% { left: calc(50% - 4px); background-color: var(--state-pending-bright); }
+  55% { left: calc(50% - 4px); background-color: var(--state-approved); }
   92% { opacity: 1; }
-  100% { left: calc(100% - 8px); opacity: 0; }
+  100% { left: calc(100% - 8px); opacity: 0; background-color: var(--state-approved); }
 }
 
 @keyframes gate-chip-approve {
-  0%, 45% { border-color: rgba(180, 83, 9, 0.9); box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
-  60%, 100% { border-color: var(--color-accent); box-shadow: 0 0 12px 0 rgba(13, 148, 136, 0.35); }
+  0%, 45% { border-color: color-mix(in srgb, var(--state-pending) 90%, transparent); box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
+  60%, 100% { border-color: var(--state-approved); box-shadow: 0 0 12px 0 rgba(13, 148, 136, 0.35); }
 }
 
 @keyframes gate-check-in {

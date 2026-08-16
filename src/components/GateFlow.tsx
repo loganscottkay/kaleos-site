@@ -22,7 +22,7 @@ export function GateFlow() {
           return stop.gate ? (
             <div
               key={stop.label}
-              className="gate-flow-chip absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-lg border-[1.5px] bg-paper flex items-center justify-center"
+              className="gate-flow-chip absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-control border-[1.5px] bg-paper flex items-center justify-center"
               style={{ left }}
             >
               <svg
@@ -43,8 +43,8 @@ export function GateFlow() {
           )
         })}
 
-        {/* Traveling pulse */}
-        <div className="gate-flow-pulse absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(13,148,136,0.6)]" />
+        {/* Traveling pulse: amber while pending, teal once approved */}
+        <div className="gate-flow-pulse absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-accent" />
       </div>
 
       {/* Labels: one centered column per stop */}
