@@ -9,7 +9,6 @@ export default function TalkToLogan() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [showCTA, setShowCTA] = useState(false);
-  const [pulse, setPulse] = useState(true);
   const endRef = useRef(null);
   const inputRef = useRef(null);
   const turns = useRef(0);
@@ -17,7 +16,6 @@ export default function TalkToLogan() {
 
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);
   useEffect(() => { if (isOpen && inputRef.current) inputRef.current.focus(); }, [isOpen]);
-  useEffect(() => { const t = setTimeout(() => setPulse(false), 8000); return () => clearTimeout(t); }, []);
 
   const send = async () => {
     if (!input.trim() || loading) return;
@@ -54,9 +52,8 @@ export default function TalkToLogan() {
       {!isOpen && (
         <button
           type="button"
-          onClick={() => { setIsOpen(true); setPulse(false); }}
+          onClick={() => setIsOpen(true)}
           className="ltl-launcher fixed bottom-6 right-6 z-[9999] flex items-center gap-3 text-left rounded-card border border-white/10 bg-gradient-to-br from-navy to-navy-950 py-4 pl-4 pr-6 cursor-pointer transition-all duration-300 hover:border-white/20"
-          style={pulse ? { animation: "ltlPulse 2s ease-in-out infinite" } : undefined}
         >
           <div className="relative w-10 h-10 shrink-0">
             <img src="/photo.png" alt="Logan Kay" className="w-10 h-10 rounded-full object-cover" />

@@ -393,10 +393,6 @@ h1, h2, h3 {
 
 /* ── Talk to Logan chat widget ── */
 
-@keyframes ltlPulse {
-  0%, 100% { box-shadow: 0 8px 32px color-mix(in srgb, var(--teal) 30%, transparent); }
-  50% { box-shadow: 0 8px 48px color-mix(in srgb, var(--teal) 55%, transparent); }
-}
 @keyframes ltlBounce {
   0%, 60%, 100% { transform: translateY(0); }
   30% { transform: translateY(-4px); }
@@ -461,11 +457,6 @@ h1, h2, h3 {
     opacity: 1;
     transform: none;
   }
-  [style*="flowDotH"],
-  [style*="flowDotVertical"],
-  [style*="systemGlow"],
-  [style*="corePulse"],
-  [style*="ltlPulse"],
   [style*="ltlBounce"],
   [style*="ltlFadeUp"] {
     animation: none !important;
