@@ -71,7 +71,7 @@ export function FAQ() {
         return (
           <div
             key={i}
-            className={`card-dark overflow-hidden transition-all duration-500 ${
+            className={`card-dark overflow-hidden transition-all duration-200 ${
               isOpen
                 ? 'bg-white/[0.08] border-accent/30'
                 : 'hover:border-white/[0.2]'
@@ -90,7 +90,7 @@ export function FAQ() {
             >
               <span className="text-white font-medium text-body-lg pr-4">{faq.q}</span>
               <svg
-                className={`w-5 h-5 text-accent/70 transition-transform duration-300 ease-in-out shrink-0 ${
+                className={`w-5 h-5 text-accent/70 transition-transform duration-200 ease-in-out shrink-0 ${
                   isOpen ? 'rotate-180' : ''
                 }`}
                 fill="none"
@@ -106,7 +106,7 @@ export function FAQ() {
               </svg>
             </button>
             <div
-              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+              className={`overflow-hidden transition-all duration-200 ease-in-out ${
                 isOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
               }`}
             >

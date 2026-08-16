@@ -69,7 +69,7 @@ export default async function BlogPostPage({
           <AnimateIn>
             <Link
               href="/blog"
-              className="inline-flex items-center text-white/40 text-body hover:text-accent transition-colors mb-8"
+              className="inline-flex items-center text-white/60 text-body hover:text-teal-bright transition-colors mb-8"
             >
               &larr; Back to Thinking
             </Link>
@@ -80,7 +80,7 @@ export default async function BlogPostPage({
             </h1>
           </AnimateIn>
           <AnimateIn delay={150}>
-            <div className="mt-6 flex items-center justify-center gap-3 text-body text-white/40">
+            <div className="mt-6 flex items-center justify-center gap-3 text-body text-white/60">
               {post.category && (
                 <>
                   <span className="px-3 py-1 text-caption font-semibold rounded-control bg-accent/15 text-teal-bright">
@@ -133,7 +133,7 @@ export default async function BlogPostPage({
           <AnimateIn delay={200}>
             <Link
               href="/blog"
-              className="inline-block mt-12 text-accent font-medium text-body hover:underline"
+              className="inline-block mt-12 text-teal-bright font-medium text-body hover:underline"
             >
               &larr; Back to Thinking
             </Link>

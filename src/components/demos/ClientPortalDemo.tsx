@@ -30,7 +30,7 @@ export function ClientPortalDemo() {
         </div>
         <div className="h-1.5 rounded-full bg-white/[0.06] overflow-hidden mb-3">
           <div
-            className="h-full rounded-full bg-accent transition-all duration-700"
+            className="h-full rounded-full bg-accent transition-all duration-200"
             style={{ width: approved ? '72%' : '68%' }}
           />
         </div>
@@ -62,7 +62,7 @@ export function ClientPortalDemo() {
           />
         ) : (
           <p
-            className={`text-caption leading-relaxed rounded-control border p-3 mb-3 transition-colors duration-300 ${
+            className={`text-caption leading-relaxed rounded-control border p-3 mb-3 transition-colors duration-200 ${
               approved
                 ? 'bg-accent/[0.07] border-accent/25 text-white/75'
                 : 'bg-white/[0.03] border-white/[0.07] text-white/60'

@@ -114,8 +114,8 @@ export function AuditForm() {
         <div className="text-h3 font-semibold text-white mb-3">
           Thank you! You&apos;ll hear back within 24 hours.
         </div>
-        <p className="text-white/40 mb-8">No spam, no sales pitch.</p>
-        <div className="inline-block text-left space-y-2 text-body text-white/40">
+        <p className="text-white/60 mb-8">No spam, no sales pitch.</p>
+        <div className="inline-block text-left space-y-2 text-body text-white/60">
           <p className="font-medium text-white/60">Next steps:</p>
           <p>1. We review your submission</p>
           <p>2. We schedule a discovery call</p>
@@ -199,7 +199,7 @@ export function AuditForm() {
                 className={`btn px-4 text-body border ${
                   selected
                     ? 'bg-accent/20 text-teal-bright border-accent/50'
-                    : 'bg-white/[0.04] text-white/40 border-white/[0.08] hover:border-white/[0.18] hover:text-white/60'
+                    : 'bg-white/[0.04] text-white/60 border-white/[0.08] hover:border-white/[0.18] hover:text-white/60'
                 }`}
               >
                 {size}
@@ -224,7 +224,7 @@ export function AuditForm() {
                 className={`btn px-4 text-body border ${
                   selected
                     ? 'bg-accent/20 text-teal-bright border-accent/50'
-                    : 'bg-white/[0.04] text-white/40 border-white/[0.08] hover:border-white/[0.18] hover:text-white/60'
+                    : 'bg-white/[0.04] text-white/60 border-white/[0.08] hover:border-white/[0.18] hover:text-white/60'
                 }`}
               >
                 {challenge}
@@ -301,7 +301,7 @@ export function AuditForm() {
         </span>
       </button>
 
-      <p className="text-white/25 text-caption text-center">
+      <p className="text-white/60 text-caption text-center">
         You&apos;ll hear back within 24 hours. No spam, no sales pitch.
       </p>
     </form>

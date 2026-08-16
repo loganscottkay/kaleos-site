@@ -23,7 +23,7 @@ export function NavBar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-200 ${
         scrolled
           ? 'bg-paper/95 border-slate-200'
           : 'bg-paper/80 border-transparent'
@@ -56,13 +56,13 @@ export function NavBar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`group/nav relative inline-flex items-center text-body font-medium tracking-wide transition-colors duration-300 ease-in-out py-3 -my-3 ${
+                className={`group/nav relative inline-flex items-center text-body font-medium tracking-wide transition-colors duration-200 ease-in-out py-3 -my-3 ${
                   isActive ? 'text-navy' : 'text-muted-text hover:text-navy'
                 }`}
               >
                 {link.label}
                 <span
-                  className={`absolute left-0 bottom-2 h-0.5 bg-accent transition-all duration-300 ease-in-out ${
+                  className={`absolute left-0 bottom-2 h-0.5 bg-accent transition-all duration-200 ease-in-out ${
                     isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
                   }`}
                 />
@@ -105,7 +105,7 @@ export function NavBar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className={`text-body font-medium tracking-wide transition-colors duration-300 ${
+                className={`text-body font-medium tracking-wide transition-colors duration-200 ${
                   pathname === link.href ||
                   (link.href !== '/' && pathname.startsWith(link.href))
                     ? 'text-navy'

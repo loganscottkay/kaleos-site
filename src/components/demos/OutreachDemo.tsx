@@ -121,7 +121,7 @@ export function OutreachDemo() {
           />
         ) : (
           <p
-            className={`text-caption leading-relaxed rounded-control border p-3 mb-3 transition-colors duration-300 ${
+            className={`text-caption leading-relaxed rounded-control border p-3 mb-3 transition-colors duration-200 ${
               decided === 'approved'
                 ? 'bg-accent/[0.07] border-accent/25 text-white/75'
                 : decided === 'rejected'

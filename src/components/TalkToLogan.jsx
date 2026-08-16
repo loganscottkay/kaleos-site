@@ -53,7 +53,7 @@ export default function TalkToLogan() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="ltl-launcher fixed bottom-6 right-6 z-[9999] flex items-center gap-3 text-left rounded-card border border-white/10 bg-gradient-to-br from-navy to-navy-950 py-4 pl-4 pr-6 cursor-pointer transition-all duration-300 hover:border-white/20"
+          className="ltl-launcher fixed bottom-6 right-6 z-[9999] flex items-center gap-3 text-left rounded-card border border-white/10 bg-gradient-to-br from-navy to-navy-950 py-4 pl-4 pr-6 cursor-pointer transition-all duration-200 hover:border-white/20"
         >
           <div className="relative w-10 h-10 shrink-0">
             <img src="/photo.png" alt="Logan Kay" className="w-10 h-10 rounded-full object-cover" />
@@ -77,7 +77,7 @@ export default function TalkToLogan() {
       {isOpen && (
         <div
           className="ltl-panel fixed bottom-6 right-6 z-[10001] flex flex-col rounded-card border border-white/8 bg-gradient-to-b from-navy-900 to-navy-950 overflow-hidden"
-          style={{ animation: "ltlFadeUp .3s cubic-bezier(.4,0,.2,1)" }}
+          style={{ animation: "ltlFadeUp .2s cubic-bezier(.4,0,.2,1)" }}
         >
           <div className="flex items-center gap-4 px-6 pt-6 pb-4 bg-accent/6 border-b border-white/6">
             <div className="relative w-11 h-11 shrink-0">
@@ -106,7 +106,7 @@ export default function TalkToLogan() {
                     ? "ltl-bubble-assistant bg-white/6 border border-white/4 text-white/88 self-start"
                     : "ltl-bubble-user bg-accent-deep text-white self-end"
                 }`}
-                style={{ animation: "ltlFadeUp .25s ease" }}
+                style={{ animation: "ltlFadeUp .2s ease" }}
               >
                 {m.content}
               </div>

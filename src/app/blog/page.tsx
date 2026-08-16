@@ -84,15 +84,15 @@ export default function BlogPage() {
                             {featured.category}
                           </span>
                         )}
-                        <span className="text-caption text-white/40 tracking-wide">
+                        <span className="text-caption text-white/60 tracking-wide">
                           {formatDate(featured.date)}
                         </span>
-                        <span className="text-caption text-white/30">·</span>
-                        <span className="text-caption text-white/40 tracking-wide">
+                        <span className="text-caption text-white/60">·</span>
+                        <span className="text-caption text-white/60 tracking-wide">
                           {featured.readTime}
                         </span>
                       </div>
-                      <h2 className="text-h2 font-semibold text-white mb-4 group-hover:text-teal-bright transition-colors duration-300">
+                      <h2 className="text-h2 font-semibold text-white mb-4 group-hover:text-teal-bright transition-colors duration-200">
                         {featured.title}
                       </h2>
                       <p className="text-white/60 leading-relaxed max-w-2xl line-clamp-2">
@@ -121,18 +121,18 @@ export default function BlogPage() {
                             {post.category}
                           </span>
                         )}
-                        <span className="text-caption text-white/35 tracking-wide">
+                        <span className="text-caption text-white/60 tracking-wide">
                           {formatDate(post.date)}
                         </span>
                       </div>
-                      <h3 className="text-h4 font-semibold text-white mb-2 group-hover:text-teal-bright transition-colors duration-300">
+                      <h3 className="text-h4 font-semibold text-white mb-2 group-hover:text-teal-bright transition-colors duration-200">
                         {post.title}
                       </h3>
                       <p className="text-white/50 text-body line-clamp-1 flex-1">
                         {post.description}
                       </p>
                       <div className="mt-4 pt-4 border-t border-white/[0.08] flex items-center justify-between">
-                        <span className="text-caption text-white/30">
+                        <span className="text-caption text-white/60">
                           {post.readTime}
                         </span>
                         <span className="text-caption text-teal-bright font-medium group-hover:underline">

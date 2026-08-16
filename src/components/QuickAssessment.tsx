@@ -159,7 +159,7 @@ export function QuickAssessment() {
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(var(--space-12))',
-            transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+            transition: 'opacity 0.2s ease-out, transform 0.2s ease-out',
           }}
         >
           <h2 className="md:col-span-7 text-h2 font-medium text-white">
@@ -176,7 +176,7 @@ export function QuickAssessment() {
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(var(--space-16))',
-            transition: 'opacity 0.6s ease-out 200ms, transform 0.6s ease-out 200ms',
+            transition: 'opacity 0.2s ease-out, transform 0.2s ease-out',
           }}
         >
           <div className="relative">

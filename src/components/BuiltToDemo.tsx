@@ -101,7 +101,7 @@ export function BuiltToDemo() {
               className={`h-full ${i === 2 ? 'md:col-span-2 lg:col-span-1 md:max-w-[calc(50%-var(--space-12))] md:mx-auto md:w-full lg:max-w-none' : ''}`}
             >
               <div className="card-dark card-hover shadow-demo-card p-6 flex flex-col h-full">
-                <h3 className="font-system text-caption font-semibold text-accent mb-4 tracking-widest uppercase">
+                <h3 className="font-system text-caption font-semibold text-teal-bright mb-4 tracking-widest uppercase">
                   {demo.title}
                 </h3>
                 <div className="flex-1 flex flex-col" style={{ minHeight: DEMO_MIN_H }}>
