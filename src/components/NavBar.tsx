@@ -39,7 +39,7 @@ export function NavBar() {
             style={{ borderRadius: 6, objectFit: 'cover' }}
           />
           <span
-            className="text-navy font-semibold text-lg tracking-tight"
+            className="text-navy font-semibold text-body-lg tracking-tight"
             style={{ fontFamily: 'var(--font-display), sans-serif' }}
           >
             Kaleos HQ
@@ -56,7 +56,7 @@ export function NavBar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`group/nav relative inline-flex items-center text-sm font-medium tracking-wide transition-colors duration-300 ease-in-out py-3 -my-3 ${
+                className={`group/nav relative inline-flex items-center text-body font-medium tracking-wide transition-colors duration-300 ease-in-out py-3 -my-3 ${
                   isActive ? 'text-navy' : 'text-slate-500 hover:text-navy'
                 }`}
               >
@@ -73,7 +73,7 @@ export function NavBar() {
             href="https://calendly.com/logan-kaleoshq/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-primary px-4 text-sm"
+            className="btn btn-primary px-4 text-body"
           >
             Book a Discovery Call
           </a>
@@ -105,7 +105,7 @@ export function NavBar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className={`text-sm font-medium tracking-wide transition-colors duration-300 ${
+                className={`text-body font-medium tracking-wide transition-colors duration-300 ${
                   pathname === link.href ||
                   (link.href !== '/' && pathname.startsWith(link.href))
                     ? 'text-navy'
@@ -119,7 +119,7 @@ export function NavBar() {
               href="https://calendly.com/logan-kaleoshq/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary px-4 text-sm"
+              className="btn btn-primary px-4 text-body"
             >
               Book a Discovery Call
             </a>

@@ -19,7 +19,7 @@ export function SocialIcons({ className = '' }: { className?: string }) {
 export function Footer() {
   return (
     <footer className="border-t border-slate-200/60 py-8">
-      <div className="max-w-6xl mx-auto px-4 flex items-center justify-center gap-4 font-system text-muted-text text-xs tracking-wide">
+      <div className="max-w-6xl mx-auto px-4 flex items-center justify-center gap-4 font-system text-muted-text text-caption tracking-wide">
         <span>
           &copy; 2026 Kaleos HQ &middot;{' '}
           <a href="https://www.kaleoshq.com" className="hover:text-slate-600 transition-colors">

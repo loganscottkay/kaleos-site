@@ -75,17 +75,17 @@ export function BuiltToDemo() {
         <AnimateIn>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
             <div className="md:col-span-6">
-              <p className="font-system text-teal-bright text-xs tracking-widest mb-3 uppercase">
+              <p className="font-system text-teal-bright text-caption tracking-widest mb-3 uppercase">
                 What it looks like in practice
               </p>
-              <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-white">
+              <h2 className="text-h2 font-medium text-white">
                 AI does the work. You make the call.
               </h2>
               <div className="mt-6">
                 <GateRule onDark align="start" />
               </div>
             </div>
-            <p className="md:col-span-5 md:col-start-8 text-mist text-sm leading-relaxed">
+            <p className="md:col-span-5 md:col-start-8 text-mist text-body">
               Working demos, modeled on systems Kaleos HQ has deployed. Sample data.
               Click around: the approve button is real, and it is the same gate
               every Kaleos HQ system ships with.
@@ -98,7 +98,7 @@ export function BuiltToDemo() {
             <AnimateIn
               key={demo.title}
               delay={i * 100}
-              className={`h-full ${i === 2 ? 'md:col-span-2 lg:col-span-1 md:max-w-[calc(50%-0.75rem)] md:mx-auto md:w-full lg:max-w-none' : ''}`}
+              className={`h-full ${i === 2 ? 'md:col-span-2 lg:col-span-1 md:max-w-[calc(50%-var(--space-12))] md:mx-auto md:w-full lg:max-w-none' : ''}`}
             >
               <div className="card-dark card-hover shadow-demo-card p-6 flex flex-col h-full">
                 <h3 className="font-system text-caption font-semibold text-accent mb-4 tracking-widest uppercase">
@@ -107,7 +107,7 @@ export function BuiltToDemo() {
                 <div className="flex-1 flex flex-col" style={{ minHeight: DEMO_MIN_H }}>
                   {near ? <demo.Component /> : <DemoPlaceholder />}
                 </div>
-                <p className="text-caption text-mist/80 leading-relaxed mt-4 pt-3 border-t border-white/5">
+                <p className="text-caption text-mist/80 mt-4 pt-3 border-t border-white/5">
                   {demo.desc}
                 </p>
               </div>

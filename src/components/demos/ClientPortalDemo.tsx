@@ -25,7 +25,7 @@ export function ClientPortalDemo() {
       {/* Project snapshot: seeded, never zero */}
       <div className="px-4 pt-4 pb-3 border-b border-white/5">
         <div className="flex items-baseline justify-between mb-2">
-          <span className="text-white/85 text-xs font-medium">Riverside office buildout</span>
+          <span className="text-white/85 text-caption font-medium">Riverside office buildout</span>
           <span className="font-system text-caption text-white/40">Phase 3 of 5</span>
         </div>
         <div className="h-1.5 rounded-full bg-white/[0.06] overflow-hidden mb-3">

@@ -50,12 +50,12 @@ export default function BlogPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
           <AnimateIn distance={24}>
-            <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-white">
+            <h1 className="text-h1 font-semibold text-white">
               Thinking
             </h1>
           </AnimateIn>
           <AnimateIn delay={100}>
-            <p className="mt-4 text-white/50 text-lg max-w-xl mx-auto leading-relaxed text-center">
+            <p className="mt-4 text-white/50 text-body-lg max-w-xl mx-auto text-center">
               Frameworks, lessons, and perspectives on AI implementation that
               actually works.
             </p>
@@ -80,25 +80,25 @@ export default function BlogPage() {
                     <div className="relative p-8 sm:p-12">
                       <div className="flex items-center gap-3 mb-6">
                         {featured.category && (
-                          <span className="px-3 py-1 text-xs font-semibold rounded-control bg-accent/15 text-teal-bright tracking-wide">
+                          <span className="px-3 py-1 text-caption font-semibold rounded-control bg-accent/15 text-teal-bright tracking-wide">
                             {featured.category}
                           </span>
                         )}
-                        <span className="text-xs text-white/40 tracking-wide">
+                        <span className="text-caption text-white/40 tracking-wide">
                           {formatDate(featured.date)}
                         </span>
-                        <span className="text-xs text-white/30">·</span>
-                        <span className="text-xs text-white/40 tracking-wide">
+                        <span className="text-caption text-white/30">·</span>
+                        <span className="text-caption text-white/40 tracking-wide">
                           {featured.readTime}
                         </span>
                       </div>
-                      <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-white mb-4 group-hover:text-accent transition-colors duration-300">
+                      <h2 className="text-h2 font-semibold text-white mb-4 group-hover:text-accent transition-colors duration-300">
                         {featured.title}
                       </h2>
                       <p className="text-white/60 leading-relaxed max-w-2xl line-clamp-2">
                         {featured.description}
                       </p>
-                      <span className="inline-block mt-6 text-accent text-sm font-medium group-hover:underline">
+                      <span className="inline-block mt-6 text-accent text-body font-medium group-hover:underline">
                         Read post &rarr;
                       </span>
                     </div>
@@ -125,17 +125,17 @@ export default function BlogPage() {
                           {formatDate(post.date)}
                         </span>
                       </div>
-                      <h3 className="text-lg font-semibold tracking-tight text-white mb-2 group-hover:text-accent transition-colors duration-300">
+                      <h3 className="text-h4 font-semibold text-white mb-2 group-hover:text-accent transition-colors duration-300">
                         {post.title}
                       </h3>
-                      <p className="text-white/50 text-sm leading-relaxed line-clamp-1 flex-1">
+                      <p className="text-white/50 text-body line-clamp-1 flex-1">
                         {post.description}
                       </p>
                       <div className="mt-4 pt-4 border-t border-white/[0.08] flex items-center justify-between">
                         <span className="text-caption text-white/30">
                           {post.readTime}
                         </span>
-                        <span className="text-xs text-accent font-medium group-hover:underline">
+                        <span className="text-caption text-accent font-medium group-hover:underline">
                           Read &rarr;
                         </span>
                       </div>

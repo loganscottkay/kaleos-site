@@ -55,10 +55,10 @@ export default function AuditPage() {
       {/* Hero */}
       <section className="relative bg-paper pt-32 pb-16">
         <div className="relative max-w-6xl mx-auto px-4 text-center">
-          <h1 className="text-4xl sm:text-5xl font-medium tracking-tight mb-6 text-ink">
+          <h1 className="text-h1 font-medium mb-6 text-ink">
             Strategic AI assessment
           </h1>
-          <p className="hero-rise hero-rise-1 text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="hero-rise hero-rise-1 text-body-lg text-slate-600 max-w-2xl mx-auto">
             We map your business, identify your highest-leverage AI
             opportunities, and deliver a clear roadmap with projected ROI.
           </p>
@@ -69,7 +69,7 @@ export default function AuditPage() {
       <section className="relative py-24 bg-paper">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-12 text-ink">
+            <h2 className="text-h2 font-medium text-center mb-12 text-ink">
               Assessment deliverables
             </h2>
           </AnimateIn>
@@ -105,7 +105,7 @@ export default function AuditPage() {
       <section className="relative py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-12 text-white">
+            <h2 className="text-h2 font-medium text-center mb-12 text-white">
               How it works
             </h2>
           </AnimateIn>
@@ -114,13 +114,13 @@ export default function AuditPage() {
             {steps.map((item, i) => (
               <AnimateIn key={i} delay={i * 100} className="h-full">
                 <GlassCard className="p-6 h-full">
-                  <div className="text-white/60 text-xs uppercase tracking-widest mb-2" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  <div className="text-white/60 text-caption uppercase tracking-widest mb-2" style={{ fontFamily: "'Inter', sans-serif" }}>
                     {item.step}
                   </div>
-                  <h3 className="text-lg font-semibold tracking-tight mb-2 text-white">
+                  <h3 className="text-h4 font-semibold mb-2 text-white">
                     {item.title}
                   </h3>
-                  <p className="text-white/70 text-sm leading-relaxed">
+                  <p className="text-white/70 text-body leading-relaxed">
                     {item.desc}
                   </p>
                 </GlassCard>
@@ -134,7 +134,7 @@ export default function AuditPage() {
       <section className="relative py-24 bg-navy">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-6 text-white">
+            <h2 className="text-h2 font-medium text-center mb-6 text-white">
               How engagements work
             </h2>
             <p className="text-mist text-center max-w-3xl mx-auto mb-16 leading-relaxed">
@@ -162,17 +162,17 @@ export default function AuditPage() {
               <AnimateIn key={tier.name} delay={i * 100} className="h-full">
                 <GlassCard hover className="p-8 h-full">
                   <div className="flex flex-col h-full">
-                    <h3 className="text-lg font-semibold tracking-tight text-white mb-4">
+                    <h3 className="text-h4 font-semibold text-white mb-4">
                       {tier.name}
                     </h3>
-                    <p className="text-white/60 text-sm leading-relaxed mb-8 flex-1">
+                    <p className="text-white/60 text-body leading-relaxed mb-8 flex-1">
                       {tier.desc}
                     </p>
                     <a
                       href="https://calendly.com/logan-kaleoshq/30min"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn btn-ghost-dark w-full px-6 text-sm"
+                      className="btn btn-ghost-dark w-full px-6 text-body"
                     >
                       Book a Discovery Call
                     </a>
@@ -188,7 +188,7 @@ export default function AuditPage() {
       <section className="relative py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-12 text-white">
+            <h2 className="text-h2 font-medium text-center mb-12 text-white">
               Frequently asked questions
             </h2>
           </AnimateIn>
@@ -203,7 +203,7 @@ export default function AuditPage() {
       <section className="relative py-24 bg-navy" id="form">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-12 text-white">
+            <h2 className="text-h2 font-medium text-center mb-12 text-white">
               Start a conversation
             </h2>
           </AnimateIn>

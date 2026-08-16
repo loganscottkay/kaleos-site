@@ -206,7 +206,7 @@ function InternalNode({
       }}
     >
       <span className="text-accent">{icon}</span>
-      <span className="text-white/80 text-xs font-medium whitespace-nowrap">{label}</span>
+      <span className="text-white/80 text-caption font-medium whitespace-nowrap">{label}</span>
     </div>
   )
 }
@@ -248,7 +248,7 @@ export function WorkflowDiagram() {
       <div className="hidden md:flex items-stretch justify-center gap-0">
         {/* LEFT: Your Business */}
         <GlassBox visible={visible} delay={0} className="p-6 w-43 flex flex-col justify-center">
-          <p className="text-white font-semibold text-sm mb-3 tracking-tight">Your Business</p>
+          <p className="text-white font-semibold text-body mb-3 tracking-tight">Your Business</p>
           <div className="flex flex-col gap-2">
             <SmallItem icon={<MailIcon />} label="Emails" />
             <SmallItem icon={<DataIcon />} label="Data" />
@@ -265,7 +265,7 @@ export function WorkflowDiagram() {
           <div className="flex items-center gap-2 mb-4">
             <div className="w-2 h-2 rounded-full bg-accent core-pulse-glow"
               style={{ animation: visible ? 'corePulse 2s ease-in-out infinite' : 'none' }} />
-            <p className="text-white font-semibold text-sm tracking-tight">Kaleos HQ System</p>
+            <p className="text-white font-semibold text-body tracking-tight">Kaleos HQ System</p>
           </div>
           <div className="flex flex-col gap-3">
             <InternalNode icon={<CpuIcon />} label="AI Processing" visible={visible} delay={600} />
@@ -279,7 +279,7 @@ export function WorkflowDiagram() {
 
         {/* RIGHT: Output */}
         <GlassBox visible={visible} delay={600} className="p-6 w-43 flex flex-col justify-center">
-          <p className="text-white font-semibold text-sm mb-3 tracking-tight">Output</p>
+          <p className="text-white font-semibold text-body mb-3 tracking-tight">Output</p>
           <div className="flex flex-col gap-2">
             <SmallItem icon={<PaperPlaneIcon />} label="Proposals sent" />
             <SmallItem icon={<ChartIcon />} label="Reports generated" />
@@ -293,7 +293,7 @@ export function WorkflowDiagram() {
       <div className="flex md:hidden flex-col items-center gap-0">
         {/* Your Business */}
         <GlassBox visible={visible} delay={0} className="p-6 w-65">
-          <p className="text-white font-semibold text-sm mb-3 tracking-tight">Your Business</p>
+          <p className="text-white font-semibold text-body mb-3 tracking-tight">Your Business</p>
           <div className="flex flex-wrap gap-x-4 gap-y-2">
             <SmallItem icon={<MailIcon />} label="Emails" />
             <SmallItem icon={<DataIcon />} label="Data" />
@@ -309,7 +309,7 @@ export function WorkflowDiagram() {
           <div className="flex items-center gap-2 mb-3">
             <div className="w-2 h-2 rounded-full bg-accent core-pulse-glow"
               style={{ animation: visible ? 'corePulse 2s ease-in-out infinite' : 'none' }} />
-            <p className="text-white font-semibold text-sm tracking-tight">Kaleos HQ System</p>
+            <p className="text-white font-semibold text-body tracking-tight">Kaleos HQ System</p>
           </div>
           <div className="flex flex-col gap-2">
             <InternalNode icon={<CpuIcon />} label="AI Processing" visible={visible} delay={500} />
@@ -322,7 +322,7 @@ export function WorkflowDiagram() {
 
         {/* Output */}
         <GlassBox visible={visible} delay={600} className="p-6 w-65">
-          <p className="text-white font-semibold text-sm mb-3 tracking-tight">Output</p>
+          <p className="text-white font-semibold text-body mb-3 tracking-tight">Output</p>
           <div className="flex flex-wrap gap-x-4 gap-y-2">
             <SmallItem icon={<PaperPlaneIcon />} label="Proposals sent" />
             <SmallItem icon={<ChartIcon />} label="Reports" />
@@ -334,7 +334,7 @@ export function WorkflowDiagram() {
 
       {/* Summary line */}
       <p
-        className="text-center text-white/50 text-sm mt-12 max-w-xl mx-auto leading-relaxed"
+        className="text-center text-white/50 text-body mt-12 max-w-xl mx-auto leading-relaxed"
         style={{
           opacity: visible ? 1 : 0,
           transition: 'opacity 0.6s ease-out 1100ms',

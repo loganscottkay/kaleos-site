@@ -121,3 +121,50 @@ re-indentation, zero wording or asset changes; em dashes scrubbed from
 legacy comments.
 
 design-excellence applied: 02-component-craft, sources read: taste.md plus 4 inspiration note(s)
+
+## 03-spacing-type-sweep
+
+Routes swept: home, about, audit, blog index, blog post template, layout/NavBar/Footer,
+plus every remaining component (demos, WorkflowDiagram, StrategyGraph, QuickAssessment,
+GateFlow, GateAction, TalkToLogan, AuditForm, GlassCard, FAQ, InProduction, BuiltToDemo).
+
+Four passes, each grep-verified before moving on:
+
+1. Off-grid margin/padding/gap Tailwind utilities (values not on the 4/8/12/16/24/32/48/64/96/128
+   primitive scale, e.g. p-5, mb-14, gap-2.5) snapped to the nearest token: 85 replacements
+   across 17 files. Before: 85 off-grid instances. After: 0.
+2. Arbitrary Tailwind bracket px/rem/em values (text-[10px], w-[170px], border-[1.5px], etc.)
+   eliminated: converted to text-caption for compressed system labels, a shared
+   .gate-chip-ring class for the repeated gate-chip border weight, Tailwind's native dynamic
+   spacing scale (e.g. w-70 = 280px) for one-off widths/heights, var(--space-*) for
+   entrance-transform distances, and new globals.css helpers (.ltl-panel, .system-glow-border,
+   .core-pulse-glow) for values that must originate in the token file. Added a documented
+   decline/danger token pair (component layer, explicitly non-brand) so StrategyGraph's
+   decline chart and the demo reject affordance no longer carry raw #ef4444/#f87171 hex.
+   Before: 60 bracket instances + 6 raw hex outside globals.css. After: 0 and 0.
+3. TalkToLogan.jsx (the chat widget) rewritten off ~60 inline-style px/hex/rgba literals onto
+   Tailwind utilities plus the .btn/.input-dark system classes; WorkflowDiagram's
+   component-local <style> keyframe block moved into globals.css so its glow colors resolve
+   through color-mix(var(--teal)) instead of raw rgba.
+4. Default Tailwind type-scale classes (text-xs/sm/base/lg/xl/2xl/3xl/4xl/5xl/6xl) replaced
+   sitewide with the fluid modular-scale tokens (text-caption/body/body-lg/h4/h3/h2/h1/display),
+   matched to each element's visual role (eyebrow/label -> caption, paragraph copy -> body,
+   lead paragraph -> body-lg, repeated card sub-header -> h4, section header -> h2, page-hero
+   h1 -> h1, the one homepage hero -> display). Multi-breakpoint chains (text-3xl sm:text-4xl
+   md:text-5xl) collapsed to one token class since the clamp()-based scale already resizes
+   fluidly. tracking-tight/tracking-normal removed from h1/h2/h3 elements so globals.css's
+   -0.02em display tracking rule applies cleanly instead of being overridden by Tailwind's
+   -0.025em. Manual leading-* utilities removed from any element once its token class already
+   bundles the correct line-height. Before: 133 non-token size classes across ~15 files. After: 0.
+
+Combined raw-value grep (`#[0-9A-Fa-f]{3,8}` and `\[[0-9.]+(px|rem|em)\]` across src/)
+returns zero hits outside src/app/globals.css, the token definition file. Zero copy or image
+changes (verified by diffing every changed line for content beyond className/style attributes).
+Remaining literal px outside globals.css is scoped out deliberately: Next Image `sizes` hints
+and IntersectionObserver `rootMargin` options are browser-API configuration, not CSS/design
+values.
+
+npm run build, npm run lint (0 errors, the same 3 pre-existing no-img-element warnings), and
+npx tsc --noEmit all green.
+
+design-excellence applied: 03-spacing-type-sweep, sources read: taste.md plus 4 inspiration note(s)

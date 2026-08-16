@@ -109,13 +109,13 @@ export default function Home() {
       {/* Hero */}
       <section className="relative bg-paper pt-32 pb-24">
         <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.1] mb-8 text-ink">
+          <h1 className="text-display font-semibold mb-8 text-ink">
             AI doesn&apos;t fail because of the technology.
             <br />
             It fails because of the implementation.
           </h1>
 
-          <p className="hero-rise hero-rise-1 text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-12">
+          <p className="hero-rise hero-rise-1 text-body-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-12">
             Everyone wants AI. Most of it never leaves the slide deck.
             Kaleos HQ is the implementation partner that gets it into
             production.
@@ -134,7 +134,7 @@ export default function Home() {
             >
               Book a Discovery Call
             </a>
-            <p className="mt-8 text-sm text-slate-500 tracking-wide">
+            <p className="mt-8 text-caption text-slate-500 tracking-wide">
               Logan Kay &middot; Founder &amp; CEO, Kaleos HQ &middot; Agentic AI
               systems, built and deployed
             </p>
@@ -148,7 +148,7 @@ export default function Home() {
           <AnimateIn>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
               <div className="md:col-span-6">
-                <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-white">
+                <h2 className="text-h2 font-medium text-white">
                   The implementation gap
                 </h2>
                 <div className="mt-6">
@@ -168,10 +168,10 @@ export default function Home() {
             {implementationGap.map((item, i) => (
               <AnimateIn key={i} delay={i * 100} className="h-full">
                 <GlassCard hover className="p-8 h-full">
-                  <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
+                  <h3 className="text-h4 font-semibold mb-3 text-white">
                     {item.title}
                   </h3>
-                  <p className="text-mist leading-relaxed text-sm">
+                  <p className="text-mist leading-relaxed text-body">
                     {item.desc}
                   </p>
                 </GlassCard>
@@ -190,7 +190,7 @@ export default function Home() {
           <AnimateIn>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
               <div className="md:col-span-7">
-                <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-white">
+                <h2 className="text-h2 font-medium text-white">
                   Agentic AI implementation, done as a discipline.
                 </h2>
                 <div className="mt-6">
@@ -211,13 +211,13 @@ export default function Home() {
             {methodology.map((item, i) => (
               <AnimateIn key={i} delay={i * 100} className="h-full">
                 <GlassCard hover className="p-8 h-full">
-                  <div className="font-system text-accent/80 text-xs uppercase tracking-widest mb-3">
+                  <div className="font-system text-accent/80 text-caption uppercase tracking-widest mb-3">
                     {item.phase}
                   </div>
-                  <h3 className="text-xl font-semibold tracking-tight mb-3 text-white">
+                  <h3 className="text-h4 font-semibold mb-3 text-white">
                     {item.title}
                   </h3>
-                  <p className="text-mist leading-relaxed text-sm">
+                  <p className="text-mist leading-relaxed text-body">
                     {item.desc}
                   </p>
                 </GlassCard>
@@ -236,14 +236,14 @@ export default function Home() {
           <AnimateIn>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end">
               <div className="md:col-span-4">
-                <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-ink">
+                <h2 className="text-h2 font-medium text-ink">
                   Who this is for
                 </h2>
                 <div className="mt-6">
                   <GateRule align="start" />
                 </div>
               </div>
-              <p className="md:col-span-7 md:col-start-6 text-slate-600 leading-relaxed text-lg">
+              <p className="md:col-span-7 md:col-start-6 text-slate-600 leading-relaxed text-body-lg">
                 Founders and operators running $2M-$100M+ companies with real
                 complexity and no internal AI capability. If you need a chatbot,
                 we&apos;re not the right fit. If you need a strategic
@@ -265,7 +265,7 @@ export default function Home() {
               <AnimateIn key={i} delay={i * 100}>
                 <div className="card-dark card-hover flex items-center justify-center gap-3 px-6 py-6">
                   <span className="text-accent">{badge.icon}</span>
-                  <span className="text-white/80 text-sm font-medium tracking-wide">
+                  <span className="text-white/80 text-caption font-medium tracking-wide">
                     {badge.label}
                   </span>
                 </div>
@@ -275,7 +275,7 @@ export default function Home() {
 
           <div className="text-center">
             <AnimateIn>
-              <h2 className="text-3xl sm:text-4xl font-medium tracking-tight mb-8 text-white">
+              <h2 className="text-h2 font-medium mb-8 text-white">
                 AI won&apos;t replace your business.
                 <br className="hidden sm:inline" /> But a competitor with better AI
                 <br className="hidden sm:inline" /> implementation will.

@@ -88,10 +88,10 @@ export function OutreachDemo() {
       <div className="px-4 pt-4 pb-3 border-b border-white/5">
         <div className="flex items-center justify-between mb-2">
           <div>
-            <span className="text-white/85 text-xs font-medium">{lead.name}</span>
+            <span className="text-white/85 text-caption font-medium">{lead.name}</span>
             <span className="text-white/40 text-caption ml-2">{lead.role}</span>
           </div>
-          <span className="font-system text-sm font-semibold text-accent tabular-nums">
+          <span className="font-system text-body font-semibold text-accent tabular-nums">
             {displayScore}
             <span className="text-white/25 text-caption font-normal">/100</span>
           </span>

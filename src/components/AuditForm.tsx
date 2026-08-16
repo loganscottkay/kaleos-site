@@ -111,11 +111,11 @@ export function AuditForm() {
             />
           </svg>
         </div>
-        <div className="text-2xl font-semibold text-white mb-3">
+        <div className="text-h3 font-semibold text-white mb-3">
           Thank you! You&apos;ll hear back within 24 hours.
         </div>
         <p className="text-white/40 mb-8">No spam, no sales pitch.</p>
-        <div className="inline-block text-left space-y-2 text-sm text-white/40">
+        <div className="inline-block text-left space-y-2 text-body text-white/40">
           <p className="font-medium text-white/60">Next steps:</p>
           <p>1. We review your submission</p>
           <p>2. We schedule a discovery call</p>
@@ -127,7 +127,7 @@ export function AuditForm() {
 
   const inputClass = 'input-dark px-4 py-3'
   const labelClass =
-    'block font-system text-white/50 text-xs tracking-wide uppercase mb-2'
+    'block font-system text-white/50 text-caption tracking-wide uppercase mb-2'
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -196,7 +196,7 @@ export function AuditForm() {
                 onClick={() =>
                   update('company_size', selected ? '' : size)
                 }
-                className={`btn px-4 text-sm border ${
+                className={`btn px-4 text-body border ${
                   selected
                     ? 'bg-accent/20 text-teal-bright border-accent/50'
                     : 'bg-white/[0.04] text-white/40 border-white/[0.08] hover:border-white/[0.18] hover:text-white/60'
@@ -221,7 +221,7 @@ export function AuditForm() {
                 key={challenge}
                 type="button"
                 onClick={() => toggleChallenge(challenge)}
-                className={`btn px-4 text-sm border ${
+                className={`btn px-4 text-body border ${
                   selected
                     ? 'bg-accent/20 text-teal-bright border-accent/50'
                     : 'bg-white/[0.04] text-white/40 border-white/[0.08] hover:border-white/[0.18] hover:text-white/60'
@@ -248,7 +248,7 @@ export function AuditForm() {
       </div>
 
       {status === 'error' && (
-        <div className="flex items-center gap-2 px-4 py-3 rounded-control bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+        <div className="flex items-center gap-2 px-4 py-3 rounded-control bg-red-500/10 border border-red-500/20 text-red-400 text-caption">
           <svg
             className="w-4 h-4 shrink-0"
             fill="none"
@@ -301,7 +301,7 @@ export function AuditForm() {
         </span>
       </button>
 
-      <p className="text-white/25 text-xs text-center">
+      <p className="text-white/25 text-caption text-center">
         You&apos;ll hear back within 24 hours. No spam, no sales pitch.
       </p>
     </form>

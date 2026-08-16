@@ -67,7 +67,7 @@ export function DemoButton({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`btn px-4 font-system text-xs ${styles[variant]}`}
+      className={`btn px-4 font-system text-caption ${styles[variant]}`}
     >
       {children}
     </button>

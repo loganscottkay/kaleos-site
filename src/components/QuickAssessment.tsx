@@ -162,10 +162,10 @@ export function QuickAssessment() {
             transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
           }}
         >
-          <h2 className="md:col-span-7 text-3xl sm:text-4xl font-medium tracking-tight text-white">
+          <h2 className="md:col-span-7 text-h2 font-medium text-white">
             Where does AI create leverage in your business?
           </h2>
-          <p className="md:col-span-4 md:col-start-9 font-system text-white/50 text-sm tracking-wide">
+          <p className="md:col-span-4 md:col-start-9 font-system text-white/50 text-body tracking-wide">
             3 questions. 60 seconds. A clear answer.
           </p>
         </div>
@@ -194,7 +194,7 @@ export function QuickAssessment() {
                   {[1, 2, 3].map((n) => (
                     <span
                       key={n}
-                      className={`font-system text-xs font-medium transition-colors duration-300 ${
+                      className={`font-system text-caption font-medium transition-colors duration-300 ${
                         step + 1 >= n ? 'text-teal-bright/80' : 'text-white/25'
                       }`}
                     >
@@ -220,7 +220,7 @@ export function QuickAssessment() {
                       transition: 'opacity 0.3s ease, transform 0.3s ease',
                     }}
                   >
-                    <p className="text-white text-xl sm:text-2xl font-semibold mb-12 leading-relaxed text-center">
+                    <p className="text-white text-h4 font-semibold mb-12 text-center">
                       {currentQ.question}
                     </p>
 
@@ -239,7 +239,7 @@ export function QuickAssessment() {
                                 : handleSingleSelect(opt.label)
                             }
                             disabled={transitioning}
-                            className={`btn relative px-6 py-4 border text-sm sm:text-base min-w-70 text-center ${
+                            className={`btn relative px-6 py-4 border text-body min-w-70 text-center ${
                               isSelected
                                 ? 'bg-accent/25 border-teal-bright text-teal-bright'
                                 : 'bg-white/8 border-white/18 text-white hover:border-white/35'
@@ -247,7 +247,7 @@ export function QuickAssessment() {
                           >
                             {opt.label}
                             {isSelected && currentQ.multi && (
-                              <span className="ml-2 text-xs">✓</span>
+                              <span className="ml-2 text-caption">✓</span>
                             )}
                           </button>
                         )
@@ -260,7 +260,7 @@ export function QuickAssessment() {
                         <button
                           onClick={handleMultiConfirm}
                           disabled={multiSelected.size === 0 || transitioning}
-                          className="btn btn-primary px-8 text-sm"
+                          className="btn btn-primary px-8 text-body"
                         >
                           Continue →
                         </button>
@@ -277,26 +277,26 @@ export function QuickAssessment() {
                       animation: 'quizResultIn 0.5s ease-out both',
                     }}
                   >
-                    <p className="font-system text-teal-bright text-xs font-semibold tracking-widest uppercase mb-6">
+                    <p className="font-system text-teal-bright text-caption font-semibold tracking-widest uppercase mb-6">
                       Personalized for you
                     </p>
 
-                    <p className="text-white/50 text-sm mb-3">Based on your answers:</p>
+                    <p className="text-white/50 text-body mb-3">Based on your answers:</p>
                     <div className="flex flex-wrap gap-2 justify-center mb-8">
                       {[...answers[0], ...answers[1], ...answers[2]].map((tag) => (
                         <span
                           key={tag}
-                          className="px-3 py-2 rounded-control text-xs font-medium bg-accent/15 border border-teal-bright/30 text-teal-bright"
+                          className="px-3 py-2 rounded-control text-caption font-medium bg-accent/15 border border-teal-bright/30 text-teal-bright"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
 
-                    <h3 className="text-2xl font-medium text-white mb-6">
+                    <h3 className="text-h3 font-medium text-white mb-6">
                       {result.headline}
                     </h3>
-                    <p className="text-white/70 leading-relaxed mb-12 max-w-lg mx-auto text-base sm:text-lg">
+                    <p className="text-white/70 mb-12 max-w-lg mx-auto text-body-lg">
                       {result.body}
                     </p>
 
@@ -317,7 +317,7 @@ export function QuickAssessment() {
                       </a>
                     </div>
 
-                    <p className="text-white/35 text-sm mt-8">
+                    <p className="text-white/35 text-body mt-8">
                       No obligation. Just clarity.
                     </p>
                   </div>

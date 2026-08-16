@@ -138,7 +138,7 @@ export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
 
           <div className="relative p-6 pb-4 flex flex-col h-full">
             <p
-              className={`text-xs font-semibold ${c.headerColor} mb-1 tracking-widest uppercase`}
+              className={`text-caption font-semibold ${c.headerColor} mb-1 tracking-widest uppercase`}
             >
               {c.header}
             </p>
