@@ -135,7 +135,7 @@ function ConnectionLine({
     return (
       <div className="relative flex flex-col items-center" style={{ height: 40 }}>
         <div
-          className="w-[2px] bg-gradient-to-b from-teal-500/60 to-teal-500/30"
+          className="w-[2px] bg-gradient-to-b from-accent/60 to-accent/30"
           style={{
             height: visible ? '100%' : '0%',
             transition: `height 0.5s ease-out ${delay}ms`,
@@ -143,7 +143,7 @@ function ConnectionLine({
         />
         {/* Flowing dot */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 w-[5px] h-[5px] rounded-full bg-teal-400 shadow-[0_0_6px_rgba(13,148,136,0.8)]"
+          className="absolute left-1/2 -translate-x-1/2 w-[5px] h-[5px] rounded-full bg-teal-bright"
           style={{
             opacity: visible ? 1 : 0,
             animation: visible ? `flowDotVertical 2s ease-in-out ${delay + 400}ms infinite` : 'none',
@@ -161,17 +161,17 @@ function ConnectionLine({
   return (
     <div className="relative flex items-center shrink-0" style={{ width: 56 }}>
       <div
-        className="h-[2px] bg-gradient-to-r from-teal-500/60 to-teal-500/30"
+        className="h-[2px] bg-gradient-to-r from-accent/60 to-accent/30"
         style={{
           width: visible ? '100%' : '0%',
           transition: `width 0.5s ease-out ${delay}ms`,
         }}
       />
-      {/* Flowing dots — two staggered */}
+      {/* Flowing dots: two staggered */}
       {[0, 1000].map((extraDelay, i) => (
         <div
           key={i}
-          className="absolute top-1/2 -translate-y-1/2 w-[5px] h-[5px] rounded-full bg-teal-400 shadow-[0_0_6px_rgba(13,148,136,0.8)]"
+          className="absolute top-1/2 -translate-y-1/2 w-[5px] h-[5px] rounded-full bg-teal-bright"
           style={{
             opacity: visible ? 1 : 0,
             animation: visible ? `flowDotH 2s ease-in-out ${delay + 400 + extraDelay}ms infinite` : 'none',
@@ -249,7 +249,7 @@ export function WorkflowDiagram() {
     <div ref={ref} className="mb-14">
       {/* ===== DESKTOP / TABLET ===== */}
       <div className="hidden md:flex items-stretch justify-center gap-0">
-        {/* LEFT — Your Business */}
+        {/* LEFT: Your Business */}
         <GlassBox visible={visible} delay={0} className="p-5 w-[170px] flex flex-col justify-center">
           <p className="text-white font-semibold text-sm mb-3 tracking-tight">Your Business</p>
           <div className="flex flex-col gap-2">
@@ -263,7 +263,7 @@ export function WorkflowDiagram() {
         {/* Connection 1 */}
         <ConnectionLine visible={visible} delay={400} />
 
-        {/* CENTER — Kaleos HQ System */}
+        {/* CENTER: Kaleos HQ System */}
         <GlassBox visible={visible} delay={300} glow className="p-6 w-[280px]">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(13,148,136,0.6)]"
@@ -280,7 +280,7 @@ export function WorkflowDiagram() {
         {/* Connection 2 */}
         <ConnectionLine visible={visible} delay={800} />
 
-        {/* RIGHT — Output */}
+        {/* RIGHT: Output */}
         <GlassBox visible={visible} delay={600} className="p-5 w-[170px] flex flex-col justify-center">
           <p className="text-white font-semibold text-sm mb-3 tracking-tight">Output</p>
           <div className="flex flex-col gap-2">

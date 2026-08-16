@@ -39,7 +39,7 @@ export default function BlogPage() {
       <NavBar />
 
       {/* Full-page dark background */}
-      <section className="relative pt-32 pb-16 overflow-hidden bg-[#1B2A4A]">
+      <section className="relative pt-32 pb-16 overflow-hidden bg-navy">
         <div
           className="absolute inset-0"
           style={{
@@ -50,10 +50,7 @@ export default function BlogPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
           <AnimateIn distance={20}>
-            <h1
-              className="text-4xl sm:text-5xl font-semibold tracking-tight text-white drop-shadow-lg"
-              style={{ textShadow: '0 2px 40px rgba(0,0,0,0.15)' }}
-            >
+            <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-white">
               Thinking
             </h1>
           </AnimateIn>

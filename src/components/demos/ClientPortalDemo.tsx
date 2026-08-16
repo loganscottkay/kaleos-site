@@ -62,7 +62,7 @@ export function ClientPortalDemo() {
           />
         ) : (
           <p
-            className={`text-[11px] leading-relaxed rounded-md border p-2.5 mb-3 transition-colors duration-300 ${
+            className={`text-[11px] leading-relaxed rounded-control border p-2.5 mb-3 transition-colors duration-300 ${
               approved
                 ? 'bg-accent/[0.07] border-accent/25 text-white/75'
                 : 'bg-white/[0.03] border-white/[0.07] text-white/60'
@@ -84,7 +84,7 @@ export function ClientPortalDemo() {
             )}
           </div>
         ) : (
-          <div className="mt-auto rounded-md bg-white/[0.03] border border-white/[0.07] p-2.5">
+          <div className="mt-auto rounded-control bg-white/[0.03] border border-white/[0.07] p-2.5">
             <p className="font-system text-[10px] text-white/40 mb-1">What the client sees</p>
             <p className="text-[11px] text-white/70 leading-relaxed mb-1.5">{draft}</p>
             <p className="font-system text-[9px] text-white/30">

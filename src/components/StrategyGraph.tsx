@@ -335,7 +335,7 @@ export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
                   }}
                 />
 
-                {/* Data points — appear sequentially as line reaches them */}
+                {/* Data points: appear sequentially as line reaches them */}
                 {c.dataPoints.map((p, i) => {
                   const show = revealedDots.has(i)
                   return (

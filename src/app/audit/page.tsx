@@ -210,7 +210,7 @@ export default function AuditPage() {
 
           <AnimateIn delay={100}>
             <div className="max-w-lg mx-auto">
-              <div className="rounded-xl bg-white/[0.045] border border-white/[0.1] p-8">
+              <div className="card-dark p-8">
                 <AuditForm />
               </div>
             </div>

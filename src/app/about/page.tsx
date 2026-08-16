@@ -61,12 +61,12 @@ export default function AboutPage() {
       <section className="relative py-24 bg-paper">
         <div className="relative max-w-[92rem] mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_3fr_1fr] gap-8 xl:gap-24 items-stretch">
-            {/* Left Graph — The Decline */}
+            {/* Left Graph: The Decline */}
             <div className="order-1">
               <StrategyGraph variant="decline" />
             </div>
 
-            {/* Right Graph — The Growth */}
+            {/* Right Graph: The Growth */}
             <div className="order-2 xl:order-3">
               <StrategyGraph variant="growth" delay={500} />
             </div>
@@ -109,7 +109,7 @@ export default function AboutPage() {
                 {/* Photo */}
                 <AnimateIn delay={200} className="w-full md:w-auto shrink-0">
                   <div className="max-w-[400px] mx-auto md:mx-0 md:w-[280px] xl:w-[260px]">
-                    <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-xl shadow-black/10 relative">
+                    <div className="aspect-[4/5] rounded-card overflow-hidden relative">
                       <Image src="/photo.png" alt="Logan Kay, Founder of Kaleos HQ" fill className="object-cover" sizes="(max-width: 1280px) 100vw, 280px" />
                     </div>
                     <p className="mt-4 text-navy font-semibold text-center">

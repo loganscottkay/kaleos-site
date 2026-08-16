@@ -60,7 +60,7 @@ export function AccountabilityDemo() {
         </div>
 
         <p
-          className={`text-[11px] leading-relaxed rounded-md border p-2.5 mb-3 transition-colors duration-300 ${
+          className={`text-[11px] leading-relaxed rounded-control border p-2.5 mb-3 transition-colors duration-300 ${
             approved
               ? 'bg-accent/[0.07] border-accent/25 text-white/75'
               : 'bg-white/[0.03] border-white/[0.07] text-white/60'
