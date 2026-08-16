@@ -73,20 +73,24 @@ export function BuiltToDemo() {
     <section ref={sectionRef} className="relative py-24 bg-navy">
       <div className="relative max-w-6xl mx-auto px-4">
         <AnimateIn>
-          <p className="font-system text-accent text-xs tracking-widest text-center mb-3 uppercase">
-            What it looks like in practice
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-5 text-white">
-            AI does the work. You make the call.
-          </h2>
-          <div className="mb-6">
-            <GateRule onDark />
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-14">
+            <div className="md:col-span-6">
+              <p className="font-system text-teal-bright text-xs tracking-widest mb-3 uppercase">
+                What it looks like in practice
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-white">
+                AI does the work. You make the call.
+              </h2>
+              <div className="mt-6">
+                <GateRule onDark align="start" />
+              </div>
+            </div>
+            <p className="md:col-span-5 md:col-start-8 text-mist text-sm leading-relaxed">
+              Working demos, modeled on systems Kaleos HQ has deployed. Sample data.
+              Click around: the approve button is real, and it is the same gate
+              every Kaleos HQ system ships with.
+            </p>
           </div>
-          <p className="text-mist text-center max-w-2xl mx-auto mb-14 text-sm leading-relaxed">
-            Working demos, modeled on systems Kaleos HQ has deployed. Sample data.
-            Click around: the approve button is real, and it is the same gate
-            every Kaleos HQ system ships with.
-          </p>
         </AnimateIn>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">

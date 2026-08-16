@@ -155,17 +155,17 @@ export function QuickAssessment() {
       <div className="relative max-w-6xl mx-auto px-4">
         {/* Header */}
         <div
-          className="text-center mb-14"
+          className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-4 items-end mb-14"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(10px)',
             transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
           }}
         >
-          <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-white mb-4">
+          <h2 className="md:col-span-7 text-3xl sm:text-4xl font-medium tracking-tight text-white">
             Where does AI create leverage in your business?
           </h2>
-          <p className="text-white/50 text-lg tracking-wide">
+          <p className="md:col-span-4 md:col-start-9 font-system text-white/50 text-sm tracking-wide">
             3 questions. 60 seconds. A clear answer.
           </p>
         </div>

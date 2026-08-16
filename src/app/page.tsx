@@ -146,21 +146,22 @@ export default function Home() {
       <section className="relative py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-5 text-white">
-              The implementation gap
-            </h2>
-            <div className="mb-6">
-              <GateRule onDark />
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-14">
+              <div className="md:col-span-6">
+                <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-white">
+                  The implementation gap
+                </h2>
+                <div className="mt-6">
+                  <GateRule onDark align="start" />
+                </div>
+              </div>
+              <p className="md:col-span-5 md:col-start-8 text-mist leading-relaxed">
+                Most companies that start with AI never get past the demo. Not
+                because the technology doesn&apos;t work, but because nobody
+                connected it to how the business actually operates. That gap is
+                what Kaleos HQ exists to close.
+              </p>
             </div>
-          </AnimateIn>
-
-          <AnimateIn delay={100}>
-            <p className="text-mist text-center max-w-3xl mx-auto mb-14 leading-relaxed">
-              Most companies that start with AI never get past the demo. Not
-              because the technology doesn&apos;t work, but because nobody
-              connected it to how the business actually operates. That gap is
-              what Kaleos HQ exists to close.
-            </p>
           </AnimateIn>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -187,17 +188,21 @@ export default function Home() {
       <section id="methodology" className="relative py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-5 text-white">
-              Agentic AI implementation, done as a discipline.
-            </h2>
-            <div className="mb-6">
-              <GateRule onDark />
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-14">
+              <div className="md:col-span-7">
+                <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-white">
+                  Agentic AI implementation, done as a discipline.
+                </h2>
+                <div className="mt-6">
+                  <GateRule onDark align="start" />
+                </div>
+              </div>
+              <p className="md:col-span-5 text-mist leading-relaxed">
+                Agents do the work. Humans make the calls. Everything is logged.
+                Every system we ship runs through the same architecture: AI
+                processing, an approval gate, and a full audit log.
+              </p>
             </div>
-            <p className="text-mist text-center max-w-3xl mx-auto mb-14 leading-relaxed">
-              Agents do the work. Humans make the calls. Everything is logged.
-              Every system we ship runs through the same architecture: AI
-              processing, an approval gate, and a full audit log.
-            </p>
           </AnimateIn>
 
           <WorkflowDiagram />
@@ -229,17 +234,16 @@ export default function Home() {
       <section className="relative py-24 bg-paper">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-5 text-ink">
-              Who this is for
-            </h2>
-            <div className="mb-10">
-              <GateRule />
-            </div>
-          </AnimateIn>
-
-          <AnimateIn delay={100}>
-            <div className="max-w-3xl mx-auto">
-              <p className="text-slate-600 leading-relaxed text-lg text-center">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end">
+              <div className="md:col-span-4">
+                <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-ink">
+                  Who this is for
+                </h2>
+                <div className="mt-6">
+                  <GateRule align="start" />
+                </div>
+              </div>
+              <p className="md:col-span-7 md:col-start-6 text-slate-600 leading-relaxed text-lg">
                 Founders and operators running $2M-$100M+ companies with real
                 complexity and no internal AI capability. If you need a chatbot,
                 we&apos;re not the right fit. If you need a strategic

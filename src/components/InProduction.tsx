@@ -22,22 +22,24 @@ export function InProduction() {
     <section className="relative py-24 bg-paper">
       <div className="relative max-w-6xl mx-auto px-4">
         <AnimateIn>
-          <p className="font-system text-accent text-xs tracking-widest text-center mb-3 uppercase">
-            In production
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-5 text-ink">
-            Systems we have built and shipped.
-          </h2>
-          <div className="mb-6">
-            <GateRule />
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-14">
+            <div className="md:col-span-6">
+              <p className="font-system text-accent text-xs tracking-widest mb-3 uppercase">
+                In production
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-ink">
+                Systems we have built and shipped.
+              </h2>
+              <div className="mt-6">
+                <GateRule align="start" />
+              </div>
+            </div>
+            <p className="md:col-span-5 md:col-start-8 text-slate-600 leading-relaxed">
+              Not pilots. Not proofs of concept. Working software that real
+              businesses run on every day, each one with human approval built
+              into the loop.
+            </p>
           </div>
-        </AnimateIn>
-        <AnimateIn delay={100}>
-          <p className="text-slate-600 text-center max-w-3xl mx-auto mb-14 leading-relaxed">
-            Not pilots. Not proofs of concept. Working software that real
-            businesses run on every day, each one with human approval built
-            into the loop.
-          </p>
         </AnimateIn>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
