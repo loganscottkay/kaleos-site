@@ -86,7 +86,7 @@ export default function TalkToLogan() {
             </div>
             <div className="flex-1">
               <div className="text-body font-semibold text-white" style={{ fontFamily: "var(--font-display)" }}>Logan Kay</div>
-              <div className="text-caption text-white/40 mt-1">Founder, Kaleos HQ</div>
+              <div className="text-caption text-white/70 mt-1">Founder, Kaleos HQ</div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
@@ -172,7 +172,7 @@ export default function TalkToLogan() {
             </button>
           </div>
 
-          <p className="text-center text-white/18 text-caption pb-3">AI-powered · Responses reflect how Logan thinks</p>
+          <p className="text-center text-white/60 text-caption pb-3">AI-powered · Responses reflect how Logan thinks</p>
         </div>
       )}
     </>

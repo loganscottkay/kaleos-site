@@ -367,3 +367,9 @@ files. Anti-generic checklist shows zero violations of taste.md never list on
 all four routes. Build passes clean (6.3s, 19 routes generated, 0 errors).
 Contrast re-proof confirms all WCAG 2.1 tokens meet 4.5:1 requirement on all
 grounds. Content-frozen, design-guardrails-held, build-proof recorded.
+- 2026-08-16 warden QA round 1 (cross-model, Sol high): three findings, all fixed and recomputed:
+  button-text on button-bg 3.74 to 5.07 (component token darkened to #0B7C72, primitive untouched);
+  input placeholder white/25 to white/60 (6.18 on the lightest navy), chat footer white/18 to
+  white/60, chat caption white/40 to white/70, quiz steps white/25 to white/60, quiz body
+  white/35 to white/70; reduced-motion gains the blanket floor so no animation or transition
+  escapes the block. Build and lint green on the fixed tip.

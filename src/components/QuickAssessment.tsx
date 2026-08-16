@@ -195,7 +195,7 @@ export function QuickAssessment() {
                     <span
                       key={n}
                       className={`font-system text-caption font-medium transition-colors duration-300 ${
-                        step + 1 >= n ? 'text-teal-bright/80' : 'text-white/25'
+                        step + 1 >= n ? 'text-teal-bright/80' : 'text-white/60'
                       }`}
                     >
                       Q{n}
@@ -317,7 +317,7 @@ export function QuickAssessment() {
                       </a>
                     </div>
 
-                    <p className="text-white/35 text-body mt-8">
+                    <p className="text-white/70 text-body mt-8">
                       No obligation. Just clarity.
                     </p>
                   </div>
