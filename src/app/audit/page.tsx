@@ -53,7 +53,7 @@ export default function AuditPage() {
       <NavBar />
 
       {/* Hero */}
-      <section className="relative bg-paper pt-36 pb-16">
+      <section className="relative bg-paper pt-32 pb-16">
         <div className="relative max-w-6xl mx-auto px-4 text-center">
           <h1 className="text-4xl sm:text-5xl font-medium tracking-tight mb-6 text-ink">
             Strategic AI assessment
@@ -69,7 +69,7 @@ export default function AuditPage() {
       <section className="relative py-24 bg-paper">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-ink">
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-12 text-ink">
               Assessment deliverables
             </h2>
           </AnimateIn>
@@ -80,7 +80,7 @@ export default function AuditPage() {
                 {deliverables.map((item, i) => (
                   <div key={i} className="flex items-start gap-4">
                     <svg
-                      className="w-5 h-5 text-accent shrink-0 mt-0.5"
+                      className="w-5 h-5 text-accent shrink-0 mt-1"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -105,7 +105,7 @@ export default function AuditPage() {
       <section className="relative py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-white">
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-12 text-white">
               How it works
             </h2>
           </AnimateIn>
@@ -137,7 +137,7 @@ export default function AuditPage() {
             <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-6 text-white">
               How engagements work
             </h2>
-            <p className="text-mist text-center max-w-3xl mx-auto mb-14 leading-relaxed">
+            <p className="text-mist text-center max-w-3xl mx-auto mb-16 leading-relaxed">
               Every engagement is scoped to your business. No packages off a
               shelf, no rate card. Three ways to work together, priced on a
               call once we understand what you actually need.
@@ -203,7 +203,7 @@ export default function AuditPage() {
       <section className="relative py-24 bg-navy" id="form">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-white">
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-12 text-white">
               Start a conversation
             </h2>
           </AnimateIn>

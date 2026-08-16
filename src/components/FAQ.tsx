@@ -88,7 +88,7 @@ export function FAQ() {
           >
             <button
               onClick={() => setOpenIndex(isOpen ? null : i)}
-              className="w-full px-6 py-5 flex items-center justify-between text-left cursor-pointer"
+              className="w-full px-6 py-6 flex items-center justify-between text-left cursor-pointer"
             >
               <span className="text-white font-medium pr-4">{faq.q}</span>
               <svg
@@ -112,7 +112,7 @@ export function FAQ() {
                 isOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
               }`}
             >
-              <p className="px-6 pb-5 text-white/60 leading-relaxed">
+              <p className="px-6 pb-6 text-white/60 leading-relaxed">
                 {faq.a}
               </p>
             </div>

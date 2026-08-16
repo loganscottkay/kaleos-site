@@ -136,7 +136,7 @@ export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
           {/* Top highlight */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.07] via-transparent to-transparent pointer-events-none" />
 
-          <div className="relative p-5 pb-4 flex flex-col h-full">
+          <div className="relative p-6 pb-4 flex flex-col h-full">
             <p
               className={`text-xs font-semibold ${c.headerColor} mb-1 tracking-widest uppercase`}
             >

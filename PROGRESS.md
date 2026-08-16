@@ -22,3 +22,5 @@ design-excellence applied: 01-tokens-foundation, sources read: taste.md plus 4 i
 design-excellence applied: 02-component-craft, sources read: taste.md plus 4 inspiration note(s)
 - 2026-08-16T18:54:37Z 02-component-craft: done, end state holds
 ALL ASSIGNED DONE
+- group mid (03-spacing-type-sweep, 04-polish-motion-responsive) spawned
+- 2026-08-16T19:05:00Z 03-spacing-type-sweep: off-grid margin/padding/gap utilities snapped to the 8pt scale across every route and component (85 replacements, 17 files); npm run build green

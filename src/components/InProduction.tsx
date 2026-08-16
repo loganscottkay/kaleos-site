@@ -22,7 +22,7 @@ export function InProduction() {
     <section className="relative py-24 bg-paper">
       <div className="relative max-w-6xl mx-auto px-4">
         <AnimateIn>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-14">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
             <div className="md:col-span-6">
               <p className="font-system text-accent text-xs tracking-widest mb-3 uppercase">
                 In production
@@ -58,7 +58,7 @@ export function InProduction() {
         </div>
 
         <AnimateIn delay={300}>
-          <p className="text-slate-500 text-center text-sm mt-10 max-w-2xl mx-auto">
+          <p className="text-slate-500 text-center text-sm mt-12 max-w-2xl mx-auto">
             The same discipline behind AI initiatives at Harvard Business
             School, applied to businesses like yours.
           </p>

@@ -80,7 +80,7 @@ export default async function BlogPostPage({
             </h1>
           </AnimateIn>
           <AnimateIn delay={150}>
-            <div className="mt-5 flex items-center justify-center gap-3 text-sm text-white/40">
+            <div className="mt-6 flex items-center justify-center gap-3 text-sm text-white/40">
               {post.category && (
                 <>
                   <span className="px-3 py-1 text-xs font-semibold rounded-control bg-accent/15 text-teal-bright">
@@ -98,7 +98,7 @@ export default async function BlogPostPage({
       </section>
 
       {/* Article content */}
-      <section className="relative py-20 bg-navy">
+      <section className="relative py-24 bg-navy">
 
         <div className="relative z-10 max-w-[720px] mx-auto px-4">
           <AnimateIn>
@@ -133,7 +133,7 @@ export default async function BlogPostPage({
           <AnimateIn delay={200}>
             <Link
               href="/blog"
-              className="inline-block mt-10 text-accent font-medium text-sm hover:underline"
+              className="inline-block mt-12 text-accent font-medium text-sm hover:underline"
             >
               &larr; Back to Thinking
             </Link>

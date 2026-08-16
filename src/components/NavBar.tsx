@@ -29,8 +29,8 @@ export function NavBar() {
           : 'bg-paper/80 border-transparent'
       } backdrop-blur-sm`}
     >
-      <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5">
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-3">
           <img
             src="/kaleos-logo.png"
             width={28}
@@ -99,7 +99,7 @@ export function NavBar() {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden bg-paper border-b border-slate-200">
-          <div className="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-4">
+          <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
             {links.map((link) => (
               <Link
                 key={link.href}

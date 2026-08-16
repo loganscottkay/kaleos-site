@@ -73,7 +73,7 @@ export function BuiltToDemo() {
     <section ref={sectionRef} className="relative py-24 bg-navy">
       <div className="relative max-w-6xl mx-auto px-4">
         <AnimateIn>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-14">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
             <div className="md:col-span-6">
               <p className="font-system text-teal-bright text-xs tracking-widest mb-3 uppercase">
                 What it looks like in practice
@@ -100,7 +100,7 @@ export function BuiltToDemo() {
               delay={i * 100}
               className={`h-full ${i === 2 ? 'md:col-span-2 lg:col-span-1 md:max-w-[calc(50%-0.75rem)] md:mx-auto md:w-full lg:max-w-none' : ''}`}
             >
-              <div className="card-dark card-hover shadow-demo-card p-5 flex flex-col h-full">
+              <div className="card-dark card-hover shadow-demo-card p-6 flex flex-col h-full">
                 <h3 className="font-system text-[11px] font-semibold text-accent mb-4 tracking-widest uppercase">
                   {demo.title}
                 </h3>

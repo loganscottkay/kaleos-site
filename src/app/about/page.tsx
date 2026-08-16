@@ -49,7 +49,7 @@ export default function AboutPage() {
       <NavBar />
 
       {/* Hero */}
-      <section className="relative bg-paper pt-36 pb-12">
+      <section className="relative bg-paper pt-32 pb-12">
         <div className="relative max-w-6xl mx-auto px-4 text-center">
           <h1 className="text-4xl sm:text-5xl font-medium tracking-tight text-ink">
             Who we are
@@ -73,7 +73,7 @@ export default function AboutPage() {
 
             {/* Bio + Photo (center content) */}
             <div className="order-3 xl:order-2 md:col-span-2 xl:col-span-1">
-              <div className="flex flex-col md:flex-row gap-10 items-center max-w-4xl mx-auto">
+              <div className="flex flex-col md:flex-row gap-12 items-center max-w-4xl mx-auto">
                 {/* Text */}
                 <div className="flex-1">
                   <AnimateIn>
@@ -133,7 +133,7 @@ export default function AboutPage() {
       <section className="relative py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-white">
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-12 text-white">
               Background
             </h2>
           </AnimateIn>
@@ -203,7 +203,7 @@ export default function AboutPage() {
       <section className="relative py-24 bg-navy">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-10 text-white">
+            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-12 text-white">
               How we&apos;re different
             </h2>
           </AnimateIn>
@@ -275,7 +275,7 @@ export default function AboutPage() {
               href="https://calendly.com/logan-kaleoshq/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary px-8 py-3.5"
+              className="btn btn-primary px-8 py-4"
             >
               Book a Discovery Call
             </a>

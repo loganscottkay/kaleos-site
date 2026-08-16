@@ -26,7 +26,7 @@ export function AccountabilityDemo() {
   return (
     <DemoShell title="Accountability Platform · Team view">
       {/* Seeded team metrics */}
-      <div className="px-4 pt-3.5 pb-3 border-b border-white/5 space-y-2">
+      <div className="px-4 pt-4 pb-3 border-b border-white/5 space-y-2">
         {team.map((m) => (
           <div key={m.name} className="flex items-center gap-3">
             <span className="text-white/80 text-[11px] font-medium w-20 shrink-0">{m.name}</span>
@@ -51,7 +51,7 @@ export function AccountabilityDemo() {
       </div>
 
       {/* Agent weekly summary at the gate */}
-      <div className="px-4 py-3.5 flex-1 flex flex-col">
+      <div className="px-4 py-4 flex-1 flex flex-col">
         <div className="flex items-center justify-between mb-2">
           <span className="font-system text-[10px] tracking-wide uppercase text-white/40">
             Weekly summary drafted by agent
@@ -60,7 +60,7 @@ export function AccountabilityDemo() {
         </div>
 
         <p
-          className={`text-[11px] leading-relaxed rounded-control border p-2.5 mb-3 transition-colors duration-300 ${
+          className={`text-[11px] leading-relaxed rounded-control border p-3 mb-3 transition-colors duration-300 ${
             approved
               ? 'bg-accent/[0.07] border-accent/25 text-white/75'
               : 'bg-white/[0.03] border-white/[0.07] text-white/60'

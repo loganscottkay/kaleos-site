@@ -107,7 +107,7 @@ export default function Home() {
       <NavBar />
 
       {/* Hero */}
-      <section className="relative bg-paper pt-40 pb-24">
+      <section className="relative bg-paper pt-32 pb-24">
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.1] mb-8 text-ink">
             AI doesn&apos;t fail because of the technology.
@@ -115,7 +115,7 @@ export default function Home() {
             It fails because of the implementation.
           </h1>
 
-          <p className="hero-rise hero-rise-1 text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-10">
+          <p className="hero-rise hero-rise-1 text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-12">
             Everyone wants AI. Most of it never leaves the slide deck.
             Kaleos HQ is the implementation partner that gets it into
             production.
@@ -130,7 +130,7 @@ export default function Home() {
               href="https://calendly.com/logan-kaleoshq/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary px-8 py-3.5"
+              className="btn btn-primary px-8 py-4"
             >
               Book a Discovery Call
             </a>
@@ -146,7 +146,7 @@ export default function Home() {
       <section className="relative py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-14">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
               <div className="md:col-span-6">
                 <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-white">
                   The implementation gap
@@ -188,7 +188,7 @@ export default function Home() {
       <section id="methodology" className="relative py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-14">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
               <div className="md:col-span-7">
                 <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-white">
                   Agentic AI implementation, done as a discipline.
@@ -260,10 +260,10 @@ export default function Home() {
       {/* Trust strip + Bottom CTA */}
       <section className="relative py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-24">
             {trustBadges.map((badge, i) => (
               <AnimateIn key={i} delay={i * 100}>
-                <div className="card-dark card-hover flex items-center justify-center gap-3 px-5 py-5">
+                <div className="card-dark card-hover flex items-center justify-center gap-3 px-6 py-6">
                   <span className="text-accent">{badge.icon}</span>
                   <span className="text-white/80 text-sm font-medium tracking-wide">
                     {badge.label}
@@ -286,7 +286,7 @@ export default function Home() {
                 href="https://calendly.com/logan-kaleoshq/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary px-8 py-3.5"
+                className="btn btn-primary px-8 py-4"
               >
                 Book a Discovery Call
               </a>

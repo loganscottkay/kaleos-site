@@ -96,7 +96,7 @@ export function AuditForm() {
   if (status === 'success') {
     return (
       <div className="text-center py-12">
-        <div className="mx-auto mb-5 w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center">
+        <div className="mx-auto mb-6 w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center">
           <svg
             className="w-7 h-7 text-accent"
             fill="none"
@@ -269,7 +269,7 @@ export function AuditForm() {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="btn btn-primary w-full py-3.5"
+        className="btn btn-primary w-full py-4"
       >
         <span>
           {status === 'loading' ? (

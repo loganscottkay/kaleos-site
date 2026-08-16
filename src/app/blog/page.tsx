@@ -63,7 +63,7 @@ export default function BlogPage() {
         </div>
 
         {/* Posts */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 mt-10">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 mt-12">
           {posts.length === 0 && (
             <p className="text-white/50 text-center">
               No posts yet. Check back soon.
@@ -77,8 +77,8 @@ export default function BlogPage() {
                 <div className="relative">
                   <div className="card-dark card-hover relative bg-white/[0.06] overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-b from-white/[0.07] via-transparent to-transparent pointer-events-none" />
-                    <div className="relative p-8 sm:p-10">
-                      <div className="flex items-center gap-3 mb-5">
+                    <div className="relative p-8 sm:p-12">
+                      <div className="flex items-center gap-3 mb-6">
                         {featured.category && (
                           <span className="px-3 py-1 text-xs font-semibold rounded-control bg-accent/15 text-teal-bright tracking-wide">
                             {featured.category}
@@ -110,14 +110,14 @@ export default function BlogPage() {
 
           {/* Post grid */}
           {rest.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
               {rest.map((post, i) => (
                 <AnimateIn key={post.slug} delay={100 + i * 80}>
                   <Link href={`/blog/${post.slug}`} className="block group h-full">
-                    <GlassCard hover className="p-7 h-full flex flex-col">
+                    <GlassCard hover className="p-8 h-full flex flex-col">
                       <div className="flex items-center gap-3 mb-4">
                         {post.category && (
-                          <span className="px-2.5 py-0.5 text-[10px] font-semibold rounded-control bg-accent/15 text-teal-bright tracking-wide uppercase">
+                          <span className="px-3 py-1 text-[10px] font-semibold rounded-control bg-accent/15 text-teal-bright tracking-wide uppercase">
                             {post.category}
                           </span>
                         )}

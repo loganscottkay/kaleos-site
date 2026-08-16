@@ -85,8 +85,8 @@ export function OutreachDemo() {
   return (
     <DemoShell title="Outreach Engine · Approval queue">
       {/* Scored lead: seeded values */}
-      <div className="px-4 pt-3.5 pb-3 border-b border-white/5">
-        <div className="flex items-center justify-between mb-1.5">
+      <div className="px-4 pt-4 pb-3 border-b border-white/5">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <span className="text-white/85 text-xs font-medium">{lead.name}</span>
             <span className="text-white/40 text-[11px] ml-2">{lead.role}</span>
@@ -100,7 +100,7 @@ export function OutreachDemo() {
       </div>
 
       {/* Draft at the gate */}
-      <div className="px-4 py-3.5 flex-1 flex flex-col">
+      <div className="px-4 py-4 flex-1 flex flex-col">
         <div className="flex items-center justify-between mb-2">
           <span className="font-system text-[10px] tracking-wide uppercase text-white/40">
             Personalized draft
@@ -117,11 +117,11 @@ export function OutreachDemo() {
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             rows={5}
-            className="input-dark text-[11px] leading-relaxed border-accent/40 p-2.5 mb-3 resize-none"
+            className="input-dark text-[11px] leading-relaxed border-accent/40 p-3 mb-3 resize-none"
           />
         ) : (
           <p
-            className={`text-[11px] leading-relaxed rounded-control border p-2.5 mb-3 transition-colors duration-300 ${
+            className={`text-[11px] leading-relaxed rounded-control border p-3 mb-3 transition-colors duration-300 ${
               decided === 'approved'
                 ? 'bg-accent/[0.07] border-accent/25 text-white/75'
                 : decided === 'rejected'
@@ -157,7 +157,7 @@ export function OutreachDemo() {
               12 sends approved this week · 2 rejected · every action logged
             </p>
           ) : (
-            <ul className="space-y-0.5">
+            <ul className="space-y-1">
               {log.map((entry, i) => (
                 <li key={i} className="font-system text-[9px] text-white/35">
                   {entry.time} · {entry.lead} · {entry.action} by operator

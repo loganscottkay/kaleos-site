@@ -201,7 +201,7 @@ function InternalNode({
 }) {
   return (
     <div
-      className="flex items-center gap-2.5 rounded-control bg-white/[0.06] border border-white/[0.1] px-3 py-2"
+      className="flex items-center gap-3 rounded-control bg-white/[0.06] border border-white/[0.1] px-3 py-2"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'scale(1)' : 'scale(0.9)',
@@ -217,7 +217,7 @@ function InternalNode({
 // --- Small labeled icon ---
 function SmallItem({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
-    <div className="flex items-center gap-1.5">
+    <div className="flex items-center gap-2">
       <span className="text-white/40">{icon}</span>
       <span className="text-white/50 text-[11px]">{label}</span>
     </div>
@@ -246,11 +246,11 @@ export function WorkflowDiagram() {
   }, [])
 
   return (
-    <div ref={ref} className="mb-14">
+    <div ref={ref} className="mb-16">
       {/* ===== DESKTOP / TABLET ===== */}
       <div className="hidden md:flex items-stretch justify-center gap-0">
         {/* LEFT: Your Business */}
-        <GlassBox visible={visible} delay={0} className="p-5 w-[170px] flex flex-col justify-center">
+        <GlassBox visible={visible} delay={0} className="p-6 w-[170px] flex flex-col justify-center">
           <p className="text-white font-semibold text-sm mb-3 tracking-tight">Your Business</p>
           <div className="flex flex-col gap-2">
             <SmallItem icon={<MailIcon />} label="Emails" />
@@ -270,7 +270,7 @@ export function WorkflowDiagram() {
               style={{ animation: visible ? 'corePulse 2s ease-in-out infinite' : 'none' }} />
             <p className="text-white font-semibold text-sm tracking-tight">Kaleos HQ System</p>
           </div>
-          <div className="flex flex-col gap-2.5">
+          <div className="flex flex-col gap-3">
             <InternalNode icon={<CpuIcon />} label="AI Processing" visible={visible} delay={600} />
             <InternalNode icon={<ShieldIcon />} label="Approval Gate" visible={visible} delay={750} />
             <InternalNode icon={<ClipboardIcon />} label="Audit Log" visible={visible} delay={900} />
@@ -281,7 +281,7 @@ export function WorkflowDiagram() {
         <ConnectionLine visible={visible} delay={800} />
 
         {/* RIGHT: Output */}
-        <GlassBox visible={visible} delay={600} className="p-5 w-[170px] flex flex-col justify-center">
+        <GlassBox visible={visible} delay={600} className="p-6 w-[170px] flex flex-col justify-center">
           <p className="text-white font-semibold text-sm mb-3 tracking-tight">Output</p>
           <div className="flex flex-col gap-2">
             <SmallItem icon={<PaperPlaneIcon />} label="Proposals sent" />
@@ -295,9 +295,9 @@ export function WorkflowDiagram() {
       {/* ===== MOBILE ===== */}
       <div className="flex md:hidden flex-col items-center gap-0">
         {/* Your Business */}
-        <GlassBox visible={visible} delay={0} className="p-5 w-[260px]">
+        <GlassBox visible={visible} delay={0} className="p-6 w-[260px]">
           <p className="text-white font-semibold text-sm mb-3 tracking-tight">Your Business</p>
-          <div className="flex flex-wrap gap-x-4 gap-y-1.5">
+          <div className="flex flex-wrap gap-x-4 gap-y-2">
             <SmallItem icon={<MailIcon />} label="Emails" />
             <SmallItem icon={<DataIcon />} label="Data" />
             <SmallItem icon={<DocIcon />} label="Documents" />
@@ -308,7 +308,7 @@ export function WorkflowDiagram() {
         <ConnectionLine visible={visible} delay={300} vertical />
 
         {/* Kaleos HQ System */}
-        <GlassBox visible={visible} delay={300} glow className="p-5 w-[260px]">
+        <GlassBox visible={visible} delay={300} glow className="p-6 w-[260px]">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(13,148,136,0.6)]"
               style={{ animation: visible ? 'corePulse 2s ease-in-out infinite' : 'none' }} />
@@ -324,9 +324,9 @@ export function WorkflowDiagram() {
         <ConnectionLine visible={visible} delay={700} vertical />
 
         {/* Output */}
-        <GlassBox visible={visible} delay={600} className="p-5 w-[260px]">
+        <GlassBox visible={visible} delay={600} className="p-6 w-[260px]">
           <p className="text-white font-semibold text-sm mb-3 tracking-tight">Output</p>
-          <div className="flex flex-wrap gap-x-4 gap-y-1.5">
+          <div className="flex flex-wrap gap-x-4 gap-y-2">
             <SmallItem icon={<PaperPlaneIcon />} label="Proposals sent" />
             <SmallItem icon={<ChartIcon />} label="Reports" />
             <SmallItem icon={<RocketIcon />} label="Leads qualified" />
@@ -337,7 +337,7 @@ export function WorkflowDiagram() {
 
       {/* Summary line */}
       <p
-        className="text-center text-white/50 text-sm mt-10 max-w-xl mx-auto leading-relaxed"
+        className="text-center text-white/50 text-sm mt-12 max-w-xl mx-auto leading-relaxed"
         style={{
           opacity: visible ? 1 : 0,
           transition: 'opacity 0.6s ease-out 1100ms',

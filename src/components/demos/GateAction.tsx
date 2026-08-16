@@ -68,7 +68,7 @@ export function DemoButton({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`btn px-3.5 font-system text-xs ${styles[variant]}`}
+      className={`btn px-4 font-system text-xs ${styles[variant]}`}
     >
       {children}
     </button>
@@ -86,10 +86,10 @@ export function DemoShell({
 }) {
   return (
     <div className="rounded-card bg-navy-950 border border-white/[0.06] flex-1 flex flex-col overflow-hidden">
-      <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/5">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-white/5">
         <span className="font-system text-[10px] text-white/60 tracking-wide">{title}</span>
         {live !== false && (
-          <span className="flex items-center gap-1.5">
+          <span className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-approved animate-pulse-slow" />
             <span className="font-system text-[10px] text-teal-bright/80">Live</span>
           </span>

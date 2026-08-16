@@ -151,11 +151,11 @@ export function QuickAssessment() {
   const currentQ = step < 3 ? questions[step] : null
 
   return (
-    <section ref={sectionRef} className="relative py-28 bg-navy">
+    <section ref={sectionRef} className="relative py-32 bg-navy">
       <div className="relative max-w-6xl mx-auto px-4">
         {/* Header */}
         <div
-          className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-4 items-end mb-14"
+          className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-4 items-end mb-16"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(10px)',
@@ -180,10 +180,10 @@ export function QuickAssessment() {
           }}
         >
           <div className="relative">
-            <div className="card-dark relative p-10 sm:p-14 overflow-hidden min-h-[340px]">
+            <div className="card-dark relative p-12 sm:p-16 overflow-hidden min-h-[340px]">
 
               {/* Progress bar */}
-              <div className="relative z-10 mb-10">
+              <div className="relative z-10 mb-12">
                 <div className="h-1 w-full rounded-full bg-white/10 overflow-hidden">
                   <div
                     className="h-full rounded-full bg-teal-bright transition-all duration-700 ease-out"
@@ -220,7 +220,7 @@ export function QuickAssessment() {
                       transition: 'opacity 0.3s ease, transform 0.3s ease',
                     }}
                   >
-                    <p className="text-white text-xl sm:text-2xl font-semibold mb-10 leading-relaxed text-center">
+                    <p className="text-white text-xl sm:text-2xl font-semibold mb-12 leading-relaxed text-center">
                       {currentQ.question}
                     </p>
 
@@ -239,7 +239,7 @@ export function QuickAssessment() {
                                 : handleSingleSelect(opt.label)
                             }
                             disabled={transitioning}
-                            className={`btn relative px-6 py-3.5 border text-sm sm:text-base min-w-[280px] text-center ${
+                            className={`btn relative px-6 py-4 border text-sm sm:text-base min-w-[280px] text-center ${
                               isSelected
                                 ? 'bg-accent/25 border-teal-bright text-teal-bright'
                                 : 'bg-white/[0.08] border-white/[0.18] text-white hover:border-white/[0.35]'
@@ -286,17 +286,17 @@ export function QuickAssessment() {
                       {[...answers[0], ...answers[1], ...answers[2]].map((tag) => (
                         <span
                           key={tag}
-                          className="px-3 py-1.5 rounded-control text-xs font-medium bg-accent/15 border border-teal-bright/30 text-teal-bright"
+                          className="px-3 py-2 rounded-control text-xs font-medium bg-accent/15 border border-teal-bright/30 text-teal-bright"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
 
-                    <h3 className="text-2xl font-medium text-white mb-5">
+                    <h3 className="text-2xl font-medium text-white mb-6">
                       {result.headline}
                     </h3>
-                    <p className="text-white/70 leading-relaxed mb-10 max-w-lg mx-auto text-base sm:text-lg">
+                    <p className="text-white/70 leading-relaxed mb-12 max-w-lg mx-auto text-base sm:text-lg">
                       {result.body}
                     </p>
 
@@ -305,13 +305,13 @@ export function QuickAssessment() {
                         href={`https://calendly.com/logan-kaleoshq/30min?utm_source=kaleoshq&utm_medium=quiz&utm_content=${result.key}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn btn-primary px-8 py-3.5"
+                        className="btn btn-primary px-8 py-4"
                       >
                         Book a Discovery Call
                       </a>
                       <a
                         href="#methodology"
-                        className="btn btn-ghost-dark px-8 py-3.5"
+                        className="btn btn-ghost-dark px-8 py-4"
                       >
                         See Our Framework
                       </a>
