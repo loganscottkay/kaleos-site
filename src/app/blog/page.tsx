@@ -39,26 +39,23 @@ export default function BlogPage() {
       <NavBar />
 
       {/* Full-page dark background */}
-      <section className="relative pt-32 pb-16 overflow-hidden bg-[#1B2A4A]">
+      <section className="relative pt-24 md:pt-32 pb-12 md:pb-16 overflow-hidden bg-navy">
         <div
           className="absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse at center, rgba(13,148,136,0.08) 0%, transparent 70%)',
+              'radial-gradient(ellipse at center, color-mix(in srgb, var(--teal) 8%, transparent) 0%, transparent 70%)',
           }}
         />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
-          <AnimateIn distance={20}>
-            <h1
-              className="text-4xl sm:text-5xl font-semibold tracking-tight text-white drop-shadow-lg"
-              style={{ textShadow: '0 2px 40px rgba(0,0,0,0.15)' }}
-            >
+          <AnimateIn distance={24}>
+            <h1 className="text-h1 font-semibold text-white">
               Thinking
             </h1>
           </AnimateIn>
           <AnimateIn delay={100}>
-            <p className="mt-4 text-white/50 text-lg max-w-xl mx-auto leading-relaxed text-center">
+            <p className="mt-4 text-white/60 text-body-lg max-w-xl mx-auto text-center">
               Frameworks, lessons, and perspectives on AI implementation that
               actually works.
             </p>
@@ -66,54 +63,42 @@ export default function BlogPage() {
         </div>
 
         {/* Posts */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 mt-10">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 mt-12">
           {posts.length === 0 && (
-            <p className="text-white/50 text-center">
+            <p className="text-white/60 text-center">
               No posts yet. Check back soon.
             </p>
           )}
 
           {/* Featured post */}
           {featured && (
-            <AnimateIn distance={30}>
+            <AnimateIn>
               <Link href={`/blog/${featured.slug}`} className="block group">
                 <div className="relative">
-                  <div
-                    className="absolute -inset-px rounded-2xl transition-all duration-500 group-hover:opacity-100 opacity-60"
-                    style={{
-                      background:
-                        'linear-gradient(145deg, rgba(13,148,136,0.4), transparent 40%, transparent 60%, rgba(13,148,136,0.3))',
-                    }}
-                  />
-                  <div
-                    className="relative rounded-2xl backdrop-blur-2xl border border-white/[0.12] overflow-hidden transition-all duration-500 group-hover:border-white/[0.2] group-hover:shadow-[0_0_40px_rgba(13,148,136,0.15)]"
-                    style={{
-                      backgroundColor: 'rgba(255,255,255,0.06)',
-                    }}
-                  >
+                  <div className="card-dark card-hover relative bg-white/[0.06] overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-b from-white/[0.07] via-transparent to-transparent pointer-events-none" />
-                    <div className="relative p-8 sm:p-10">
-                      <div className="flex items-center gap-3 mb-5">
+                    <div className="relative p-8 sm:p-12">
+                      <div className="flex items-center gap-3 mb-6">
                         {featured.category && (
-                          <span className="px-3 py-1 text-xs font-semibold rounded-full bg-accent/15 text-accent tracking-wide">
+                          <span className="px-3 py-1 text-caption font-semibold rounded-control bg-accent/15 text-teal-bright tracking-wide">
                             {featured.category}
                           </span>
                         )}
-                        <span className="text-xs text-white/40 tracking-wide">
+                        <span className="text-caption text-white/60 tracking-wide">
                           {formatDate(featured.date)}
                         </span>
-                        <span className="text-xs text-white/30">·</span>
-                        <span className="text-xs text-white/40 tracking-wide">
+                        <span className="text-caption text-white/60">·</span>
+                        <span className="text-caption text-white/60 tracking-wide">
                           {featured.readTime}
                         </span>
                       </div>
-                      <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-white mb-4 group-hover:text-accent transition-colors duration-300">
+                      <h2 className="text-h2 font-semibold text-white mb-4 group-hover:text-teal-bright transition-colors duration-200">
                         {featured.title}
                       </h2>
                       <p className="text-white/60 leading-relaxed max-w-2xl line-clamp-2">
                         {featured.description}
                       </p>
-                      <span className="inline-block mt-6 text-accent text-sm font-medium group-hover:underline">
+                      <span className="inline-block mt-6 text-teal-bright text-body font-medium group-hover:underline">
                         Read post &rarr;
                       </span>
                     </div>
@@ -125,32 +110,32 @@ export default function BlogPage() {
 
           {/* Post grid */}
           {rest.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
               {rest.map((post, i) => (
                 <AnimateIn key={post.slug} delay={100 + i * 80}>
                   <Link href={`/blog/${post.slug}`} className="block group h-full">
-                    <GlassCard hover className="p-7 h-full flex flex-col">
+                    <GlassCard hover className="p-8 h-full flex flex-col">
                       <div className="flex items-center gap-3 mb-4">
                         {post.category && (
-                          <span className="px-2.5 py-0.5 text-[10px] font-semibold rounded-full bg-accent/15 text-accent tracking-wide uppercase">
+                          <span className="px-3 py-1 text-caption font-semibold rounded-control bg-accent/15 text-teal-bright tracking-wide uppercase">
                             {post.category}
                           </span>
                         )}
-                        <span className="text-[11px] text-white/35 tracking-wide">
+                        <span className="text-caption text-white/60 tracking-wide">
                           {formatDate(post.date)}
                         </span>
                       </div>
-                      <h3 className="text-lg font-semibold tracking-tight text-white mb-2 group-hover:text-accent transition-colors duration-300">
+                      <h3 className="text-h4 font-semibold text-white mb-2 group-hover:text-teal-bright transition-colors duration-200">
                         {post.title}
                       </h3>
-                      <p className="text-white/50 text-sm leading-relaxed line-clamp-1 flex-1">
+                      <p className="text-white/60 text-body line-clamp-1 flex-1">
                         {post.description}
                       </p>
                       <div className="mt-4 pt-4 border-t border-white/[0.08] flex items-center justify-between">
-                        <span className="text-[11px] text-white/30">
+                        <span className="text-caption text-white/60">
                           {post.readTime}
                         </span>
-                        <span className="text-xs text-accent font-medium group-hover:underline">
+                        <span className="text-caption text-teal-bright font-medium group-hover:underline">
                           Read &rarr;
                         </span>
                       </div>

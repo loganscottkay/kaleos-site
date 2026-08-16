@@ -23,18 +23,18 @@ export function ClientPortalDemo() {
   return (
     <DemoShell title="Client Portal · Operator view">
       {/* Project snapshot: seeded, never zero */}
-      <div className="px-4 pt-3.5 pb-3 border-b border-white/5">
+      <div className="px-4 pt-4 pb-3 border-b border-white/5">
         <div className="flex items-baseline justify-between mb-2">
-          <span className="text-white/85 text-xs font-medium">Riverside office buildout</span>
-          <span className="font-system text-[10px] text-white/40">Phase 3 of 5</span>
+          <span className="text-white/85 text-caption font-medium">Riverside office buildout</span>
+          <span className="font-system text-caption text-white/60">Phase 3 of 5</span>
         </div>
-        <div className="h-1.5 rounded-full bg-white/[0.06] overflow-hidden mb-2.5">
+        <div className="h-1.5 rounded-full bg-white/[0.06] overflow-hidden mb-3">
           <div
-            className="h-full rounded-full bg-accent transition-all duration-700"
+            className="h-full rounded-full bg-accent transition-all duration-200"
             style={{ width: approved ? '72%' : '68%' }}
           />
         </div>
-        <div className="flex gap-4 font-system text-[10px] text-white/45">
+        <div className="flex gap-4 font-system text-caption text-white/60">
           <span>{approved ? '72%' : '68%'} complete</span>
           <span>24 documents</span>
           <span>3 messages</span>
@@ -42,9 +42,9 @@ export function ClientPortalDemo() {
       </div>
 
       {/* Agent draft at the gate */}
-      <div className="px-4 py-3.5 flex-1 flex flex-col">
+      <div className="px-4 py-4 flex-1 flex flex-col">
         <div className="flex items-center justify-between mb-2">
-          <span className="font-system text-[10px] tracking-wide uppercase text-white/40">
+          <span className="font-system text-caption tracking-wide uppercase text-white/60">
             Status update drafted by agent
           </span>
           <GateStatus
@@ -58,11 +58,11 @@ export function ClientPortalDemo() {
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             rows={4}
-            className="w-full text-[11px] leading-relaxed rounded-md bg-white/[0.05] border border-accent/40 text-white/80 p-2.5 mb-3 resize-none focus:outline-none"
+            className="input-dark text-caption leading-relaxed border-accent/40 p-3 mb-3 resize-none"
           />
         ) : (
           <p
-            className={`text-[11px] leading-relaxed rounded-md border p-2.5 mb-3 transition-colors duration-300 ${
+            className={`text-caption leading-relaxed rounded-control border p-3 mb-3 transition-colors duration-200 ${
               approved
                 ? 'bg-accent/[0.07] border-accent/25 text-white/75'
                 : 'bg-white/[0.03] border-white/[0.07] text-white/60'
@@ -84,10 +84,10 @@ export function ClientPortalDemo() {
             )}
           </div>
         ) : (
-          <div className="mt-auto rounded-md bg-white/[0.03] border border-white/[0.07] p-2.5">
-            <p className="font-system text-[10px] text-white/40 mb-1">What the client sees</p>
-            <p className="text-[11px] text-white/70 leading-relaxed mb-1.5">{draft}</p>
-            <p className="font-system text-[9px] text-white/30">
+          <div className="mt-auto rounded-control bg-white/[0.03] border border-white/[0.07] p-3">
+            <p className="font-system text-caption text-white/60 mb-1">What the client sees</p>
+            <p className="text-caption text-white/70 leading-relaxed mb-2">{draft}</p>
+            <p className="font-system text-caption text-white/60">
               Posted {publishedAt} · Approved by operator · Audit log updated
             </p>
           </div>

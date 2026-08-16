@@ -151,59 +151,52 @@ export function QuickAssessment() {
   const currentQ = step < 3 ? questions[step] : null
 
   return (
-    <section ref={sectionRef} className="relative py-28 bg-navy">
+    <section ref={sectionRef} className="relative py-24 md:py-32 bg-navy">
       <div className="relative max-w-6xl mx-auto px-4">
         {/* Header */}
         <div
-          className="text-center mb-14"
+          className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-4 items-end mb-16"
           style={{
             opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(10px)',
-            transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+            transform: visible ? 'translateY(0)' : 'translateY(var(--space-12))',
+            transition: 'opacity 0.2s ease-out, transform 0.2s ease-out',
           }}
         >
-          <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-white mb-4">
+          <h2 className="md:col-span-7 text-h2 font-medium text-white">
             Where does AI create leverage in your business?
           </h2>
-          <p className="text-white/50 text-lg tracking-wide">
+          <p className="md:col-span-4 md:col-start-9 font-system text-white/60 text-body tracking-wide">
             3 questions. 60 seconds. A clear answer.
           </p>
         </div>
 
         {/* Quiz card */}
         <div
-          className="max-w-[800px] mx-auto"
+          className="max-w-200 mx-auto"
           style={{
             opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(15px)',
-            transition: 'opacity 0.6s ease-out 200ms, transform 0.6s ease-out 200ms',
+            transform: visible ? 'translateY(0)' : 'translateY(var(--space-16))',
+            transition: 'opacity 0.2s ease-out, transform 0.2s ease-out',
           }}
         >
           <div className="relative">
-            <div className="relative bg-white/[0.045] border border-white/[0.1] rounded-xl p-10 sm:p-14 overflow-hidden min-h-[340px]">
+            <div className="card-dark relative p-6 sm:p-12 md:p-16 overflow-hidden min-h-85">
 
               {/* Progress bar */}
-              <div className="relative z-10 mb-10">
+              <div className="relative z-10 mb-12">
                 <div className="h-1 w-full rounded-full bg-white/10 overflow-hidden">
                   <div
-                    className="h-full rounded-full transition-all duration-700 ease-out"
-                    style={{
-                      width: `${progress}%`,
-                      background: 'linear-gradient(90deg, #0d9488, #2dd4bf)',
-                    }}
+                    className="h-full rounded-full bg-teal-bright transition-all duration-200 ease-out"
+                    style={{ width: `${progress}%` }}
                   />
                 </div>
                 <div className="flex justify-between mt-2">
                   {[1, 2, 3].map((n) => (
                     <span
                       key={n}
-                      className="text-xs font-medium transition-colors duration-300"
-                      style={{
-                        color:
-                          step + 1 >= n
-                            ? 'rgba(45,212,191,0.8)'
-                            : 'rgba(255,255,255,0.25)',
-                      }}
+                      className={`font-system text-caption font-medium transition-colors duration-200 ${
+                        step + 1 >= n ? 'text-teal-bright/80' : 'text-white/60'
+                      }`}
                     >
                       Q{n}
                     </span>
@@ -222,12 +215,12 @@ export function QuickAssessment() {
                         slideDir === 'enter' && !transitioning
                           ? 'translateX(0)'
                           : slideDir === 'exit'
-                            ? 'translateX(-60px)'
-                            : 'translateX(60px)',
-                      transition: 'opacity 0.3s ease, transform 0.3s ease',
+                            ? 'translateX(calc(-1 * var(--space-64)))'
+                            : 'translateX(var(--space-64))',
+                      transition: 'opacity 0.2s ease, transform 0.2s ease',
                     }}
                   >
-                    <p className="text-white text-xl sm:text-2xl font-semibold mb-10 leading-relaxed text-center">
+                    <p className="text-white text-h4 font-semibold mb-12 text-center">
                       {currentQ.question}
                     </p>
 
@@ -246,26 +239,15 @@ export function QuickAssessment() {
                                 : handleSingleSelect(opt.label)
                             }
                             disabled={transitioning}
-                            className="relative px-6 py-3.5 rounded-full border text-sm sm:text-base font-medium transition-all duration-200 cursor-pointer min-w-[280px] text-center"
-                            style={{
-                              background: isSelected
-                                ? 'rgba(13,148,136,0.25)'
-                                : 'rgba(255,255,255,0.08)',
-                              borderColor: isSelected
-                                ? 'rgb(45,212,191)'
-                                : 'rgba(255,255,255,0.18)',
-                              color: isSelected ? 'rgb(45,212,191)' : 'white',
-                              boxShadow: isSelected
-                                ? '0 0 16px rgba(13,148,136,0.35)'
-                                : 'none',
-                              transform: isSelected
-                                ? 'scale(1.04)'
-                                : 'scale(1)',
-                            }}
+                            className={`btn relative px-6 py-4 border text-body min-w-0 sm:min-w-70 text-center ${
+                              isSelected
+                                ? 'bg-accent/25 border-teal-bright text-teal-bright'
+                                : 'bg-white/8 border-white/18 text-white hover:border-white/35'
+                            }`}
                           >
                             {opt.label}
                             {isSelected && currentQ.multi && (
-                              <span className="ml-2 text-xs">✓</span>
+                              <span className="ml-2 text-caption">✓</span>
                             )}
                           </button>
                         )
@@ -278,25 +260,7 @@ export function QuickAssessment() {
                         <button
                           onClick={handleMultiConfirm}
                           disabled={multiSelected.size === 0 || transitioning}
-                          className="px-8 py-3 rounded-xl text-sm font-medium transition-all duration-300"
-                          style={{
-                            background:
-                              multiSelected.size > 0
-                                ? 'linear-gradient(135deg, #0d9488, #0f766e)'
-                                : 'rgba(255,255,255,0.06)',
-                            color:
-                              multiSelected.size > 0
-                                ? 'white'
-                                : 'rgba(255,255,255,0.3)',
-                            cursor:
-                              multiSelected.size > 0
-                                ? 'pointer'
-                                : 'not-allowed',
-                            boxShadow:
-                              multiSelected.size > 0
-                                ? '0 0 20px rgba(13,148,136,0.3)'
-                                : 'none',
-                          }}
+                          className="btn btn-primary px-8 text-body"
                         >
                           Continue →
                         </button>
@@ -310,34 +274,29 @@ export function QuickAssessment() {
                   <div
                     className="text-center"
                     style={{
-                      animation: 'quizResultIn 0.5s ease-out both',
+                      
                     }}
                   >
-                    <p className="text-teal-400 text-xs font-semibold tracking-widest uppercase mb-6">
+                    <p className="font-system text-teal-bright text-caption font-semibold tracking-widest uppercase mb-6">
                       Personalized for you
                     </p>
 
-                    <p className="text-white/50 text-sm mb-3">Based on your answers:</p>
+                    <p className="text-white/60 text-body mb-3">Based on your answers:</p>
                     <div className="flex flex-wrap gap-2 justify-center mb-8">
                       {[...answers[0], ...answers[1], ...answers[2]].map((tag) => (
                         <span
                           key={tag}
-                          className="px-3 py-1.5 rounded-full text-xs font-medium"
-                          style={{
-                            background: 'rgba(13,148,136,0.15)',
-                            border: '1px solid rgba(45,212,191,0.3)',
-                            color: 'rgb(45,212,191)',
-                          }}
+                          className="px-3 py-2 rounded-control text-caption font-medium bg-accent/15 border border-teal-bright/30 text-teal-bright"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
 
-                    <h3 className="text-2xl font-medium text-white mb-5">
+                    <h3 className="text-h3 font-medium text-white mb-6">
                       {result.headline}
                     </h3>
-                    <p className="text-white/70 leading-relaxed mb-10 max-w-lg mx-auto text-base sm:text-lg">
+                    <p className="text-white/70 mb-12 max-w-lg mx-auto text-body-lg">
                       {result.body}
                     </p>
 
@@ -346,24 +305,19 @@ export function QuickAssessment() {
                         href={`https://calendly.com/logan-kaleoshq/30min?utm_source=kaleoshq&utm_medium=quiz&utm_content=${result.key}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl font-medium transition-all duration-300 shadow-lg hover:scale-[1.03] active:scale-[0.97]"
-                        style={{
-                          background: 'linear-gradient(135deg, #0d9488, #0f766e)',
-                          color: 'white',
-                          boxShadow: '0 4px 20px rgba(13,148,136,0.35)',
-                        }}
+                        className="btn btn-primary px-8 py-4"
                       >
                         Book a Discovery Call
                       </a>
                       <a
                         href="#methodology"
-                        className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl border border-white/20 text-white/80 font-medium transition-all duration-300 hover:bg-white/[0.08] hover:border-white/30 hover:scale-[1.03] active:scale-[0.97]"
+                        className="btn btn-ghost-dark px-8 py-4"
                       >
                         See Our Framework
                       </a>
                     </div>
 
-                    <p className="text-white/35 text-sm mt-8">
+                    <p className="text-white/70 text-body mt-8">
                       No obligation. Just clarity.
                     </p>
                   </div>

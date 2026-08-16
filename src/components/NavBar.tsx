@@ -23,14 +23,14 @@ export function NavBar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-200 ${
         scrolled
-          ? 'bg-paper/95 border-slate-200 shadow-sm'
+          ? 'bg-paper/95 border-slate-200'
           : 'bg-paper/80 border-transparent'
       } backdrop-blur-sm`}
     >
-      <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5">
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-3">
           <img
             src="/kaleos-logo.png"
             width={28}
@@ -39,7 +39,7 @@ export function NavBar() {
             style={{ borderRadius: 6, objectFit: 'cover' }}
           />
           <span
-            className="text-navy font-semibold text-lg tracking-tight"
+            className="text-navy font-semibold text-body-lg tracking-tight"
             style={{ fontFamily: 'var(--font-display), sans-serif' }}
           >
             Kaleos HQ
@@ -56,13 +56,13 @@ export function NavBar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`group/nav relative text-sm font-medium tracking-wide transition-colors duration-300 ease-in-out pb-1 ${
-                  isActive ? 'text-navy' : 'text-slate-500 hover:text-navy'
+                className={`group/nav relative inline-flex items-center text-body font-medium tracking-wide transition-colors duration-200 ease-in-out py-3 -my-3 ${
+                  isActive ? 'text-navy' : 'text-muted-text hover:text-navy'
                 }`}
               >
                 {link.label}
                 <span
-                  className={`absolute left-0 bottom-0 h-[2px] bg-accent transition-all duration-300 ease-in-out ${
+                  className={`absolute left-0 bottom-2 h-0.5 bg-accent transition-all duration-200 ease-in-out ${
                     isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
                   }`}
                 />
@@ -73,7 +73,7 @@ export function NavBar() {
             href="https://calendly.com/logan-kaleoshq/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 rounded-lg bg-navy text-white text-sm font-medium transition-colors duration-300 hover:bg-accent"
+            className="btn btn-primary px-4 text-body"
           >
             Book a Discovery Call
           </a>
@@ -82,7 +82,7 @@ export function NavBar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden text-navy/70 hover:text-navy transition-colors"
+          className="md:hidden flex items-center justify-center w-10 h-10 -mr-2 text-navy/70 hover:text-navy transition-colors"
           aria-label="Toggle menu"
           aria-expanded={open}
         >
@@ -99,17 +99,17 @@ export function NavBar() {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden bg-paper border-b border-slate-200">
-          <div className="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-4">
+          <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className={`text-sm font-medium tracking-wide transition-colors duration-300 ${
+                className={`text-body font-medium tracking-wide transition-colors duration-200 ${
                   pathname === link.href ||
                   (link.href !== '/' && pathname.startsWith(link.href))
                     ? 'text-navy'
-                    : 'text-slate-500 hover:text-navy'
+                    : 'text-muted-text hover:text-navy'
                 }`}
               >
                 {link.label}
@@ -119,7 +119,7 @@ export function NavBar() {
               href="https://calendly.com/logan-kaleoshq/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-navy text-white text-sm font-medium"
+              className="btn btn-primary px-4 text-body"
             >
               Book a Discovery Call
             </a>

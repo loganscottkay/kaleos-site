@@ -1,72 +1,50 @@
-'use client'
-
-import { useRef, useEffect, useState } from 'react'
-
 interface StrategyGraphProps {
   variant: 'decline' | 'growth'
-  delay?: number
 }
-
-const particles = [
-  { x: 30, y: 120, dx: 2, dur: 5.2 },
-  { x: 65, y: 105, dx: -1.5, dur: 4.6 },
-  { x: 95, y: 130, dx: 1, dur: 5.8 },
-  { x: 125, y: 95, dx: -2, dur: 4.3 },
-  { x: 160, y: 115, dx: 1.5, dur: 5.5 },
-  { x: 45, y: 85, dx: -1, dur: 6.1 },
-  { x: 110, y: 75, dx: 2, dur: 4.8 },
-  { x: 145, y: 135, dx: -1.5, dur: 5.0 },
-  { x: 75, y: 110, dx: 1, dur: 5.4 },
-  { x: 175, y: 100, dx: -2, dur: 4.5 },
-  { x: 50, y: 125, dx: 1.5, dur: 5.9 },
-  { x: 135, y: 90, dx: -1, dur: 4.7 },
-]
 
 const config = {
   decline: {
     header: 'AI Without Strategy',
     subtitle: 'Tools without direction. Budget spent, nothing to show.',
-    headerColor: 'text-red-400/90',
-    lineColor: '#ef4444',
-    glowColor: 'rgba(239, 68, 68, 0.45)',
+    headerColor: 'text-decline/90',
+    lineColor: 'var(--decline)',
+    glowColor: 'color-mix(in srgb, var(--decline) 45%, transparent)',
     gradientId: 'declineFill',
-    gradientColor: '#ef4444',
-    borderColor: 'border-red-500/[0.25]',
-    glowBorder: 'rgba(239, 68, 68, 0.15)',
-    labelColor: '#f87171',
-    cardBg: 'rgba(50, 15, 15, 0.65)',
+    gradientColor: 'var(--decline)',
+    borderColor: 'border-decline/25',
+    labelColor: 'var(--decline-bright)',
+    cardBg: 'rgba(50, 15, 15, 0.9)',
     linePath: 'M 25,18 C 50,20 70,30 95,55 C 120,80 145,105 165,118 C 175,124 182,127 185,128',
     fillPath:
       'M 25,18 C 50,20 70,30 95,55 C 120,80 145,105 165,118 C 175,124 182,127 185,128 L 185,140 L 25,140 Z',
     dataPoints: [
-      { cx: 25, cy: 18, pct: 0 },
-      { cx: 58, cy: 25, pct: 0.17 },
-      { cx: 95, cy: 55, pct: 0.42 },
-      { cx: 148, cy: 108, pct: 0.75 },
-      { cx: 185, cy: 128, pct: 1.0 },
+      { cx: 25, cy: 18 },
+      { cx: 58, cy: 25 },
+      { cx: 95, cy: 55 },
+      { cx: 148, cy: 108 },
+      { cx: 185, cy: 128 },
     ],
   },
   growth: {
     header: 'AI With Kaleos HQ',
     subtitle: 'Strategy first. Compounding returns.',
-    headerColor: 'text-emerald-400/90',
-    lineColor: '#10b981',
-    glowColor: 'rgba(16, 185, 129, 0.45)',
+    headerColor: 'text-teal-bright/90',
+    lineColor: 'var(--teal)',
+    glowColor: 'color-mix(in srgb, var(--teal) 45%, transparent)',
     gradientId: 'growthFill',
-    gradientColor: '#10b981',
-    borderColor: 'border-emerald-500/[0.25]',
-    glowBorder: 'rgba(16, 185, 129, 0.15)',
-    labelColor: '#6ee7b7',
-    cardBg: 'rgba(10, 35, 30, 0.65)',
+    gradientColor: 'var(--teal)',
+    borderColor: 'border-accent/25',
+    labelColor: 'var(--teal-bright)',
+    cardBg: 'rgba(10, 35, 30, 0.9)',
     linePath: 'M 25,128 C 50,127 75,124 100,112 C 125,95 145,65 160,40 C 172,22 180,15 185,12',
     fillPath:
       'M 25,128 C 50,127 75,124 100,112 C 125,95 145,65 160,40 C 172,22 180,15 185,12 L 185,140 L 25,140 Z',
     dataPoints: [
-      { cx: 25, cy: 128, pct: 0 },
-      { cx: 62, cy: 125, pct: 0.18 },
-      { cx: 100, cy: 112, pct: 0.42 },
-      { cx: 150, cy: 52, pct: 0.78 },
-      { cx: 185, cy: 12, pct: 1.0 },
+      { cx: 25, cy: 128 },
+      { cx: 62, cy: 125 },
+      { cx: 100, cy: 112 },
+      { cx: 150, cy: 52 },
+      { cx: 185, cy: 12 },
     ],
   },
 }
@@ -75,90 +53,34 @@ const CHART_LEFT = 25
 const CHART_RIGHT = 185
 const CHART_TOP = 8
 const CHART_BOTTOM = 140
-const DRAW_DURATION = 2500
 
-export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
+export function StrategyGraph({ variant }: StrategyGraphProps) {
   const c = config[variant]
-  const pathRef = useRef<SVGPathElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
-  const [revealedDots, setRevealedDots] = useState<Set<number>>(new Set())
-  const [pathLength, setPathLength] = useState(500)
-
-  useEffect(() => {
-    if (pathRef.current) {
-      setPathLength(pathRef.current.getTotalLength())
-    }
-  }, [])
-
-  useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setIsVisible(true), delay)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.15 },
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [delay])
-
-  useEffect(() => {
-    if (!isVisible) return
-
-    const timers = c.dataPoints.map((p, i) =>
-      setTimeout(
-        () => setRevealedDots((prev) => new Set([...prev, i])),
-        p.pct * DRAW_DURATION,
-      ),
-    )
-
-    return () => timers.forEach(clearTimeout)
-  }, [isVisible, variant, c.dataPoints])
-
   const hGridCount = 6
   const vGridCount = 6
 
   return (
-    <div ref={containerRef} className="h-full">
+    <div className="h-full">
       <div className="relative h-full">
-        {/* Pulsing glow border */}
-        <div
-          className="absolute -inset-px rounded-2xl"
-          style={{
-            background: `linear-gradient(145deg, ${c.lineColor}35, transparent 40%, transparent 60%, ${c.lineColor}25)`,
-            animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          }}
-        />
-
         {/* Card */}
         <div
-          className={`relative rounded-2xl backdrop-blur-2xl border ${c.borderColor} overflow-hidden h-full flex flex-col`}
-          style={{
-            backgroundColor: c.cardBg,
-            boxShadow: `0 0 40px ${c.glowBorder}, inset 0 1px 0 rgba(255,255,255,0.07)`,
-          }}
+          className={`relative rounded-card border ${c.borderColor} overflow-hidden h-full flex flex-col`}
+          style={{ backgroundColor: c.cardBg }}
         >
           {/* Top highlight */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.07] via-transparent to-transparent pointer-events-none" />
 
-          <div className="relative p-5 pb-4 flex flex-col h-full">
+          <div className="relative p-6 pb-4 flex flex-col h-full">
             <p
-              className={`text-xs font-semibold ${c.headerColor} mb-1 tracking-widest uppercase`}
+              className={`text-caption font-semibold ${c.headerColor} mb-1 tracking-widest uppercase`}
             >
               {c.header}
             </p>
-            <p className="text-[10px] text-white/40 mb-3">
+            <p className="text-caption text-white/60 mb-3">
               {c.subtitle}
             </p>
 
-            <div className="flex-1 min-h-[200px]">
+            <div className="flex-1 min-h-50">
               <svg
                 viewBox="0 0 200 158"
                 className="w-full h-full"
@@ -208,27 +130,6 @@ export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
                     />
                   </radialGradient>
                 </defs>
-
-                {/* Floating particles */}
-                {particles.map((p, i) => (
-                  <circle key={`p${i}`} cx={p.x} cy={p.y} r={0.7} fill="white">
-                    <animateTransform
-                      attributeName="transform"
-                      type="translate"
-                      values={`0,0;${p.dx},${-28}`}
-                      dur={`${p.dur}s`}
-                      begin={`${(i * 0.7) % 3}s`}
-                      repeatCount="indefinite"
-                    />
-                    <animate
-                      attributeName="opacity"
-                      values="0;0.18;0.12;0"
-                      dur={`${p.dur}s`}
-                      begin={`${(i * 0.7) % 3}s`}
-                      repeatCount="indefinite"
-                    />
-                  </circle>
-                ))}
 
                 {/* Horizontal grid lines */}
                 {Array.from({ length: hGridCount }, (_, i) => {
@@ -306,14 +207,7 @@ export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
                 </text>
 
                 {/* Fill area under curve */}
-                <path
-                  d={c.fillPath}
-                  fill={`url(#${c.gradientId})`}
-                  style={{
-                    opacity: isVisible ? 1 : 0,
-                    transition: 'opacity 1.5s ease-out 0.4s',
-                  }}
-                />
+                <path d={c.fillPath} fill={`url(#${c.gradientId})`} />
 
                 {/* Glow behind main line */}
                 <path
@@ -323,95 +217,30 @@ export function StrategyGraph({ variant, delay = 0 }: StrategyGraphProps) {
                   strokeWidth={10}
                   strokeLinecap="round"
                   filter={`url(#glow-${variant})`}
-                  style={{
-                    strokeDasharray: pathLength,
-                    strokeDashoffset: isVisible ? 0 : pathLength,
-                    transition: `stroke-dashoffset ${DRAW_DURATION}ms ease-in-out`,
-                    opacity: 0.35,
-                  }}
+                  style={{ opacity: 0.35 }}
                 />
 
                 {/* Main line */}
                 <path
-                  ref={pathRef}
                   d={c.linePath}
                   fill="none"
                   stroke={c.lineColor}
                   strokeWidth={3}
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  style={{
-                    strokeDasharray: pathLength,
-                    strokeDashoffset: isVisible ? 0 : pathLength,
-                    transition: `stroke-dashoffset ${DRAW_DURATION}ms ease-in-out`,
-                  }}
                 />
 
-                {/* Data points — appear sequentially as line reaches them */}
-                {c.dataPoints.map((p, i) => {
-                  const show = revealedDots.has(i)
-                  return (
-                    <g key={`dot${i}`}>
-                      {/* Outer glow ring */}
-                      <circle
-                        cx={p.cx}
-                        cy={p.cy}
-                        r={9}
-                        fill={`url(#dotGlow-${variant})`}
-                        style={{
-                          opacity: show ? 1 : 0,
-                          transition: 'opacity 0.5s ease-out',
-                        }}
-                      >
-                        <animate
-                          attributeName="r"
-                          values="9;13;9"
-                          dur="3s"
-                          begin={`${i * 0.4}s`}
-                          repeatCount="indefinite"
-                        />
-                      </circle>
-                      {/* Core dot */}
-                      <circle
-                        cx={p.cx}
-                        cy={p.cy}
-                        r={3.5}
-                        fill={c.lineColor}
-                        style={{
-                          opacity: show ? 1 : 0,
-                          transition: 'opacity 0.5s ease-out',
-                        }}
-                      >
-                        <animate
-                          attributeName="r"
-                          values="3.5;4.5;3.5"
-                          dur="3s"
-                          begin={`${i * 0.4}s`}
-                          repeatCount="indefinite"
-                        />
-                      </circle>
-                      {/* Bright center */}
-                      <circle
-                        cx={p.cx}
-                        cy={p.cy}
-                        r={1.5}
-                        fill="white"
-                        style={{
-                          opacity: show ? 0.7 : 0,
-                          transition: 'opacity 0.5s ease-out',
-                        }}
-                      >
-                        <animate
-                          attributeName="opacity"
-                          values="0.7;0.4;0.7"
-                          dur="3s"
-                          begin={`${i * 0.4}s`}
-                          repeatCount="indefinite"
-                        />
-                      </circle>
-                    </g>
-                  )
-                })}
+                {/* Data points */}
+                {c.dataPoints.map((p, i) => (
+                  <g key={`dot${i}`}>
+                    {/* Outer glow ring */}
+                    <circle cx={p.cx} cy={p.cy} r={9} fill={`url(#dotGlow-${variant})`} />
+                    {/* Core dot */}
+                    <circle cx={p.cx} cy={p.cy} r={3.5} fill={c.lineColor} />
+                    {/* Bright center */}
+                    <circle cx={p.cx} cy={p.cy} r={1.5} fill="white" fillOpacity={0.7} />
+                  </g>
+                ))}
               </svg>
             </div>
           </div>

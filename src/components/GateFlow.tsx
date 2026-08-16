@@ -22,11 +22,11 @@ export function GateFlow() {
           return stop.gate ? (
             <div
               key={stop.label}
-              className="gate-flow-chip absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-lg border-[1.5px] bg-paper flex items-center justify-center"
+              className="gate-flow-chip absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-control gate-chip-ring bg-paper flex items-center justify-center"
               style={{ left }}
             >
               <svg
-                className="gate-flow-check w-3.5 h-3.5 text-accent"
+                className="gate-flow-check w-3.5 h-3.5 text-teal-bright"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -43,16 +43,16 @@ export function GateFlow() {
           )
         })}
 
-        {/* Traveling pulse */}
-        <div className="gate-flow-pulse absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(13,148,136,0.6)]" />
+        {/* Traveling pulse: amber while pending, teal once approved */}
+        <div className="gate-flow-pulse absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-accent" />
       </div>
 
       {/* Labels: one centered column per stop */}
-      <div className="grid grid-cols-4 mt-2 font-system text-[10px] tracking-[0.15em] uppercase text-ink/40">
+      <div className="grid grid-cols-4 mt-2 font-system text-caption tracking-widest uppercase text-ink/40">
         {stops.map((stop) => (
           <span
             key={stop.label}
-            className={`text-center ${stop.gate ? 'text-accent/80' : ''}`}
+            className={`text-center ${stop.gate ? 'text-teal-bright' : ''}`}
           >
             {stop.label}
           </span>

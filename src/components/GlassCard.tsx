@@ -14,20 +14,16 @@ export function GlassCard({
   hover = false,
   light = false,
 }: GlassCardProps) {
-  const base = light
-    ? 'bg-white border border-slate-200 shadow-sm'
-    : 'bg-white/[0.045] border border-white/[0.1] shadow-sm shadow-black/20'
+  const base = light ? 'card' : 'card-dark'
 
   const hoverClass = hover
     ? light
-      ? 'transition-colors duration-300 hover:border-accent/40'
-      : 'transition-colors duration-300 hover:border-accent/40 hover:bg-white/[0.07]'
+      ? 'card-hover'
+      : 'card-hover hover:bg-white/[0.07]'
     : ''
 
   return (
-    <div
-      className={['rounded-xl h-full', base, hoverClass, className].join(' ')}
-    >
+    <div className={['h-full', base, hoverClass, className].join(' ')}>
       {children}
     </div>
   )

@@ -107,15 +107,15 @@ export default function Home() {
       <NavBar />
 
       {/* Hero */}
-      <section className="relative bg-paper pt-40 pb-24">
+      <section className="relative bg-paper pt-24 md:pt-32 pb-16 md:pb-24">
         <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.1] mb-8 text-ink">
+          <h1 className="text-display font-semibold mb-8 text-ink">
             AI doesn&apos;t fail because of the technology.
             <br />
             It fails because of the implementation.
           </h1>
 
-          <p className="hero-rise hero-rise-1 text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-10">
+          <p className="hero-rise hero-rise-1 text-body-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-12">
             Everyone wants AI. Most of it never leaves the slide deck.
             Kaleos HQ is the implementation partner that gets it into
             production.
@@ -130,11 +130,11 @@ export default function Home() {
               href="https://calendly.com/logan-kaleoshq/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-3.5 rounded-lg bg-accent text-white font-medium transition-colors duration-300 hover:bg-teal-700"
+              className="btn btn-primary px-8 py-4"
             >
               Book a Discovery Call
             </a>
-            <p className="mt-8 text-sm text-slate-500 tracking-wide">
+            <p className="mt-8 text-caption text-muted-text tracking-wide">
               Logan Kay &middot; Founder &amp; CEO, Kaleos HQ &middot; Agentic AI
               systems, built and deployed
             </p>
@@ -143,34 +143,35 @@ export default function Home() {
       </section>
 
       {/* The Implementation Gap */}
-      <section className="relative py-24 bg-ink">
+      <section className="relative py-16 md:py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-5 text-white">
-              The implementation gap
-            </h2>
-            <div className="mb-6">
-              <GateRule onDark />
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
+              <div className="md:col-span-6">
+                <h2 className="text-h2 font-medium text-white">
+                  The implementation gap
+                </h2>
+                <div className="mt-6">
+                  <GateRule onDark align="start" />
+                </div>
+              </div>
+              <p className="md:col-span-5 md:col-start-8 text-mist leading-relaxed">
+                Most companies that start with AI never get past the demo. Not
+                because the technology doesn&apos;t work, but because nobody
+                connected it to how the business actually operates. That gap is
+                what Kaleos HQ exists to close.
+              </p>
             </div>
-          </AnimateIn>
-
-          <AnimateIn delay={100}>
-            <p className="text-mist text-center max-w-3xl mx-auto mb-14 leading-relaxed">
-              Most companies that start with AI never get past the demo. Not
-              because the technology doesn&apos;t work, but because nobody
-              connected it to how the business actually operates. That gap is
-              what Kaleos HQ exists to close.
-            </p>
           </AnimateIn>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {implementationGap.map((item, i) => (
               <AnimateIn key={i} delay={i * 100} className="h-full">
                 <GlassCard hover className="p-8 h-full">
-                  <h3 className="text-lg font-semibold tracking-tight mb-3 text-white">
+                  <h3 className="text-h4 font-semibold mb-3 text-white">
                     {item.title}
                   </h3>
-                  <p className="text-mist leading-relaxed text-sm">
+                  <p className="text-mist leading-relaxed text-body">
                     {item.desc}
                   </p>
                 </GlassCard>
@@ -184,20 +185,24 @@ export default function Home() {
       <InProduction />
 
       {/* Our Methodology */}
-      <section id="methodology" className="relative py-24 bg-ink">
+      <section id="methodology" className="relative py-16 md:py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-5 text-white">
-              Agentic AI implementation, done as a discipline.
-            </h2>
-            <div className="mb-6">
-              <GateRule onDark />
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
+              <div className="md:col-span-7">
+                <h2 className="text-h2 font-medium text-white">
+                  Agentic AI implementation, done as a discipline.
+                </h2>
+                <div className="mt-6">
+                  <GateRule onDark align="start" />
+                </div>
+              </div>
+              <p className="md:col-span-5 text-mist leading-relaxed">
+                Agents do the work. Humans make the calls. Everything is logged.
+                Every system we ship runs through the same architecture: AI
+                processing, an approval gate, and a full audit log.
+              </p>
             </div>
-            <p className="text-mist text-center max-w-3xl mx-auto mb-14 leading-relaxed">
-              Agents do the work. Humans make the calls. Everything is logged.
-              Every system we ship runs through the same architecture: AI
-              processing, an approval gate, and a full audit log.
-            </p>
           </AnimateIn>
 
           <WorkflowDiagram />
@@ -206,13 +211,13 @@ export default function Home() {
             {methodology.map((item, i) => (
               <AnimateIn key={i} delay={i * 100} className="h-full">
                 <GlassCard hover className="p-8 h-full">
-                  <div className="font-system text-accent/80 text-xs uppercase tracking-widest mb-3">
+                  <div className="font-system text-teal-bright text-caption uppercase tracking-widest mb-3">
                     {item.phase}
                   </div>
-                  <h3 className="text-xl font-semibold tracking-tight mb-3 text-white">
+                  <h3 className="text-h4 font-semibold mb-3 text-white">
                     {item.title}
                   </h3>
-                  <p className="text-mist leading-relaxed text-sm">
+                  <p className="text-mist leading-relaxed text-body">
                     {item.desc}
                   </p>
                 </GlassCard>
@@ -226,20 +231,19 @@ export default function Home() {
       <BuiltToDemo />
 
       {/* Who This Is For */}
-      <section className="relative py-24 bg-paper">
+      <section className="relative py-16 md:py-24 bg-paper">
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-center mb-5 text-ink">
-              Who this is for
-            </h2>
-            <div className="mb-10">
-              <GateRule />
-            </div>
-          </AnimateIn>
-
-          <AnimateIn delay={100}>
-            <div className="max-w-3xl mx-auto">
-              <p className="text-slate-600 leading-relaxed text-lg text-center">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end">
+              <div className="md:col-span-4">
+                <h2 className="text-h2 font-medium text-ink">
+                  Who this is for
+                </h2>
+                <div className="mt-6">
+                  <GateRule align="start" />
+                </div>
+              </div>
+              <p className="md:col-span-7 md:col-start-6 text-slate-600 leading-relaxed text-body-lg">
                 Founders and operators running $2M-$100M+ companies with real
                 complexity and no internal AI capability. If you need a chatbot,
                 we&apos;re not the right fit. If you need a strategic
@@ -254,14 +258,14 @@ export default function Home() {
       <QuickAssessment />
 
       {/* Trust strip + Bottom CTA */}
-      <section className="relative py-24 bg-ink">
+      <section className="relative py-16 md:py-24 bg-ink">
         <div className="relative max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-24">
             {trustBadges.map((badge, i) => (
               <AnimateIn key={i} delay={i * 100}>
-                <div className="flex items-center justify-center gap-3 px-5 py-5 rounded-xl bg-white/[0.045] border border-white/[0.1] transition-colors duration-300 hover:border-accent/40">
-                  <span className="text-accent">{badge.icon}</span>
-                  <span className="text-white/80 text-sm font-medium tracking-wide">
+                <div className="card-dark card-hover flex items-center justify-center gap-3 px-6 py-6">
+                  <span className="text-teal-bright">{badge.icon}</span>
+                  <span className="text-white/80 text-caption font-medium tracking-wide">
                     {badge.label}
                   </span>
                 </div>
@@ -271,7 +275,7 @@ export default function Home() {
 
           <div className="text-center">
             <AnimateIn>
-              <h2 className="text-3xl sm:text-4xl font-medium tracking-tight mb-8 text-white">
+              <h2 className="text-h2 font-medium mb-8 text-white">
                 AI won&apos;t replace your business.
                 <br className="hidden sm:inline" /> But a competitor with better AI
                 <br className="hidden sm:inline" /> implementation will.
@@ -282,7 +286,7 @@ export default function Home() {
                 href="https://calendly.com/logan-kaleoshq/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-3.5 rounded-lg bg-accent text-white font-medium transition-colors duration-300 hover:bg-teal-700"
+                className="btn btn-primary px-8 py-4"
               >
                 Book a Discovery Call
               </a>
