@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
+import { GateRule } from '@/components/GateRule'
 
 /* ── Question data ── */
 
@@ -164,14 +165,20 @@ export function QuickAssessment() {
           className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-4 items-end mb-16"
           style={{
             opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(var(--space-12))',
-            transition: 'opacity 0.2s ease-out, transform 0.2s ease-out',
+            transform: visible ? 'translateY(0)' : 'translateY(var(--space-24))',
+            transition:
+              'opacity var(--dur-reveal) var(--ease-out-expo), transform var(--dur-reveal) var(--ease-out-expo)',
           }}
         >
-          <h2 className="md:col-span-7 text-h2 font-medium text-white">
-            Where does AI create leverage in your business?
-          </h2>
-          <p className="md:col-span-4 md:col-start-9 font-system text-white/60 text-body tracking-wide">
+          <div className="md:col-span-7">
+            <h2 className="text-h2 font-medium text-white">
+              Where does AI create leverage in your business?
+            </h2>
+            <div className="mt-6">
+              <GateRule onDark align="start" />
+            </div>
+          </div>
+          <p className="md:col-span-4 md:col-start-9 font-system text-white/60 text-body tracking-wide text-balance">
             3 questions. 60 seconds. A clear answer.
           </p>
         </div>
@@ -182,7 +189,8 @@ export function QuickAssessment() {
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(var(--space-16))',
-            transition: 'opacity 0.2s ease-out, transform 0.2s ease-out',
+            transition:
+              'opacity var(--dur-reveal) var(--ease-out-expo), transform var(--dur-reveal) var(--ease-out-expo)',
           }}
         >
           <div className="relative">

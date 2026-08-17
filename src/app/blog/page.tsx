@@ -39,16 +39,16 @@ export default function BlogPage() {
       <NavBar />
 
       {/* Full-page dark background */}
-      <section className="relative pt-24 md:pt-32 pb-12 md:pb-16 overflow-hidden bg-navy">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse at center, color-mix(in srgb, var(--teal) 8%, transparent) 0%, transparent 70%)',
-          }}
-        />
+      {/* Was a one-off inline radial gradient; now on the shared atmosphere
+          layer so this page reads with the rest of the site. */}
+      <section className="atmos pt-24 md:pt-32 pb-12 md:pb-16 bg-navy">
+        <div className="atmos-layer atmos-depth" aria-hidden="true" />
+        <div className="atmos-layer atmos-grid" aria-hidden="true" />
+        <div className="atmos-layer atmos-aurora" aria-hidden="true" />
+        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
+        <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
+        <div className="max-w-7xl mx-auto px-4 text-center">
           <AnimateIn distance={24}>
             <h1 className="text-h1 font-semibold text-white">
               Thinking
