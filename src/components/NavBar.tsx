@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -25,7 +26,7 @@ export function NavBar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
         scrolled
-          ? 'bg-paper/90 border-slate-200 shadow-[0_1px_16px_-8px_rgba(16,22,30,0.35)]'
+          ? 'bg-paper/90 border-slate-200 shadow-[0_1px_16px_-8px_rgba(12,16,19,0.35)]'
           : 'bg-paper/70 border-transparent'
       } backdrop-blur-md`}
     >
@@ -39,14 +40,15 @@ export function NavBar() {
         <div className="scroll-rail h-full bg-gradient-to-r from-accent to-teal-bright" />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
-          <img
+          <Image
             src="/kaleos-logo.png"
             width={28}
             height={28}
             alt=""
-            style={{ borderRadius: 6, objectFit: 'cover' }}
+            className="rounded-control object-cover"
+            priority
           />
           <span
             className="text-navy font-semibold text-body-lg tracking-tight"
@@ -109,7 +111,7 @@ export function NavBar() {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden bg-paper border-b border-slate-200">
-          <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
+          <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
             {links.map((link) => (
               <Link
                 key={link.href}

@@ -48,7 +48,7 @@ export default function BlogPage() {
           }}
         />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
           <AnimateIn distance={24}>
             <h1 className="text-h1 font-semibold text-white">
               Thinking

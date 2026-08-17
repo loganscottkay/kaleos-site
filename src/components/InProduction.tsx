@@ -22,7 +22,7 @@ export function InProduction() {
     <section className="atmos py-16 md:py-24 bg-paper">
       <div className="atmos-layer atmos-grid-paper parallax-slow" aria-hidden="true" />
 
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4">
         <Reveal>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
             <div className="md:col-span-6">

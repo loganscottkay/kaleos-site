@@ -54,7 +54,7 @@ export default function AboutPage() {
         <div className="atmos-layer atmos-grid-fine" aria-hidden="true" />
         <div className="atmos-layer atmos-aurora atmos-aurora-soft" aria-hidden="true" />
 
-        <div className="max-w-6xl mx-auto px-4 text-center">
+        <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="hero-rise font-system text-caption uppercase tracking-widest text-muted-text mb-6">
             Kaleos HQ
           </p>
@@ -142,12 +142,14 @@ export default function AboutPage() {
 
       {/* Background */}
       <section className="atmos py-16 md:py-24 bg-ink">
-        <div className="atmos-layer atmos-horizon" aria-hidden="true" />
+        <div className="atmos-layer atmos-depth" aria-hidden="true" />
         <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
         <div className="atmos-layer atmos-aurora" aria-hidden="true" />
+        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
+        <div className="atmos-layer atmos-horizon" aria-hidden="true" />
 
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
               Background
@@ -217,10 +219,12 @@ export default function AboutPage() {
 
       {/* How We're Different */}
       <section className="atmos py-16 md:py-24 bg-navy">
+        <div className="atmos-layer atmos-depth" aria-hidden="true" />
         <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
+        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
               How we&apos;re different
@@ -269,7 +273,7 @@ export default function AboutPage() {
       <section className="atmos py-16 md:py-24 bg-paper">
         <div className="atmos-layer atmos-grid-paper parallax-slow" aria-hidden="true" />
 
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-3xl mx-auto text-slate-600 leading-relaxed">
             <AnimateIn>
               <p className="text-center">
@@ -285,12 +289,14 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section className="atmos py-16 md:py-24 bg-ink">
-        <div className="atmos-layer atmos-horizon" aria-hidden="true" />
+        <div className="atmos-layer atmos-depth" aria-hidden="true" />
         <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
         <div className="atmos-layer atmos-aurora" aria-hidden="true" />
+        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
+        <div className="atmos-layer atmos-horizon" aria-hidden="true" />
 
-        <div className="max-w-6xl mx-auto px-4 text-center">
+        <div className="max-w-7xl mx-auto px-4 text-center">
           <AnimateIn>
             <h2 className="text-h2 font-medium mb-6 text-white">
               Want to see if AI can help your business?

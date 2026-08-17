@@ -49,8 +49,10 @@
   --navy-900: #11161B;
   --navy-950: #0A0E12;
   --ink: #0C1013;
-  --teal: #0D9488;
-  --teal-bright: #2DD4BF; /* accent on dark grounds */
+  --teal: #0E7F86; /* cooled from #0D9488: hue 175 to 186 */
+  --teal-bright: #8CB8C2; /* accent on dark grounds. Matte, not neon:
+                             hue 172 to 191 and saturation 66 to 31. The
+                             old mint shouted against grounds this dark. */
   --amber: #B45309; /* pending / awaiting approval only */
   --slate-200: #E3E0D9; /* hairline, warmed to sit on bone paper */
   --slate-500: #64748B; /* caption, UI-size only on paper */
@@ -62,6 +64,11 @@
      meaning from the demos and StrategyGraph, unchanged by this token. */
   --decline: #EF4444;
   --decline-bright: #F87171;
+
+  /* Atmosphere: the second aurora field. A cool slate-blue sitting a good
+     distance in hue from the teal, so the two fields read as depth rather
+     than as one larger wash. Never used for text. */
+  --glow-cool: #2A4E63;
 
   /* Radius: rules and tables 0, buttons and inputs 6, cards 10. */
   --radius-none: 0px;
@@ -107,19 +114,19 @@
   --text-primary: var(--ink); /* 17.24:1 on paper */
   --text-body: var(--slate-600); /* 6.84:1 on paper */
   --text-muted: #556275; /* darkened from slate-500; 5.59:1 on paper */
-  --link: #0F766E; /* darkened from teal; 4.94:1 on paper */
+  --link: #2C6A70; /* cooled and darkened from teal; 5.57:1 on paper */
   --focus-ring: var(--teal); /* non-text UI, 3:1 met on every ground */
   --state-pending: var(--amber); /* chips, dots, rules; 3:1 bar */
   --state-pending-text: #92400E; /* darkened for body-size text; 6.40:1 */
   --state-pending-bright: #F59E0B; /* pending on dark grounds; 6.72:1+ */
   --state-approved: var(--teal); /* chips, dots, rules; 3:1 bar */
-  --state-approved-text: #0F766E; /* darkened for body-size text; 4.94:1 */
+  --state-approved-text: #2C6A70; /* cooled for body-size text; 5.57:1 */
   --state-approved-bright: var(--teal-bright); /* approved on dark; 7.76:1+ */
   --state-declined: var(--decline); /* reject affordance, decline chart line */
   --state-declined-bright: var(--decline-bright); /* declined on dark grounds */
 
   /* ── LAYER 3: COMPONENT ── */
-  --button-bg: #0B7C72; /* darkened from --teal at the component layer: white label 5.07:1 (AA body); the brand primitive is untouched (warden QA round 1, finding 1) */
+  --button-bg: #0D6E70; /* darkened from --teal at the component layer: white label 5.07:1 (AA body); the brand primitive is untouched (warden QA round 1, finding 1) */
   --button-text: #FFFFFF;
   --card-surface: var(--surface-card);
   --hairline: var(--slate-200); /* 1px, the primary separator */
@@ -135,8 +142,8 @@
   --color-navy: #171C22;
   --color-navy-900: #11161B;
   --color-navy-950: #0A0E12;
-  --color-accent: #0D9488;
-  --color-teal-bright: #2DD4BF;
+  --color-accent: #0E7F86;
+  --color-teal-bright: #8CB8C2;
   --color-amber: #B45309;
   --color-paper: #F5F3EF;
   --color-mist: #9AA3AE; /* de-blued to sit on the neutral darks */
@@ -147,13 +154,13 @@
   --color-surface-card: #FFFFFF;
   --color-body-text: #475569;
   --color-muted-text: #556275;
-  --color-link: #0F766E;
-  --color-accent-deep: #0B7C72; /* accent surface carrying white body text: 5.07:1 (warden QA round 2, finding 1) */
+  --color-link: #2C6A70;
+  --color-accent-deep: #0D6E70; /* accent surface carrying white body text: 5.07:1 (warden QA round 2, finding 1) */
   --color-pending: #B45309;
   --color-pending-text: #92400E;
   --color-pending-bright: #F59E0B;
-  --color-approved: #0D9488;
-  --color-approved-text: #0F766E;
+  --color-approved: #0E7F86;
+  --color-approved-text: #2C6A70;
   --color-hairline: #E3E0D9;
   --color-decline: #EF4444;
   --color-decline-bright: #F87171;
@@ -358,32 +365,38 @@ h1, h2, h3 {
   will-change: transform;
 }
 
+/* Wide, shallow ellipses rather than circles: a circle reads as a blob,
+   an ellipse reads as light falling across a surface. */
 .atmos-aurora::before {
-  width: 60vw;
-  height: 60vw;
-  max-width: 900px;
-  max-height: 900px;
-  top: -25%;
-  left: -10%;
+  width: 78vw;
+  height: 48vw;
+  max-width: 1100px;
+  max-height: 620px;
+  top: -22%;
+  left: -14%;
   background: radial-gradient(
-    circle at 50% 50%,
-    color-mix(in srgb, var(--teal) 20%, transparent),
-    transparent 62%
+    ellipse at 50% 50%,
+    color-mix(in srgb, var(--teal) 34%, transparent),
+    color-mix(in srgb, var(--teal) 10%, transparent) 45%,
+    transparent 68%
   );
   animation: aurora-a 26s var(--ease-in-out-quart) infinite;
 }
 
+/* Second field is a cool slate-blue, not another teal: two fields of the
+   same hue just make one bigger field. The hue gap is what gives the
+   ground its sense of depth. */
 .atmos-aurora::after {
-  width: 50vw;
-  height: 50vw;
-  max-width: 760px;
-  max-height: 760px;
-  bottom: -30%;
-  right: -8%;
+  width: 66vw;
+  height: 44vw;
+  max-width: 900px;
+  max-height: 560px;
+  bottom: -26%;
+  right: -12%;
   background: radial-gradient(
-    circle at 50% 50%,
-    color-mix(in srgb, var(--navy-800) 55%, transparent),
-    transparent 60%
+    ellipse at 50% 50%,
+    color-mix(in srgb, var(--glow-cool) 52%, transparent),
+    transparent 64%
   );
   animation: aurora-b 34s var(--ease-in-out-quart) infinite;
 }
@@ -392,17 +405,17 @@ h1, h2, h3 {
    muddy on light grounds, so the light hero gets a whisper instead. */
 .atmos-aurora-soft::before {
   background: radial-gradient(
-    circle at 50% 50%,
-    color-mix(in srgb, var(--teal) 9%, transparent),
-    transparent 60%
+    ellipse at 50% 50%,
+    color-mix(in srgb, var(--teal) 11%, transparent),
+    transparent 62%
   );
 }
 
 .atmos-aurora-soft::after {
   background: radial-gradient(
-    circle at 50% 50%,
-    color-mix(in srgb, var(--navy-800) 8%, transparent),
-    transparent 58%
+    ellipse at 50% 50%,
+    color-mix(in srgb, var(--glow-cool) 12%, transparent),
+    transparent 60%
   );
 }
 
@@ -423,6 +436,32 @@ h1, h2, h3 {
 @keyframes aurora-b {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1.1); }
   50% { transform: translate3d(-14%, -10%, 0) scale(1); }
+}
+
+/* ── Depth ──
+   A single soft key light from above the section plus a floor shadow.
+   This is what stops a dark ground reading as flat paint: real surfaces
+   are lit from somewhere. Sits under the grid so the grid gets lit too. */
+.atmos-depth {
+  background:
+    radial-gradient(
+      130% 70% at 50% -12%,
+      rgba(255, 255, 255, 0.07),
+      rgba(255, 255, 255, 0.02) 42%,
+      transparent 68%
+    ),
+    linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.32));
+}
+
+/* ── Vignette ──
+   Draws the eye to the centre column and keeps the aurora from running
+   flat into the section edges. */
+.atmos-vignette {
+  background: radial-gradient(
+    115% 85% at 50% 42%,
+    transparent 52%,
+    rgba(0, 0, 0, 0.42)
+  );
 }
 
 /* ── Grain ──

@@ -58,7 +58,7 @@ export default function AuditPage() {
         <div className="atmos-layer atmos-grid-fine" aria-hidden="true" />
         <div className="atmos-layer atmos-aurora atmos-aurora-soft" aria-hidden="true" />
 
-        <div className="relative max-w-6xl mx-auto px-4 text-center">
+        <div className="relative max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-h1 font-medium mb-6 text-ink">
             Strategic AI assessment
           </h1>
@@ -73,7 +73,7 @@ export default function AuditPage() {
       <section className="atmos py-16 md:py-24 bg-paper">
         <div className="atmos-layer atmos-grid-paper parallax-slow" aria-hidden="true" />
 
-        <div className="relative max-w-6xl mx-auto px-4">
+        <div className="relative max-w-7xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-12 text-ink">
               Assessment deliverables
@@ -109,11 +109,13 @@ export default function AuditPage() {
 
       {/* How It Works */}
       <section className="atmos py-16 md:py-24 bg-ink">
+        <div className="atmos-layer atmos-depth" aria-hidden="true" />
         <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
         <div className="atmos-layer atmos-aurora" aria-hidden="true" />
+        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
-        <div className="relative max-w-6xl mx-auto px-4">
+        <div className="relative max-w-7xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
               How it works
@@ -142,10 +144,12 @@ export default function AuditPage() {
 
       {/* How Engagements Work */}
       <section className="atmos py-16 md:py-24 bg-navy">
+        <div className="atmos-layer atmos-depth" aria-hidden="true" />
         <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
+        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
-        <div className="relative max-w-6xl mx-auto px-4">
+        <div className="relative max-w-7xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-6 text-white">
               How engagements work
@@ -199,11 +203,13 @@ export default function AuditPage() {
 
       {/* FAQ */}
       <section className="atmos py-16 md:py-24 bg-ink">
+        <div className="atmos-layer atmos-depth" aria-hidden="true" />
         <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
         <div className="atmos-layer atmos-aurora" aria-hidden="true" />
+        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
-        <div className="relative max-w-6xl mx-auto px-4">
+        <div className="relative max-w-7xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
               Frequently asked questions
@@ -218,10 +224,12 @@ export default function AuditPage() {
 
       {/* Intake Form */}
       <section className="atmos py-16 md:py-24 bg-navy" id="form">
+        <div className="atmos-layer atmos-depth" aria-hidden="true" />
         <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
+        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
-        <div className="relative max-w-6xl mx-auto px-4">
+        <div className="relative max-w-7xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
               Start a conversation

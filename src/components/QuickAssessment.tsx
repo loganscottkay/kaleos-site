@@ -152,11 +152,13 @@ export function QuickAssessment() {
 
   return (
     <section ref={sectionRef} className="atmos py-24 md:py-32 bg-navy">
+      <div className="atmos-layer atmos-depth" aria-hidden="true" />
       <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
       <div className="atmos-layer atmos-aurora" aria-hidden="true" />
+      <div className="atmos-layer atmos-vignette" aria-hidden="true" />
       <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
-      <div className="relative max-w-6xl mx-auto px-4">
+      <div className="relative max-w-7xl mx-auto px-4">
         {/* Header */}
         <div
           className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-4 items-end mb-16"

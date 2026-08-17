@@ -121,7 +121,7 @@ export default function Home() {
         <div className="atmos-layer atmos-grid-fine parallax-slow" aria-hidden="true" />
         <div className="atmos-layer atmos-aurora atmos-aurora-soft" aria-hidden="true" />
 
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-16 items-center">
             {/* Copy */}
             <div className="lg:col-span-7">
@@ -133,22 +133,22 @@ export default function Home() {
                 Agentic AI implementation
               </p>
 
-              {/* Each sentence rises out of its own clipping mask. Pure CSS
-                  so it begins at first paint rather than waiting on
-                  hydration; the h1 is the LCP element. */}
-              {/* Wrapping is width-dependent: balancing at narrow widths
-                  makes a stubby middle line, but not balancing at desktop
-                  leaves "technology." orphaned on its own line. So: pretty
-                  on mobile, balanced once the column is wide enough. */}
-              <h1 className="text-h1 font-semibold mb-6 text-ink text-pretty lg:text-balance">
+              {/* Cut from two full sentences to two short ones. The long
+                  version needed four lines at h1 and still broke mid-clause;
+                  short enough for display size on two lines hits harder and
+                  says the same thing. Each line rises out of its own
+                  clipping mask, pure CSS, so it paints on the first frame
+                  rather than waiting on hydration (the h1 is the LCP
+                  element). */}
+              <h1 className="text-h1 xl:text-display font-semibold mb-6 text-ink">
                 <span className="line-mask">
                   <span className="line-rise line-rise-1">
-                    AI doesn&apos;t fail because of the technology.
+                    AI doesn&apos;t fail.
                   </span>
                 </span>
                 <span className="line-mask">
                   <span className="line-rise line-rise-2">
-                    It fails because of the implementation.
+                    The implementation does.
                   </span>
                 </span>
               </h1>
@@ -198,12 +198,14 @@ export default function Home() {
 
       {/* The Implementation Gap */}
       <section className="atmos py-16 md:py-24 bg-ink">
-        <div className="atmos-layer atmos-horizon" aria-hidden="true" />
+        <div className="atmos-layer atmos-depth" aria-hidden="true" />
         <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
         <div className="atmos-layer atmos-aurora" aria-hidden="true" />
+        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
+        <div className="atmos-layer atmos-horizon" aria-hidden="true" />
 
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <Reveal>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
               <div className="md:col-span-6">
@@ -248,11 +250,13 @@ export default function Home() {
 
       {/* Our Methodology */}
       <section id="methodology" className="atmos py-16 md:py-24 bg-ink">
+        <div className="atmos-layer atmos-depth" aria-hidden="true" />
         <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
         <div className="atmos-layer atmos-aurora" aria-hidden="true" />
+        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <Reveal>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
               <div className="md:col-span-7">
@@ -302,7 +306,7 @@ export default function Home() {
                         <h3 className="text-h4 font-semibold mb-3 text-white">
                           {item.title}
                         </h3>
-                        <p className="text-mist leading-relaxed text-body">
+                        <p className="text-mist leading-relaxed text-body max-w-prose">
                           {item.desc}
                         </p>
                       </div>
@@ -333,7 +337,7 @@ export default function Home() {
       <section className="atmos py-16 md:py-24 bg-paper">
         <div className="atmos-layer atmos-grid-paper parallax-slow" aria-hidden="true" />
 
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <Reveal>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end">
               <div className="md:col-span-4">
@@ -360,12 +364,14 @@ export default function Home() {
 
       {/* Trust strip + Bottom CTA */}
       <section className="atmos py-16 md:py-24 bg-ink">
-        <div className="atmos-layer atmos-horizon" aria-hidden="true" />
+        <div className="atmos-layer atmos-depth" aria-hidden="true" />
         <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
         <div className="atmos-layer atmos-aurora" aria-hidden="true" />
+        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
+        <div className="atmos-layer atmos-horizon" aria-hidden="true" />
 
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <SpotlightGroup className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-24">
             {trustBadges.map((badge, i) => (
               <Reveal key={badge.label} delay={i * 80} variant="scale">

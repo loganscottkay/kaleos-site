@@ -72,10 +72,12 @@ export function BuiltToDemo() {
 
   return (
     <section ref={sectionRef} className="atmos py-16 md:py-24 bg-navy">
+      <div className="atmos-layer atmos-depth" aria-hidden="true" />
       <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
+      <div className="atmos-layer atmos-vignette" aria-hidden="true" />
       <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4">
         <AnimateIn>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
             <div className="md:col-span-6">

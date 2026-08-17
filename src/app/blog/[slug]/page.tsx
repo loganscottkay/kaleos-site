@@ -99,7 +99,9 @@ export default async function BlogPostPage({
 
       {/* Article content */}
       <section className="atmos py-16 md:py-24 bg-navy">
+        <div className="atmos-layer atmos-depth" aria-hidden="true" />
         <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
+        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
 
