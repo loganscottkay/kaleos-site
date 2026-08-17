@@ -1,5 +1,6 @@
 // Signature element: a thin track passing through a checkpoint chip.
-// Static divider variant; the hero's animated moment lives in GateFlow.
+// Static section divider; the animated expression of the same idea is
+// the hero's ApprovalQueue.
 export function GateRule({
   onDark = false,
   align = 'center',

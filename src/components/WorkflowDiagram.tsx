@@ -100,12 +100,12 @@ function GlassBox({
   )
 }
 
-// --- Connection line with a static flowing-direction arrow ---
+// --- Connection line carrying a travelling pulse of work ---
 function ConnectionLine({ vertical = false }: { vertical?: boolean }) {
   if (vertical) {
     return (
       <div className="relative flex flex-col items-center h-10">
-        <div className="w-0.5 h-full bg-gradient-to-b from-accent/60 to-accent/30" />
+        <div className="flow-line flow-line-vertical w-0.5 h-full bg-gradient-to-b from-accent/60 to-accent/30" />
         <svg className="absolute -bottom-1 text-accent" width="10" height="8" viewBox="0 0 10 8">
           <path d="M1 1L5 6L9 1" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -115,7 +115,7 @@ function ConnectionLine({ vertical = false }: { vertical?: boolean }) {
 
   return (
     <div className="relative flex items-center shrink-0 w-14">
-      <div className="h-0.5 w-full bg-gradient-to-r from-accent/60 to-accent/30" />
+      <div className="flow-line h-0.5 w-full bg-gradient-to-r from-accent/60 to-accent/30" />
       <svg className="absolute -right-1 top-1/2 -translate-y-1/2 text-accent" width="8" height="10" viewBox="0 0 8 10">
         <path d="M1 1L6 5L1 9" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
@@ -124,9 +124,24 @@ function ConnectionLine({ vertical = false }: { vertical?: boolean }) {
 }
 
 // --- Internal node inside the center system box ---
-function InternalNode({ icon, label }: { icon: React.ReactNode; label: string }) {
+// `seq` is the stage's slot in the 6s cycle; the delays run the three
+// stages in order (processing, then the gate, then the log).
+const SEQ_DELAY = ['0s', '-4s', '-2s']
+
+function InternalNode({
+  icon,
+  label,
+  seq,
+}: {
+  icon: React.ReactNode
+  label: string
+  seq: number
+}) {
   return (
-    <div className="flex items-center gap-3 rounded-control bg-white/6 border border-white/10 px-3 py-2">
+    <div
+      className="node-seq flex items-center gap-3 rounded-control bg-white/6 border border-white/10 px-3 py-2"
+      style={{ '--seq-delay': SEQ_DELAY[seq] } as React.CSSProperties}
+    >
       <span className="text-teal-bright">{icon}</span>
       <span className="text-white/80 text-caption font-medium whitespace-nowrap">{label}</span>
     </div>
@@ -150,7 +165,7 @@ export function WorkflowDiagram() {
       {/* ===== DESKTOP / TABLET ===== */}
       <div className="hidden md:flex items-stretch justify-center gap-0">
         {/* LEFT: Your Business */}
-        <GlassBox className="p-6 w-43 flex flex-col justify-center">
+        <GlassBox className="p-6 w-50 flex flex-col justify-center">
           <p className="text-white font-semibold text-body mb-3 tracking-tight">Your Business</p>
           <div className="flex flex-col gap-2">
             <SmallItem icon={<MailIcon />} label="Emails" />
@@ -170,9 +185,9 @@ export function WorkflowDiagram() {
             <p className="text-white font-semibold text-body tracking-tight">Kaleos HQ System</p>
           </div>
           <div className="flex flex-col gap-3">
-            <InternalNode icon={<CpuIcon />} label="AI Processing" />
-            <InternalNode icon={<ShieldIcon />} label="Approval Gate" />
-            <InternalNode icon={<ClipboardIcon />} label="Audit Log" />
+            <InternalNode icon={<CpuIcon />} label="AI Processing" seq={0} />
+            <InternalNode icon={<ShieldIcon />} label="Approval Gate" seq={1} />
+            <InternalNode icon={<ClipboardIcon />} label="Audit Log" seq={2} />
           </div>
         </GlassBox>
 
@@ -180,7 +195,7 @@ export function WorkflowDiagram() {
         <ConnectionLine />
 
         {/* RIGHT: Output */}
-        <GlassBox className="p-6 w-43 flex flex-col justify-center">
+        <GlassBox className="p-6 w-50 flex flex-col justify-center">
           <p className="text-white font-semibold text-body mb-3 tracking-tight">Output</p>
           <div className="flex flex-col gap-2">
             <SmallItem icon={<PaperPlaneIcon />} label="Proposals sent" />
@@ -213,9 +228,9 @@ export function WorkflowDiagram() {
             <p className="text-white font-semibold text-body tracking-tight">Kaleos HQ System</p>
           </div>
           <div className="flex flex-col gap-2">
-            <InternalNode icon={<CpuIcon />} label="AI Processing" />
-            <InternalNode icon={<ShieldIcon />} label="Approval Gate" />
-            <InternalNode icon={<ClipboardIcon />} label="Audit Log" />
+            <InternalNode icon={<CpuIcon />} label="AI Processing" seq={0} />
+            <InternalNode icon={<ShieldIcon />} label="Approval Gate" seq={1} />
+            <InternalNode icon={<ClipboardIcon />} label="Audit Log" seq={2} />
           </div>
         </GlassBox>
 

@@ -151,7 +151,11 @@ export function QuickAssessment() {
   const currentQ = step < 3 ? questions[step] : null
 
   return (
-    <section ref={sectionRef} className="relative py-24 md:py-32 bg-navy">
+    <section ref={sectionRef} className="atmos py-24 md:py-32 bg-navy">
+      <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
+      <div className="atmos-layer atmos-aurora" aria-hidden="true" />
+      <div className="atmos-layer atmos-grain" aria-hidden="true" />
+
       <div className="relative max-w-6xl mx-auto px-4">
         {/* Header */}
         <div

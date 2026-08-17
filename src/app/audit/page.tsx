@@ -3,6 +3,7 @@ import { NavBar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
 import { GlassCard } from '@/components/GlassCard'
 import { AnimateIn } from '@/components/AnimateIn'
+import { SpotlightGroup } from '@/components/Reveal'
 import { AuditForm } from '@/components/AuditForm'
 import { FAQ } from '@/components/FAQ'
 
@@ -53,7 +54,10 @@ export default function AuditPage() {
       <NavBar />
 
       {/* Hero */}
-      <section className="relative bg-paper pt-24 md:pt-32 pb-12 md:pb-16">
+      <section className="atmos bg-paper pt-24 md:pt-32 pb-12 md:pb-16">
+        <div className="atmos-layer atmos-grid-fine" aria-hidden="true" />
+        <div className="atmos-layer atmos-aurora atmos-aurora-soft" aria-hidden="true" />
+
         <div className="relative max-w-6xl mx-auto px-4 text-center">
           <h1 className="text-h1 font-medium mb-6 text-ink">
             Strategic AI assessment
@@ -66,7 +70,9 @@ export default function AuditPage() {
       </section>
 
       {/* Assessment Deliverables */}
-      <section className="relative py-16 md:py-24 bg-paper">
+      <section className="atmos py-16 md:py-24 bg-paper">
+        <div className="atmos-layer atmos-grid-paper parallax-slow" aria-hidden="true" />
+
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-12 text-ink">
@@ -102,7 +108,11 @@ export default function AuditPage() {
       </section>
 
       {/* How It Works */}
-      <section className="relative py-16 md:py-24 bg-ink">
+      <section className="atmos py-16 md:py-24 bg-ink">
+        <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
+        <div className="atmos-layer atmos-aurora" aria-hidden="true" />
+        <div className="atmos-layer atmos-grain" aria-hidden="true" />
+
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
@@ -110,10 +120,10 @@ export default function AuditPage() {
             </h2>
           </AnimateIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <SpotlightGroup className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {steps.map((item, i) => (
               <AnimateIn key={i} delay={i * 100} className="h-full">
-                <GlassCard className="p-6 h-full">
+                <GlassCard className="spotlight lift lift-dark p-6 h-full">
                   <div className="text-white/60 text-caption uppercase tracking-widest mb-2" style={{ fontFamily: "'Inter', sans-serif" }}>
                     {item.step}
                   </div>
@@ -126,12 +136,15 @@ export default function AuditPage() {
                 </GlassCard>
               </AnimateIn>
             ))}
-          </div>
+          </SpotlightGroup>
         </div>
       </section>
 
       {/* How Engagements Work */}
-      <section className="relative py-16 md:py-24 bg-navy">
+      <section className="atmos py-16 md:py-24 bg-navy">
+        <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
+        <div className="atmos-layer atmos-grain" aria-hidden="true" />
+
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-6 text-white">
@@ -144,7 +157,7 @@ export default function AuditPage() {
             </p>
           </AnimateIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          <SpotlightGroup className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {[
               {
                 name: 'Assessment',
@@ -160,7 +173,7 @@ export default function AuditPage() {
               },
             ].map((tier, i) => (
               <AnimateIn key={tier.name} delay={i * 100} className="h-full">
-                <GlassCard hover className="p-8 h-full">
+                <GlassCard hover className="spotlight lift lift-dark p-8 h-full">
                   <div className="flex flex-col h-full">
                     <h3 className="text-h4 font-semibold text-white mb-4">
                       {tier.name}
@@ -180,12 +193,16 @@ export default function AuditPage() {
                 </GlassCard>
               </AnimateIn>
             ))}
-          </div>
+          </SpotlightGroup>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="relative py-16 md:py-24 bg-ink">
+      <section className="atmos py-16 md:py-24 bg-ink">
+        <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
+        <div className="atmos-layer atmos-aurora" aria-hidden="true" />
+        <div className="atmos-layer atmos-grain" aria-hidden="true" />
+
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
@@ -200,7 +217,10 @@ export default function AuditPage() {
       </section>
 
       {/* Intake Form */}
-      <section className="relative py-16 md:py-24 bg-navy" id="form">
+      <section className="atmos py-16 md:py-24 bg-navy" id="form">
+        <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
+        <div className="atmos-layer atmos-grain" aria-hidden="true" />
+
         <div className="relative max-w-6xl mx-auto px-4">
           <AnimateIn>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">

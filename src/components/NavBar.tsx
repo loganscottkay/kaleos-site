@@ -23,12 +23,22 @@ export function NavBar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-200 ${
+      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
         scrolled
-          ? 'bg-paper/95 border-slate-200'
-          : 'bg-paper/80 border-transparent'
-      } backdrop-blur-sm`}
+          ? 'bg-paper/90 border-slate-200 shadow-[0_1px_16px_-8px_rgba(16,22,30,0.35)]'
+          : 'bg-paper/70 border-transparent'
+      } backdrop-blur-md`}
     >
+      {/* Reading progress. Driven by a CSS scroll timeline, so it tracks the
+          scroller exactly with no listener; where that is unsupported the
+          rail stays at scale 0 and simply is not there. */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-px overflow-hidden"
+        aria-hidden="true"
+      >
+        <div className="scroll-rail h-full bg-gradient-to-r from-accent to-teal-bright" />
+      </div>
+
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
           <img

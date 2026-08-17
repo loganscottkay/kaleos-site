@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { AnimateIn } from '@/components/AnimateIn'
+import { Reveal, SpotlightGroup } from '@/components/Reveal'
 import { GateRule } from '@/components/GateRule'
 
 // Below the fold on every viewport: load each demo only when the section nears view.
@@ -70,8 +71,11 @@ export function BuiltToDemo() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative py-16 md:py-24 bg-navy">
-      <div className="relative max-w-6xl mx-auto px-4">
+    <section ref={sectionRef} className="atmos py-16 md:py-24 bg-navy">
+      <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
+      <div className="atmos-layer atmos-grain" aria-hidden="true" />
+
+      <div className="max-w-6xl mx-auto px-4">
         <AnimateIn>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
             <div className="md:col-span-6">
@@ -93,14 +97,14 @@ export function BuiltToDemo() {
           </div>
         </AnimateIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+        <SpotlightGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {demos.map((demo, i) => (
-            <AnimateIn
+            <Reveal
               key={demo.title}
-              delay={i * 100}
+              delay={i * 90}
               className={`h-full ${i === 2 ? 'md:col-span-2 lg:col-span-1 md:max-w-[calc(50%-var(--space-12))] md:mx-auto md:w-full lg:max-w-none' : ''}`}
             >
-              <div className="card-dark card-hover shadow-demo-card p-6 flex flex-col h-full">
+              <div className="card-dark spotlight shadow-demo-card p-6 flex flex-col h-full transition-colors duration-300 hover:border-white/20">
                 <h3 className="font-system text-caption font-semibold text-teal-bright mb-4 tracking-widest uppercase">
                   {demo.title}
                 </h3>
@@ -111,9 +115,9 @@ export function BuiltToDemo() {
                   {demo.desc}
                 </p>
               </div>
-            </AnimateIn>
+            </Reveal>
           ))}
-        </div>
+        </SpotlightGroup>
 
       </div>
     </section>

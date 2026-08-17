@@ -1,11 +1,9 @@
 import type { ReactNode } from 'react'
+import { Reveal } from '@/components/Reveal'
 
-// The one orchestrated motion moment per page is the approval gate
-// (GateFlow). This wrapper renders content in its final state
-// immediately rather than staging a scroll-triggered reveal, so pages
-// stay complete with motion off and no scattered scroll effects
-// compete with the gate. Kept as a stable layout wrapper so call sites
-// (and their className/spacing usage) don't need to change.
+// Thin compatibility shim over Reveal. Call sites across the site already
+// pass `delay` and `distance`, so the wrapper keeps that signature and
+// maps it onto the reveal variants. New code should import Reveal directly.
 interface AnimateInProps {
   children: ReactNode
   delay?: number
@@ -13,6 +11,15 @@ interface AnimateInProps {
   className?: string
 }
 
-export function AnimateIn({ children, className = '' }: AnimateInProps) {
-  return <div className={className}>{children}</div>
+export function AnimateIn({
+  children,
+  delay = 0,
+  distance = 24,
+  className = '',
+}: AnimateInProps) {
+  return (
+    <Reveal delay={delay} variant={distance === 32 ? 'far' : 'up'} className={className}>
+      {children}
+    </Reveal>
+  )
 }

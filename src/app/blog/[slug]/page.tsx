@@ -98,7 +98,10 @@ export default async function BlogPostPage({
       </section>
 
       {/* Article content */}
-      <section className="relative py-16 md:py-24 bg-navy">
+      <section className="atmos py-16 md:py-24 bg-navy">
+        <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
+        <div className="atmos-layer atmos-grain" aria-hidden="true" />
+
 
         <div className="relative z-10 max-w-180 mx-auto px-4">
           <AnimateIn>
