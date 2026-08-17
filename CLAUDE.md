@@ -80,7 +80,10 @@ documents and processes.
 - src/app/api/chat/route.ts — OpenAI proxy for chatbot
 - src/app/robots.ts, src/app/sitemap.ts — SEO layer
 - src/lib/rate-limit.ts — shared in-memory rate limiter for both API routes
-- src/components/GateFlow.tsx, GateRule.tsx — approval-gate signature motif
+- src/components/ApprovalQueue.tsx — the hero signature panel (live approval queue)
+- src/components/Reveal.tsx — Reveal (scroll entrances) + SpotlightGroup (pointer tracking)
+- src/components/AnimateIn.tsx — compatibility shim over Reveal, kept for existing call sites
+- src/components/GateRule.tsx — approval-gate divider motif
 - src/components/demos/ — three interactive demos (ClientPortal, Accountability, Outreach) + shared GateAction
 - src/components/TalkToLogan.jsx — AI chatbot widget
 - src/components/NavBar.tsx — Nav with K logo + Kaleos HQ wordmark + CTA
@@ -90,19 +93,59 @@ documents and processes.
 - audits/ — baseline + design decisions + Lighthouse snapshots
 - docs/, reviews/ — preship report and code-review artifacts
 
-## Design System ("Machined Graphite", applied 2026-07-11)
-- Tokens (globals.css @theme): ink #10161E, navy #1F2A3C, accent teal #0D9488,
-  amber #B45309 (pending states only), paper #EDF0F4, mist #93A5BE
-- Typography: Bricolage Grotesque (display, via next/font var --font-display),
-  Inter (body), JetBrains Mono (system labels, .font-system)
-- Signature element: the approval gate (GateRule dividers, hero GateFlow
-  moment, GateChip in demos). Keep it; it is the brand motif.
-- Solid cards, no glassmorphism, no photo backgrounds. Sentence-case headings;
-  uppercase only for small mono eyebrow labels.
-- Motion budget: the hero gate animation is the one orchestrated moment.
-  prefers-reduced-motion is respected everywhere; keep it that way.
-- Above-the-fold content must paint without JS (CSS hero-rise entrances, not
-  JS-gated AnimateIn) or Lighthouse LCP craters.
+## Design System ("Machined Graphite v3", applied 2026-08-17)
+
+### Palette
+- Warm bone paper #F5F3EF against neutral near-blacks: ink #0C1013,
+  navy #171C22, navy-900 #11161B, navy-950 #0A0E12. Hairline #E3E0D9.
+- Accent teal #0D9488 (paper) / #2DD4BF (dark grounds). Amber #B45309 is
+  reserved for pending/awaiting-approval ONLY. Mist #9AA3AE secondary text.
+- The warm-paper/cool-accent pairing is the point. Do NOT revert to the old
+  cold blue-grey paper (#EDF0F4) or corporate navy (#1F2A3C); that palette
+  is what made the site read as generic SaaS.
+- All 40 text/ground pairs verified WCAG AA. Re-run the check before any
+  palette change; every ratio is recorded in the globals.css semantic layer.
+
+### Motion doctrine (this REPLACES the old "one orchestrated moment" rule)
+The previous doctrine capped the site at a single animation and a QA pass
+stripped scroll reveals and neutered AnimateIn to a passthrough. That was
+reversed deliberately on Logan's instruction. Motion is now a first-class
+part of the brand. Do not strip it back out.
+- Split by risk. Content-bearing motion (reveals) runs on IntersectionObserver
+  via `Reveal`. Purely decorative continuous/scroll-linked effects (parallax,
+  scroll rail, phase rail) use native CSS scroll timelines and silently no-op
+  where unsupported (Firefox today).
+- Motion is ADDITIVE ONLY. `.reveal`'s hidden start state lives behind
+  `@media (scripting: enabled)` so no-JS, crawlers, and old browsers paint
+  everything. Never move that rule out of the gate.
+- One easing vocabulary: --ease-out-expo is the house curve. Hover/state
+  changes stay under 250ms. Durations come from the --dur-* scale.
+- Every effect must resolve to its END state under prefers-reduced-motion,
+  never its start state.
+- Restraint is what reads expensive. No specular button shines, no hover
+  crosshairs, no stacking four effects on one element. Cards get spotlight +
+  lift + border warm, and that is the ceiling.
+- The h1 line-mask reveal is capped at 900ms because the h1 is the LCP
+  element and spends the animation clipped. Do not lengthen it.
+
+### Signature
+- The approval gate is the brand motif: `ApprovalQueue` (hero), `GateRule`
+  (section dividers), GateChip in the demos. The hero panel performs a
+  one-time sequence and settles with ONE row still pending. Sequences that
+  resolve read as a system; infinite loops read as decoration.
+
+### Type and surface
+- Bricolage Grotesque (display, --font-display), Inter (body), JetBrains Mono
+  (system labels, .font-system). Sentence-case headings; uppercase only for
+  small mono eyebrows.
+- Solid cards, no glassmorphism, no photo backgrounds. Depth comes from the
+  atmosphere layer (`.atmos` + grid/aurora/grain), not from shadows.
+- Above-the-fold content must paint without JS or Lighthouse LCP craters.
+
+### Verification floor for any design change
+Beyond lint/tsc/build, the scratchpad scripts pattern: check horizontal
+overflow at 320/375/768/1024/1440 across every route, and confirm zero
+hidden `.reveal` elements under normal, reduced-motion, no-JS, and mobile.
 
 ## Chatbot (Talk to Logan)
 - Floating button bottom-right on every page with Logan's photo
