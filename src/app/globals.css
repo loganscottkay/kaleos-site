@@ -322,10 +322,12 @@ h1, h2, h3 {
 /* ── Blueprint grid ──
    64px module matching the 8pt system (8 x 8). Masked to a soft ellipse
    so it never collides with a hard section edge. */
+/* Line colour is mixed from the accent token rather than written as a
+   literal, so it cannot drift out of sync the next time the accent moves. */
 .atmos-grid {
   background-image:
-    linear-gradient(to right, rgba(45, 212, 191, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(45, 212, 191, 0.06) 1px, transparent 1px);
+    linear-gradient(to right, color-mix(in srgb, var(--teal-bright) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--teal-bright) 7%, transparent) 1px, transparent 1px);
   background-size: 64px 64px;
   -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 15%, transparent 78%);
   mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 15%, transparent 78%);
