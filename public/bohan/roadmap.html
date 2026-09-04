@@ -15,7 +15,6 @@
     --card:#FFFFFF;
     --rule:#E3E5E0;
     --chip:#EEF1EC;
-    --amber:#A16207;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -52,11 +51,9 @@
   .rail span{display:block;height:100%}
   .rail .r-built{background:var(--evergreen)}
   .rail .r-inbuild{background:var(--moss)}
-  .rail .r-next{background:#CBD5C6}
   .rail .r-future{background:#EDEFEA}
   .rail-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-size:13px;color:var(--slate)}
   .rail-legend b{color:var(--ink);font-weight:600}
-  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:baseline}
 
   /* tabs */
   nav.tabs{display:flex;gap:4px;margin:26px 0 22px;border-bottom:1px solid var(--rule)}
@@ -65,7 +62,7 @@
   .tab:hover{color:var(--ink)}
 
   /* ---------- roadmap board ---------- */
-  .board{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .board{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   @media (max-width:980px){.board{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:600px){.board{grid-template-columns:1fr}}
   .col h2{font-family:Georgia,serif;font-size:17px;color:var(--ink);display:flex;align-items:center;gap:8px}
@@ -75,33 +72,26 @@
   .card:hover{box-shadow:0 3px 14px rgba(20,83,45,.08);transform:translateY(-1px)}
   .card h3{font-size:14.5px;font-weight:650;line-height:1.35}
   .card p{font-size:13px;color:var(--slate);margin-top:5px}
-  .card .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;align-items:center}
-  .chip{font-size:11.5px;padding:2px 9px;border-radius:10px;background:var(--chip);color:var(--slate);font-weight:600;letter-spacing:.01em}
-  .chip.shipped{background:var(--evergreen);color:#fff}
-  .chip.size-s{background:#EEF3EE;color:var(--moss)}
-  .chip.size-m{background:#F5EFE1;color:var(--amber)}
-  .chip.size-l{background:#EFEAF5;color:#5B4A8A}
-  .chip.date{background:transparent;color:#8A9086;font-weight:500;padding-left:0}
   .col.c-built .card{border-left:3px solid var(--evergreen)}
   .col.c-inbuild .card{border-left:3px solid var(--moss)}
   .col.c-future .card{border-style:dashed}
 
-  /* ---------- ask a question or share an idea (per card) ---------- */
-  .ask-btn{background:none;border:1px solid var(--rule);border-radius:10px;color:var(--slate);font-size:11.5px;font-weight:600;padding:2px 9px;line-height:1.5}
-  .ask-btn:hover{border-color:var(--moss);color:var(--evergreen)}
-  .ask-form{margin-top:10px;border-top:1px solid var(--rule);padding-top:10px}
-  .ask-form textarea,.ask-form input.ask-name{width:100%;border:1px solid var(--rule);border-radius:7px;padding:8px 9px;font:inherit;font-size:13px;background:#fff;color:var(--ink)}
-  .ask-form textarea{resize:vertical;min-height:64px}
-  .ask-form input.ask-name{margin-top:7px}
-  .ask-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-  .ask-actions{display:flex;align-items:center;gap:8px;margin-top:8px}
-  .ask-send{border:none;border-radius:7px;background:var(--evergreen);color:#fff;font-size:13px;font-weight:600;padding:7px 14px}
-  .ask-send:hover{background:#0F4023}
-  .ask-send[disabled]{opacity:.6;cursor:default}
-  .ask-cancel{background:none;border:none;color:var(--slate);font-size:13px;padding:7px 2px;text-decoration:underline}
-  .ask-cancel:hover{color:var(--ink)}
-  .ask-msg{font-size:12.5px;margin-top:7px;min-height:16px;color:#9B2C2C}
-  .ask-done{font-size:12.5px;color:var(--evergreen);margin-top:9px;border-top:1px solid var(--rule);padding-top:9px;font-weight:600}
+  /* ---------- version one sign-off ---------- */
+  .signoff{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--evergreen);border-radius:10px;padding:18px 20px;margin-top:34px}
+  .signoff h2{font-family:Georgia,serif;font-size:17px;color:var(--ink)}
+  .signoff > p{font-size:13px;color:var(--slate);margin-top:5px;max-width:64ch}
+  .signoff form{margin-top:14px;max-width:520px}
+  .signoff-check{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:var(--ink);cursor:pointer}
+  .signoff-check input{margin-top:3px;accent-color:var(--evergreen)}
+  .signoff-label{display:block;font-size:12.5px;color:var(--slate);margin:14px 0 5px}
+  .signoff input.signoff-note{width:100%;border:1px solid var(--rule);border-radius:7px;padding:8px 9px;font:inherit;font-size:13px;background:#fff;color:var(--ink)}
+  .signoff-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  .signoff-actions{display:flex;align-items:center;gap:8px;margin-top:12px}
+  .signoff-send{border:none;border-radius:7px;background:var(--evergreen);color:#fff;font-size:13px;font-weight:600;padding:7px 14px}
+  .signoff-send:hover{background:#0F4023}
+  .signoff-send[disabled]{opacity:.6;cursor:default}
+  .signoff-msg{font-size:12.5px;margin-top:7px;min-height:16px;color:#9B2C2C}
+  .signoff-done{font-size:13px;color:var(--evergreen);margin-top:12px;font-weight:600}
 
   /* ---------- activity ---------- */
   .activity-intro{color:var(--slate);font-size:14px;max-width:640px;margin-bottom:26px}
@@ -126,59 +116,60 @@
        1) add / move / edit a card in CARDS
        2) add a matching entry to ACTIVITY (newest first) with a note
        3) bump LAST_UPDATED
-     Statuses: "built" | "inbuild" | "next" | "future"
-     Sizes (optional): "S" | "M" | "L"  (Small / Medium / Large build)
+     Statuses: "v1" | "hold" | "future"
+     live:true  -> counts toward the "live now" number in the header line.
+                   No per-card tag is drawn; cards carry no labels at all.
      SECURITY NOTE: the password below is a courtesy gate for a
      shared link, not real security. Set it before deploying.
      ============================================================ -->
 <script>
 const BOARD_PASSWORD = "bohanai";
-const LAST_UPDATED  = "August 14, 2026";
+const LAST_UPDATED  = "September 4, 2026";
 
 const CARDS = [
-  /* ---------------- BUILT ---------------- */
-  {s:"built", t:"Client dashboard redesign from Bohan's walkthrough feedback", d:"The client portal now opens to a centered project timeline with one dynamic view for the current step, a one-time welcome page for new homeowners, a live status banner showing what needs attention, item-by-item discussion threads on selections, and a meeting agenda that assembles itself from live project data.", size:"L", date:"Shipped Aug 14"},
-  {s:"built", t:"Homeowner journey view", d:"Your nine-step journey with per-step status, what is complete, what is next, and what is needed from the homeowner.", date:"Demoed Jul 17"},
-  {s:"built", t:"Customer journey prototype", d:"A live, click-through preview of the full portal shared with the Bohan team to explore and give feedback on.", date:"Shipped Aug 7"},
-  {s:"built", t:"Staff console, PM Operations layout", d:"All projects at a glance with the project manager and coordinator lens, matched to your PM Operations design.", date:"Shipped Jul 30"},
-  {s:"built", t:"Budget tracker, your methodology", d:"Replicates your spreadsheet structure and calculations, including the 25% gross profit treatment of overages, shown on a phase timeline. Verified against the pilot project's real numbers.", date:"Shipped Jul 28"},
-  {s:"built", t:"Selections with version history", d:"Good, better, best direction from the homeowner, allowance pricing per category, final selections recorded with full history.", date:"Shipped Jul 28"},
-  {s:"built", t:"Action items in your vocabulary", d:"Two-direction items per step: EWRs, change orders, selections, and sign-offs, tracked to completion.", date:"Shipped Jul 30"},
-  {s:"built", t:"Notes and questions", d:"Attributed, timestamped message threads between homeowner and staff on each step.", date:"Shipped Jul 28"},
-  {s:"built", t:"Activity log with revert", d:"A searchable audit trail of every change, with staff revert.", date:"Shipped Jul 28"},
-  {s:"built", t:"Per-project activity feed", d:"One filterable timeline per project: step changes, messages, action items, budget edits, selections.", date:"Shipped Jul 30"},
-  {s:"built", t:"Meeting agenda view", d:"A weekly agenda assembled automatically from each project's open items.", date:"Shipped Jul 30"},
-  {s:"built", t:"Project setup and admin", d:"Create and configure projects, people, and links without a developer.", date:"Shipped Jul 30"},
-  {s:"built", t:"Inspiration photos", d:"Homeowner uploads with a staff gallery view.", date:"Shipped Jul 28"},
+  /* ------------- IN THE VERSION ONE BUILD ------------- */
+  {s:"v1", live:true, t:"Client dashboard redesign from Bohan's walkthrough feedback", d:"The client portal now opens to a centered project timeline with one dynamic view for the current step, a one-time welcome page for new homeowners, a live status banner showing what needs attention, item-by-item discussion threads on selections, and a meeting agenda that assembles itself from live project data."},
+  {s:"v1", live:true, t:"Homeowner journey view", d:"Your nine-step journey with per-step status, what is complete, what is next, and what is needed from the homeowner."},
+  {s:"v1", live:true, t:"Customer journey prototype", d:"A live, click-through preview of the full portal shared with the Bohan team to explore and give feedback on."},
+  {s:"v1", live:true, t:"Staff console, PM Operations layout", d:"All projects at a glance with the project manager and coordinator lens, matched to your PM Operations design."},
+  {s:"v1", live:true, t:"Budget tracker, your methodology", d:"Replicates your spreadsheet structure and calculations, including the 25% gross profit treatment of overages, with extra work requests on the same page so all the money sits in one place. Verified against the pilot project's real numbers."},
+  {s:"v1", live:true, t:"Selections with version history", d:"Good, better, best direction from the homeowner, allowance pricing per category, final selections recorded with full history."},
+  {s:"v1", live:true, t:"Action items in your vocabulary", d:"Two-direction items per step: EWRs, change orders, selections, and sign-offs, tracked to completion."},
+  {s:"v1", live:true, t:"Notes and questions", d:"Attributed, timestamped message threads between homeowner and staff on each step."},
+  {s:"v1", live:true, t:"Activity log with revert", d:"A searchable audit trail of every change, with staff revert."},
+  {s:"v1", live:true, t:"Per-project activity feed", d:"One filterable timeline per project: step changes, messages, action items, budget edits, selections."},
+  {s:"v1", live:true, t:"Project setup and admin", d:"Create and configure projects, people, and links without a developer."},
+  {s:"v1", live:true, t:"Inspiration photos", d:"Homeowner uploads with a staff gallery view."},
+  {s:"v1", t:"Secure logins and access control", d:"Staff and homeowner accounts; each homeowner sees only their own project. Includes self-serve password reset, so anyone locked out can get back in on their own."},
+  {s:"v1", t:"Production database", d:"Everything saved permanently; the portal becomes the durable record."},
+  {s:"v1", t:"Real file storage for photos", d:"Uploaded images stored safely, not just previewed."},
+  {s:"v1", t:"BuilderTrend and Drive links", d:"Real per-project links into BuilderTrend and your named Drive documents."},
+  {s:"v1", t:"AI project assistant", d:"Ask questions about a project in plain English and get answers from its own data: where it stands, what is in the budget, what is selected, and what is next."},
+  {s:"v1", t:"Deployment to your hosting", d:"Live URL on Bohan-owned accounts, with backups and error monitoring."},
+  {s:"v1", t:"Walkthrough and operating guide", d:"A live team session plus written documentation for day-to-day use."},
 
-  /* ------------- IN THE VERSION 1 BUILD ------------- */
-  {s:"inbuild", t:"Secure logins and access control", d:"Staff and homeowner accounts; each homeowner sees only their own project."},
-  {s:"inbuild", t:"Production database", d:"Everything saved permanently; the portal becomes the durable record."},
-  {s:"inbuild", t:"Real file storage for photos", d:"Uploaded images stored safely, not just previewed."},
-  {s:"inbuild", t:"Google Sheets sync", d:"One-way sync from the budget tracker to your Google Sheet."},
-  {s:"inbuild", t:"Email notifications", d:"Automatic emails for new messages, assigned action items, and step changes."},
-  {s:"inbuild", t:"BuilderTrend and Drive links", d:"Real per-project links into BuilderTrend and your named Drive documents."},
-  {s:"inbuild", t:"Deployment to your hosting", d:"Live URL on Bohan-owned accounts, with backups and error monitoring."},
-  {s:"inbuild", t:"Walkthrough and operating guide", d:"A live team session plus written documentation for day-to-day use."},
-
-  /* ---------------- UP NEXT ---------------- */
-  {s:"next", t:"Extra Work Request document engine", d:"Interactive EWR documents generated straight from project data, with client e-signature, automatic deposit and balance calculations, and a Change Order option.", size:"L"},
-  {s:"next", t:"Agenda PDF export", d:"One-click export of the auto-assembled meeting agenda to a clean printable page for site walks.", size:"S"},
-  {s:"next", t:"Text alerts to clients", d:"SMS notifications alongside email for time-sensitive updates.", size:"S"},
-  {s:"next", t:"Two-way Google Sheets sync", d:"Edits in the Sheet flow back into the portal, with agreed conflict rules.", size:"S"},
-  {s:"next", t:"Load your existing projects", d:"Bring current jobs into the portal so everything lives in one place.", size:"S"},
-  {s:"next", t:"Project email inbox", d:"A dedicated address per project; forwarded emails land on the project record.", size:"M"},
+  /* ------------- HELD UNTIL AFTER THE V1 LAUNCH ------------- */
+  {s:"hold", t:"Estimating detail on the first three steps", d:"Lead record, client qualification, capacity check, estimator checklist, assumptions, risks, internal review, and presentation panels on steps 1 through 3. Held so all nine steps look and work the same way at launch."},
+  {s:"hold", t:"Milestone dates and hand-off tasks on the early steps", d:"Target dates and an estimator to project lead checklist on the early steps. Held because the target dates key off a signed contract date, which the early steps do not have yet."},
+  {s:"hold", t:"Reading documents into the budget", d:"Upload a document and have the portal read it and propose budget values for staff to confirm."},
+  {s:"hold", t:"Importing an existing budget workbook", d:"Bring an existing budget workbook in by dropping the file and confirming a preview."},
+  {s:"hold", t:"The weekly agenda in the staff console", d:"A weekly agenda assembled automatically from each project's open items."},
 
   /* ---------------- DOWN THE ROAD ---------------- */
-  {s:"future", t:"Offline site-visit mode", d:"A downloadable read-only view of a project you can open on a site visit with no internet.", size:"M"},
-  {s:"future", t:"Master checklist templates", d:"Admin-managed master checklists per project type that apply automatically to new projects, with per-project customization.", size:"M"},
-  {s:"future", t:"1-Year Warranty module", d:"A post-completion checklist where homeowners log settling items with photos and locations, plus a staff view for tracking them and scheduling the one-year walkthrough.", size:"M"},
-  {s:"future", t:"AI project assistant", d:"Ask questions about a project in plain English and get answers from its own data.", size:"M"},
-  {s:"future", t:"Team text number", d:"A dedicated number so client texts land on the project record.", size:"M"},
-  {s:"future", t:"Meeting notes to commitments", d:"Capture call transcripts and turn commitments into tracked action items.", size:"L"},
-  {s:"future", t:"Cross-project insights", d:"Patterns and forecasts across all jobs: budgets, timelines, selections.", size:"L"},
-  {s:"future", t:"BuilderTrend integration", d:"Live schedule and daily log data, pending API access on your BuilderTrend plan.", size:"L"},
-  {s:"future", t:"Supplier catalog integration", d:"Pull product and pricing data from suppliers into selections.", size:"L"}
+  {s:"future", t:"Extra Work Request document engine", d:"Interactive EWR documents generated straight from project data, with client e-signature, automatic deposit and balance calculations, and a Change Order option."},
+  {s:"future", t:"Agenda PDF export", d:"One-click export of the auto-assembled meeting agenda to a clean printable page for site walks."},
+  {s:"future", t:"Text alerts to clients", d:"SMS notifications alongside email for time-sensitive updates."},
+  {s:"future", t:"Two-way Google Sheets sync", d:"Edits in the Sheet flow back into the portal, with agreed conflict rules."},
+  {s:"future", t:"Load your existing projects", d:"Bring current jobs into the portal so everything lives in one place."},
+  {s:"future", t:"Project email inbox", d:"A dedicated address per project; forwarded emails land on the project record."},
+  {s:"future", t:"Offline site-visit mode", d:"A downloadable read-only view of a project you can open on a site visit with no internet."},
+  {s:"future", t:"Master checklist templates", d:"Admin-managed master checklists per project type that apply automatically to new projects, with per-project customization."},
+  {s:"future", t:"1-Year Warranty module", d:"A post-completion checklist where homeowners log settling items with photos and locations, plus a staff view for tracking them and scheduling the one-year walkthrough."},
+  {s:"future", t:"Team text number", d:"A dedicated number so client texts land on the project record."},
+  {s:"future", t:"Meeting notes to commitments", d:"Capture call transcripts and turn commitments into tracked action items."},
+  {s:"future", t:"Cross-project insights", d:"Patterns and forecasts across all jobs: budgets, timelines, selections."},
+  {s:"future", t:"BuilderTrend integration", d:"Live schedule and daily log data, pending API access on your BuilderTrend plan."},
+  {s:"future", t:"Supplier catalog integration", d:"Pull product and pricing data from suppliers into selections."}
 ];
 
 const ACTIVITY = [
@@ -241,6 +232,21 @@ const ACTIVITY = [
 
   <section id="panel-board" role="tabpanel" aria-labelledby="tab-board">
     <div class="board" id="board"></div>
+
+    <section class="signoff" aria-labelledby="signoff-h">
+      <h2 class="serif" id="signoff-h">Sign off on the version one build</h2>
+      <p>Everything in the first column is what we are launching with. If that looks right, check the box and we will get it finished.</p>
+      <div id="signoff-slot">
+        <form id="signoff-form" novalidate>
+          <label class="signoff-check"><input type="checkbox" id="signoff-ok"> <span>This works for us. Go ahead with the version one build.</span></label>
+          <label class="signoff-label" for="signoff-note">Any questions?</label>
+          <input class="signoff-note" id="signoff-note" type="text" maxlength="2000" placeholder="Optional">
+          <input class="signoff-hp" id="signoff-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="signoff-actions"><button type="submit" class="signoff-send">Send</button></div>
+          <div class="signoff-msg" id="signoff-msg" role="status"></div>
+        </form>
+      </div>
+    </section>
   </section>
 
   <section id="panel-activity" role="tabpanel" aria-labelledby="tab-activity" hidden>
@@ -271,34 +277,34 @@ const ACTIVITY = [
 
   /* ---- render ---- */
   var COLS=[
-    {key:'built',  cls:'c-built',  title:'Built',                  sub:'Working today in the current version, demoed to your team.'},
-    {key:'inbuild',cls:'c-inbuild',title:'In the Version 1 build', sub:'Included in this engagement, being completed before handoff.'},
-    {key:'next',   cls:'c-next',   title:'Up next',                sub:'Available after Version 1, whenever you want them. Nothing here is committed.'},
-    {key:'future', cls:'c-future', title:'Down the road',          sub:'Bigger ideas we have discussed. For consideration, not commitments.'}
+    {key:'v1',     cls:'c-built',  rail:'r-built',   title:'In the version one build',
+     sub:'What we are launching with. The full customer journey, front to back, for your team and your customers.'},
+    {key:'hold',   cls:'c-inbuild',rail:'r-inbuild', title:'Recommending we hold until after the V1 launch',
+     sub:'All of these are built and working. Recommending we keep them out of the first release so it stays quick to learn.'},
+    {key:'future', cls:'c-future', rail:'r-future',  title:'Down the road',
+     sub:'Bigger ideas we have discussed. For consideration, not commitments.'}
   ];
-  var SIZE={S:['size-s','Small build'],M:['size-m','Medium build'],L:['size-l','Large build']};
   function esc(x){var d=document.createElement('div');d.textContent=x;return d.innerHTML;}
-  function escAttr(x){return esc(x).replace(/"/g,'&quot;');}
 
   function render(){
     document.getElementById('upd').textContent=LAST_UPDATED;
 
     /* rail */
-    var counts={built:0,inbuild:0,next:0,future:0};
-    CARDS.forEach(function(c){counts[c.s]++;});
+    var counts={v1:0,hold:0,future:0}, liveCount=0;
+    CARDS.forEach(function(c){counts[c.s]++; if(c.live)liveCount++;});
     var total=CARDS.length, rail=document.getElementById('rail'), leg=document.getElementById('rail-legend');
     rail.innerHTML=''; leg.innerHTML='';
-    var railCls={built:'r-built',inbuild:'r-inbuild',next:'r-next',future:'r-future'};
-    var railColor={built:'var(--evergreen)',inbuild:'var(--moss)',next:'#CBD5C6',future:'#EDEFEA'};
     COLS.forEach(function(col){
-      var s=document.createElement('span');
-      s.className=railCls[col.key];
-      s.style.width=(counts[col.key]/total*100)+'%';
-      rail.appendChild(s);
-      var li=document.createElement('span');
-      li.innerHTML='<span class="dot" style="background:'+railColor[col.key]+';border:1px solid var(--rule)"></span><b>'+counts[col.key]+'</b> '+esc(col.title.toLowerCase());
-      leg.appendChild(li);
+      var seg=document.createElement('span');
+      seg.className=col.rail;
+      seg.style.width=(counts[col.key]/total*100)+'%';
+      rail.appendChild(seg);
     });
+    var li=document.createElement('span');
+    li.innerHTML='<b>'+counts.v1+'</b> in the version one build, <b>'+liveCount+'</b> of them live now'
+                +' \u00B7 <b>'+counts.hold+'</b> held until after launch'
+                +' \u00B7 <b>'+counts.future+'</b> down the road';
+    leg.appendChild(li);
 
     /* board */
     var board=document.getElementById('board'); board.innerHTML='';
@@ -307,13 +313,7 @@ const ACTIVITY = [
       var cards=CARDS.filter(function(c){return c.s===col.key;});
       var html='<h2 class="serif">'+esc(col.title)+' <span class="count">'+cards.length+'</span></h2><p class="col-sub">'+esc(col.sub)+'</p>';
       cards.forEach(function(c){
-        html+='<div class="card" data-card-title="'+escAttr(c.t)+'" data-card-col="'+escAttr(col.title)+'">'
-             +'<h3>'+esc(c.t)+'</h3><p>'+esc(c.d)+'</p><div class="meta">';
-        if(col.key==='built') html+='<span class="chip shipped">Shipped</span>';
-        if(c.size&&SIZE[c.size]) html+='<span class="chip '+SIZE[c.size][0]+'">'+SIZE[c.size][1]+'</span>';
-        if(c.date) html+='<span class="chip date">'+esc(c.date)+'</span>';
-        html+='<button type="button" class="ask-btn" aria-expanded="false">+ Ask a question or share an idea</button>';
-        html+='</div><div class="ask-slot"></div></div>';
+        html+='<div class="card"><h3>'+esc(c.t)+'</h3><p>'+esc(c.d)+'</p></div>';
       });
       div.innerHTML=html; board.appendChild(div);
     });
@@ -339,77 +339,42 @@ const ACTIVITY = [
   tb.addEventListener('click',function(){pick('board')});
   ta.addEventListener('click',function(){pick('activity')});
 
-  /* ---- ask a question or share an idea, per card ----
-     The only network call this page makes. If the API is unreachable the
-     board still works; the form just reports that it could not send. */
+  /* ---- version one sign-off ----
+     The only network call this page makes, and it goes to the same place the
+     per-card questions used to. If the API is unreachable the board still
+     works; the form just reports that it could not send. */
   var QUESTION_ENDPOINT='/api/bohan/roadmap-question';
-  var openSlot=null;
+  var signForm=document.getElementById('signoff-form'),
+      signSlot=document.getElementById('signoff-slot');
 
-  function showAskBtn(slot,shown){
-    var btn=slot.parentNode.querySelector('.ask-btn');
-    if(!btn)return;
-    btn.style.display=shown?'':'none';
-    btn.setAttribute('aria-expanded',shown?'false':'true');
-  }
-  function closeOpen(){
-    if(!openSlot)return;
-    openSlot.innerHTML='';
-    showAskBtn(openSlot,true);
-    openSlot=null;
-  }
-  function openForm(card){
-    closeOpen();
-    var slot=card.querySelector('.ask-slot');
-    slot.innerHTML=
-      '<form class="ask-form" novalidate>'
-      +'<textarea class="ask-q" rows="3" maxlength="2000" placeholder="Ask a question or share an idea about this." aria-label="Your question or idea"></textarea>'
-      +'<input class="ask-name" type="text" maxlength="120" placeholder="Your name (optional)" aria-label="Your name, optional">'
-      +'<input class="ask-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">'
-      +'<div class="ask-actions"><button type="submit" class="ask-send">Send</button>'
-      +'<button type="button" class="ask-cancel">Cancel</button></div>'
-      +'<div class="ask-msg" role="status"></div>'
-      +'</form>';
-    showAskBtn(slot,false);
-    openSlot=slot;
-    slot.querySelector('.ask-q').focus();
-  }
-
-  var boardEl=document.getElementById('board');
-  boardEl.addEventListener('click',function(ev){
-    var t=ev.target;
-    if(t.classList.contains('ask-btn')){openForm(t.closest('.card'));}
-    else if(t.classList.contains('ask-cancel')){closeOpen();}
-  });
-
-  boardEl.addEventListener('submit',function(ev){
-    if(!ev.target.classList||!ev.target.classList.contains('ask-form'))return;
+  signForm.addEventListener('submit',function(ev){
     ev.preventDefault();
-    var form=ev.target, card=form.closest('.card'), slot=card.querySelector('.ask-slot'),
-        q=form.querySelector('.ask-q'), nm=form.querySelector('.ask-name'),
-        hp=form.querySelector('.ask-hp'), send=form.querySelector('.ask-send'),
-        msg=form.querySelector('.ask-msg');
-    var text=q.value.trim();
+    var ok=document.getElementById('signoff-ok').checked,
+        note=document.getElementById('signoff-note').value.trim(),
+        hp=document.getElementById('signoff-hp').value,
+        send=signForm.querySelector('.signoff-send'),
+        msg=document.getElementById('signoff-msg');
 
     function confirmSent(){
-      slot.innerHTML='<p class="ask-done">Sent to Logan. He will follow up.</p>';
-      showAskBtn(slot,true);
-      openSlot=null;
+      signSlot.innerHTML='<p class="signoff-done">Sent to Logan. He will follow up.</p>';
     }
 
     /* hidden field only a bot would fill: look successful, send nothing */
-    if(hp.value){confirmSent();return;}
+    if(hp){confirmSent();return;}
 
-    if(!text){msg.textContent='Type your question or idea first.';q.focus();return;}
+    var text=(ok?'Approved: yes. Go ahead with the version one build.'
+                :'Approved: no. The box was not checked.')
+            +(note?'\n\nQuestions: '+note:'\n\nNo questions given.');
 
     send.disabled=true; send.textContent='Sending'; msg.textContent='';
     fetch(QUESTION_ENDPOINT,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        cardTitle:card.getAttribute('data-card-title')||'',
-        cardColumn:card.getAttribute('data-card-col')||'',
+        cardTitle:'Version one build sign-off',
+        cardColumn:'In the version one build',
         question:text,
-        name:nm.value.trim(),
+        name:'',
         pageTimestamp:new Date().toISOString()
       })
     }).then(function(r){
