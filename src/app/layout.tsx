@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
-import { Manrope, Instrument_Sans, Geist_Mono } from 'next/font/google'
+import { Manrope, Instrument_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import TalkToLogan from '@/components/TalkToLogan'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { ScrollProgress } from '@/components/ScrollProgress'
+import { Cursor } from '@/components/Cursor'
 import { JsonLd, organization, service } from '@/components/JsonLd'
 
 const manrope = Manrope({
@@ -19,13 +20,6 @@ const instrument = Instrument_Sans({
   display: 'swap',
   variable: '--font-instrument',
   weight: ['400', '500', '600'],
-})
-
-const geistMono = Geist_Mono({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-geist-mono',
-  weight: ['400', '500'],
 })
 
 const DESCRIPTION =
@@ -59,12 +53,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${instrument.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${manrope.variable} ${instrument.variable}`}>
       <body className="font-sans antialiased bg-void text-star">
         <JsonLd data={organization} />
         <JsonLd data={service} />
         <SmoothScroll />
         <ScrollProgress />
+        <Cursor />
         {children}
         <TalkToLogan />
         <Analytics />

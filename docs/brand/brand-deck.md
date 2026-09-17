@@ -62,7 +62,7 @@ Rules. Black ground everywhere, white type everywhere. Color is an accent on wor
 | --- | --- | --- | --- |
 | Display and headings | Manrope | 600 to 800 | Tight tracking (-0.02em to -0.03em). Sentence case. No punctuation-split headings. |
 | Body | Instrument Sans | 400, 500 | 17 px body, 20 px lead. |
-| Labels, sources, captions | Geist Mono | 400 | Uppercase, 0.16 to 0.2em tracking, 11 to 12 px. |
+| Labels, sources, captions | Instrument Sans | 500 | Uppercase, 0.16 to 0.2em tracking, 11 to 12 px. No monospace anywhere on the site. |
 | Wordmark | Manrope | 700 | "KALEOS" uppercase, 0.18 to 0.3em tracking. |
 
 Scale: display clamp(2.75rem, 7.2vw, 7rem); h1 clamp(2.5rem, 6vw, 5.5rem); h2 clamp(2rem, 4.2vw, 3.75rem); h3 clamp(1.375rem, 2vw, 1.875rem); body-lg 1.25rem; body 1.0625rem; caption 0.8125rem.
@@ -81,7 +81,9 @@ Scale: display clamp(2.75rem, 7.2vw, 7rem); h1 clamp(2.5rem, 6vw, 5.5rem); h2 cl
 - Stars are sparse points that drift; one shooting star every 7 to 16 seconds. Never a dense field.
 - Scroll motion: headings rise word by word, hairlines draw themselves, stats count up, quotes enter from alternating sides, the hero pulls back into the field.
 - Reduced motion turns all of it off and shows the end state. Nothing depends on motion to be understood.
-- Emphasis on a phrase is a 0.5 px cyan edge and a faint halo on white letters. Never a hollow outline.
+- Emphasis on a phrase is a 0.5 px cyan edge and a faint halo on white letters. Never a hollow outline. The hero headline is the one exception: "Custom" cycles through the supernova gradient and "modern business" is chrome with a sheen that glints every seven seconds.
+- Cursor on fine pointers: a 6 px dot exactly on the pointer, a 34 px ring a beat behind that grows and turns cyan over anything pressable and steps aside over text fields. Touch and reduced motion never see it.
+- One photograph on the site: the Crab Nebula (Hubble, NASA and ESA) graded into the palette, behind the close. Credit stays with it.
 
 ## 8. Layout
 
@@ -111,4 +113,5 @@ Shown on the home page as one flowing line: Anthropic, Harvard Business School, 
 ## Changelog
 
 - 1.0 (September 17, 2026): first version, matching the redesign at tag cp8.
+- 1.2 (September 17, 2026): monospace dropped, award tag restyled, gradient and chrome hero words, cursor, nebula haze, Crab Nebula close. Tag cp11.
 - 1.1 (September 17, 2026): supernova light (nova, ember), the solid turning K, the award ribbon, warp hand-off without a flash. Tag cp10.

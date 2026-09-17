@@ -29,7 +29,8 @@
 
   --font-display: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-instrument), "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  /* No monospace on this site. Labels use the body face, small and tracked. */
+  --font-mono: var(--font-instrument), "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
 
   --text-display: clamp(2.75rem, 7.2vw, 7rem);
   --text-display--line-height: 1;
@@ -180,22 +181,23 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; }
 .chip:hover { border-color: var(--color-star); }
 .chip[aria-pressed="true"] { background: var(--color-star); color: var(--color-void); border-color: var(--color-star); }
 
-/* Award ribbon: a banner with notched ends, ember on void. */
+/* Award tag: a quiet pill in the body face, ember on void. */
 .award {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 1.1rem 0.45rem 0.9rem;
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  gap: 0.45rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.75rem;
+  border-radius: var(--radius-control);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   color: var(--color-ember);
-  background: rgb(255 180 87 / 0.08);
-  border: 1px solid rgb(255 180 87 / 0.45);
-  clip-path: polygon(0 0, calc(100% - 0.55rem) 0, 100% 50%, calc(100% - 0.55rem) 100%, 0 100%, 0.4rem 50%);
+  background: rgb(255 180 87 / 0.07);
+  border: 1px solid rgb(255 180 87 / 0.32);
   white-space: nowrap;
 }
+.award > span:first-child { font-size: 0.7rem; }
 
 /* ── Surfaces ─────────────────────────────────────────────────────── */
 
@@ -259,6 +261,36 @@ header[data-scrolled="false"] .wordmark { letter-spacing: 0.3em; }
   text-shadow: 0 0 18px rgb(139 124 248 / 0.28);
 }
 
+/* Supernova type: a slow-cycling gradient through the mark's light. */
+.nova-text {
+  font-weight: 800;
+  color: transparent;
+  background-image: linear-gradient(100deg, #63d9e6 0%, #8b7cf8 22%, #ff5fa2 44%, #ffb457 62%, #f7f7f4 78%, #63d9e6 100%);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: nova-cycle 9s linear infinite;
+}
+@keyframes nova-cycle { to { background-position: 300% 0; } }
+
+/* Chrome type: brushed metal with a sheen that glints across every few seconds. */
+.chrome {
+  position: relative;
+  color: transparent;
+  background-image:
+    linear-gradient(110deg, transparent 0%, transparent 40%, rgb(255 255 255 / 0.95) 50%, transparent 60%, transparent 100%),
+    linear-gradient(180deg, #ffffff 0%, #d9dbe2 30%, #8f93a1 50%, #e6e8ee 62%, #ffffff 82%, #b8bcc8 100%);
+  background-size: 260% 100%, 100% 100%;
+  background-position: -160% 0, 0 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: chrome-glint 7s cubic-bezier(0.4, 0, 0.2, 1) 2200ms infinite;
+}
+@keyframes chrome-glint {
+  0%, 62% { background-position: -160% 0, 0 0; }
+  82%, 100% { background-position: 160% 0, 0 0; }
+}
+
 /* Section flow: no hairlines between sections; a soft horizon instead. */
 .horizon {
   position: relative;
@@ -273,14 +305,18 @@ header[data-scrolled="false"] .wordmark { letter-spacing: 0.3em; }
   background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.14) 30%, rgb(99 217 230 / 0.30) 46%, rgb(255 95 162 / 0.26) 52%, rgb(139 124 248 / 0.24) 58%, rgb(255 255 255 / 0.14) 72%, transparent);
 }
 
-/* A supernova remnant behind the close: light only, no type over it. */
-.nova {
+/* Nebula haze in the hero: two clouds of the mark's light, drifting. */
+.haze {
   position: absolute;
   pointer-events: none;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 50%, rgb(247 247 244 / 0.10) 0%, rgb(99 217 230 / 0.16) 10%, rgb(255 95 162 / 0.10) 26%, rgb(139 124 248 / 0.10) 44%, transparent 66%);
+  filter: blur(40px);
+  opacity: 0.55;
+  animation: haze-drift 28s ease-in-out infinite alternate;
 }
+.haze-a { background: radial-gradient(circle, rgb(99 217 230 / 0.16), rgb(139 124 248 / 0.08) 45%, transparent 70%); }
+.haze-b { background: radial-gradient(circle, rgb(255 95 162 / 0.12), rgb(255 180 87 / 0.05) 40%, transparent 70%); animation-delay: -14s; }
+@keyframes haze-drift { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(6vw, -4vh, 0) scale(1.15); } }
 
 /* Stat numerals roll up when they enter. */
 .stat { font-variant-numeric: tabular-nums; }
@@ -388,6 +424,34 @@ html.warping header { opacity: 0; }
 .band-item:hover { opacity: 1; }
 .band-item svg, .band-item img { height: 1.35rem; width: auto; }
 
+/* Cursor: a precise dot and a lagging ring, fine pointers only. The dot
+   never leaves the true pointer position, so nothing feels laggy; the ring
+   grows over anything you can press. */
+@media (pointer: fine) {
+  html.has-cursor, html.has-cursor a, html.has-cursor button, html.has-cursor [role="button"], html.has-cursor summary, html.has-cursor label { cursor: none; }
+  html.has-cursor input, html.has-cursor textarea { cursor: auto; }
+}
+.cursor-dot, .cursor-ring {
+  position: fixed;
+  left: 0; top: 0;
+  z-index: 10002;
+  pointer-events: none;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+.cursor-dot { width: 6px; height: 6px; background: var(--color-star); mix-blend-mode: difference; }
+.cursor-ring {
+  width: 34px; height: 34px;
+  border: 1px solid rgb(247 247 244 / 0.55);
+  mix-blend-mode: difference;
+  transition: width 260ms var(--ease), height 260ms var(--ease), border-color 260ms var(--ease), opacity 260ms var(--ease);
+}
+html[data-cursor="press"] .cursor-ring { width: 52px; height: 52px; border-color: rgb(99 217 230 / 0.9); }
+html[data-cursor="text"] .cursor-ring { opacity: 0; }
+html[data-cursor="hidden"] .cursor-dot, html[data-cursor="hidden"] .cursor-ring { opacity: 0; }
+@media (pointer: coarse), (prefers-reduced-motion: reduce) { .cursor-dot, .cursor-ring { display: none; } }
+
 /* Reading progress. */
 .scroll-progress {
   position: fixed;
@@ -455,8 +519,8 @@ html.warping header { opacity: 0; }
 
 .orbit-path {
   fill: none;
-  stroke: var(--color-star);
-  stroke-opacity: 0.45;
+  stroke: url(#ring-nova);
+  stroke-opacity: 0.9;
   stroke-width: 1.25;
   vector-effect: non-scaling-stroke;
 }
@@ -524,6 +588,7 @@ html.warping header { opacity: 0; }
   .reveal { opacity: 1; transform: none; }
   .rise, .k-settle { animation: none; opacity: 1; transform: none; filter: none; }
   .k-solid { animation: none; transform: rotateX(6deg) rotateY(-14deg); }
+  .nova-text, .chrome, .haze { animation: none; }
   .k-glow::before { animation: none; }
   header { transition: none; }
   .warp { display: none; }

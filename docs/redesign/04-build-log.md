@@ -68,3 +68,12 @@ Revert: `git checkout <tag>` or `git reset --hard <tag>` on design-overhaul.
 - Hero mark is now a solid: eight layers of the full-resolution artwork (unoptimized) a pixel apart, swaying in 3D between -34 and 34 degrees so the mark never reads mirrored or edge-on. The small star at the pinch is gone.
 - Warp hands off early (at 86%) and the overlay fades over 1.1 s while the stars ease off; no flash.
 - Logo band caption removed. Testimonials carry no pending marker; Advisor Solutions carries a "KALEOS Award 2026" ribbon, wording pending Logan (FOR-LOGAN 2a).
+
+## cp11, September 17, 2026: type, cursor, nebula
+
+- Monospace dropped site-wide; labels use Instrument Sans small and tracked. Award is a quiet pill in the body face.
+- Hero headline: "Custom" cycles through the supernova gradient, "modern business" is chrome with a sheen that glints every seven seconds. Both static under reduced motion.
+- Cursor on fine pointers: a 6 px dot on the true pointer and a 34 px ring a beat behind, growing and turning cyan over anything pressable, stepping aside over text fields. Off on touch and reduced motion.
+- Nebula haze drifting behind the hero field; the orbit ring carries a supernova gradient stroke.
+- The close uses a Hubble photograph of the Crab Nebula (NASA and ESA), graded into the palette with PIL, 166 KB webp, credited on the section and in the terms. The translucent K and the drawn bloom are gone.
+- About: "Data Science and Hospitality at Boston University" per Ryan; conflicts with Logan's no-major rule, flagged as FOR-LOGAN 16.

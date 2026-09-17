@@ -45,7 +45,7 @@ export default function TermsPage() {
 
           <h2>Content and marks</h2>
           <p>
-            The text, design, and the KALEOS mark on this site belong to KALEOS. Third-party names and logos shown on the site belong to their owners and appear only to say what we build with and where the method comes from. Quotes from clients appear with their permission.
+            The text, design, and the KALEOS mark on this site belong to KALEOS. Third-party names and logos shown on the site belong to their owners and appear only to say what we build with and where the method comes from. The Crab Nebula photograph is from the Hubble Space Telescope, credit NASA and ESA, used under their image policies. Quotes from clients appear with their permission.
           </p>
 
           <h2>What we do not promise</h2>
