@@ -326,7 +326,7 @@ html.warping .etch { animation-play-state: paused; }
 }
 
 /* The lines KALEOS says in its own voice, set against the research: a
-   magenta halo behind the words and the mark in front of them. */
+   magenta halo behind the words. */
 .says { position: relative; display: inline-block; isolation: isolate; }
 .says::before {
   content: '';
@@ -338,7 +338,6 @@ html.warping .etch { animation-play-state: paused; }
   filter: blur(16px);
   pointer-events: none;
 }
-.says-mark { display: inline-block; height: 0.8em; width: auto; vertical-align: -0.08em; margin-right: 0.45em; opacity: 0.9; }
 
 /* Section flow: no hairlines between sections; a soft horizon instead. */
 .horizon {
