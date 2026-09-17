@@ -94,7 +94,26 @@ export default function AuditPage() {
             <Words as="h2" id="tiers-heading" className="mt-5 block max-w-[18ch] text-h2">Three ways to work together</Words>
           </Reveal>
           <Reveal delay={100}>
-            <div className="mt-14 overflow-x-auto">
+            <div className="mt-14 space-y-10 md:hidden">
+              {tiers.map((t) => (
+                <div key={t.name} className="border-t border-line pt-6">
+                  <h3 className="font-display text-h3 font-semibold text-star">{t.name}</h3>
+                  <dl className="mt-5 space-y-5">
+                    {(['what', 'includes', 'timeline'] as const).map((row) => (
+                      <div key={row}>
+                        <dt className="eyebrow text-ash">{row === 'what' ? 'What it is' : row === 'includes' ? 'Includes' : 'Timeline'}</dt>
+                        <dd className="mt-2 text-body text-star">{t[row]}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              ))}
+              <div className="border-y border-line py-6">
+                <p className="eyebrow text-ash">Pricing</p>
+                <p className="mt-2 text-body text-mist">We scope and quote on a call once we understand the work, and you get a real number rather than a rate card.</p>
+              </div>
+            </div>
+            <div className="mt-14 hidden overflow-x-auto md:block">
               <table className="w-full min-w-[40rem] border-collapse text-left">
                 <thead>
                   <tr className="border-b border-line">
