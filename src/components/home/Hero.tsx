@@ -21,7 +21,7 @@ export function Hero() {
           title="Kaleos HQ"
         />
 
-        <h1 className="rise max-w-[12ch] text-display font-light tracking-tightest" style={{ '--rise-delay': '300ms' } as React.CSSProperties}>
+        <h1 className="rise max-w-[12ch] text-display font-light tracking-tightest" style={{ '--rise-delay': '120ms' } as React.CSSProperties}>
           Agents run the work.
           <br />
           You make the calls.
@@ -30,13 +30,13 @@ export function Hero() {
         <div className="mt-10 grid gap-8 md:mt-14 md:grid-cols-12 md:items-end">
           <p
             className="rise measure text-body-lg text-mist md:col-span-6"
-            style={{ '--rise-delay': '520ms' } as React.CSSProperties}
+            style={{ '--rise-delay': '300ms' } as React.CSSProperties}
           >
             Kaleos HQ designs and ships AI systems for operators. Agents draft, score, and prepare. A person you trust approves every consequential step. Every action is logged.
           </p>
           <div
             className="rise flex flex-wrap items-center gap-4 md:col-span-6 md:justify-end"
-            style={{ '--rise-delay': '680ms' } as React.CSSProperties}
+            style={{ '--rise-delay': '420ms' } as React.CSSProperties}
           >
             <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star btn-lg">
               Book a Discovery Call
@@ -49,7 +49,7 @@ export function Hero() {
 
         <p
           className="rise mt-14 font-mono text-[0.75rem] tracking-wide text-mist md:mt-20"
-          style={{ '--rise-delay': '820ms' } as React.CSSProperties}
+          style={{ '--rise-delay': '540ms' } as React.CSSProperties}
         >
           Logan Kay, founder. Prev. AI at Harvard Business School. Incoming, Anthropic.
         </p>

@@ -270,7 +270,7 @@ html.lenis, html.lenis body { height: auto; }
 /* ── Hero type entrance ───────────────────────────────────────────── */
 
 .rise {
-  animation: rise 1000ms var(--ease) both;
+  animation: rise 800ms var(--ease) both;
   animation-delay: var(--rise-delay, 0ms);
 }
 @keyframes rise {
