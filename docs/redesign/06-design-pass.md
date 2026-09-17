@@ -1,4 +1,4 @@
-# Design pass and verification: KALEOS v2
+# Design pass and verification: KALEOS v2 (v3 changes noted at the end)
 
 2026-09-17. Ryan Hazen. Local only. Tags cp4-v2 and cp5-elevated on design-overhaul. Nothing pushed.
 
@@ -69,3 +69,7 @@ Black ground (#050507) and white type (#f7f7f4) everywhere. Secondary text mist 
 ## Open before the PR
 
 Same list as 04-build-log.md, plus: the K star position depends on the supplied PNG's exact trim; if the artwork changes, adjust the two percentages in `Hero.tsx`.
+
+## v3 changes (2026-09-17, tag cp6-v3)
+
+Ryan's direction after v2: warp-speed star entry for one second before the hero; hero line "AI systems for the modern company"; headings in Manrope instead of Syne; no outlined words anywhere (cyan now only on numerals, the gate, and the progress line; violet only in the K glow); KALEOS larger in the header; the K glows in a cosmic hue and breathes; headings rise word by word on entry; a reading-progress hairline at the top; testimonials alternate in from left and right; the hero scrubs back into the field on scroll; no headings split by punctuation. Copy re-audited, see 07-copy-audit.md.
