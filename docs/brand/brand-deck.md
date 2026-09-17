@@ -1,6 +1,6 @@
 # KALEOS brand deck
 
-The source of truth for how KALEOS looks, sounds, and positions itself. Update this file as the brand grows; the site, the LinkedIn kit, and the slide deck are derived from it. Version 1.0, September 17, 2026, prepared by Ryan Hazen for Logan Kay.
+The source of truth for how KALEOS looks, sounds, and positions itself. Update this file as the brand grows; the site, the LinkedIn kit, and the slide deck are derived from it. Version 2.0, September 17, 2026, prepared by Ryan Hazen for Logan Kay.
 
 Every value below is the one the site actually uses. Tokens live in `src/app/globals.css`; if a value changes there, change it here in the same commit.
 
@@ -30,7 +30,7 @@ Every value below is the one the site actually uses. Tokens live in `src/app/glo
 
 - The K with the pinch: two strokes meet at a point. Supplied by Logan as `brand-assets/kaleos-k-source.png`. Site copy at `public/kaleos-k.png` (938 by 1020, white on transparent).
 - Always white on black. Black on white is allowed only for print (`brand-assets/kaleos-k-black.png`).
-- On the home page the mark is a solid: the artwork stacked in depth and turned slowly in 3D, with a supernova halo behind it. Everywhere else it is flat and still.
+- On the home page the mark is a solid: the artwork stacked eight layers deep and swaying in 3D between minus and plus 34 degrees, never past the point where it would read mirrored, with a supernova halo behind it. Everywhere else it is flat and still. Halos are gradient layers, never filters on the image (mobile Safari drops filtered images).
 - Clear space: half the mark's height on every side. Minimum size: 24 px tall on screen.
 - Do not trace, redraw, outline, skew, add a gradient fill, or place the mark on a photo.
 - Favicon: black square, white K at 74% of the square. Social logo: same, at 400 and 1024 px.
@@ -77,13 +77,15 @@ Scale: display clamp(2.75rem, 7.2vw, 7rem); h1 clamp(2.5rem, 6vw, 5.5rem); h2 cl
 
 ## 7. Motion and the cosmic motif
 
-- One second of warp on every full load of the home page, easing off into the field as the mark settles. No flash at the end. Every other page opens still.
-- Stars are sparse points that drift; one shooting star every 7 to 16 seconds. Never a dense field.
-- Scroll motion: headings rise word by word, hairlines draw themselves, stats count up, quotes enter from alternating sides, the hero pulls back into the field.
+- Warp on every full load of the home page: stars fly past in depth for one second, then ease off into the field with no flash while the mark settles underneath.
+- The hero field is the real sky: about 3,000 stars from the Yale Bright Star Catalog, projected around Orion, sized by brightness, tinted by color index, turning slowly. One shooting star every 7 to 16 seconds. Inner pages use a sparse plain field.
+- Headline: white. "AI solutions" is laser etched: only the outer edge burns in hot and cools to a faint ember line. "modern business" turns to chrome under the pointer: a studio environment mapped onto the letters with a lit bevel that follows the pointer, fading back to white when it leaves.
+- The band of names rides a wide arc like satellites over a horizon, two lanes on phones.
+- Scroll pieces, all scrubbed to the scroll: horizon lines draw themselves as sections arrive, a lit planetary rim above the testimonials and above the closing sections of Assessment and About, one comet crossing a section per page, parallax on the stat numerals and the nebula K.
+- The three KALEOS lines in the stats carry a magenta halo behind the words. The Anthropic credential glows ember. "one rule" and "clear first move" carry the cyan glint.
+- Behind the close, the mark is filled with a slow, saturated nebula gradient.
+- Cursor on fine pointers: a 6 px dot on the true pointer and a 34 px ring a beat behind that grows and turns cyan over anything pressable. Touch never sees it.
 - Reduced motion turns all of it off and shows the end state. Nothing depends on motion to be understood.
-- Emphasis on a phrase is a 0.5 px cyan edge and a faint halo on white letters. Never a hollow outline. The hero headline is white; "AI" carries a laser-etched ember edge that cuts in on load and cools to a faint line.
-- Cursor on fine pointers: a 6 px dot exactly on the pointer, a 34 px ring a beat behind that grows and turns cyan over anything pressable and steps aside over text fields. Touch and reduced motion never see it.
-- No photographs except Logan's portrait. Behind the close, the mark is filled with a slow nebula gradient (violet, rose, cyan, gold). On the home page the only colored light is behind the K.
 
 ## 8. Layout
 
@@ -111,6 +113,8 @@ Scale: display clamp(2.75rem, 7.2vw, 7rem); h1 clamp(2.5rem, 6vw, 5.5rem); h2 cl
 Shown on the home page as one flowing line: Anthropic, Harvard Business School, OpenAI, Vercel, Next.js, Supabase, Cloudflare, Airtable, Resend. The caption is "Where we learned and what we build with." It is never presented as a client list. Add a name only when it is true of the work.
 
 ## Changelog
+
+- 2.0 (September 17, 2026): the styles as shipped at cp16: real-sky field, etched and chrome headline words, solid swaying mark, arc band, scroll rim and comet, magenta halos, ember credential, light-edged cards, brand elements on Assessment and About. Slide deck rebuilt to match.
 
 - 1.0 (September 17, 2026): first version, matching the redesign at tag cp8.
 - 1.3 (September 17, 2026): hero words back to white, etched "AI", nebula-filled K at the close, no haze. Tag cp12.
