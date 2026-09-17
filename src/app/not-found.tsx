@@ -10,7 +10,6 @@ export default function NotFound() {
       <section className="relative flex min-h-[80vh] items-center overflow-hidden px-5 pt-24 md:px-8">
         <Starfield />
         <div className="relative mx-auto w-full max-w-[88rem]">
-          <p className="eyebrow text-ash">404</p>
           <h1 className="mt-6 max-w-3xl text-h1">
             This page is not in the log
           </h1>

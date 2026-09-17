@@ -206,7 +206,7 @@ export function AuditForm() {
       </fieldset>
 
       <div>
-        <label htmlFor="lead-outcome" className={label}>What would winning look like?</label>
+        <label htmlFor="lead-outcome" className={label}>What outcome are you hoping for?</label>
         <textarea
           id="lead-outcome"
           name="desired_outcome"
@@ -214,7 +214,7 @@ export function AuditForm() {
           onChange={(e) => update('desired_outcome', e.target.value)}
           rows={4}
           className="input mt-3 resize-none"
-          placeholder="One or two sentences is plenty."
+          placeholder="One or two plain sentences is plenty."
         />
       </div>
 

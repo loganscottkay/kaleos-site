@@ -15,12 +15,13 @@ export const metadata: Metadata = {
     title: 'About | KALEOS',
     description: 'KALEOS was founded by Logan Kay, who previously designed and deployed AI systems at Harvard Business School.',
     url: 'https://www.kaleoshq.com/about',
+    images: ['/opengraph-image.png'],
   },
 }
 
 const background = [
   { k: 'Now', v: 'Founder and CEO, KALEOS' },
-  { k: 'Next', v: 'Incoming, Anthropic' },
+  { k: 'Anthropic', v: 'Claude Corps Fellow' },
   { k: 'Previously', v: 'Designed and deployed AI systems across admissions and operations at Harvard Business School. The implementation method KALEOS runs today comes from that work.' },
   { k: 'Before that', v: 'Fraud detection at K2 Integrity, analyzing more than two million financial transactions.' },
   { k: 'Studied', v: 'Boston University' },
@@ -34,7 +35,6 @@ export default function AboutPage() {
       <section className="relative isolate overflow-hidden">
         <Starfield density={0.00008} shooting={false} />
         <div className="relative mx-auto max-w-[88rem] px-5 pb-20 pt-36 md:px-8 md:pb-28 md:pt-48">
-          <p className="eyebrow text-ash">About</p>
           <h1 className="mt-6 max-w-[12ch] text-h1">
             A firm built on one rule
           </h1>
@@ -44,7 +44,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-line">
+      <section className="horizon">
         <div className="mx-auto grid max-w-[88rem] gap-12 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
           <div className="md:col-span-4">
             <Reveal>
@@ -89,12 +89,11 @@ export default function AboutPage() {
       </section>
 
       {/* What we hold to. Prose, not a grid. */}
-      <section className="border-t border-line" aria-labelledby="hold-heading">
+      <section className="horizon" aria-labelledby="hold-heading">
         <div className="mx-auto max-w-[88rem] px-5 py-20 md:px-8 md:py-28">
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
               <Reveal>
-                <p className="eyebrow text-ash">What we hold to</p>
                 <Words as="h2" id="hold-heading" className="mt-5 block max-w-[10ch] text-h2">
                   The method is the product
                 </Words>
@@ -119,7 +118,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-line">
+      <section className="horizon">
         <div className="mx-auto flex max-w-[88rem] flex-col items-start gap-8 px-5 py-20 md:flex-row md:items-center md:justify-between md:px-8 md:py-28">
           <h2 className="max-w-[16ch] text-h2">Curious whether this fits your business</h2>
           <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star btn-lg">{CTA}</a>

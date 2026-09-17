@@ -1,9 +1,10 @@
 import { NavBar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
 import { Hero } from '@/components/home/Hero'
+import { Stats } from '@/components/home/Stats'
 import { Testimonials } from '@/components/home/Testimonials'
+import { Founder } from '@/components/home/Founder'
 import { Method } from '@/components/home/Method'
-import { Credentials } from '@/components/home/Credentials'
 import { WhoFor } from '@/components/home/WhoFor'
 import { FinalCall } from '@/components/home/FinalCall'
 
@@ -12,9 +13,10 @@ export default function HomePage() {
     <main className="bg-void text-star">
       <NavBar />
       <Hero />
+      <Stats />
       <Testimonials />
+      <Founder />
       <Method />
-      <Credentials />
       <WhoFor />
       <FinalCall />
       <Footer />

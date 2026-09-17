@@ -220,6 +220,70 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; }
 .wordmark { transition: letter-spacing 700ms var(--ease); }
 header[data-scrolled="false"] .wordmark { letter-spacing: 0.3em; }
 
+/* Emphasis with a cosmic edge: white letters, a thin cyan stroke, a faint halo. */
+.glint {
+  color: var(--color-star);
+  -webkit-text-stroke: 0.5px rgb(99 217 230 / 0.9);
+  paint-order: stroke fill;
+  text-shadow: 0 0 18px rgb(99 217 230 / 0.28);
+}
+.glint-violet {
+  color: var(--color-star);
+  -webkit-text-stroke: 0.5px rgb(139 124 248 / 0.9);
+  paint-order: stroke fill;
+  text-shadow: 0 0 18px rgb(139 124 248 / 0.28);
+}
+
+/* Section flow: no hairlines between sections; a soft horizon instead. */
+.horizon {
+  position: relative;
+}
+.horizon::before {
+  content: '';
+  position: absolute;
+  left: 50%; top: 0;
+  width: min(72rem, 90vw);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.18), transparent);
+}
+
+/* Stat numerals roll up when they enter. */
+.stat { font-variant-numeric: tabular-nums; }
+
+/* Header hides on the way down, returns on the way up. */
+header[data-hidden="true"] { transform: translateY(-100%); }
+header { transition: transform 420ms var(--ease), background-color 300ms, border-color 300ms; }
+
+/* Nav links: small mono with a live dot on the current page. */
+.navlink {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding-left: 0.9rem;
+}
+.navlink::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 50%;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  transform: translateY(-50%) scale(0);
+  background: var(--color-comet);
+  box-shadow: 0 0 8px rgb(99 217 230 / 0.8);
+  transition: transform 300ms var(--ease);
+}
+.navlink[aria-current="page"]::before, .navlink:hover::before { transform: translateY(-50%) scale(1); }
+
+/* Orbit, v3: a core in the center, four stations, marks, the gate. */
+.orbit-station { transition: opacity 400ms var(--ease); }
+.orbit-station[data-active="false"] { opacity: 0.45; }
+.orbit-station-ring { fill: var(--color-void); stroke: var(--color-star); stroke-width: 1.25; vector-effect: non-scaling-stroke; transition: stroke 400ms var(--ease), r 400ms var(--ease); }
+.orbit-station[data-active="true"] .orbit-station-ring { stroke: var(--color-comet); }
+.orbit-core { filter: drop-shadow(0 0 14px rgb(99 217 230 / 0.4)) drop-shadow(0 0 40px rgb(139 124 248 / 0.25)); }
+
 /* Headings rise word by word out of their own masks. */
 .words .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.08em; margin-bottom: -0.08em; }
 .words .w > span {
@@ -389,6 +453,7 @@ html.warping .rise, html.warping .k-settle, html.warping .k-star, html.warping .
   .rise, .k-settle { animation: none; opacity: 1; transform: none; filter: none; }
   .k-star { animation: none; opacity: 1; transform: none; }
   .k-glow { animation: none; }
+  header { transition: none; }
   .warp { display: none; }
   .words .w > span { transform: none; transition: none; }
   .orbit-gate-halo { animation: none; opacity: 0.35; }

@@ -22,12 +22,14 @@ export function Hero() {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
       const mark = root.current?.querySelector('.hero-mark')
       const copy = root.current?.querySelector('.hero-copy')
+      const field = root.current?.querySelector('.starfield')
       if (!mark || !copy) return
       const tl = gsap.timeline({
         scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom top', scrub: 0.8 },
       })
       tl.to(mark, { y: -90, scale: 0.82, opacity: 0, ease: 'none' }, 0)
       tl.to(copy, { y: -40, opacity: 0, ease: 'none' }, 0.15)
+      if (field) tl.to(field, { y: 120, ease: 'none' }, 0)
     },
     { scope: root },
   )
@@ -47,12 +49,12 @@ export function Hero() {
         </div>
 
         <div className="hero-copy flex flex-col items-center">
-          <h1 className="rise mt-12 max-w-[14ch] text-display md:mt-16" style={{ '--rise-delay': '500ms' } as CSSProperties}>
-            AI systems for the modern company
+          <h1 className="rise mt-12 max-w-[16ch] text-display md:mt-16" style={{ '--rise-delay': '500ms' } as CSSProperties}>
+            Custom AI solutions for the <span className="glint">modern business</span>
           </h1>
 
           <p className="rise mt-8 max-w-[40rem] text-body-lg text-mist" style={{ '--rise-delay': '700ms' } as CSSProperties}>
-            KALEOS is a premium AI implementation practice. We design and ship systems where agents handle the work and a person you trust signs off before anything reaches a client, an inbox, or a ledger.
+            KALEOS is a premium AI implementation practice. We design and ship systems where agents handle the work and a person you trust signs off before anything reaches a client, an inbox, or a ledger. Thirty days to the first system, scoped and priced on a call.
           </p>
 
           <div className="rise mt-10 flex flex-wrap items-center justify-center gap-4" style={{ '--rise-delay': '860ms' } as CSSProperties}>

@@ -26,6 +26,7 @@ export async function generateMetadata({
       title: `${post.title} | KALEOS`,
       description: post.description,
       url: `https://www.kaleoshq.com/blog/${post.slug}`,
+      images: ['/opengraph-image.png'],
       type: 'article',
       publishedTime: post.date,
       tags: post.tags,

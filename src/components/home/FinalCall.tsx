@@ -8,7 +8,7 @@ import { Words } from '@/components/Words'
    button. The only place royal blue fills a surface. */
 export function FinalCall() {
   return (
-    <section id="call" className="relative isolate overflow-hidden border-t border-line" aria-labelledby="close-heading">
+    <section id="call" className="horizon relative isolate overflow-hidden" aria-labelledby="close-heading">
       <Starfield density={0.00009} />
       <div aria-hidden="true" className="pointer-events-none absolute -bottom-[12%] right-[-4%] w-[42vw] max-w-[34rem] opacity-[0.09] md:right-[4%]">
         <KLogo className="w-full" />
@@ -26,6 +26,7 @@ export function FinalCall() {
           <div className="mt-10 flex flex-wrap gap-4">
             <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-royal btn-lg">{CTA}</a>
             <a href="mailto:logan@kaleoshq.com" className="btn btn-ghost btn-lg">Email us</a>
+            <a href="/audit#contact" className="self-center text-body text-mist underline decoration-line underline-offset-4 hover:text-star">or send a note first</a>
           </div>
         </Reveal>
       </div>

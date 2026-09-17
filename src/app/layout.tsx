@@ -5,6 +5,7 @@ import './globals.css'
 import TalkToLogan from '@/components/TalkToLogan'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { ScrollProgress } from '@/components/ScrollProgress'
+import { JsonLd, organization, service } from '@/components/JsonLd'
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -28,12 +29,12 @@ const geistMono = Geist_Mono({
 })
 
 const DESCRIPTION =
-  'KALEOS is a premium AI implementation practice. We design and ship systems where agents handle the work and a person you trust signs off before anything goes out.'
+  'AI that answers to you. KALEOS is a premium AI implementation practice that designs and ships custom AI systems where agents handle the work and a person you trust signs off before anything goes out.'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.kaleoshq.com'),
   title: {
-    default: 'KALEOS | AI systems for the modern company',
+    default: 'KALEOS | Custom AI solutions for the modern business',
     template: '%s | KALEOS',
   },
   description: DESCRIPTION,
@@ -42,13 +43,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.kaleoshq.com',
     siteName: 'KALEOS',
-    title: 'KALEOS | AI systems for the modern company',
+    title: 'KALEOS | Custom AI solutions for the modern business',
     description: DESCRIPTION,
-    images: [{ url: '/opengraph-image.png', width: 1200, height: 630, alt: 'KALEOS. AI systems for the modern company.' }],
+    images: [{ url: '/opengraph-image.png', width: 1200, height: 630, alt: 'KALEOS. AI that answers to you.' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'KALEOS | AI systems for the modern company',
+    title: 'KALEOS | Custom AI solutions for the modern business',
     description: DESCRIPTION,
     images: ['/opengraph-image.png'],
   },
@@ -60,6 +61,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${manrope.variable} ${instrument.variable} ${geistMono.variable}`}>
       <body className="font-sans antialiased bg-void text-star">
+        <JsonLd data={organization} />
+        <JsonLd data={service} />
         <SmoothScroll />
         <ScrollProgress />
         {children}

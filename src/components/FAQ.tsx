@@ -1,6 +1,6 @@
 /* Native disclosure elements: keyboard and screen-reader behavior for free. */
 
-const faqs = [
+export const faqs = [
   { q: 'How is this different from hiring an AI freelancer?', a: 'Freelancers build what you ask for. We work out what you should be asking for and then build that.' },
   { q: "What if AI can't handle my workflows?", a: 'We map every workflow before we build anything. If AI is not the right answer, we say so and stop there.' },
   { q: 'How long before I see results?', a: 'The assessment is delivered within two weeks. The first system is in production within 30 days.' },

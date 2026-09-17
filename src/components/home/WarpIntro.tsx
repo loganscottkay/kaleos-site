@@ -4,29 +4,24 @@ import { useEffect, useRef, useState } from 'react'
 
 /* One second at warp, then the page. Stars streak out from the center with
    rising speed, the overlay fades, and the hero's own entrance begins.
-   Plays once per browser session. Skipped under reduced motion. */
-const KEY = 'kaleos-warped'
+   Plays on every full load of the home page. Skipped under reduced motion. */
 
 export function WarpIntro() {
   const ref = useRef<HTMLCanvasElement>(null)
-  const [phase, setPhase] = useState<'hold' | 'warp' | 'fade' | 'done'>('hold')
+  const [phase, setPhase] = useState<'warp' | 'fade' | 'done'>('warp')
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    let played = false
-    try { played = sessionStorage.getItem(KEY) === '1' } catch {}
-    if (reduced || played) {
+    if (reduced) {
       document.documentElement.classList.remove('warping')
-      setPhase('done')
-      return
+      const id = requestAnimationFrame(() => setPhase('done'))
+      return () => cancelAnimationFrame(id)
     }
-    try { sessionStorage.setItem(KEY, '1') } catch {}
     document.documentElement.classList.add('warping')
-    setPhase('warp')
 
     const canvas = ref.current
     const ctx = canvas?.getContext('2d')
-    if (!canvas || !ctx) { setPhase('done'); return }
+    if (!canvas || !ctx) { document.documentElement.classList.remove('warping'); requestAnimationFrame(() => setPhase('done')); return }
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
     const w = window.innerWidth, h = window.innerHeight
     canvas.width = w * dpr; canvas.height = h * dpr

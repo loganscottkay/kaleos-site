@@ -5,6 +5,8 @@ import { Reveal } from '@/components/Reveal'
 import { Words } from '@/components/Words'
 import { FAQ } from '@/components/FAQ'
 import { AuditForm } from '@/components/AuditForm'
+import { JsonLd } from '@/components/JsonLd'
+import { faqs } from '@/components/FAQ'
 
 export const metadata: Metadata = {
   title: 'Assessment',
@@ -15,6 +17,7 @@ export const metadata: Metadata = {
     title: 'Assessment | KALEOS',
     description: 'A two-week operational assessment: every workflow mapped, the opportunities ranked, and a roadmap for the first system.',
     url: 'https://www.kaleoshq.com/audit',
+    images: ['/opengraph-image.png'],
   },
 }
 
@@ -38,11 +41,11 @@ export default function AuditPage() {
   return (
     <main className="min-h-screen bg-void text-star">
       <NavBar />
+      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }} />
 
       <section className="mx-auto max-w-[88rem] px-5 pb-20 pt-36 md:px-8 md:pb-28 md:pt-48">
         <div className="grid gap-12 md:grid-cols-12 md:items-end">
           <div className="md:col-span-8">
-            <p className="eyebrow text-ash">Assessment</p>
             <h1 className="mt-6 max-w-[12ch] text-h1">
               Two weeks to a clear first move
             </h1>
@@ -56,11 +59,10 @@ export default function AuditPage() {
         </div>
       </section>
 
-      <section className="border-t border-line" aria-labelledby="deliverables-heading">
+      <section className="horizon" aria-labelledby="deliverables-heading">
         <div className="mx-auto grid max-w-[88rem] gap-12 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
           <div className="md:col-span-4">
             <Reveal>
-              <p className="eyebrow text-ash">What you get</p>
               <Words as="h2" id="deliverables-heading" className="mt-5 block max-w-[12ch] text-h2">What you receive</Words>
             </Reveal>
           </div>
@@ -80,10 +82,9 @@ export default function AuditPage() {
         </div>
       </section>
 
-      <section className="border-t border-line" aria-labelledby="tiers-heading">
+      <section className="horizon" aria-labelledby="tiers-heading">
         <div className="mx-auto max-w-[88rem] px-5 py-20 md:px-8 md:py-28">
           <Reveal>
-            <p className="eyebrow text-ash">How engagements work</p>
             <Words as="h2" id="tiers-heading" className="mt-5 block max-w-[18ch] text-h2">Three ways to work together</Words>
           </Reveal>
           <Reveal delay={100}>
@@ -119,11 +120,10 @@ export default function AuditPage() {
         </div>
       </section>
 
-      <section className="border-t border-line" aria-labelledby="faq-heading">
+      <section className="horizon" aria-labelledby="faq-heading">
         <div className="mx-auto grid max-w-[88rem] gap-12 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
           <div className="md:col-span-4">
             <Reveal>
-              <p className="eyebrow text-ash">Questions</p>
               <Words as="h2" id="faq-heading" className="mt-5 block max-w-[12ch] text-h2">Questions we hear before every engagement</Words>
             </Reveal>
           </div>
@@ -133,11 +133,10 @@ export default function AuditPage() {
         </div>
       </section>
 
-      <section id="contact" className="border-t border-line" aria-labelledby="form-heading">
+      <section id="contact" className="horizon" aria-labelledby="form-heading">
         <div className="mx-auto grid max-w-[88rem] gap-12 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
           <div className="md:col-span-4">
             <Reveal>
-              <p className="eyebrow text-ash">Or write first</p>
               <Words as="h2" id="form-heading" className="mt-5 block max-w-[12ch] text-h2">
                 Tell us what is eating your week
               </Words>

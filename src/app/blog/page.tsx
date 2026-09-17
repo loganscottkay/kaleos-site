@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: 'Thinking | KALEOS',
     description: 'Notes on AI implementation that holds up in production.',
     url: 'https://www.kaleoshq.com/blog',
+    images: ['/opengraph-image.png'],
   },
 }
 
@@ -38,7 +39,7 @@ export default function BlogPage() {
         </h1>
       </section>
 
-      <section className="border-t border-line">
+      <section className="horizon">
         <div className="mx-auto max-w-[88rem] px-5 md:px-8">
           {posts.length === 0 && (
             <p className="py-16 text-body text-mist">No posts yet.</p>

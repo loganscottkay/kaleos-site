@@ -4,16 +4,20 @@ import { Reveal } from '@/components/Reveal'
 import { Words } from '@/components/Words'
 
 /* Client words, cut to what matters. The full drafts live in
-   docs/proof-kit/testimonials.json and are the source of truth for who
-   said what. The short versions below are paraphrases of those drafts;
-   once a client confirms, replace the paraphrase with their approved words.
-   Before the PR into main, set SHOW_DRAFTS to false. */
+   docs/proof-kit/testimonials.json and are the source of truth for who said
+   what. The short versions below are paraphrases of those drafts; once a
+   client confirms, replace the paraphrase with their approved words. Before
+   the PR into main, set SHOW_DRAFTS to false. */
 const SHOW_DRAFTS = true
 
-const SHORT: Record<string, string> = {
-  'advisor-solutions-os': 'My advisors run the method every day, and I see every team on one scoreboard. Built in about a month.',
-  'bohan-contracting': 'Every homeowner’s project in one place: where it is, what’s next, who did what. It exceeded our expectations.',
-  cogniify: 'It finds the right people, writes like me, and I approve every message before it goes out. It books meetings.',
+type Piece = { t: string; u?: boolean }
+const SHORT: Record<string, Piece[]> = {
+  'advisor-solutions-os': [{ t: 'My advisors run the method every day, and I see every team on one scoreboard.' }],
+  'bohan-contracting': [
+    { t: 'Every homeowner’s project in one place: where it is, what’s next, who did what. ' },
+    { t: 'It exceeded our expectations.', u: true },
+  ],
+  cogniify: [{ t: 'It finds the right people, writes like me, and I approve every message before it goes out.' }],
 }
 
 interface Testimonial {
@@ -39,27 +43,32 @@ export function Testimonials() {
   if (items.length === 0) return null
 
   return (
-    <section id="clients" className="border-t border-line" aria-labelledby="testimonials-heading">
+    <section id="clients" className="horizon" aria-labelledby="testimonials-heading">
       <div className="mx-auto max-w-[88rem] px-5 py-24 md:px-8 md:py-36">
         <Reveal>
-          <p className="eyebrow text-ash">In production</p>
-          <Words as="h2" id="testimonials-heading" className="mt-5 block max-w-[16ch] text-h2">
+          <Words as="h2" id="testimonials-heading" className="block max-w-[14ch] text-h2">
             What our clients say
           </Words>
         </Reveal>
 
-        <div className="mt-16 divide-y divide-line border-y border-line md:mt-24">
+        <div className="mt-16 space-y-14 md:mt-24 md:space-y-20">
           {items.map((t, i) => {
             const confirmed = t.quote_status === 'confirmed'
-            const quote = confirmed ? t.quote : SHORT[t.id] ?? t.quote
+            const pieces: Piece[] = confirmed ? [{ t: t.quote }] : SHORT[t.id] ?? [{ t: t.quote }]
             const who = t.client_name ? `${t.client_name}, ${t.title}` : t.company
             return (
-              <Reveal key={t.id} delay={i * 90} variant={i % 2 === 0 ? 'left' : 'right'}>
-                <figure className="grid gap-6 py-10 md:grid-cols-12 md:items-start md:py-14">
-                  <blockquote className="font-display text-[1.6rem] font-semibold leading-[1.2] tracking-tight text-star md:col-span-8 md:text-[2.25rem]">
-                    “{quote}”
+              <Reveal key={t.id} delay={60} variant={i % 2 === 0 ? 'left' : 'right'}>
+                <figure className={`grid gap-6 md:grid-cols-12 md:items-end ${i % 2 === 1 ? 'md:[&>blockquote]:col-start-4' : ''}`}>
+                  <blockquote className="font-display text-[1.6rem] font-bold leading-[1.18] tracking-tight text-star md:col-span-8 md:text-[2.4rem]">
+                    <span aria-hidden="true" className="text-comet">“</span>
+                    {pieces.map((p, k) => (
+                      <span key={k} className={p.u ? 'underline decoration-comet decoration-2 underline-offset-[0.18em]' : undefined}>
+                        {p.t}
+                      </span>
+                    ))}
+                    <span aria-hidden="true" className="text-comet">”</span>
                   </blockquote>
-                  <figcaption className="md:col-span-3 md:col-start-10 md:pt-2">
+                  <figcaption className={`md:col-span-3 ${i % 2 === 1 ? 'md:col-start-1 md:row-start-1 md:self-end' : 'md:col-start-10'}`}>
                     <div className="text-body text-star">{who}</div>
                     <div className="mt-1 text-caption text-mist">
                       {t.client_name ? t.company : 'Name pending'}
@@ -73,7 +82,7 @@ export function Testimonials() {
                       )}
                     </div>
                     {!confirmed && (
-                      <div className="mt-4 inline-flex items-center gap-2 eyebrow text-amber">
+                      <div className="mt-4 inline-flex items-center gap-2 font-mono text-[0.66rem] uppercase tracking-[0.18em] text-amber">
                         <span className="h-1.5 w-1.5 rounded-full bg-amber" aria-hidden="true" />
                         Pending confirmation
                       </div>

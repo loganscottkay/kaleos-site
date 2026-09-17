@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { KLogo } from '@/components/KLogo'
@@ -12,20 +12,29 @@ const links = [
 
 export const CALENDLY = 'https://calendly.com/logan-kaleoshq/30min'
 export const CTA = 'Talk with us'
+export const LINKEDIN = 'https://www.linkedin.com/company/joinkaleoshq/'
 
-/* Quiet: the mark, KALEOS, two links, one button. Transparent over the
-   hero, a hairline and a blur once the page moves. */
+/* A rail, not a bar. Mark and wordmark left, two mono links with a live dot
+   on the current page, the call as a ghost pill with a star. Transparent over
+   the hero; hides on the way down and returns on the way up. */
 export function NavBar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
+  const last = useRef(0)
   const pathname = usePathname()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onScroll = () => {
+      const y = window.scrollY
+      setScrolled(y > 24)
+      setHidden(y > 360 && y > last.current && !open)
+      last.current = y
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [open])
 
   useEffect(() => {
     if (!open) return
@@ -39,8 +48,9 @@ export function NavBar() {
   return (
     <header
       data-scrolled={scrolled || open}
-      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-300 ${
-        scrolled || open ? 'bg-void/80 backdrop-blur-md border-b border-line' : 'border-b border-transparent'
+      data-hidden={hidden}
+      className={`fixed inset-x-0 top-0 z-50 ${
+        scrolled || open ? 'bg-void/75 backdrop-blur-md border-b border-line' : 'border-b border-transparent'
       }`}
     >
       <nav aria-label="Primary" className="mx-auto flex h-[4.5rem] max-w-[88rem] items-center justify-between px-5 md:h-20 md:px-8">
@@ -49,7 +59,7 @@ export function NavBar() {
           <span className="wordmark text-[1.25rem] md:text-[1.45rem]">Kaleos</span>
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-9 md:flex">
           {links.map((l) => {
             const active = pathname === l.href
             return (
@@ -57,13 +67,14 @@ export function NavBar() {
                 key={l.href}
                 href={l.href}
                 aria-current={active ? 'page' : undefined}
-                className={`text-[0.95rem] transition-colors ${active ? 'text-star' : 'text-mist hover:text-star'}`}
+                className={`navlink transition-colors ${active ? 'text-star' : 'text-mist hover:text-star'}`}
               >
                 {l.label}
               </Link>
             )
           })}
-          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star">
+          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+            <span aria-hidden="true" className="text-comet">✦</span>
             {CTA}
           </a>
         </div>
