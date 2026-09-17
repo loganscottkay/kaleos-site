@@ -340,16 +340,6 @@ html.warping .etch { animation-play-state: paused; }
 }
 .says-mark { display: inline-block; height: 0.8em; width: auto; vertical-align: -0.08em; margin-right: 0.45em; opacity: 0.9; }
 
-/* A photograph of the night sky under the hero (NASA, Kennedy Space
-   Center shoreline), cooled and darkened so the mark still leads. */
-.sky-photo {
-  background-size: cover;
-  background-position: center 30%;
-  opacity: 0.85;
-  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
-  mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
-}
-
 /* Section flow: no hairlines between sections; a soft horizon instead. */
 .horizon {
   position: relative;

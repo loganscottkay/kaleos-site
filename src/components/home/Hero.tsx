@@ -14,9 +14,9 @@ gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 /* After the warp: the mark, glowing, turning slowly as a solid. Then one
    line. Then one button. Scrolling pulls the mark back into the field.
-   SKY picks the field: 'catalog' draws the real sky from the star catalog,
-   'photo' lays a NASA night-sky photograph under it, 'both' does both. */
-const SKY: 'catalog' | 'photo' | 'both' = 'photo'
+   SKY picks the field: 'catalog' draws the real sky from the star catalog
+   as tinted points, 'random' is the plain white field. */
+const SKY: 'catalog' | 'random' = 'catalog'
 export function Hero() {
   const root = useRef<HTMLElement>(null)
 
@@ -39,10 +39,7 @@ export function Hero() {
 
   return (
     <section ref={root} className="relative isolate min-h-[100svh] overflow-hidden">
-      {SKY !== 'catalog' && (
-        <div aria-hidden="true" className="sky-photo absolute inset-0" style={{ backgroundImage: "url('/sky.webp')" }} />
-      )}
-      {SKY !== 'photo' && <Starfield real />}
+      <Starfield real={SKY === 'catalog'} />
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-void" />
 
       <div className="relative mx-auto flex min-h-[100svh] max-w-[88rem] flex-col items-center justify-center px-5 pb-28 pt-28 text-center md:px-8">

@@ -97,7 +97,7 @@ Revert: `git checkout <tag>` or `git reset --hard <tag>` on design-overhaul.
 
 ## cp14, September 17, 2026: real sky, real chrome, brand across pages
 
-- Hero field: a NASA photograph of the night sky (Kennedy Space Center shoreline, public domain), cooled and darkened, under the mark. The real-catalog map (3,000 Yale Bright Star Catalog stars, stereographic, drifting) is the alternative behind the SKY constant in Hero.tsx; both tested.
+- Hero field: tested a NASA night-sky photograph under the mark; Ryan reverted it the same hour. The field is the real-catalog map (3,000 Yale Bright Star Catalog stars, stereographic, drifting, tinted by color index). The plain white field is one constant away (SKY in Hero.tsx).
 - Chrome: studio environment texture mapped onto "modern business" plus an SVG specular bevel whose light follows the pointer. Reads as liquid metal, fades in and out with the pointer.
 - The three KALEOS lines in the stats carry a magenta halo and the mark. The Anthropic credential glows ember.
 - Etch spans "AI solutions". "YOUR BUSINESS" removed from the orbit. Close: Talk with us plus Send us a note (to the form); Email us removed.
