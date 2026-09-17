@@ -4,6 +4,8 @@ The source of truth for how KALEOS looks, sounds, and positions itself. Update t
 
 Every value below is the one the site actually uses. Tokens live in `src/app/globals.css`; if a value changes there, change it here in the same commit.
 
+Exports of the slide version live beside this file: `kaleos-brand-deck.pdf` (twelve slides, 1920 by 1080) and one PNG per slide in `deck-slides/`. They are rendered from the markdown, so edit the markdown first.
+
 ## 1. Positioning
 
 **One line.** Custom AI solutions for the modern business.
