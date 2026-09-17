@@ -1,26 +1,17 @@
 import fs from 'fs'
 import path from 'path'
+import Image from 'next/image'
 import { Reveal } from '@/components/Reveal'
 import { Words } from '@/components/Words'
 import { Rim } from '@/components/home/Rim'
 
-/* Client words, cut to what matters. The full drafts live in
-   docs/proof-kit/testimonials.json and are the source of truth for who said
-   what. The short versions below are paraphrases of those drafts; once a
-   client confirms, replace the paraphrase with their approved words. Drafts
-   carry no visible marker; before the PR into main, set SHOW_DRAFTS to false
-   so only confirmed quotes render. */
-const SHOW_DRAFTS = true
-
-
-type Piece = { t: string; u?: boolean }
-const SHORT: Record<string, Piece[]> = {
-  'advisor-solutions-os': [{ t: 'My advisors run the method every day, and I see every team on one scoreboard.' }],
-  'bohan-contracting': [
-    { t: 'Every homeowner’s project in one place: where it is, what’s next, who did what. ' },
-    { t: 'It exceeded our expectations.', u: true },
-  ],
-  cogniify: [{ t: 'It finds the right people, writes like me, and I approve every message before it goes out.' }],
+/* Each client's shipped system, shown rather than described. The media
+   sits in the mark's light-edge frame with a soft glow behind it; the
+   attribution comes from docs/proof-kit/testimonials.json. */
+const MEDIA: Record<string, { video?: string; image: string; label: string }> = {
+  'advisor-solutions-os': { image: '/testimonials/advisor-solutions-os.jpg', label: 'Coaching operating system' },
+  'bohan-contracting': { video: '/testimonials/bohan-contracting.mp4', image: '/testimonials/bohan-contracting.jpg', label: 'Client journey portal' },
+  cogniify: { image: '/testimonials/cogniify.jpg', label: 'Outreach and reply system' },
 }
 
 interface Testimonial {
@@ -38,7 +29,7 @@ function load(): Testimonial[] {
   const file = path.join(process.cwd(), 'docs', 'proof-kit', 'testimonials.json')
   if (!fs.existsSync(file)) return []
   const all = JSON.parse(fs.readFileSync(file, 'utf-8')) as Testimonial[]
-  return all.filter((t) => t.published && (SHOW_DRAFTS || t.quote_status === 'confirmed'))
+  return all.filter((t) => t.published && MEDIA[t.id])
 }
 
 export function Testimonials() {
@@ -57,23 +48,40 @@ export function Testimonials() {
 
         <div className="mt-16 space-y-14 md:mt-24 md:space-y-20">
           {items.map((t, i) => {
-            const confirmed = t.quote_status === 'confirmed'
-            const pieces: Piece[] = confirmed ? [{ t: t.quote }] : SHORT[t.id] ?? [{ t: t.quote }]
+            const m = MEDIA[t.id]
             const who = t.client_name ? `${t.client_name}, ${t.title}` : t.company
             return (
               <Reveal key={t.id} delay={60} variant={i % 2 === 0 ? 'left' : 'right'}>
-                <figure className={`grid gap-6 md:grid-cols-12 md:items-end ${i % 2 === 1 ? 'md:[&>blockquote]:col-start-4' : ''}`}>
-                  <blockquote className="font-display text-[1.6rem] font-bold leading-[1.18] tracking-tight text-star md:col-span-8 md:text-[2.4rem]">
-                    <span aria-hidden="true" className="text-comet">“</span>
-                    {pieces.map((p, k) => (
-                      <span key={k} className={p.u ? 'underline decoration-comet decoration-2 underline-offset-[0.18em]' : undefined}>
-                        {p.t}
-                      </span>
-                    ))}
-                    <span aria-hidden="true" className="text-comet">”</span>
-                  </blockquote>
+                <figure className={`grid gap-6 md:grid-cols-12 md:items-end ${i % 2 === 1 ? 'md:[&>div]:col-start-4' : ''}`}>
+                  <div className="relative md:col-span-8">
+                    <div aria-hidden="true" className="pointer-events-none absolute -inset-4 rounded-[24px] bg-[radial-gradient(60%_60%_at_50%_50%,rgb(99_217_230/0.18),rgb(255_95_162/0.1)_50%,transparent_75%)] blur-2xl md:-inset-8" />
+                    <div className="surface-nova relative aspect-video overflow-hidden rounded-[14px] bg-void-2 shadow-[0_24px_60px_-24px_rgb(0_0_0/0.8)] [&::before]:z-10">
+                      {m.video ? (
+                        <video
+                          src={m.video}
+                          poster={m.image}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          preload="metadata"
+                          aria-label={`${t.company}: ${m.label}`}
+                          className="absolute inset-0 h-full w-full rounded-[14px] object-cover"
+                        />
+                      ) : (
+                        <Image
+                          src={m.image}
+                          alt={`${t.company}: ${m.label}`}
+                          fill
+                          sizes="(min-width: 768px) 60vw, 100vw"
+                          className="rounded-[14px] object-cover"
+                        />
+                      )}
+                    </div>
+                  </div>
                   <figcaption className={`md:col-span-3 ${i % 2 === 1 ? 'md:col-start-1 md:row-start-1 md:self-end' : 'md:col-start-10'}`}>
-                    <div className="text-body text-star">{who}</div>
+                    <div className="eyebrow text-ash">{m.label}</div>
+                    <div className="mt-3 text-body text-star">{who}</div>
                     <div className="mt-1 text-caption text-mist">
                       {t.client_name ? t.company : null}
                       {t.project_url && (
