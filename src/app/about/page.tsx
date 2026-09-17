@@ -24,7 +24,7 @@ const background = [
   { k: 'Anthropic', v: 'Claude Corps Fellow' },
   { k: 'Previously', v: 'Designed and deployed AI systems across admissions and operations at Harvard Business School. The implementation method KALEOS runs today comes from that work.' },
   { k: 'Before that', v: 'Fraud detection at K2 Integrity, analyzing more than two million financial transactions.' },
-  { k: 'Studied', v: 'Data Science and Hospitality at Boston University' },
+  { k: 'Studied', v: 'Boston University' },
 ]
 
 export default function AboutPage() {

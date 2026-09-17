@@ -81,9 +81,9 @@ Scale: display clamp(2.75rem, 7.2vw, 7rem); h1 clamp(2.5rem, 6vw, 5.5rem); h2 cl
 - Stars are sparse points that drift; one shooting star every 7 to 16 seconds. Never a dense field.
 - Scroll motion: headings rise word by word, hairlines draw themselves, stats count up, quotes enter from alternating sides, the hero pulls back into the field.
 - Reduced motion turns all of it off and shows the end state. Nothing depends on motion to be understood.
-- Emphasis on a phrase is a 0.5 px cyan edge and a faint halo on white letters. Never a hollow outline. The hero headline is the one exception: "Custom" cycles through the supernova gradient and "modern business" is chrome with a sheen that glints every seven seconds.
+- Emphasis on a phrase is a 0.5 px cyan edge and a faint halo on white letters. Never a hollow outline. The hero headline is white; "AI" carries a laser-etched ember edge that cuts in on load and cools to a faint line.
 - Cursor on fine pointers: a 6 px dot exactly on the pointer, a 34 px ring a beat behind that grows and turns cyan over anything pressable and steps aside over text fields. Touch and reduced motion never see it.
-- One photograph on the site: the Crab Nebula (Hubble, NASA and ESA) graded into the palette, behind the close. Credit stays with it.
+- No photographs except Logan's portrait. Behind the close, the mark is filled with a slow nebula gradient (violet, rose, cyan, gold). On the home page the only colored light is behind the K.
 
 ## 8. Layout
 
@@ -113,5 +113,6 @@ Shown on the home page as one flowing line: Anthropic, Harvard Business School, 
 ## Changelog
 
 - 1.0 (September 17, 2026): first version, matching the redesign at tag cp8.
-- 1.2 (September 17, 2026): monospace dropped, award tag restyled, gradient and chrome hero words, cursor, nebula haze, Crab Nebula close. Tag cp11.
+- 1.3 (September 17, 2026): hero words back to white, etched "AI", nebula-filled K at the close, no haze. Tag cp12.
+- 1.2 (September 17, 2026): monospace dropped, award tag restyled, cursor. Tag cp11.
 - 1.1 (September 17, 2026): supernova light (nova, ember), the solid turning K, the award ribbon, warp hand-off without a flash. Tag cp10.

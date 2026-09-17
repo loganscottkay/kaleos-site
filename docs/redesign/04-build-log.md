@@ -77,3 +77,11 @@ Revert: `git checkout <tag>` or `git reset --hard <tag>` on design-overhaul.
 - Nebula haze drifting behind the hero field; the orbit ring carries a supernova gradient stroke.
 - The close uses a Hubble photograph of the Crab Nebula (NASA and ESA), graded into the palette with PIL, 166 KB webp, credited on the section and in the terms. The translucent K and the drawn bloom are gone.
 - About: "Data Science and Hospitality at Boston University" per Ryan; conflicts with Logan's no-major rule, flagged as FOR-LOGAN 16.
+
+## cp12, September 17, 2026: back to white, etched AI, nebula K
+
+- Hero words back to plain white. "AI" carries a laser-etched ember edge that cuts in over 2.6 s after the warp, then cools to a faint line.
+- Crab Nebula photo removed, credit lines removed. Behind the close, the mark itself is filled with a slow, saturated nebula gradient (CSS mask of the K artwork). On phones it sits below the buttons.
+- Hero haze removed: the only colored light on the home page is the halo behind the K.
+- About: "Studied: Boston University", no major.
+- Rule audit against Logan's constraints (see the report in the chat and FOR-LOGAN): protected paths untouched, endpoints and field names unchanged, no em dashes, no banned words, no dollar pricing. Open judgment calls: "$100M+ in ARR" (audience sizing, Ryan's wording), the Anthropic credential, the award, "Every action is logged".

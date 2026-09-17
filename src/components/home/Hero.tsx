@@ -35,8 +35,6 @@ export function Hero() {
 
   return (
     <section ref={root} className="relative isolate min-h-[100svh] overflow-hidden">
-      <div aria-hidden="true" className="haze haze-a left-[-12%] top-[8%] h-[60vw] w-[60vw] max-h-[44rem] max-w-[44rem]" />
-      <div aria-hidden="true" className="haze haze-b bottom-[-18%] right-[-14%] h-[56vw] w-[56vw] max-h-[40rem] max-w-[40rem]" />
       <Starfield />
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-void" />
 
@@ -49,7 +47,7 @@ export function Hero() {
 
         <div className="hero-copy flex flex-col items-center">
           <h1 className="rise mt-12 max-w-[16ch] text-display md:mt-16" style={{ '--rise-delay': '500ms' } as CSSProperties}>
-            <span className="nova-text">Custom</span> AI solutions for the <span className="chrome">modern business</span>
+            Custom <span className="etch">AI</span> solutions for the modern business
           </h1>
 
           <p className="rise mt-8 max-w-[40rem] text-body-lg text-mist" style={{ '--rise-delay': '700ms' } as CSSProperties}>

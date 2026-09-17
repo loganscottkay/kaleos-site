@@ -19,8 +19,6 @@ Prepared by Ryan, September 17, 2026. Everything on the redesigned site either c
 14. **Where you are based.** The research says buyers look for a city or a registered address. Send one and it goes in the footer and the privacy page.
 15. **Your personal LinkedIn.** Send the URL and it goes on the About page and the founder line.
 
-16. **Your degree.** The About page now reads "Data Science and Hospitality at Boston University" because Ryan supplied it. Your own rule for the site was no college major. Keep it, or cut it back to "Boston University".
-17. **The Crab Nebula photo.** The close section uses a Hubble photograph (NASA and ESA), graded into the site's colors, with a one-line credit on the section and in the terms. NASA images are public domain and ESA asks for credit, which is there. If you would rather not carry a credit line, we swap it for a drawn gradient.
 
 ## Do on your side
 
