@@ -62,8 +62,8 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-16 flex flex-col gap-3 font-mono text-[0.72rem] tracking-wide text-ash sm:flex-row sm:items-center sm:justify-between">
-          <span>© {new Date().getFullYear()} Kaleos HQ</span>
-          <span>Every action is logged.</span>
+          <span>© {new Date().getFullYear()} Kaleos HQ · New York, NY</span>
+          <span>Every action our systems take is logged for you.</span>
         </div>
       </div>
     </footer>

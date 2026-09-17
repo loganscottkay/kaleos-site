@@ -4,7 +4,7 @@ import { Footer } from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Privacy',
-  description: 'What Kaleos HQ collects on this site, why, which services handle it, and how to ask for it to be removed.',
+  description: 'What Kaleos HQ LLC collects on this site, why, which services handle it, and how to ask for it to be removed.',
   alternates: { canonical: 'https://www.kaleoshq.com/privacy' },
 }
 
@@ -22,7 +22,7 @@ export default function PrivacyPage() {
           <div className="md:col-span-8">
             <h1 className="max-w-[14ch] text-h1">How we handle your information</h1>
             <p className="mt-6 max-w-2xl text-body-lg text-mist">
-              This page describes what this website collects, why, which services process it, and how to ask us to remove it. Last updated {UPDATED}.
+              This page describes what this website collects, why, which services process it, and how to ask us to remove it. The site is operated by Kaleos HQ LLC, New York, NY. Last updated {UPDATED}.
             </p>
           </div>
         </header>
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
 
           <h2>How long we keep it</h2>
           <p>
-            We keep form submissions and chat messages for as long as we need them to respond to you and to run any engagement that follows. If you ask us to delete them, we will.
+            Form submissions are kept in Airtable and in the lead email until Kaleos HQ LLC deletes them or you ask us to. Chat conversations are not stored by Kaleos HQ LLC; they are processed by OpenAI under its own policies.
           </p>
 
           <h2>Your choices</h2>
@@ -67,6 +67,11 @@ export default function PrivacyPage() {
           <h2>Security</h2>
           <p>
             Submissions travel over encrypted connections and are stored with the providers listed above, each of which publishes its own security practices. Systems we build for clients run in the client&apos;s own infrastructure, and this website does not receive client operational data.
+          </p>
+
+          <h2>Governing law</h2>
+          <p>
+            This policy is governed by the laws of the State of New Jersey.
           </p>
 
           <h2>Changes</h2>
