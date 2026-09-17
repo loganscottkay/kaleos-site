@@ -1,58 +1,53 @@
 import type { Metadata } from 'next'
-import { Inter, Bricolage_Grotesque, JetBrains_Mono } from 'next/font/google'
+import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-import TalkToLogan from "@/components/TalkToLogan";
+import TalkToLogan from '@/components/TalkToLogan'
+import { SmoothScroll } from '@/components/SmoothScroll'
 
-const inter = Inter({
+const geist = Geist({
   subsets: ['latin'],
   display: 'swap',
+  variable: '--font-sans',
 })
 
-const bricolage = Bricolage_Grotesque({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-display',
-  axes: ['opsz'],
-})
-
-const jetbrainsMono = JetBrains_Mono({
+const geistMono = Geist_Mono({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-mono',
-  weight: ['400', '600'],
+  weight: ['400', '500'],
 })
+
+const DESCRIPTION =
+  'Kaleos HQ designs and ships AI systems for operators. Agents do the work, a human approves every consequential step, and everything is logged.'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.kaleoshq.com'),
   title: {
-    default: 'Kaleos HQ | Agentic AI Implementation',
+    default: 'Kaleos HQ | AI systems with a human at the gate',
     template: '%s | Kaleos HQ',
   },
-  description:
-    "AI doesn't fail because of the technology. It fails because of the implementation. Kaleos HQ is an agentic AI implementation and applied AI consulting practice: agents do the work, humans make the calls, everything is logged.",
+  description: DESCRIPTION,
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.kaleoshq.com',
     siteName: 'Kaleos HQ',
-    title: 'Kaleos HQ | Agentic AI Implementation',
-    description:
-      "Agentic AI implementation and applied AI consulting. Agents do the work, humans make the calls, everything is logged.",
+    title: 'Kaleos HQ | AI systems with a human at the gate',
+    description: DESCRIPTION,
     images: [
       {
         url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'Kaleos HQ - Agentic AI Implementation',
+        alt: 'Kaleos HQ. Agents do the work. You make the calls.',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kaleos HQ | Agentic AI Implementation',
-    description:
-      "Agentic AI implementation and applied AI consulting. Agents do the work, humans make the calls, everything is logged.",
+    title: 'Kaleos HQ | AI systems with a human at the gate',
+    description: DESCRIPTION,
     images: ['/opengraph-image.png'],
   },
   alternates: {
@@ -63,17 +58,15 @@ export const metadata: Metadata = {
   },
 }
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${bricolage.variable} ${jetbrainsMono.variable}`}>
-      <body
-        className={`${inter.className} antialiased bg-paper text-slate-700`}
-      >
+    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
+      <body className="font-sans antialiased bg-void text-star">
+        <SmoothScroll />
         {children}
         <TalkToLogan />
         <Analytics />

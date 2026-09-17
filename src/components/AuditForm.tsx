@@ -2,6 +2,9 @@
 
 import { useState, type FormEvent } from 'react'
 
+/* Posts to /api/lead with the same field names the backend expects. Do not
+   change the payload shape. Everything visible is fair game. */
+
 const challengeOptions = [
   'Revenue Operations',
   'Process Automation',
@@ -22,9 +25,7 @@ export function AuditForm() {
     desired_outcome: '',
     honeypot: '',
   })
-  const [status, setStatus] = useState<
-    'idle' | 'loading' | 'success' | 'error'
-  >('idle')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
 
   const update = (field: string, value: string) =>
@@ -41,16 +42,10 @@ export function AuditForm() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-
     if (formData.honeypot) return
 
-    if (
-      !formData.name ||
-      !formData.email ||
-      !formData.company ||
-      formData.challenges.length === 0
-    ) {
-      setErrorMessage('Please fill in all required fields.')
+    if (!formData.name || !formData.email || !formData.company || formData.challenges.length === 0) {
+      setErrorMessage('Name, email, company, and at least one thing to solve are required.')
       setStatus('error')
       return
     }
@@ -79,7 +74,7 @@ export function AuditForm() {
         setStatus('error')
         setErrorMessage(
           data?.error ||
-            'The form could not submit. Email logan@kaleoshq.com directly and you will get a reply today.'
+            'The form could not submit. Email logan@kaleoshq.com directly and you will get a reply today.',
         )
         return
       }
@@ -88,55 +83,33 @@ export function AuditForm() {
     } catch {
       setStatus('error')
       setErrorMessage(
-        'The form could not submit. Check your connection and try once more, or email logan@kaleoshq.com.'
+        'The form could not submit. Check your connection and try once more, or email logan@kaleoshq.com.',
       )
     }
   }
 
   if (status === 'success') {
     return (
-      <div className="text-center py-12">
-        <div className="mx-auto mb-6 w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center">
-          <svg
-            className="w-7 h-7 text-teal-bright"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-        </div>
-        <div className="text-h3 font-semibold text-white mb-3">
-          Thank you! You&apos;ll hear back within 24 hours.
-        </div>
-        <p className="text-white/60 mb-8">No spam, no sales pitch.</p>
-        <div className="inline-block text-left space-y-2 text-body text-white/60">
-          <p className="font-medium text-white/60">Next steps:</p>
-          <p>1. We review your submission</p>
-          <p>2. We schedule a discovery call</p>
-          <p>3. Assessment delivered within 2 weeks</p>
-        </div>
+      <div className="surface-light p-8 md:p-10" role="status">
+        <p className="eyebrow text-slate">Received</p>
+        <h3 className="mt-4 text-h3 font-light">Thank you. You will hear back within 24 hours.</h3>
+        <ol className="mt-6 space-y-2 text-body text-slate">
+          <li>1. Logan reads your submission.</li>
+          <li>2. You get a discovery call on the calendar.</li>
+          <li>3. The assessment is delivered within two weeks.</li>
+        </ol>
       </div>
     )
   }
 
-  const inputClass = 'input-dark px-4 py-3'
-  const labelClass =
-    'block font-system text-white/60 text-caption tracking-wide uppercase mb-2'
+  const label = 'block font-mono text-[0.72rem] uppercase tracking-[0.18em] text-slate'
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Honeypot */}
-      <div
-        className="absolute opacity-0 pointer-events-none"
-        aria-hidden="true"
-      >
+    <form onSubmit={handleSubmit} className="space-y-8" noValidate>
+      <div className="absolute opacity-0 pointer-events-none" aria-hidden="true">
+        <label htmlFor="lead-website">Website</label>
         <input
+          id="lead-website"
           type="text"
           name="website"
           tabIndex={-1}
@@ -146,164 +119,117 @@ export function AuditForm() {
         />
       </div>
 
-      <div>
-        <label className={labelClass}>Name *</label>
-        <input
-          type="text"
-          required
-          value={formData.name}
-          onChange={(e) => update('name', e.target.value)}
-          className={inputClass}
-          placeholder="Your name"
-        />
+      <div className="grid gap-8 md:grid-cols-2">
+        <div>
+          <label htmlFor="lead-name" className={label}>Name</label>
+          <input
+            id="lead-name"
+            name="name"
+            type="text"
+            required
+            autoComplete="name"
+            value={formData.name}
+            onChange={(e) => update('name', e.target.value)}
+            className="input-light mt-3"
+            placeholder="Your name"
+          />
+        </div>
+        <div>
+          <label htmlFor="lead-email" className={label}>Email</label>
+          <input
+            id="lead-email"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            value={formData.email}
+            onChange={(e) => update('email', e.target.value)}
+            className="input-light mt-3"
+            placeholder="you@company.com"
+          />
+        </div>
       </div>
 
       <div>
-        <label className={labelClass}>Email *</label>
+        <label htmlFor="lead-company" className={label}>Company</label>
         <input
-          type="email"
-          required
-          value={formData.email}
-          onChange={(e) => update('email', e.target.value)}
-          className={inputClass}
-          placeholder="you@company.com"
-        />
-      </div>
-
-      <div>
-        <label className={labelClass}>Company *</label>
-        <input
+          id="lead-company"
+          name="company"
           type="text"
           required
+          autoComplete="organization"
           value={formData.company}
           onChange={(e) => update('company', e.target.value)}
-          className={inputClass}
+          className="input-light mt-3"
           placeholder="Company name"
         />
       </div>
 
-      <div>
-        <label className={labelClass}>
-          Company Size
-        </label>
-        <div className="flex flex-wrap gap-2">
+      <fieldset>
+        <legend className={label}>Company size</legend>
+        <div className="mt-3 flex flex-wrap gap-2">
           {sizeOptions.map((size) => {
             const selected = formData.company_size === size
             return (
               <button
                 key={size}
                 type="button"
-                onClick={() =>
-                  update('company_size', selected ? '' : size)
-                }
-                className={`btn px-4 text-body border ${
-                  selected
-                    ? 'bg-accent/20 text-teal-bright border-accent/50'
-                    : 'bg-white/[0.04] text-white/60 border-white/[0.08] hover:border-white/[0.18] hover:text-white/60'
-                }`}
+                aria-pressed={selected}
+                onClick={() => update('company_size', selected ? '' : size)}
+                className="chip"
               >
                 {size}
               </button>
             )
           })}
         </div>
-      </div>
+      </fieldset>
 
-      <div>
-        <label className={labelClass}>
-          What are you looking to solve? *
-        </label>
-        <div className="flex flex-wrap gap-2">
+      <fieldset>
+        <legend className={label}>What are you looking to solve? Pick any.</legend>
+        <div className="mt-3 flex flex-wrap gap-2">
           {challengeOptions.map((challenge) => {
             const selected = formData.challenges.includes(challenge)
             return (
               <button
                 key={challenge}
                 type="button"
+                aria-pressed={selected}
                 onClick={() => toggleChallenge(challenge)}
-                className={`btn px-4 text-body border ${
-                  selected
-                    ? 'bg-accent/20 text-teal-bright border-accent/50'
-                    : 'bg-white/[0.04] text-white/60 border-white/[0.08] hover:border-white/[0.18] hover:text-white/60'
-                }`}
+                className="chip"
               >
                 {challenge}
               </button>
             )
           })}
         </div>
-      </div>
+      </fieldset>
 
       <div>
-        <label className={labelClass}>
-          Desired Outcome
-        </label>
+        <label htmlFor="lead-outcome" className={label}>What would winning look like?</label>
         <textarea
+          id="lead-outcome"
+          name="desired_outcome"
           value={formData.desired_outcome}
           onChange={(e) => update('desired_outcome', e.target.value)}
           rows={4}
-          className={`${inputClass} resize-none`}
-          placeholder="What would winning look like for you?"
+          className="input-light mt-3 resize-none"
+          placeholder="One or two sentences is plenty."
         />
       </div>
 
       {status === 'error' && (
-        <div className="flex items-center gap-2 px-4 py-3 rounded-control bg-red-500/10 border border-red-500/20 text-red-400 text-caption">
-          <svg
-            className="w-4 h-4 shrink-0"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
+        <p role="alert" className="border-l-2 border-ink pl-4 text-body text-ink">
           {errorMessage}
-        </div>
+        </p>
       )}
 
-      <button
-        type="submit"
-        disabled={status === 'loading'}
-        className="btn btn-primary w-full py-4"
-      >
-        <span>
-          {status === 'loading' ? (
-            <span className="flex items-center gap-2">
-              <svg
-                className="w-4 h-4 animate-spin"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                />
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                />
-              </svg>
-              Submitting...
-            </span>
-          ) : (
-            "Let's Talk"
-          )}
-        </span>
-      </button>
-
-      <p className="text-white/60 text-caption text-center">
-        You&apos;ll hear back within 24 hours. No spam, no sales pitch.
-      </p>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <button type="submit" disabled={status === 'loading'} className="btn btn-ink btn-lg">
+          {status === 'loading' ? 'Sending' : 'Send it to Logan'}
+        </button>
+        <p className="text-caption text-slate">You will hear back within 24 hours. No spam, no pitch.</p>
+      </div>
     </form>
   )
 }

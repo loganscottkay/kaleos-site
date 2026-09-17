@@ -1,142 +1,148 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { KMark } from '@/components/KMark'
+
+export type Theme = 'dark' | 'light'
 
 const links = [
-  { href: '/', label: 'Home' },
   { href: '/audit', label: 'Assessment' },
   { href: '/about', label: 'About' },
 ]
 
-export function NavBar() {
+export const CALENDLY = 'https://calendly.com/logan-kaleoshq/30min'
+
+/* Quiet by design: a small K, the wordmark in light weight, two links, one
+   button. The bar is transparent over the hero and gains a hairline and a
+   blur once the page moves. `theme` also paints the document ground so
+   overscroll on phones matches the page. */
+export function NavBar({ theme = 'dark' }: { theme?: Theme }) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 80)
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    document.documentElement.dataset.theme = theme
+  }, [theme])
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
-        scrolled
-          ? 'bg-paper/90 border-slate-200 shadow-nav'
-          : 'bg-paper/70 border-transparent'
-      } backdrop-blur-md`}
-    >
-      {/* Reading progress. Driven by a CSS scroll timeline, so it tracks the
-          scroller exactly with no listener; where that is unsupported the
-          rail stays at scale 0 and simply is not there. */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-px overflow-hidden"
-        aria-hidden="true"
-      >
-        <div className="scroll-rail h-full bg-gradient-to-r from-accent to-teal-bright" />
-      </div>
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [open])
 
-      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/kaleos-logo.png"
-            width={28}
-            height={28}
-            alt=""
-            className="rounded-control object-cover"
-            priority
-          />
-          <span
-            className="font-display text-navy font-semibold text-body-lg tracking-tight"
-          >
-            Kaleos HQ
-          </span>
+  const dark = theme === 'dark'
+  const fg = dark ? 'text-star' : 'text-ink'
+  const muted = dark ? 'text-mist hover:text-star' : 'text-slate hover:text-ink'
+  const line = dark ? 'border-line-dark' : 'border-line-light'
+  const ground = dark ? 'bg-void/80' : 'bg-paper/85'
+
+  return (
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-300 ${
+        scrolled || open ? `${ground} backdrop-blur-md border-b ${line}` : 'border-b border-transparent'
+      }`}
+    >
+      <nav
+        aria-label="Primary"
+        className="mx-auto flex h-16 max-w-[88rem] items-center justify-between px-5 md:h-18 md:px-8"
+      >
+        <Link
+          href="/"
+          className={`group flex items-center gap-3 ${fg}`}
+          aria-label="Kaleos HQ, home"
+        >
+          <KMark className="h-6 w-auto" />
+          <span className="wordmark text-[1.05rem]">Kaleos HQ</span>
         </Link>
 
-        {/* Desktop */}
-        <div className="hidden md:flex items-center gap-8">
-          {links.map((link) => {
-            const isActive =
-              pathname === link.href ||
-              (link.href !== '/' && pathname.startsWith(link.href))
+        <div className="hidden items-center gap-8 md:flex">
+          {links.map((l) => {
+            const active = pathname === l.href
             return (
               <Link
-                key={link.href}
-                href={link.href}
-                className={`group/nav relative inline-flex items-center text-body font-medium tracking-wide transition-colors duration-200 ease-in-out py-3 -my-3 ${
-                  isActive ? 'text-navy' : 'text-muted-text hover:text-navy'
+                key={l.href}
+                href={l.href}
+                aria-current={active ? 'page' : undefined}
+                className={`text-[0.95rem] tracking-tight transition-colors ${
+                  active ? fg : muted
                 }`}
               >
-                {link.label}
-                <span
-                  className={`absolute left-0 bottom-2 h-0.5 bg-accent transition-all duration-200 ease-in-out ${
-                    isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
-                  }`}
-                />
+                {l.label}
               </Link>
             )
           })}
           <a
-            href="https://calendly.com/logan-kaleoshq/30min"
+            href={CALENDLY}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-primary px-4 text-body"
+            className={dark ? 'btn btn-star' : 'btn btn-ink'}
           >
             Book a Discovery Call
           </a>
         </div>
 
-        {/* Mobile toggle */}
         <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden flex items-center justify-center w-10 h-10 -mr-2 text-navy/70 hover:text-navy transition-colors"
-          aria-label="Toggle menu"
+          type="button"
+          onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
+          aria-controls="mobile-menu"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          className={`flex h-11 w-11 items-center justify-center md:hidden ${fg}`}
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {open ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
+          <span className="relative block h-[10px] w-5" aria-hidden="true">
+            <span
+              className={`absolute left-0 top-0 h-px w-5 bg-current transition-transform duration-300 ${
+                open ? 'translate-y-[5px] rotate-45' : ''
+              }`}
+            />
+            <span
+              className={`absolute bottom-0 left-0 h-px w-5 bg-current transition-transform duration-300 ${
+                open ? '-translate-y-[4px] -rotate-45' : ''
+              }`}
+            />
+          </span>
         </button>
-      </div>
+      </nav>
 
-      {/* Mobile menu */}
-      {open && (
-        <div className="md:hidden bg-paper border-b border-slate-200">
-          <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className={`text-body font-medium tracking-wide transition-colors duration-200 ${
-                  pathname === link.href ||
-                  (link.href !== '/' && pathname.startsWith(link.href))
-                    ? 'text-navy'
-                    : 'text-muted-text hover:text-navy'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <a
-              href="https://calendly.com/logan-kaleoshq/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary px-4 text-body"
+      <div
+        id="mobile-menu"
+        hidden={!open}
+        className={`md:hidden border-t ${line} ${ground} backdrop-blur-md`}
+      >
+        <div className="flex flex-col gap-1 px-5 pb-6 pt-3">
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className={`py-3 text-[1.35rem] font-light tracking-tight ${fg}`}
             >
-              Book a Discovery Call
-            </a>
-          </div>
+              {l.label}
+            </Link>
+          ))}
+          <a
+            href={CALENDLY}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`mt-3 ${dark ? 'btn btn-star' : 'btn btn-ink'} w-full`}
+          >
+            Book a Discovery Call
+          </a>
         </div>
-      )}
-    </nav>
+      </div>
+    </header>
   )
 }

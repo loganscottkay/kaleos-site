@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { NavBar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
-import { Reveal } from '@/components/Reveal'
 import { getAllPosts, getPostBySlug } from '@/lib/blog'
 
 export function generateStaticParams() {
@@ -22,9 +21,7 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.description,
-    alternates: {
-      canonical: `https://www.kaleoshq.com/blog/${post.slug}`,
-    },
+    alternates: { canonical: `https://www.kaleoshq.com/blog/${post.slug}` },
     openGraph: {
       title: `${post.title} | Kaleos HQ`,
       description: post.description,
@@ -45,102 +42,60 @@ export default async function BlogPostPage({
   const post = await getPostBySlug(slug)
   if (!post) notFound()
 
-  const formattedDate = new Date(post.date + 'T00:00:00').toLocaleDateString(
-    'en-US',
-    { year: 'numeric', month: 'long', day: 'numeric' },
-  )
+  const formattedDate = new Date(post.date + 'T00:00:00').toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
 
   return (
-    <main className="min-h-screen">
-      <NavBar />
+    <main className="min-h-screen bg-paper text-ink">
+      <NavBar theme="light" />
 
-      {/* Hero */}
-      <section className="relative pt-24 md:pt-32 pb-12 md:pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-navy" />
-        <div className="absolute inset-0 post-hero-glow" />
-
-        <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
-          <Reveal>
-            <Link
-              href="/blog"
-              className="inline-flex items-center text-white/60 text-body hover:text-teal-bright transition-colors mb-8"
-            >
-              &larr; Back to Thinking
+      <article className="mx-auto max-w-[88rem] px-5 pb-24 pt-36 md:px-8 md:pb-32 md:pt-48">
+        <header className="grid gap-8 md:grid-cols-12">
+          <div className="md:col-span-3">
+            <Link href="/blog" className="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-slate hover:text-ink">
+              Thinking
             </Link>
-          </Reveal>
-          <Reveal delay={50}>
-            <h1 className="text-h1 font-semibold text-white">
-              {post.title}
-            </h1>
-          </Reveal>
-          <Reveal delay={150}>
-            <div className="mt-6 flex items-center justify-center gap-3 text-body text-white/60">
-              {post.category && (
+            <p className="mt-6 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-slate">
+              {formattedDate}
+              <br />
+              {post.readTime}
+              {post.category ? (
                 <>
-                  <span className="px-3 py-1 text-caption font-semibold rounded-control bg-accent/15 text-teal-bright">
-                    {post.category}
-                  </span>
-                  <span className="text-white/60">·</span>
+                  <br />
+                  {post.category}
                 </>
-              )}
-              <span>{formattedDate}</span>
-              <span className="text-white/60">·</span>
-              <span>{post.readTime}</span>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+              ) : null}
+            </p>
+          </div>
+          <div className="md:col-span-8 md:col-start-5">
+            <h1 className="max-w-[16ch] text-h1 font-light tracking-tightest">{post.title}</h1>
+            <p className="mt-6 max-w-2xl text-body-lg text-slate">{post.description}</p>
+          </div>
+        </header>
 
-      {/* Article content */}
-      <section className="atmos py-16 md:py-24 bg-navy">
-        <div className="atmos-layer atmos-depth" aria-hidden="true" />
-        <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
-        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
-        <div className="atmos-layer atmos-grain" aria-hidden="true" />
-
-
-        <div className="relative z-10 max-w-180 mx-auto px-4">
-          <Reveal>
-            <div className="card-dark relative bg-white/5 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-white/[0.05] via-transparent to-transparent pointer-events-none" />
-              <div className="relative p-8 sm:p-12">
-                <article
-                  className="prose prose-invert"
-                  dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-                />
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Tags */}
-          {post.tags.length > 0 && (
-            <Reveal delay={100}>
-              <div className="mt-8 flex flex-wrap gap-2">
+        <div className="mt-16 grid gap-8 md:mt-24 md:grid-cols-12">
+          <div className="md:col-span-7 md:col-start-5">
+            <div className="prose" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+            {post.tags.length > 0 && (
+              <ul className="mt-12 flex flex-wrap gap-2" aria-label="Tags">
                 {post.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 text-caption font-medium rounded-control bg-accent/10 text-teal-bright"
-                  >
+                  <li key={tag} className="rounded-full border border-line-light px-3 py-1 font-mono text-[0.7rem] tracking-wide text-slate">
                     {tag}
-                  </span>
+                  </li>
                 ))}
-              </div>
-            </Reveal>
-          )}
-
-          {/* Back link */}
-          <Reveal delay={200}>
-            <Link
-              href="/blog"
-              className="inline-block mt-12 text-teal-bright font-medium text-body hover:underline"
-            >
-              &larr; Back to Thinking
+              </ul>
+            )}
+            <Link href="/blog" className="mt-14 inline-block text-body text-ink underline decoration-line-light underline-offset-4 hover:decoration-ink">
+              All notes
             </Link>
-          </Reveal>
+          </div>
         </div>
-      </section>
+      </article>
 
-      <Footer />
+      <Footer theme="light" />
     </main>
   )
 }
