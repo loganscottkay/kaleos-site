@@ -42,7 +42,7 @@ export function Testimonials() {
       <div className="relative mx-auto max-w-[88rem] px-5 py-28 md:px-8 md:py-40">
         <Reveal>
           <Words as="h2" id="testimonials-heading" className="block max-w-[14ch] text-h2">
-            What our clients say
+            What we built for our clients
           </Words>
         </Reveal>
 
