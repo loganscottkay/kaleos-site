@@ -6,9 +6,16 @@ import { Words } from '@/components/Words'
 /* Client words, cut to what matters. The full drafts live in
    docs/proof-kit/testimonials.json and are the source of truth for who said
    what. The short versions below are paraphrases of those drafts; once a
-   client confirms, replace the paraphrase with their approved words. Before
-   the PR into main, set SHOW_DRAFTS to false. */
+   client confirms, replace the paraphrase with their approved words. Drafts
+   carry no visible marker; before the PR into main, set SHOW_DRAFTS to false
+   so only confirmed quotes render. */
 const SHOW_DRAFTS = true
+
+/* KALEOS's own recognition of a client system. Wording is Ryan's proposal;
+   Logan confirms it in docs/redesign/FOR-LOGAN.md before merge. */
+const AWARD: Record<string, string> = {
+  'advisor-solutions-os': 'KALEOS Award 2026',
+}
 
 type Piece = { t: string; u?: boolean }
 const SHORT: Record<string, Piece[]> = {
@@ -81,10 +88,9 @@ export function Testimonials() {
                         </>
                       )}
                     </div>
-                    {!confirmed && (
-                      <div className="mt-4 inline-flex items-center gap-2 font-mono text-[0.66rem] uppercase tracking-[0.18em] text-amber">
-                        <span className="h-1.5 w-1.5 rounded-full bg-amber" aria-hidden="true" />
-                        Pending confirmation
+                    {AWARD[t.id] && (
+                      <div className="mt-4">
+                        <span className="award"><span aria-hidden="true">✦</span>{AWARD[t.id]}</span>
                       </div>
                     )}
                   </figcaption>

@@ -4,15 +4,15 @@ import { useRef, type CSSProperties } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { KLogo } from '@/components/KLogo'
+import { KSolid } from '@/components/KSolid'
 import { CALENDLY, CTA } from '@/components/NavBar'
 import { Starfield } from '@/components/home/Starfield'
 import { Magnet } from '@/components/Magnet'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
-/* After the warp: the mark, glowing, with the star lit at its center. Then
-   one line. Then one button. Scrolling pulls the mark back into the field. */
+/* After the warp: the mark, glowing, turning slowly as a solid. Then one
+   line. Then one button. Scrolling pulls the mark back into the field. */
 export function Hero() {
   const root = useRef<HTMLElement>(null)
 
@@ -40,9 +40,8 @@ export function Hero() {
 
       <div className="relative mx-auto flex min-h-[100svh] max-w-[88rem] flex-col items-center justify-center px-5 pb-28 pt-28 text-center md:px-8">
         <div className="hero-mark k-settle">
-          <div className="k-glow relative">
-            <KLogo priority alt="KALEOS" className="h-[26vh] min-h-[9rem] md:h-[34vh]" />
-            <span className="k-star" style={{ left: '30.4%', top: '47.3%' }} aria-hidden="true" />
+          <div className="k-glow k-stage">
+            <KSolid className="h-[26vh] min-h-[9rem] md:h-[34vh]" />
           </div>
         </div>
 

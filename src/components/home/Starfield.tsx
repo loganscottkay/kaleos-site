@@ -17,7 +17,7 @@ export function Starfield({ density = 0.00013, shooting = true }: { density?: nu
 
     let w = 0, h = 0, raf = 0, running = true
     let px = 0, py = 0, tx = 0, ty = 0
-    type Star = { x: number; y: number; z: number; r: number; a: number; tw: number }
+    type Star = { x: number; y: number; z: number; r: number; a: number; tw: number; c: string }
     type Streak = { x: number; y: number; vx: number; vy: number; life: number; max: number }
     let stars: Star[] = []
     let streak: Streak | null = null
@@ -29,6 +29,7 @@ export function Starfield({ density = 0.00013, shooting = true }: { density?: nu
         x: Math.random() * w, y: Math.random() * h,
         z: 0.3 + Math.random() * 0.7, r: 0.4 + Math.random() * 1.1,
         a: 0.2 + Math.random() * 0.6, tw: Math.random() * Math.PI * 2,
+        c: (() => { const h = Math.random(); return h < 0.03 ? '#ff5fa2' : h < 0.06 ? '#ffb457' : h < 0.12 ? '#63d9e6' : '#f7f7f4' })(),
       }))
     }
     const resize = () => {
@@ -45,8 +46,8 @@ export function Starfield({ density = 0.00013, shooting = true }: { density?: nu
       px += (tx - px) * 0.03
       py += (ty - py) * 0.03
       ctx.clearRect(0, 0, w, h)
-      ctx.fillStyle = '#f7f7f4'
       for (const s of stars) {
+        ctx.fillStyle = s.c
         s.y -= 0.016 * s.z
         if (s.y < -2) s.y = h + 2
         const twinkle = 0.85 + 0.15 * Math.sin(now / 1400 + s.tw)
@@ -76,7 +77,8 @@ export function Starfield({ density = 0.00013, shooting = true }: { density?: nu
           const ex = streak.x + (nx / m) * len, ey = streak.y + (ny / m) * len
           const g = ctx.createLinearGradient(streak.x, streak.y, ex, ey)
           g.addColorStop(0, `rgba(247,247,244,${0.95 * fade})`)
-          g.addColorStop(0.35, `rgba(99,217,230,${0.5 * fade})`)
+          g.addColorStop(0.3, `rgba(99,217,230,${0.5 * fade})`)
+          g.addColorStop(0.62, `rgba(255,95,162,${0.28 * fade})`)
           g.addColorStop(1, 'rgba(139,124,248,0)')
           ctx.globalAlpha = 1
           ctx.strokeStyle = g

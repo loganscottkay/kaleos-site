@@ -5,12 +5,12 @@ import { useEffect, useRef, useState } from 'react'
 /* One second at warp, then the page. A field of stars in depth flies past
    the camera: each one is projected from a z position toward the viewer, so
    the ones near the center barely move while the ones at the edge streak.
-   Speed ramps in, holds, then drops out with a short flash of light as the
-   overlay fades and the stars settle back into points. Plays on every full
+   Speed ramps in, holds, then eases off while the overlay fades and the
+   hero settles in underneath, so the field becomes the page. Plays on every full
    load of the home page. Skipped under reduced motion. */
 
 const WARP_MS = 1000
-const SETTLE_MS = 650
+const SETTLE_MS = 1100
 
 export function WarpIntro() {
   const ref = useRef<HTMLCanvasElement>(null)
@@ -62,7 +62,7 @@ export function WarpIntro() {
       let speed: number
       if (t < 0.35) speed = 0.004 + 0.07 * (t / 0.35) ** 2.2
       else if (t < 1) speed = 0.074
-      else speed = 0.074 * Math.max(0, 1 - (t - 1) / (SETTLE_MS / WARP_MS)) ** 2
+      else speed = 0.074 * Math.max(0, 1 - (t - 1) / (SETTLE_MS / WARP_MS)) ** 1.6
 
       // Trails: the field is never fully cleared while at speed.
       ctx.globalCompositeOperation = 'source-over'
@@ -84,7 +84,7 @@ export function WarpIntro() {
         const width = 0.5 + near * 2.2
         const g = ctx.createLinearGradient(x0, y0, x1, y1)
         // Cool tint at the tail, white at the head. A few run violet.
-        const tail = s.hue < 0.18 ? '139,124,248' : '99,217,230'
+        const tail = s.hue < 0.14 ? '139,124,248' : s.hue < 0.24 ? '255,95,162' : s.hue < 0.30 ? '255,180,87' : '99,217,230'
         g.addColorStop(0, `rgba(${tail},0)`)
         g.addColorStop(0.55, `rgba(${tail},${alpha * 0.45})`)
         g.addColorStop(1, `rgba(247,247,244,${alpha})`)
@@ -93,21 +93,10 @@ export function WarpIntro() {
         ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke()
       }
 
-      // Dropping out of warp: a short bloom from the center as speed falls.
-      if (t >= 0.92) {
-        const f = t < 1 ? (t - 0.92) / 0.08 : Math.max(0, 1 - (t - 1) / 0.42)
-        const r = Math.max(w, h) * 0.5
-        const rg = ctx.createRadialGradient(cx, cy, 0, cx, cy, r)
-        rg.addColorStop(0, `rgba(247,247,244,${0.34 * f})`)
-        rg.addColorStop(0.3, `rgba(99,217,230,${0.09 * f})`)
-        rg.addColorStop(1, 'rgba(5,5,7,0)')
-        ctx.globalCompositeOperation = 'lighter'
-        ctx.fillStyle = rg
-        ctx.fillRect(0, 0, w, h)
-      }
       ctx.globalCompositeOperation = 'source-over'
 
-      if (t >= 1 && !fading) {
+      // Hand off early: the hero starts settling under the overlay while it fades.
+      if (t >= 0.86 && !fading) {
         fading = true
         setPhase('fade')
         root.classList.remove('warping')

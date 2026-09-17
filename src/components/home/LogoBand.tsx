@@ -37,10 +37,7 @@ function Mark({ item }: { item: Item }) {
 export function LogoBand() {
   return (
     <section aria-label="Where the method comes from and what we build with" className="relative py-10 md:py-14">
-      <p className="mx-auto max-w-[88rem] px-5 text-center font-mono text-[0.72rem] uppercase tracking-[0.2em] text-ash md:px-8">
-        Where we learned and what we build with
-      </p>
-      <div className="band mt-8">
+      <div className="band">
         <div className="band-track">
           {items.map((item) => <Mark key={item.name} item={item} />)}
         </div>

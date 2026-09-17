@@ -28,9 +28,9 @@ Every value below is the one the site actually uses. Tokens live in `src/app/glo
 
 ## 3. The mark
 
-- The K with the pinch: two strokes meet at a point of light, the star. Supplied by Logan as `brand-assets/kaleos-k-source.png`. Site copy at `public/kaleos-k.png` (938 by 1020, white on transparent).
+- The K with the pinch: two strokes meet at a point. Supplied by Logan as `brand-assets/kaleos-k-source.png`. Site copy at `public/kaleos-k.png` (938 by 1020, white on transparent).
 - Always white on black. Black on white is allowed only for print (`brand-assets/kaleos-k-black.png`).
-- The star sits at 30.4% from the left and 47.3% from the top of the mark's box. On the site it is lit and pulses; in static material it may be a single small point of light.
+- On the home page the mark is a solid: the artwork stacked in depth and turned slowly in 3D, with a supernova halo behind it. Everywhere else it is flat and still.
 - Clear space: half the mark's height on every side. Minimum size: 24 px tall on screen.
 - Do not trace, redraw, outline, skew, add a gradient fill, or place the mark on a photo.
 - Favicon: black square, white K at 74% of the square. Social logo: same, at 400 and 1024 px.
@@ -49,10 +49,12 @@ Every value below is the one the site actually uses. Tokens live in `src/app/glo
 | royal | #2b4cff | Selection color and the final call button only. |
 | royal-bright | #6d86ff | Hover on royal. |
 | amber | #d99a2b | Pending state only. Never decorative. |
+| nova | #ff5fa2 | Supernova rose. Light only: the K halo, warp tails, the horizon line, the close's bloom. |
+| ember | #ffb457 | Supernova gold. Light only, plus the award ribbon. |
 | line | white at 12% | Hairlines. |
 | line-strong | white at 28% | Input borders, ghost buttons. |
 
-Rules. Black ground everywhere, white type everywhere. Color is an accent on words, edges, and points of light, never a fill behind text. One glint phrase per section. No gradients as backgrounds, except the soft horizon line between sections. Amber means "not yet confirmed" and nothing else.
+Rules. Black ground everywhere, white type everywhere. Color is an accent on words, edges, and points of light, never a fill behind text. The supernova pair (nova, ember) appears only as light: halos, star tails, the horizon line between sections, the bloom behind the close. It never colors type, buttons, inputs, cards, the header, the footer, or any legal page. One glint phrase per section. No gradients as backgrounds, except the soft horizon line between sections. Amber means "not yet confirmed" and nothing else.
 
 ## 5. Type
 
@@ -75,7 +77,7 @@ Scale: display clamp(2.75rem, 7.2vw, 7rem); h1 clamp(2.5rem, 6vw, 5.5rem); h2 cl
 
 ## 7. Motion and the cosmic motif
 
-- One second of warp on every full load of the home page, then the mark settles with its star lit. Every other page opens still.
+- One second of warp on every full load of the home page, easing off into the field as the mark settles. No flash at the end. Every other page opens still.
 - Stars are sparse points that drift; one shooting star every 7 to 16 seconds. Never a dense field.
 - Scroll motion: headings rise word by word, hairlines draw themselves, stats count up, quotes enter from alternating sides, the hero pulls back into the field.
 - Reduced motion turns all of it off and shows the end state. Nothing depends on motion to be understood.
@@ -109,3 +111,4 @@ Shown on the home page as one flowing line: Anthropic, Harvard Business School, 
 ## Changelog
 
 - 1.0 (September 17, 2026): first version, matching the redesign at tag cp8.
+- 1.1 (September 17, 2026): supernova light (nova, ember), the solid turning K, the award ribbon, warp hand-off without a flash. Tag cp10.

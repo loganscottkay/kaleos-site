@@ -61,3 +61,10 @@ Revert: `git checkout <tag>` or `git reset --hard <tag>` on design-overhaul.
 - Fail-safe: the warp overlay clears itself by CSS after 2.5 s even if the script never finishes.
 - Touch targets: chips grow to 44 px on coarse pointers, footer and source links get vertical padding.
 - Verified on both phones: menu opens, every reveal fires on scroll, chat opens, form validates and submits, no horizontal overflow, no page errors. The only console 404 is Vercel's analytics script, which does not exist off Vercel.
+
+## cp10, September 17, 2026: supernova, solid K, award
+
+- Supernova light added as two tokens (nova rose, ember gold) used only as light: the K halo, warp tails, a few tinted stars and the shooting star, the horizon line between sections, and a bloom behind the close. Kept out of type, buttons, forms, header, footer, legal pages, About, and the testimonials.
+- Hero mark is now a solid: eight layers of the full-resolution artwork (unoptimized) a pixel apart, swaying in 3D between -34 and 34 degrees so the mark never reads mirrored or edge-on. The small star at the pinch is gone.
+- Warp hands off early (at 86%) and the overlay fades over 1.1 s while the stars ease off; no flash.
+- Logo band caption removed. Testimonials carry no pending marker; Advisor Solutions carries a "KALEOS Award 2026" ribbon, wording pending Logan (FOR-LOGAN 2a).

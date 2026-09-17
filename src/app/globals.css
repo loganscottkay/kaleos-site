@@ -20,6 +20,10 @@
   --color-comet: #63d9e6;
   --color-amber: #d99a2b;
 
+  /* Supernova light. Only ever in halos, tails, and horizon lines. Never type, never a fill. */
+  --color-nova: #ff5fa2;
+  --color-ember: #ffb457;
+
   --color-line: rgb(255 255 255 / 0.12);
   --color-line-strong: rgb(255 255 255 / 0.28);
 
@@ -176,6 +180,23 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; }
 .chip:hover { border-color: var(--color-star); }
 .chip[aria-pressed="true"] { background: var(--color-star); color: var(--color-void); border-color: var(--color-star); }
 
+/* Award ribbon: a banner with notched ends, ember on void. */
+.award {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.1rem 0.45rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  background: rgb(255 180 87 / 0.08);
+  border: 1px solid rgb(255 180 87 / 0.45);
+  clip-path: polygon(0 0, calc(100% - 0.55rem) 0, 100% 50%, calc(100% - 0.55rem) 100%, 0 100%, 0.4rem 50%);
+  white-space: nowrap;
+}
+
 /* ── Surfaces ─────────────────────────────────────────────────────── */
 
 .surface {
@@ -249,7 +270,16 @@ header[data-scrolled="false"] .wordmark { letter-spacing: 0.3em; }
   width: min(72rem, 90vw);
   height: 1px;
   transform: translateX(-50%);
-  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.18), transparent);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.14) 30%, rgb(99 217 230 / 0.30) 46%, rgb(255 95 162 / 0.26) 52%, rgb(139 124 248 / 0.24) 58%, rgb(255 255 255 / 0.14) 72%, transparent);
+}
+
+/* A supernova remnant behind the close: light only, no type over it. */
+.nova {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgb(247 247 244 / 0.10) 0%, rgb(99 217 230 / 0.16) 10%, rgb(255 95 162 / 0.10) 26%, rgb(139 124 248 / 0.10) 44%, transparent 66%);
 }
 
 /* Stat numerals roll up when they enter. */
@@ -306,13 +336,14 @@ header { transition: transform 420ms var(--ease), background-color 300ms, border
 .k-glow::before {
   content: '';
   position: absolute;
-  inset: -30% -40%;
+  inset: -34% -44%;
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at 50% 50%, rgb(99 217 230 / 0.26) 0%, rgb(99 217 230 / 0.10) 28%, transparent 52%),
-    radial-gradient(ellipse at 50% 50%, rgb(139 124 248 / 0.22) 0%, rgb(139 124 248 / 0.08) 45%, transparent 72%);
-  animation: k-glow 6s ease-in-out 1600ms infinite;
+    radial-gradient(ellipse at 50% 50%, rgb(247 247 244 / 0.16) 0%, rgb(99 217 230 / 0.20) 14%, rgb(99 217 230 / 0.06) 30%, transparent 46%),
+    radial-gradient(ellipse at 50% 50%, rgb(255 95 162 / 0.16) 0%, rgb(255 95 162 / 0.05) 40%, transparent 60%),
+    radial-gradient(ellipse at 50% 50%, rgb(139 124 248 / 0.20) 0%, rgb(139 124 248 / 0.07) 50%, transparent 76%);
+  animation: k-glow 7s ease-in-out 1600ms infinite;
 }
 @keyframes k-glow {
   0%, 100% { opacity: 0.7; transform: scale(1); }
@@ -326,14 +357,14 @@ header { transition: transform 420ms var(--ease), background-color 300ms, border
   z-index: 90;
   background: var(--color-void);
   pointer-events: none;
-  transition: opacity 650ms var(--ease);
+  transition: opacity 1100ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .warp-out { opacity: 0; }
 /* Fail-safe: if the script never finishes (slow phone, blocked JS, a hydration
    error), the overlay still clears itself after two and a half seconds. */
-.warp { animation: warp-failsafe 500ms var(--ease) 2500ms forwards; }
+.warp { animation: warp-failsafe 500ms var(--ease) 2800ms forwards; }
 @keyframes warp-failsafe { to { opacity: 0; visibility: hidden; } }
-html.warping .rise, html.warping .k-settle, html.warping .k-star, html.warping .k-glow::before { animation-play-state: paused; }
+html.warping .rise, html.warping .k-settle, html.warping .k-glow::before, html.warping .k-solid { animation-play-state: paused; }
 html.warping header { opacity: 0; }
 @media not (scripting: enabled) { .warp { display: none; } }
 
@@ -384,33 +415,34 @@ html.warping header { opacity: 0; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* The mark settles in, then the star at its center lights. */
+/* The mark as a solid: the same artwork stacked in depth and swaying slowly
+   in 3D. It never turns past the point where the mark would read mirrored.
+   Back layers sit darker so the side face reads as it turns. */
+.k-stage { perspective: 1400px; }
+.k-solid {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: k-turn 18s ease-in-out infinite;
+}
+.k-solid > * { display: block; }
+.k-solid > .k-layer {
+  position: absolute;
+  inset: 0;
+  transform: translateZ(calc(var(--z) * -1px));
+  filter: brightness(var(--b));
+}
+@keyframes k-turn {
+  0%   { transform: rotateX(6deg) rotateY(-34deg); }
+  50%  { transform: rotateX(-4deg) rotateY(34deg); }
+  100% { transform: rotateX(6deg) rotateY(-34deg); }
+}
+
+/* The mark settles in. */
 .k-settle { animation: k-settle 1400ms var(--ease) both; }
 @keyframes k-settle {
   from { opacity: 0; transform: translateY(18px) scale(0.985); filter: blur(6px); }
   to   { opacity: 1; transform: none; filter: blur(0); }
 }
-.k-star {
-  position: absolute;
-  width: 0.9%;
-  height: 0.9%;
-  border-radius: 50%;
-  background: var(--color-star);
-  box-shadow:
-    0 0 6px 2px rgb(247 247 244 / 0.9),
-    0 0 22px 6px rgb(99 217 230 / 0.55),
-    0 0 60px 14px rgb(139 124 248 / 0.25);
-  animation: k-star 1200ms var(--ease) 900ms both, k-star-breathe 5s ease-in-out 2200ms infinite;
-}
-@keyframes k-star {
-  from { opacity: 0; transform: scale(0.2); }
-  to   { opacity: 1; transform: scale(1); }
-}
-@keyframes k-star-breathe {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.35); }
-}
-
 .starfield {
   position: absolute;
   inset: 0;
@@ -491,7 +523,7 @@ html.warping header { opacity: 0; }
   }
   .reveal { opacity: 1; transform: none; }
   .rise, .k-settle { animation: none; opacity: 1; transform: none; filter: none; }
-  .k-star { animation: none; opacity: 1; transform: none; }
+  .k-solid { animation: none; transform: rotateX(6deg) rotateY(-14deg); }
   .k-glow::before { animation: none; }
   header { transition: none; }
   .warp { display: none; }
