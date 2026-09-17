@@ -1,142 +1,111 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { KLogo } from '@/components/KLogo'
 
 const links = [
-  { href: '/', label: 'Home' },
   { href: '/audit', label: 'Assessment' },
   { href: '/about', label: 'About' },
 ]
 
+export const CALENDLY = 'https://calendly.com/logan-kaleoshq/30min'
+export const CTA = 'Talk with us'
+export const LINKEDIN = 'https://www.linkedin.com/company/joinkaleoshq/'
+
+/* A rail, not a bar. Mark and wordmark left, two mono links with a live dot
+   on the current page, the call as a ghost pill with a star. Transparent over
+   the hero; hides on the way down and returns on the way up. */
 export function NavBar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
+  const last = useRef(0)
   const pathname = usePathname()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 80)
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    const onScroll = () => {
+      const y = window.scrollY
+      setScrolled(y > 24)
+      setHidden(y > 360 && y > last.current && !open)
+      last.current = y
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [open])
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [open])
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
-        scrolled
-          ? 'bg-paper/90 border-slate-200 shadow-nav'
-          : 'bg-paper/70 border-transparent'
-      } backdrop-blur-md`}
+    <header
+      data-scrolled={scrolled || open}
+      data-hidden={hidden}
+      className={`fixed inset-x-0 top-0 z-50 ${
+        scrolled || open ? 'bg-void/75 backdrop-blur-md border-b border-line' : 'border-b border-transparent'
+      }`}
     >
-      {/* Reading progress. Driven by a CSS scroll timeline, so it tracks the
-          scroller exactly with no listener; where that is unsupported the
-          rail stays at scale 0 and simply is not there. */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-px overflow-hidden"
-        aria-hidden="true"
-      >
-        <div className="scroll-rail h-full bg-gradient-to-r from-accent to-teal-bright" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/kaleos-logo.png"
-            width={28}
-            height={28}
-            alt=""
-            className="rounded-control object-cover"
-            priority
-          />
-          <span
-            className="font-display text-navy font-semibold text-body-lg tracking-tight"
-          >
-            Kaleos HQ
-          </span>
+      <nav aria-label="Primary" className="mx-auto flex h-[4.5rem] max-w-[88rem] items-center justify-between px-5 md:h-20 md:px-8">
+        <Link href="/" className="flex items-center gap-3 text-star" aria-label="Kaleos HQ, home">
+          <KLogo className="h-8 md:h-9" />
+          <span className="wordmark text-[1.25rem] md:text-[1.45rem]">Kaleos HQ</span>
         </Link>
 
-        {/* Desktop */}
-        <div className="hidden md:flex items-center gap-8">
-          {links.map((link) => {
-            const isActive =
-              pathname === link.href ||
-              (link.href !== '/' && pathname.startsWith(link.href))
+        <div className="hidden items-center gap-9 md:flex">
+          {links.map((l) => {
+            const active = pathname === l.href
             return (
               <Link
-                key={link.href}
-                href={link.href}
-                className={`group/nav relative inline-flex items-center text-body font-medium tracking-wide transition-colors duration-200 ease-in-out py-3 -my-3 ${
-                  isActive ? 'text-navy' : 'text-muted-text hover:text-navy'
-                }`}
+                key={l.href}
+                href={l.href}
+                aria-current={active ? 'page' : undefined}
+                className={`navlink transition-colors ${active ? 'text-star' : 'text-mist hover:text-star'}`}
               >
-                {link.label}
-                <span
-                  className={`absolute left-0 bottom-2 h-0.5 bg-accent transition-all duration-200 ease-in-out ${
-                    isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
-                  }`}
-                />
+                {l.label}
               </Link>
             )
           })}
-          <a
-            href="https://calendly.com/logan-kaleoshq/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary px-4 text-body"
-          >
-            Book a Discovery Call
+          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+            <span aria-hidden="true" className="text-comet">✦</span>
+            {CTA}
           </a>
         </div>
 
-        {/* Mobile toggle */}
         <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden flex items-center justify-center w-10 h-10 -mr-2 text-navy/70 hover:text-navy transition-colors"
-          aria-label="Toggle menu"
+          type="button"
+          onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
+          aria-controls="mobile-menu"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          className="flex h-11 w-11 items-center justify-center text-star md:hidden"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {open ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
+          <span className="relative block h-[10px] w-5" aria-hidden="true">
+            <span className={`absolute left-0 top-0 h-px w-5 bg-current transition-transform duration-300 ${open ? 'translate-y-[5px] rotate-45' : ''}`} />
+            <span className={`absolute bottom-0 left-0 h-px w-5 bg-current transition-transform duration-300 ${open ? '-translate-y-[4px] -rotate-45' : ''}`} />
+          </span>
         </button>
-      </div>
+      </nav>
 
-      {/* Mobile menu */}
-      {open && (
-        <div className="md:hidden bg-paper border-b border-slate-200">
-          <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-4">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className={`text-body font-medium tracking-wide transition-colors duration-200 ${
-                  pathname === link.href ||
-                  (link.href !== '/' && pathname.startsWith(link.href))
-                    ? 'text-navy'
-                    : 'text-muted-text hover:text-navy'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <a
-              href="https://calendly.com/logan-kaleoshq/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary px-4 text-body"
-            >
-              Book a Discovery Call
-            </a>
-          </div>
+      <div id="mobile-menu" hidden={!open} className="border-t border-line bg-void/90 backdrop-blur-md md:hidden">
+        <div className="flex flex-col gap-1 px-5 pb-6 pt-3">
+          {links.map((l) => (
+            <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="font-display py-3 text-[1.5rem] font-semibold text-star">
+              {l.label}
+            </Link>
+          ))}
+          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star mt-3 w-full">
+            {CTA}
+          </a>
         </div>
-      )}
-    </nav>
+      </div>
+    </header>
   )
 }

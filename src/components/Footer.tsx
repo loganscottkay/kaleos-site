@@ -1,135 +1,69 @@
-import Image from 'next/image'
 import Link from 'next/link'
+import { KLogo } from '@/components/KLogo'
+import { CALENDLY, CTA, LINKEDIN } from '@/components/NavBar'
 
-export function SocialIcons({ className = '' }: { className?: string }) {
+export const MOTTO = 'AI that answers to you.'
+
+function XIcon() {
   return (
-    <span className={`inline-flex items-center gap-3 text-muted-text ${className}`}>
-      <a
-        href="https://x.com/KaleosHQ"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="X / Twitter"
-        className="inline-flex items-center justify-center p-3 -m-3 text-current hover:text-link transition-colors duration-200"
-      >
-        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-        </svg>
-      </a>
-    </span>
+    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
   )
 }
 
-const siteLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/audit', label: 'Assessment' },
-  { href: '/about', label: 'About' },
-]
-
-function Column({ title, children }: { title: string; children: React.ReactNode }) {
+function LinkedInIcon() {
   return (
-    <div>
-      <p className="font-system text-caption uppercase tracking-widest text-white/35 mb-4">
-        {title}
-      </p>
-      <ul className="space-y-2.5">{children}</ul>
-    </div>
+    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452z" />
+    </svg>
   )
 }
 
-const linkClass =
-  'text-white/70 text-body hover:text-teal-bright transition-colors duration-200 inline-flex min-h-10 items-center'
-
-/* The footer runs on the dark ground rather than paper. Every page ends on
-   a dark section, so a light strip underneath read as an accidental gap
-   instead of an ending. */
 export function Footer() {
   return (
-    <footer className="atmos bg-ink border-t border-white/10">
-      <div className="atmos-layer atmos-depth" aria-hidden="true" />
-      <div className="atmos-layer atmos-grid" aria-hidden="true" />
-      <div className="atmos-layer atmos-vignette" aria-hidden="true" />
-      <div className="atmos-layer atmos-grain" aria-hidden="true" />
-
-      <div className="max-w-7xl mx-auto px-4 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-12">
-          {/* Identity */}
-          <div className="md:col-span-5">
-            <Link href="/" className="inline-flex items-center gap-3 mb-5">
-              <Image
-                src="/kaleos-logo.png"
-                width={28}
-                height={28}
-                alt=""
-                className="rounded-control object-cover"
-              />
-              <span
-                className="font-display text-white font-semibold text-body-lg tracking-tight"
-              >
-                Kaleos HQ
-              </span>
+    <footer className="horizon">
+      <div className="mx-auto max-w-[88rem] px-5 py-16 md:px-8 md:py-24">
+        <div className="grid gap-12 md:grid-cols-12 md:items-end">
+          <div className="md:col-span-7">
+            <Link href="/" className="inline-flex items-center gap-3 text-star" aria-label="Kaleos HQ, home">
+              <KLogo className="h-8" />
+              <span className="wordmark text-[1.25rem]">Kaleos HQ</span>
             </Link>
-            <p className="text-mist text-body leading-relaxed max-w-sm">
-              Agents do the work. Humans make the calls. Everything is logged.
+            <p className="mt-8 max-w-[14ch] font-display text-h2 font-bold text-star">{MOTTO}</p>
+            <p className="mt-4 max-w-md text-body text-mist">
+              Custom AI solutions for the modern business, with a person at the gate.
             </p>
-            <div className="mt-6">
-              <div className="gate-rule on-dark align-start" aria-hidden="true" />
+          </div>
+          <div className="grid gap-8 sm:grid-cols-2 md:col-span-5">
+            <div>
+              <ul className="space-y-1 text-body">
+                <li><Link href="/" className="inline-block py-1.5 text-mist hover:text-star">Home</Link></li>
+                <li><Link href="/audit" className="inline-block py-1.5 text-mist hover:text-star">Assessment</Link></li>
+                <li><Link href="/about" className="inline-block py-1.5 text-mist hover:text-star">About</Link></li>
+                <li><Link href="/privacy" className="inline-block py-1.5 text-mist hover:text-star">Privacy</Link></li>
+                <li><Link href="/terms" className="inline-block py-1.5 text-mist hover:text-star">Terms</Link></li>
+              </ul>
+            </div>
+            <div>
+              <ul className="space-y-1 text-body">
+                <li><a href="mailto:logan@kaleoshq.com" className="inline-block break-all py-1.5 text-mist hover:text-star">logan@kaleoshq.com</a></li>
+                <li><a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 text-mist hover:text-star">{CTA}</a></li>
+                <li className="flex gap-2 pt-1">
+                  <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" aria-label="Kaleos HQ on LinkedIn" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-mist hover:border-star hover:text-star">
+                    <LinkedInIcon />
+                  </a>
+                  <a href="https://x.com/KaleosHQ" target="_blank" rel="noopener noreferrer" aria-label="Kaleos HQ on X" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-mist hover:border-star hover:text-star">
+                    <XIcon />
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
-
-          <div className="md:col-span-3">
-            <Column title="Site">
-              {siteLinks.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className={linkClass}>
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </Column>
-          </div>
-
-          <div className="md:col-span-4">
-            <Column title="Get in touch">
-              <li>
-                <a href="mailto:logan@kaleoshq.com" className={linkClass}>
-                  logan@kaleoshq.com
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://calendly.com/logan-kaleoshq/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={linkClass}
-                >
-                  Book a Discovery Call
-                </a>
-              </li>
-            </Column>
-          </div>
         </div>
-
-        {/* Baseline */}
-        <div className="mt-16 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-system text-caption text-white/40">
-          <span>
-            &copy; 2026 Kaleos HQ &middot;{' '}
-            <a
-              href="https://www.kaleoshq.com"
-              className="hover:text-white/70 transition-colors"
-            >
-              kaleoshq.com
-            </a>
-          </span>
-          <span className="inline-flex items-center gap-5">
-            <span className="inline-flex items-center gap-2">
-              <span
-                className="status-dot inline-block w-1.5 h-1.5 rounded-full bg-teal-bright"
-                aria-hidden="true"
-              />
-              Systems operational
-            </span>
-            <SocialIcons className="[&_a]:text-white/40 [&_a:hover]:text-teal-bright" />
-          </span>
+        <div className="mt-16 flex flex-col gap-3 font-mono text-[0.72rem] tracking-wide text-ash sm:flex-row sm:items-center sm:justify-between">
+          <span>© {new Date().getFullYear()} Kaleos HQ · New York, NY</span>
+          <span>Every action our systems take is logged for you.</span>
         </div>
       </div>
     </footer>

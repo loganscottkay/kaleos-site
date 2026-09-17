@@ -82,7 +82,6 @@ documents and processes.
 - src/app/blog/ — Blog posts (live, unlinked from nav); content in content/blog/*.md
 - src/app/api/lead/route.ts — Lead form backend (Resend + Airtable)
 - src/app/api/chat/route.ts — OpenAI proxy for chatbot
-- src/app/api/bohan/roadmap-question/route.ts — question box on the Bohan client roadmap
 - src/app/robots.ts, src/app/sitemap.ts — SEO layer
 - src/app/globals.css — design tokens (@theme + :root at the top) and all hand-written CSS
 - src/lib/rate-limit.ts — shared in-memory rate limiter for the API routes
@@ -97,7 +96,6 @@ documents and processes.
 - src/components/AuditForm.tsx — Lead capture form (posts to /api/lead)
 - public/photo.png — Logan's headshot
 - public/kaleos-logo.png — K logo mark (nav, footer); src/app/icon.png and apple-icon.png are the favicon copies
-- public/bohan/roadmap.html — standalone client roadmap, served at /bohan/roadmap, noindex
 - brand-assets/ — social banners and LinkedIn logo, not used by the site build
 - .env.example — every env var with a placeholder; site runs with placeholders (integrations show "not configured")
 

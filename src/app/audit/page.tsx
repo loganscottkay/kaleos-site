@@ -1,247 +1,160 @@
 import type { Metadata } from 'next'
-import { NavBar } from '@/components/NavBar'
+import { NavBar, CALENDLY, CTA } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
-import { Card } from '@/components/Card'
-import { Reveal, SpotlightGroup } from '@/components/Reveal'
-import { AuditForm } from '@/components/AuditForm'
+import { Reveal } from '@/components/Reveal'
+import { Words } from '@/components/Words'
 import { FAQ } from '@/components/FAQ'
+import { AuditForm } from '@/components/AuditForm'
+import { JsonLd } from '@/components/JsonLd'
+import { faqs } from '@/components/FAQ'
+import { Starfield } from '@/components/home/Starfield'
+import { Rim } from '@/components/home/Rim'
 
 export const metadata: Metadata = {
-  title: 'Strategic AI Assessment',
+  title: 'Assessment',
   description:
-    'The starting point for agentic AI implementation: a deep operational analysis that maps your workflows, ranks your opportunities, and hands you a roadmap with projected ROI.',
-  alternates: {
-    canonical: 'https://www.kaleoshq.com/audit',
-  },
+    'A two-week operational assessment: every workflow mapped, the opportunities ranked, and a roadmap for the first system. Then a 30-minute call to decide together.',
+  alternates: { canonical: 'https://www.kaleoshq.com/audit' },
   openGraph: {
-    title: 'Strategic AI Assessment | Kaleos HQ',
-    description:
-      'The starting point for agentic AI implementation: a deep operational analysis that maps your workflows, ranks your opportunities, and hands you a roadmap with projected ROI.',
+    title: 'Assessment | Kaleos HQ',
+    description: 'A two-week operational assessment: every workflow mapped, the opportunities ranked, and a roadmap for the first system.',
     url: 'https://www.kaleoshq.com/audit',
+    images: ['/opengraph-image.png'],
   },
 }
 
 const deliverables = [
-  'Operational workflow mapping',
-  'AI readiness evaluation across every business function',
-  'Prioritized opportunity matrix ranked by impact and complexity',
-  'ROI projections with implementation roadmap',
-  'Executive summary PDF and 45-minute strategy presentation',
+  { t: 'Operational workflow map', d: 'Every workflow that eats senior time, drawn from start to finish with the judgment calls marked.' },
+  { t: 'Readiness read across every function', d: 'Where the data, the process, and the people are ready for a system, and where they are not yet.' },
+  { t: 'Ranked opportunity matrix', d: 'Each candidate workflow scored on impact and complexity, so the first build is the obvious one.' },
+  { t: 'Roadmap for the first system', d: 'What gets built first, what number it is expected to move, and what comes after it proves out.' },
+  { t: 'Executive summary and a 45-minute walkthrough', d: 'A short PDF and a live session where we go through it together and decide.' },
 ]
 
-const steps = [
-  {
-    step: '01',
-    title: 'Fill out the form below',
-    desc: 'Takes 2 minutes. Tell us what you do and where it hurts.',
-  },
-  {
-    step: '02',
-    title: 'Hop on a discovery call',
-    desc: '30 minutes. We learn how your business actually operates.',
-  },
-  {
-    step: '03',
-    title: 'Get the full assessment',
-    desc: 'Delivered within 2 weeks. No fluff, just numbers and a plan.',
-  },
+const tiers = [
+  { name: 'Assessment', what: 'The starting point: a deep read of your operation and a plan.', includes: 'Workflow map, readiness read, ranked matrix, roadmap, executive summary.', timeline: 'Delivered within two weeks.' },
+  { name: 'Implementation', what: 'The assessment plus the build of one system, scoped, shipped, and in production.', includes: 'Everything in Assessment, plus design, build, testing, and deployment of the first system with human approval built in.', timeline: 'First system live by day 30.' },
+  { name: 'Strategic partner', what: 'Ongoing implementation with senior attention.', includes: 'Continuous builds, priority response, and quarterly reviews tied to your business goals.', timeline: 'Ongoing.' },
 ]
+
+const rowLabel = 'py-5 pr-6 align-top font-mono text-[0.72rem] font-normal uppercase tracking-[0.18em] text-ash'
 
 export default function AuditPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-void text-star">
       <NavBar />
+      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }} />
 
-      {/* Hero */}
-      <section className="atmos bg-paper pt-24 md:pt-32 pb-12 md:pb-16">
-        <div className="atmos-layer atmos-grid-fine" aria-hidden="true" />
-        <div className="atmos-layer atmos-aurora atmos-aurora-soft" aria-hidden="true" />
-
-        <div className="relative max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-h1 font-medium mb-6 text-ink">
-            Strategic AI assessment
-          </h1>
-          <p className="hero-rise hero-rise-1 text-body-lg text-slate-600 max-w-2xl mx-auto">
-            We map your business, identify your highest-leverage AI
-            opportunities, and deliver a clear roadmap with projected ROI.
-          </p>
+      <section className="relative isolate overflow-hidden">
+        <Starfield density={0.0001} />
+        <div className="relative mx-auto max-w-[88rem] px-5 pb-20 pt-36 md:px-8 md:pb-28 md:pt-48">
+        <div className="grid gap-12 md:grid-cols-12 md:items-end">
+          <div className="md:col-span-8">
+            <h1 className="mt-6 max-w-[12ch] text-h1">
+              Two weeks to a <span className="glint">clear first move</span>
+            </h1>
+          </div>
+          <div className="md:col-span-4">
+            <p className="measure text-body-lg text-mist">
+              We map how your business actually runs, rank where a system would matter most, and hand you a roadmap for the first one. Then we decide together on a call whether to build it.
+            </p>
+            <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star btn-lg mt-8">{CTA}</a>
+          </div>
+        </div>
         </div>
       </section>
 
-      {/* Assessment Deliverables */}
-      <section className="atmos py-16 md:py-24 bg-paper">
-        <div className="atmos-layer atmos-grid-paper parallax-slow" aria-hidden="true" />
-
-        <div className="relative max-w-7xl mx-auto px-4">
-          <Reveal>
-            <h2 className="text-h2 font-medium text-center mb-12 text-ink">
-              Assessment deliverables
-            </h2>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <div className="max-w-2xl mx-auto">
-              <div className="space-y-4">
-                {deliverables.map((item, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <svg
-                      className="w-5 h-5 text-teal-bright shrink-0 mt-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    <span className="text-slate-600">{item}</span>
+      <section className="horizon" aria-labelledby="deliverables-heading">
+        <div className="mx-auto grid max-w-[88rem] gap-12 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
+          <div className="md:col-span-4">
+            <Reveal>
+              <Words as="h2" id="deliverables-heading" className="mt-5 block max-w-[12ch] text-h2">What you receive</Words>
+            </Reveal>
+          </div>
+          <ol className="md:col-span-7 md:col-start-6">
+            {deliverables.map((d, i) => (
+              <li key={d.t} className="last:border-b last:border-line">
+                <Reveal delay={i * 70} className="rule grid gap-3 py-6 md:grid-cols-12">
+                  <span className="font-display text-[1.5rem] font-bold text-comet md:col-span-2">0{i + 1}</span>
+                  <div className="md:col-span-10">
+                    <h3 className="text-h3">{d.t}</h3>
+                    <p className="mt-2 max-w-xl text-body text-mist">{d.d}</p>
                   </div>
-                ))}
-              </div>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="horizon relative overflow-hidden" aria-labelledby="tiers-heading">
+        <div aria-hidden="true" data-fx="comet" className="comet left-[6%] top-[14%] -rotate-[6deg]" />
+        <div className="relative mx-auto max-w-[88rem] px-5 py-20 md:px-8 md:py-28">
+          <Reveal>
+            <Words as="h2" id="tiers-heading" className="mt-5 block max-w-[18ch] text-h2">Three ways to work together</Words>
+          </Reveal>
+          <Reveal delay={100}>
+            <div className="mt-14 overflow-x-auto">
+              <table className="w-full min-w-[40rem] border-collapse text-left">
+                <thead>
+                  <tr className="border-b border-line">
+                    <th scope="col" className="w-1/4 py-4 pr-6"> </th>
+                    {tiers.map((t) => (
+                      <th key={t.name} scope="col" className="py-4 pr-6 align-bottom font-display text-h3 font-semibold text-star">{t.name}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-line">
+                  {(['what', 'includes', 'timeline'] as const).map((row) => (
+                    <tr key={row}>
+                      <th scope="row" className={rowLabel}>{row === 'what' ? 'What it is' : row === 'includes' ? 'Includes' : 'Timeline'}</th>
+                      {tiers.map((t) => (
+                        <td key={t.name} className="py-5 pr-6 align-top text-body text-star">{t[row]}</td>
+                      ))}
+                    </tr>
+                  ))}
+                  <tr>
+                    <th scope="row" className={rowLabel}>Pricing</th>
+                    <td colSpan={3} className="py-5 text-body text-mist">
+                      We scope and quote on a call once we understand the work, and you get a real number rather than a rate card.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="atmos py-16 md:py-24 bg-ink">
-        <div className="atmos-layer atmos-depth" aria-hidden="true" />
-        <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
-        <div className="atmos-layer atmos-aurora" aria-hidden="true" />
-        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
-        <div className="atmos-layer atmos-grain" aria-hidden="true" />
-
-        <div className="relative max-w-7xl mx-auto px-4">
-          <Reveal>
-            <h2 className="text-h2 font-medium text-center mb-12 text-white">
-              How it works
-            </h2>
-          </Reveal>
-
-          <SpotlightGroup className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {steps.map((item, i) => (
-              <Reveal key={i} delay={i * 100} className="h-full">
-                <Card className="spotlight lift lift-dark p-6 h-full">
-                  <div className="text-white/60 text-caption uppercase tracking-widest mb-2">
-                    {item.step}
-                  </div>
-                  <h3 className="text-h4 font-semibold mb-2 text-white">
-                    {item.title}
-                  </h3>
-                  <p className="text-white/70 text-body leading-relaxed">
-                    {item.desc}
-                  </p>
-                </Card>
-              </Reveal>
-            ))}
-          </SpotlightGroup>
-        </div>
-      </section>
-
-      {/* How Engagements Work */}
-      <section className="atmos py-16 md:py-24 bg-navy">
-        <div className="atmos-layer atmos-depth" aria-hidden="true" />
-        <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
-        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
-        <div className="atmos-layer atmos-grain" aria-hidden="true" />
-
-        <div className="relative max-w-7xl mx-auto px-4">
-          <Reveal>
-            <h2 className="text-h2 font-medium text-center mb-6 text-white">
-              How engagements work
-            </h2>
-            <p className="text-mist text-center max-w-3xl mx-auto mb-16 leading-relaxed">
-              Every engagement is scoped to your business. No packages off a
-              shelf, no rate card. Three ways to work together, priced on a
-              call once we understand what you actually need.
-            </p>
-          </Reveal>
-
-          <SpotlightGroup className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-            {[
-              {
-                name: 'Assessment',
-                desc: 'A deep operational analysis that tells you exactly where AI creates leverage in your business. Workflow mapping, a prioritized opportunity matrix, and a roadmap with projected ROI.',
-              },
-              {
-                name: 'Implementation',
-                desc: 'The assessment plus hands-on builds. Precision-scoped AI systems designed, built, tested, and deployed into your operations, each with human-in-the-loop controls.',
-              },
-              {
-                name: 'Strategic Partner',
-                desc: 'Ongoing full-stack implementation with strategic oversight. Continuous builds, priority response, and quarterly reviews tied to your business goals.',
-              },
-            ].map((tier, i) => (
-              <Reveal key={tier.name} delay={i * 100} className="h-full">
-                <Card hover className="spotlight lift lift-dark p-8 h-full">
-                  <div className="flex flex-col h-full">
-                    <h3 className="text-h4 font-semibold text-white mb-4">
-                      {tier.name}
-                    </h3>
-                    <p className="text-white/60 text-body leading-relaxed mb-8 flex-1">
-                      {tier.desc}
-                    </p>
-                    <a
-                      href="https://calendly.com/logan-kaleoshq/30min"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-ghost-dark w-full px-6 text-body"
-                    >
-                      Book a Discovery Call
-                    </a>
-                  </div>
-                </Card>
-              </Reveal>
-            ))}
-          </SpotlightGroup>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="atmos py-16 md:py-24 bg-ink">
-        <div className="atmos-layer atmos-depth" aria-hidden="true" />
-        <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
-        <div className="atmos-layer atmos-aurora" aria-hidden="true" />
-        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
-        <div className="atmos-layer atmos-grain" aria-hidden="true" />
-
-        <div className="relative max-w-7xl mx-auto px-4">
-          <Reveal>
-            <h2 className="text-h2 font-medium text-center mb-12 text-white">
-              Frequently asked questions
-            </h2>
-          </Reveal>
-
-          <div className="max-w-2xl mx-auto">
-            <FAQ />
+      <section className="horizon" aria-labelledby="faq-heading">
+        <div className="mx-auto grid max-w-[88rem] gap-12 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
+          <div className="md:col-span-4">
+            <Reveal>
+              <Words as="h2" id="faq-heading" className="mt-5 block max-w-[12ch] text-h2">Questions we hear before every engagement</Words>
+            </Reveal>
+          </div>
+          <div className="md:col-span-7 md:col-start-6">
+            <Reveal delay={80}><FAQ /></Reveal>
           </div>
         </div>
       </section>
 
-      {/* Intake Form */}
-      <section className="atmos py-16 md:py-24 bg-navy" id="form">
-        <div className="atmos-layer atmos-depth" aria-hidden="true" />
-        <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
-        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
-        <div className="atmos-layer atmos-grain" aria-hidden="true" />
-
-        <div className="relative max-w-7xl mx-auto px-4">
-          <Reveal>
-            <h2 className="text-h2 font-medium text-center mb-12 text-white">
-              Start a conversation
-            </h2>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <div className="max-w-lg mx-auto">
-              <div className="card-dark p-8">
-                <AuditForm />
-              </div>
-            </div>
-          </Reveal>
+      <section id="contact" className="relative overflow-hidden" aria-labelledby="form-heading">
+        <Rim />
+        <div className="relative mx-auto grid max-w-[88rem] gap-12 px-5 py-24 md:grid-cols-12 md:px-8 md:py-32">
+          <div className="md:col-span-4">
+            <Reveal>
+              <Words as="h2" id="form-heading" className="mt-5 block max-w-[12ch] text-h2">
+                Tell us what is eating your week
+              </Words>
+              <p className="mt-6 max-w-sm text-body text-mist">
+                Prefer to start in writing? Send this and you will hear back within a day.
+              </p>
+            </Reveal>
+          </div>
+          <div className="md:col-span-7 md:col-start-6">
+            <Reveal delay={80}><AuditForm /></Reveal>
+          </div>
         </div>
       </section>
 

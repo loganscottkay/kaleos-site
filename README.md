@@ -87,7 +87,6 @@ public/                  Files served as-is at the site root.
   kaleos-logo.png        The K logo used in the nav and footer.
   photo.png              Logan's headshot (About page and chat widget).
   opengraph-image.png    The preview image shown when the site is shared on social media.
-  bohan/roadmap.html     A private client page. Do not change.
 brand-assets/            Social banners and the LinkedIn logo. Not used by the site.
 docs/                    Documentation and the baseline screenshots.
 docs/archive/            Old planning docs and audit logs. History only, safe to ignore.
@@ -101,7 +100,6 @@ Everything the visitor sees is yours. That includes:
 - All styling: `src/app/globals.css`, the Tailwind theme at the top of it, and every class name in the components.
 - Fonts (`src/app/layout.tsx` and `globals.css`), colors, spacing, animation, and motion.
 - Copy, headings, and labels inside the pages and components.
-- Images, the logo, the favicon files, the Open Graph image, and anything under `public/` except `public/bohan/`.
 - Page metadata (titles and descriptions) in each page's `metadata` export and in `layout.tsx`.
 - The blog layout and the markdown posts in `content/blog/`.
 
@@ -123,10 +121,8 @@ These are the parts wired to outside services. Changing them can break lead capt
 
 - `src/app/api/lead/route.ts`: receives the contact form and sends the lead to Logan's inbox (Resend) and to a spreadsheet (Airtable).
 - `src/app/api/chat/route.ts`: relays chat messages to OpenAI and returns the reply.
-- `src/app/api/bohan/roadmap-question/route.ts`: emails questions submitted from a private client page.
 - `src/lib/rate-limit.ts`: stops one visitor from spamming the form or chat.
 - Environment variables (`.env.example`, `.env.local`, and Vercel settings): the secret keys for the services above.
-- `public/bohan/`: a private client page that has nothing to do with the marketing site.
 - `next.config.ts`: routing and headers for the client page above.
 
 ## Where the design system lives
@@ -165,10 +161,8 @@ The rest of `globals.css` is the hand-written CSS for the button, card, and inpu
 | `/blog/automate-client-follow-ups` | Post: How to Automate Client Follow-Ups Without Losing the Personal Touch. |
 | `/blog/bleeding-money-on-manual-tasks` | Post: Why Most Businesses Are Bleeding Money on Tasks a Machine Could Handle. |
 | `/blog/what-is-an-ai-ops-audit` | Post: What Is an AI Ops Audit and Why Your Business Needs One. |
-| `/bohan/roadmap` | Private client page, password gated, hidden from search engines. Not part of the redesign. |
 | `/api/lead` | Backend. Receives the contact form. |
 | `/api/chat` | Backend. Powers the chat widget. |
-| `/api/bohan/roadmap-question` | Backend. Emails questions from the client page. |
 | `/sitemap.xml`, `/robots.txt` | Generated search-engine files. |
 
 Baseline screenshots of every page at desktop (1440px) and mobile (390px) widths are in `docs/baseline-screenshots/`.

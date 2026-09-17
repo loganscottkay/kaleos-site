@@ -1,316 +1,131 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { NavBar } from '@/components/NavBar'
-import { Footer, SocialIcons } from '@/components/Footer'
-import { Card } from '@/components/Card'
-import { Reveal, SpotlightGroup } from '@/components/Reveal'
-import { StrategyGraph } from '@/components/StrategyGraph'
+import { NavBar, CALENDLY, CTA, LINKEDIN } from '@/components/NavBar'
+import { Footer } from '@/components/Footer'
+import { Reveal } from '@/components/Reveal'
+import { Words } from '@/components/Words'
+import { Rim } from '@/components/home/Rim'
+import { Starfield } from '@/components/home/Starfield'
 
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Kaleos HQ is an agentic AI implementation firm founded by Logan Kay, who designed and deployed AI systems across admissions and operations at Harvard Business School.',
-  alternates: {
-    canonical: 'https://www.kaleoshq.com/about',
-  },
+    'Kaleos HQ was founded by Logan Kay, who previously designed and deployed AI systems at Harvard Business School. One rule runs the firm: a person signs before anything ships.',
+  alternates: { canonical: 'https://www.kaleoshq.com/about' },
   openGraph: {
     title: 'About | Kaleos HQ',
-    description:
-      'Kaleos HQ is an agentic AI implementation firm founded by Logan Kay, who designed and deployed AI systems across admissions and operations at Harvard Business School.',
+    description: 'Kaleos HQ was founded by Logan Kay, who previously designed and deployed AI systems at Harvard Business School.',
     url: 'https://www.kaleoshq.com/about',
+    images: ['/opengraph-image.png'],
   },
 }
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Logan Kay',
-  url: 'https://www.kaleoshq.com/about',
-  jobTitle: 'Founder & CEO',
-  worksFor: {
-    '@type': 'Organization',
-    name: 'Kaleos HQ',
-    url: 'https://www.kaleoshq.com',
-  },
-  alumniOf: {
-    '@type': 'Organization',
-    name: 'Harvard Business School',
-  },
-  sameAs: ['https://x.com/KaleosHQ'],
-}
+const background = [
+  { k: 'Now', v: 'Founder and CEO, Kaleos HQ' },
+  { k: 'Anthropic', v: 'Claude Corps Fellow, Cohort 1' },
+  { k: 'Previously', v: 'Designed and deployed AI systems across admissions and operations at Harvard Business School. The implementation method Kaleos HQ runs today comes from that work.' },
+]
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <main className="min-h-screen bg-void text-star">
       <NavBar />
 
-      {/* Hero */}
-      <section className="atmos bg-paper pt-24 md:pt-32 pb-12">
-        <div className="atmos-layer atmos-grid-fine" aria-hidden="true" />
-        <div className="atmos-layer atmos-aurora atmos-aurora-soft" aria-hidden="true" />
-
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="hero-rise font-system text-caption uppercase tracking-widest text-muted-text mb-6">
-            Kaleos HQ
-          </p>
-          <h1 className="text-h1 font-medium text-ink">
-            <span className="line-mask">
-              <span className="line-rise line-rise-1">Who we are</span>
-            </span>
+      <section className="relative isolate overflow-hidden">
+        <Starfield density={0.00008} shooting={false} />
+        <div className="relative mx-auto max-w-[88rem] px-5 pb-20 pt-36 md:px-8 md:pb-28 md:pt-48">
+          <h1 className="mt-6 max-w-[12ch] text-h1">
+            A firm built on <span className="glint">one rule</span>
           </h1>
+          <p className="mt-8 max-w-[34rem] text-body-lg text-mist">
+            A person signs before anything ships, and everything else at Kaleos HQ follows from that.
+          </p>
         </div>
       </section>
 
-      {/* Origin + Photo */}
-      <section className="atmos py-16 md:py-24 bg-paper">
-        <div className="atmos-layer atmos-grid-paper parallax-slow" aria-hidden="true" />
-
-        <div className="relative max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_3fr_1fr] gap-8 xl:gap-24 items-stretch">
-            {/* Left Graph: The Decline */}
-            <div className="order-1">
-              <StrategyGraph variant="decline" />
-            </div>
-
-            {/* Right Graph: The Growth */}
-            <div className="order-2 xl:order-3">
-              <StrategyGraph variant="growth" />
-            </div>
-
-            {/* Bio + Photo (center content) */}
-            <div className="order-3 xl:order-2 md:col-span-2 xl:col-span-1">
-              <div className="flex flex-col md:flex-row gap-12 items-center max-w-4xl mx-auto">
-                {/* Text */}
-                <div className="flex-1">
-                  <Reveal>
-                    <p className="text-body-lg text-slate-800 font-medium mb-6 tracking-tight max-w-xl">
-                      Kaleos HQ exists because wanting AI and running AI are
-                      different problems. The AI advantage isn&apos;t about the
-                      best tools. It&apos;s about the best implementation.
-                    </p>
-                  </Reveal>
-
-                  <div className="space-y-4 text-slate-600 leading-relaxed max-w-xl">
-                    <Reveal delay={100}>
-                      <p>
-                        Brilliant executives keep getting stuck. They have the
-                        vision but nobody to translate it into AI systems that
-                        actually run in production. We close that gap: strategy
-                        first, then precision-scoped systems with human
-                        approval on every consequential call.
-                      </p>
-                    </Reveal>
-
-                    <Reveal delay={200}>
-                      <p>
-                        Kaleos HQ was founded by Logan Kay, who designed and
-                        deployed AI systems across admissions and operations at
-                        Harvard Business School. The implementation methodology
-                        we run today comes directly from that work.
-                      </p>
-                    </Reveal>
-                  </div>
-                </div>
-
-                {/* Photo */}
-                <Reveal delay={200} className="w-full md:w-auto shrink-0">
-                  <div className="max-w-100 mx-auto md:mx-0 md:w-70 xl:w-65">
-                    <div className="aspect-[4/5] rounded-card overflow-hidden relative">
-                      <Image src="/photo.png" alt="Logan Kay, Founder of Kaleos HQ" fill className="object-cover" sizes="(max-width: 1280px) 100vw, 280px" />
-                    </div>
-                    <p className="mt-4 text-navy font-semibold text-center">
-                      Logan Kay
-                    </p>
-                    <p className="text-muted-text text-body text-center">
-                      Founder &amp; CEO, Kaleos HQ
-                    </p>
-                    <div className="flex justify-center mt-3">
-                      <SocialIcons className="[&_a]:text-slate-400/50 [&_a:hover]:text-teal-bright" />
-                    </div>
-                  </div>
-                </Reveal>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Background */}
-      <section className="atmos py-16 md:py-24 bg-ink">
-        <div className="atmos-layer atmos-depth" aria-hidden="true" />
-        <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
-        <div className="atmos-layer atmos-aurora" aria-hidden="true" />
-        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
-        <div className="atmos-layer atmos-grain" aria-hidden="true" />
-        <div className="atmos-layer atmos-horizon" aria-hidden="true" />
-
-        <div className="max-w-7xl mx-auto px-4">
-          <Reveal>
-            <h2 className="text-h2 font-medium text-center mb-12 text-white">
-              Background
-            </h2>
-          </Reveal>
-
-          <SpotlightGroup className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
-            <Reveal delay={0} className="h-full">
-              <Card className="spotlight lift lift-dark p-8 h-full">
-                {/* Brain/circuit icon */}
-                <div className="mb-4">
-                  <svg className="w-8 h-8 text-teal-bright" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                </div>
-                <h3 className="text-h4 font-semibold mb-3 text-white">
-                  AI at Harvard Business School
-                </h3>
-                <p className="text-mist leading-relaxed text-body">
-                  Logan designed and deployed AI systems across admissions and
-                  operations at Harvard Business School. The Kaleos HQ
-                  implementation methodology comes from that work.
-                </p>
-              </Card>
-            </Reveal>
-
-            <Reveal delay={150} className="h-full">
-              <Card className="spotlight lift lift-dark p-8 h-full">
-                {/* Chart icon */}
-                <div className="mb-4">
-                  <svg className="w-8 h-8 text-teal-bright" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-                  </svg>
-                </div>
-                <h3 className="text-h4 font-semibold mb-3 text-white">
-                  Production systems
-                </h3>
-                <p className="text-mist leading-relaxed text-body">
-                  Agentic AI systems that real businesses run on every day:
-                  client portals, coaching platforms, and outreach engines,
-                  each with human approval built in.
-                </p>
-              </Card>
-            </Reveal>
-
-            <Reveal delay={300} className="h-full">
-              <Card className="spotlight lift lift-dark p-8 h-full">
-                {/* Rocket/growth icon */}
-                <div className="mb-4">
-                  <svg className="w-8 h-8 text-teal-bright" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-h4 font-semibold mb-3 text-white">
-                  Data and operations
-                </h3>
-                <p className="text-mist leading-relaxed text-body">
-                  Fraud detection and financial transaction analysis at scale,
-                  plus hands-on operating experience. Every engagement is
-                  informed by real operational work, not theory.
-                </p>
-              </Card>
-            </Reveal>
-          </SpotlightGroup>
-        </div>
-      </section>
-
-      {/* How We're Different */}
-      <section className="atmos py-16 md:py-24 bg-navy">
-        <div className="atmos-layer atmos-depth" aria-hidden="true" />
-        <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
-        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
-        <div className="atmos-layer atmos-grain" aria-hidden="true" />
-
-        <div className="max-w-7xl mx-auto px-4">
-          <Reveal>
-            <h2 className="text-h2 font-medium text-center mb-12 text-white">
-              How we&apos;re different
-            </h2>
-          </Reveal>
-
-          <SpotlightGroup className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
-            <Reveal delay={100} className="h-full">
-              <Card className="spotlight lift lift-dark p-8 h-full">
-                <h3 className="text-h4 font-semibold mb-3 text-white">
-                  Methodology over tools.
-                </h3>
-                <p className="text-white/80 leading-relaxed">
-                  Strategy determines what gets built. The methodology is the product.
-                </p>
-              </Card>
-            </Reveal>
-
-            <Reveal delay={200} className="h-full">
-              <Card className="spotlight lift lift-dark p-8 h-full">
-                <h3 className="text-h4 font-semibold mb-3 text-white">
-                  Single-outcome precision.
-                </h3>
-                <p className="text-white/80 leading-relaxed">
-                  One system, one KPI, clear results. Then expand based on data.
-                </p>
-              </Card>
-            </Reveal>
-
-            <Reveal delay={300} className="h-full">
-              <Card className="spotlight lift lift-dark p-8 h-full">
-                <h3 className="text-h4 font-semibold mb-3 text-white">
-                  Absolute executive control.
-                </h3>
-                <p className="text-white/80 leading-relaxed">
-                  Nothing executes without human approval. AI amplifies your
-                  judgment, never replaces it.
-                </p>
-              </Card>
-            </Reveal>
-          </SpotlightGroup>
-        </div>
-      </section>
-
-      {/* The Operation */}
-      <section className="atmos py-16 md:py-24 bg-paper">
-        <div className="atmos-layer atmos-grid-paper parallax-slow" aria-hidden="true" />
-
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-slate-600 leading-relaxed">
+      <section className="horizon">
+        <div className="mx-auto grid max-w-[88rem] gap-12 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
+          <div className="md:col-span-4">
             <Reveal>
-              <p className="text-center">
-                Kaleos HQ is a focused firm by design. Every engagement gets
-                senior attention from strategy through deployment, and the
-                systems we ship for clients run on the same architecture we
-                use to run Kaleos HQ itself.
-              </p>
+              <div className="surface-nova aspect-square w-full max-w-sm rounded-[14px]">
+                <Image
+                  src="/photo.png"
+                  alt="Logan Kay, founder of Kaleos HQ"
+                  width={640}
+                  height={640}
+                  className="aspect-square w-full rounded-[14px] object-cover grayscale"
+                  priority
+                />
+              </div>
+              <p className="mt-5 font-display text-body font-semibold text-star">Logan Kay</p>
+              <p className="text-caption text-mist">Founder and CEO</p>
+              <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block py-1 text-caption text-mist underline decoration-line underline-offset-4 hover:text-star">LinkedIn</a>
+            </Reveal>
+          </div>
+          <div className="md:col-span-7 md:col-start-6">
+            <Reveal>
+              <div className="space-y-6 text-body-lg leading-[1.55] text-star">
+                <p>
+                  Kaleos HQ exists because wanting AI and running AI are different problems. Most companies that start with AI never get past the demo. The technology rarely fails. What fails is the connection between the tool and how the business actually operates.
+                </p>
+                <p>
+                  We close that gap the slow way. We map the workflows first, design one system tied to one number, ship it with a person at the gate, and prove it moved the number before we build anything else.
+                </p>
+                <p>
+                  The method comes from Logan&apos;s work at Harvard Business School, where he designed and deployed AI systems across admissions and operations. The systems Kaleos HQ ships for clients run on the same architecture Kaleos HQ uses to run itself.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <dl className="mt-16 divide-y divide-line border-y border-line">
+                {background.map((b) => (
+                  <div key={b.k} className="grid gap-2 py-5 md:grid-cols-4">
+                    <dt className="eyebrow text-ash">{b.k}</dt>
+                    <dd className="text-body text-star md:col-span-3">{b.v}</dd>
+                  </div>
+                ))}
+              </dl>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="atmos py-16 md:py-24 bg-ink">
-        <div className="atmos-layer atmos-depth" aria-hidden="true" />
-        <div className="atmos-layer atmos-grid parallax-slow" aria-hidden="true" />
-        <div className="atmos-layer atmos-aurora" aria-hidden="true" />
-        <div className="atmos-layer atmos-vignette" aria-hidden="true" />
-        <div className="atmos-layer atmos-grain" aria-hidden="true" />
-        <div className="atmos-layer atmos-horizon" aria-hidden="true" />
+      {/* What we hold to. Prose, not a grid. */}
+      <section className="horizon relative overflow-hidden" aria-labelledby="hold-heading">
+        <div aria-hidden="true" data-fx="comet" className="comet left-[8%] top-[12%] -rotate-[7deg]" />
+        <div className="relative mx-auto max-w-[88rem] px-5 py-20 md:px-8 md:py-28">
+          <div className="grid gap-12 md:grid-cols-12">
+            <div className="md:col-span-5">
+              <Reveal>
+                <Words as="h2" id="hold-heading" className="mt-5 block max-w-[10ch] text-h2">
+                  The method is the product
+                </Words>
+              </Reveal>
+            </div>
+            <div className="md:col-span-6 md:col-start-7">
+              <Reveal delay={100}>
+                <div className="space-y-7 text-body-lg leading-[1.55] text-mist">
+                  <p>
+                    Tools change every quarter. What does not change is the decision, made before anything is built, about which workflow deserves a system and what number it has to move. That decision is most of the work, and it is the part almost everyone skips.
+                  </p>
+                  <p>
+                    So we take <span className="text-star">one outcome at a time.</span> We build one system, tie it to one number, and read the result. Then we choose the next workflow based on what the first one proved rather than on what sounded exciting in the kickoff.
+                  </p>
+                  <p>
+                    And on every one of them, <span className="text-star">a person signs.</span> Nothing executes without human approval. The system extends your judgment rather than replacing it, and we will not build one that tries.
+                  </p>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <Reveal>
-            <h2 className="text-h2 font-medium mb-6 text-white">
-              Want to see if AI can help your business?
-            </h2>
-          </Reveal>
-          <Reveal delay={150}>
-            <a
-              href="https://calendly.com/logan-kaleoshq/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary px-8 py-4"
-            >
-              Book a Discovery Call
-            </a>
-          </Reveal>
+      <section className="relative overflow-hidden">
+        <Rim />
+        <div className="relative mx-auto flex max-w-[88rem] flex-col items-start gap-8 px-5 py-24 md:flex-row md:items-center md:justify-between md:px-8 md:py-32">
+          <h2 className="max-w-[16ch] text-h2">Curious whether this fits your business</h2>
+          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star btn-lg">{CTA}</a>
         </div>
       </section>
 

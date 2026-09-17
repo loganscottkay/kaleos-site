@@ -1,1235 +1,694 @@
 @import "tailwindcss";
 
-/* ════════════════════════════════════════════════════════════════════
-   DESIGN TOKENS. This is the one place to restyle the site from.
+/* ══════════════════════════════════════════════════════════════════
+   KALEOS design tokens
+   Black ground, white type, everywhere. Cosmological color lives in
+   outlines and single words: nebula (violet), comet (cyan), royal
+   (blue). Amber is the pending state only.
+   ══════════════════════════════════════════════════════════════════ */
 
-   Two blocks:
-   1. @theme: what Tailwind turns into utility classes (bg-ink, text-h2,
-      rounded-card, shadow-nav, font-display ...). Change a value here and
-      every class that uses it changes with it.
-   2. :root: raw primitives and motion values that the hand-written CSS
-      further down this file reads with var(). Colors in :root are the
-      same hexes as in @theme; keep the two in step when you change one.
+@theme static {
+  --color-void: #050507;
+  --color-void-2: #0d0d11;
+  --color-star: #f7f7f4;
+  --color-mist: #9a9aa3;   /* secondary on void, 6.5:1 */
+  --color-ash: #82828b;    /* labels and eyebrows, 4.9:1 */
 
-   Fonts are loaded in src/app/layout.tsx (next/font) and exposed as
-   --font-display, --font-mono, and the body font on <body>.
-   ════════════════════════════════════════════════════════════════════ */
+  --color-royal: #2b4cff;
+  --color-royal-bright: #6d86ff;
+  --color-nebula: #8b7cf8;
+  --color-comet: #63d9e6;
+  --color-amber: #d99a2b;
 
-@theme {
-  /* ── Brand color primitives ── */
-  --color-paper: #F5F3EF; /* warm bone page ground */
-  --color-ink: #0C1013; /* darkest ground and primary text on paper */
-  --color-navy: #171C22; /* dark section ground */
-  --color-navy-900: #11161B;
-  --color-navy-950: #0A0E12; /* deepest ground: demo shells, panels */
-  --color-accent: #0E7F86; /* brand teal on paper */
-  --color-teal-bright: #8CB8C2; /* brand teal on dark grounds, matte */
-  --color-mist: #9AA3AE; /* secondary text on dark grounds */
+  /* Supernova light. Only ever in halos, tails, and horizon lines. Never type, never a fill. */
+  --color-nova: #ff5fa2;
+  --color-ember: #ffb457;
 
-  /* ── Semantic colors (contrast-checked, see docs/DESIGN-HANDOFF.md) ── */
-  --color-muted-text: #556275; /* captions on paper, 5.59:1 */
-  --color-link: #2C6A70; /* links and primary-button hover, 5.57:1 on paper */
-  --color-accent-deep: #0D6E70; /* accent surface carrying white text, 5.07:1 */
-  --color-pending: #B45309; /* amber: awaiting approval, on paper */
-  --color-pending-bright: #F59E0B; /* amber on dark grounds */
-  --color-approved: #0E7F86; /* approved state, chips and dots */
-  --color-approved-text: #2C6A70; /* approved state at body size on paper */
-  --color-hairline: #E3E0D9; /* 1px separators on paper */
-  --color-decline: #EF4444; /* reject / decline only */
-  --color-decline-bright: #F87171;
-  --color-chart-decline: rgba(50, 15, 15, 0.9); /* About page "without strategy" chart card */
-  --color-chart-growth: rgba(10, 35, 30, 0.9); /* About page "with Kaleos" chart card */
+  --color-line: rgb(255 255 255 / 0.12);
+  --color-line-strong: rgb(255 255 255 / 0.28);
 
-  /* ── Tailwind default palette entries the markup still uses ──
-     Pinned here (exact Tailwind v4 values) so every color on the site is
-     visible in this file. Retheme by pointing these at brand values. */
-  --color-slate-200: oklch(92.9% 0.013 255.508); /* nav border when scrolled */
-  --color-slate-400: oklch(70.4% 0.04 256.788); /* about-page social icons */
-  --color-slate-600: oklch(44.6% 0.043 257.281); /* body copy on paper */
-  --color-slate-700: oklch(37.2% 0.044 257.287); /* default body color, layout.tsx */
-  --color-slate-800: oklch(27.9% 0.041 260.031); /* about-page lead paragraph */
-  --color-red-400: oklch(70.4% 0.191 22.216); /* form error text */
-  --color-red-500: oklch(63.7% 0.237 25.331); /* form error fill and border */
-  --color-amber-500: oklch(76.9% 0.188 70.08); /* streak numbers in the accountability demo */
+  --font-display: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-instrument), "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  /* No monospace on this site. Labels use the body face, small and tracked. */
+  --font-mono: var(--font-instrument), "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
 
-  /* ── Type scale: fluid Major Third (1.250), base 16px ──
-     text-caption ... text-display. Line heights ride along. */
-  --text-caption: clamp(0.775rem, 0.7667rem + 0.037vw, 0.8rem);
-  --text-caption--line-height: 1.5;
-  --text-body: clamp(0.9688rem, 0.9583rem + 0.0463vw, 1rem);
-  --text-body--line-height: 1.5;
-  --text-body-lg: clamp(1.1719rem, 1.1458rem + 0.1157vw, 1.25rem);
-  --text-body-lg--line-height: 1.5;
-  --text-h4: clamp(1.4063rem, 1.3542rem + 0.2315vw, 1.5625rem);
-  --text-h4--line-height: 1.25;
-  --text-h3: clamp(1.6563rem, 1.5573rem + 0.4398vw, 1.9531rem);
+  --text-display: clamp(2.75rem, 7.2vw, 7rem);
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: -0.03em;
+  --text-h1: clamp(2.5rem, 6vw, 5.5rem);
+  --text-h1--line-height: 1;
+  --text-h1--letter-spacing: -0.025em;
+  --text-h2: clamp(2rem, 4.2vw, 3.75rem);
+  --text-h2--line-height: 1.04;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h3: clamp(1.375rem, 2vw, 1.875rem);
   --text-h3--line-height: 1.2;
-  --text-h2: clamp(1.9375rem, 1.7696rem + 0.7463vw, 2.4413rem);
-  --text-h2--line-height: 1.15;
-  --text-h1: clamp(2.25rem, 1.9827rem + 1.188vw, 3.0519rem);
-  --text-h1--line-height: 1.1;
-  --text-display: clamp(2.625rem, 2.2283rem + 1.763vw, 3.815rem);
-  --text-display--line-height: 1.1;
+  --text-h3--letter-spacing: -0.01em;
+  --text-body-lg: 1.25rem;
+  --text-body-lg--line-height: 1.55;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.6;
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.5;
 
-  /* ── Radius: buttons and inputs 6, cards 10 (rounded-control, rounded-card) ── */
-  --radius-control: 6px;
-  --radius-card: 10px;
+  --radius-control: 999px;
+  --radius-card: 14px;
 
-  /* ── Shadows: the site is near-shadowless on purpose ── */
-  --shadow-demo-card: 0 1px 2px rgba(12, 16, 19, 0.05),
-    0 3px 10px rgba(12, 16, 19, 0.07); /* demo cards only */
-  --shadow-nav: 0 1px 16px -8px rgba(12, 16, 19, 0.35); /* nav bar once scrolled */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 :root {
-  /* ── Spacing steps used inside calc() and transforms (8pt grid).
-     Tailwind's own spacing utilities (p-4, gap-6 ...) cover the rest. ── */
-  --space-8: 8px;
-  --space-12: 12px;
-  --space-16: 16px;
-  --space-24: 24px;
-  --space-48: 48px;
-  --space-64: 64px;
-
-  /* ── Color primitives read by the hand-written CSS below.
-     Same values as @theme above. ── */
-  --paper: #F5F3EF;
-  --navy-800: #171C22;
-  --navy-950: #0A0E12;
-  --ink: #0C1013;
-  --teal: #0E7F86;
-  --teal-bright: #8CB8C2;
-  --slate-200: #E3E0D9;
-  --slate-600: #475569;
-  --decline: #EF4444;
-  --decline-bright: #F87171;
-  --glow-cool: #2A4E63; /* second aurora field, never text */
-  --state-pending-bright: #F59E0B;
-  --link: #2C6A70;
-  --focus-ring: var(--teal);
-  --gate-rule-line: rgba(13, 148, 136, 0.45); /* the gate-rule hairline */
-  --code-fill: #EDEAE4; /* inline code on paper (blog) */
-  --code-block-text: #D9DBDD; /* code blocks on navy (blog) */
-
-  /* ── Radius primitives, same as @theme ── */
-  --radius-control: 6px;
-  --radius-card: 10px;
-
-  /* ── Component tokens ── */
-  --surface-card: #FFFFFF;
-  --button-bg: #0D6E70; /* white label 5.07:1 */
-  --button-text: #FFFFFF;
-  --card-surface: var(--surface-card);
-  --hairline: var(--slate-200);
-
-  /* ── Motion: one easing vocabulary. Expo-out is the house curve. ── */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
-  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
-  --dur-instant: 120ms;
-  --dur-fast: 200ms;
-  --dur-base: 320ms;
-  --dur-reveal: 800ms;
+  --dur-fast: 180ms;
+  --dur-base: 420ms;
+  --dur-reveal: 900ms;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* ── Base ─────────────────────────────────────────────────────────── */
 
 html {
+  color-scheme: dark;
+  background: var(--color-void);
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
 }
+body { text-rendering: optimizeLegibility; overflow-x: clip; }
 
-/* Display headings: Machined Graphite direction */
-h1, h2, h3 {
-  font-family: var(--font-display), 'Helvetica Neue', sans-serif;
-  letter-spacing: -0.02em;
-}
+::selection { background: var(--color-royal); color: var(--color-star); }
 
-/* Display face for wordmarks and names outside h1-h3 */
-.font-display {
-  font-family: var(--font-display), sans-serif;
-}
-
-/* Mono for system labels and operator UI */
-.font-system {
-  font-family: var(--font-mono), ui-monospace, monospace;
-}
-
-/* Visible keyboard focus everywhere */
 :focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 2px;
-  border-radius: 2px;
+  outline: 2px solid var(--color-comet);
+  outline-offset: 3px;
 }
 
-/* ══ Component systems: the one button, one card, one input ══
-   Layered as components so spacing and color utilities at call sites
-   can still override individual declarations. */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
 
-@layer components {
-/* Button system. Shape, hit target, and motion live here; sizes come
-   from spacing utilities at the call site. */
+/* ── Type ─────────────────────────────────────────────────────────── */
+
+.display, h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+}
+h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; }
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.measure { max-width: 34em; }
+
+
+/* ── Buttons ──────────────────────────────────────────────────────── */
+
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-8);
-  min-height: 40px;
-  min-width: 40px;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  padding: 0 1.35rem;
   border-radius: var(--radius-control);
+  border: 1px solid transparent;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
   font-weight: 500;
+  white-space: nowrap;
   cursor: pointer;
   transition:
-    background-color 200ms ease,
-    border-color 200ms ease,
-    color 200ms ease;
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
 }
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-.btn-primary {
-  background: var(--button-bg);
-  color: var(--button-text);
-}
-.btn-primary:hover:not(:disabled) {
-  background: var(--link);
-}
-/* Ghost variant on navy grounds: white at opacity, never gray hexes */
-.btn-ghost-dark {
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-.btn-ghost-dark:hover:not(:disabled) {
-  border-color: rgba(255, 255, 255, 0.28);
-  color: rgba(255, 255, 255, 0.95);
-}
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: 0.5; cursor: default; }
+.btn-star { background: var(--color-star); color: var(--color-void); }
+.btn-star:hover { background: #ffffff; }
+.btn-royal { background: var(--color-royal); color: var(--color-star); }
+.btn-royal:hover { background: #1e3ad9; }
+.btn-ghost { border-color: var(--color-line-strong); color: var(--color-star); }
+.btn-ghost:hover { border-color: var(--color-star); }
+.btn-lg { min-height: 3.25rem; padding: 0 1.75rem; font-size: 1.05rem; }
 
-/* Card system. On paper: white surface, slate hairline, near-shadowless.
-   On navy: white at opacity. Radius 10 everywhere a card appears. */
-.card {
-  background: var(--card-surface);
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-card);
-}
-.card-dark {
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-card);
-}
-.card-hover {
-  transition: border-color 250ms ease;
-}
-.card-hover:hover {
-  border-color: color-mix(in srgb, var(--teal) 40%, transparent);
-}
+/* ── Inputs ───────────────────────────────────────────────────────── */
 
-/* Input system. Text inputs and textareas on navy grounds; the global
-   focus-visible ring stays reachable (no outline suppression). */
-.input-dark {
+.input {
   width: 100%;
-  min-height: 44px;
+  background: var(--color-void-2);
+  border: 1px solid var(--color-line);
+  border-radius: 10px;
+  color: var(--color-star);
+  font-size: 1rem;
+  line-height: 1.4;
+  padding: 0.85rem 1rem;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+.input::placeholder { color: var(--color-ash); }
+.input:focus { border-color: var(--color-line-strong); }
+.input:focus-visible { outline: 2px solid var(--color-comet); outline-offset: 2px; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0 1rem;
   border-radius: var(--radius-control);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.9);
-  transition: border-color 200ms ease;
+  border: 1px solid var(--color-line-strong);
+  background: transparent;
+  color: var(--color-star);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
-.input-dark::placeholder {
-  color: rgba(255, 255, 255, 0.6); /* 6.18:1 on the lightest navy (warden QA round 1, finding 2) */
+.chip-sm { min-height: 2.25rem; padding: 0 0.85rem; font-size: 0.9rem; }
+@media (pointer: coarse) { .chip, .chip-sm { min-height: 2.75rem; } }
+.chip:hover { border-color: var(--color-star); }
+.chip[aria-pressed="true"] { background: var(--color-star); color: var(--color-void); border-color: var(--color-star); }
+
+/* Award tag: a quiet pill in the body face, ember on void. */
+.award {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.75rem;
+  border-radius: var(--radius-control);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--color-nova);
+  background: rgb(255 95 162 / 0.08);
+  border: 1px solid rgb(255 95 162 / 0.38);
+  white-space: nowrap;
 }
-.input-dark:focus {
-  border-color: color-mix(in srgb, var(--teal) 50%, transparent);
-}
+.award > span:first-child { font-size: 0.7rem; }
+
+/* ── Surfaces ─────────────────────────────────────────────────────── */
+
+.surface {
+  background: var(--color-void-2);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
 }
 
-/* ════════════════════════════════════════════════════════════════════
-   ATMOSPHERE LAYER
-   Depth without decoration. Three stacked, strictly non-interactive
-   layers that give flat sections the feeling of a lit surface:
-   a blueprint grid (structure), aurora fields (light), grain (material).
-   All are pointer-events:none and aria-hidden at the call site.
-   ════════════════════════════════════════════════════════════════════ */
-
-.atmos {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-}
-
-.atmos > * {
-  position: relative;
-  z-index: 1;
-}
-
-.atmos-layer {
+/* A surface with a thin edge of the mark's light. */
+.surface-nova { position: relative; }
+.surface-nova::before {
+  content: '';
   position: absolute;
   inset: 0;
-  z-index: 0;
+  border-radius: var(--radius-card);
+  padding: 1px;
+  background: linear-gradient(135deg, rgb(99 217 230 / 0.7), rgb(255 95 162 / 0.55) 50%, rgb(139 124 248 / 0.7));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
   pointer-events: none;
 }
 
-/* ── Blueprint grid ──
-   64px module matching the 8pt system (8 x 8). Masked to a soft ellipse
-   so it never collides with a hard section edge. */
-/* Line colour is mixed from the accent token rather than written as a
-   literal, so it cannot drift out of sync the next time the accent moves. */
-.atmos-grid {
-  background-image:
-    linear-gradient(to right, color-mix(in srgb, var(--teal-bright) 7%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in srgb, var(--teal-bright) 7%, transparent) 1px, transparent 1px);
-  background-size: 64px 64px;
-  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 15%, transparent 78%);
-  mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 15%, transparent 78%);
-}
+/* ── Reveal ───────────────────────────────────────────────────────── */
 
-/* Fine 16px sub-grid, half strength, for the hero only. */
-.atmos-grid-fine {
-  background-image:
-    linear-gradient(to right, rgba(12, 16, 19, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(12, 16, 19, 0.045) 1px, transparent 1px);
-  background-size: 16px 16px;
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 5%, transparent 70%);
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 5%, transparent 70%);
-}
-
-/* Paper-ground grid: ink lines instead of teal, wider module. */
-/* Weaker than the dark-ground grid on purpose: the same alpha that reads
-   as texture behind content reads as a spreadsheet across open paper. */
-.atmos-grid-paper {
-  background-image:
-    linear-gradient(to right, rgba(12, 16, 19, 0.032) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(12, 16, 19, 0.032) 1px, transparent 1px);
-  background-size: 64px 64px;
-  -webkit-mask-image: radial-gradient(ellipse 75% 55% at 50% 35%, #000 0%, transparent 70%);
-  mask-image: radial-gradient(ellipse 75% 55% at 50% 35%, #000 0%, transparent 70%);
-}
-
-/* ── Aurora fields ──
-   Soft radial color, no blur() filter (a large blur is one of the most
-   expensive things a compositor can be asked to do). Colour stops do the
-   softening instead, so these animate on the GPU for free. */
-.atmos-aurora::before,
-.atmos-aurora::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  will-change: transform;
-}
-
-/* Wide, shallow ellipses rather than circles: a circle reads as a blob,
-   an ellipse reads as light falling across a surface. */
-.atmos-aurora::before {
-  width: 78vw;
-  height: 48vw;
-  max-width: 1100px;
-  max-height: 620px;
-  top: -22%;
-  left: -14%;
-  background: radial-gradient(
-    ellipse at 50% 50%,
-    color-mix(in srgb, var(--teal) 34%, transparent),
-    color-mix(in srgb, var(--teal) 10%, transparent) 45%,
-    transparent 68%
-  );
-  animation: aurora-a 26s var(--ease-in-out-quart) infinite;
-}
-
-/* Second field is a cool slate-blue, not another teal: two fields of the
-   same hue just make one bigger field. The hue gap is what gives the
-   ground its sense of depth. */
-.atmos-aurora::after {
-  width: 66vw;
-  height: 44vw;
-  max-width: 900px;
-  max-height: 560px;
-  bottom: -26%;
-  right: -12%;
-  background: radial-gradient(
-    ellipse at 50% 50%,
-    color-mix(in srgb, var(--glow-cool) 52%, transparent),
-    transparent 64%
-  );
-  animation: aurora-b 34s var(--ease-in-out-quart) infinite;
-}
-
-/* Paper variant: far lower alpha. Teal at dark-ground strength turns
-   muddy on light grounds, so the light hero gets a whisper instead. */
-.atmos-aurora-soft::before {
-  background: radial-gradient(
-    ellipse at 50% 50%,
-    color-mix(in srgb, var(--teal) 11%, transparent),
-    transparent 62%
-  );
-}
-
-.atmos-aurora-soft::after {
-  background: radial-gradient(
-    ellipse at 50% 50%,
-    color-mix(in srgb, var(--glow-cool) 12%, transparent),
-    transparent 60%
-  );
-}
-
-@keyframes aurora-a {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(12%, 8%, 0) scale(1.18); }
-}
-
-@keyframes aurora-b {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1.1); }
-  50% { transform: translate3d(-14%, -10%, 0) scale(1); }
-}
-
-/* ── Depth ──
-   A single soft key light from above the section plus a floor shadow.
-   This is what stops a dark ground reading as flat paint: real surfaces
-   are lit from somewhere. Sits under the grid so the grid gets lit too. */
-.atmos-depth {
-  background:
-    radial-gradient(
-      130% 70% at 50% -12%,
-      rgba(255, 255, 255, 0.07),
-      rgba(255, 255, 255, 0.02) 42%,
-      transparent 68%
-    ),
-    linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.32));
-}
-
-/* ── Vignette ──
-   Draws the eye to the centre column and keeps the aurora from running
-   flat into the section edges. */
-.atmos-vignette {
-  background: radial-gradient(
-    115% 85% at 50% 42%,
-    transparent 52%,
-    rgba(0, 0, 0, 0.42)
-  );
-}
-
-/* ── Grain ──
-   The detail that separates a premium gradient from a flat one. One
-   inline SVG turbulence tile, no network request. */
-.atmos-grain {
-  opacity: 0.4;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
-  background-size: 160px 160px;
-}
-
-/* Horizon: a single lit hairline where a dark section begins. */
-.atmos-horizon {
-  background: linear-gradient(
-    to right,
-    transparent,
-    color-mix(in srgb, var(--teal-bright) 45%, transparent),
-    transparent
-  );
-  height: 1px;
-  inset: 0 0 auto 0;
-}
-
-/* ════════════════════════════════════════════════════════════════════
-   REVEAL SYSTEM
-   Content-bearing motion runs on IntersectionObserver, not scroll
-   timelines: universal support, one-shot, and it cannot desync. The
-   html.js guard means a no-JS or pre-hydration render shows everything
-   at full opacity, so nothing here can ever hide content.
-   ════════════════════════════════════════════════════════════════════ */
-
-/* The `scripting` gate is what makes this safe. The hidden start state is
-   only ever declared when scripts can actually run to undo it, so a no-JS
-   render, a crawler, or a browser too old to know this media feature all
-   paint every section at full opacity. Motion is strictly additive.
-   Done in CSS rather than with a class-adding inline script so there is
-   no server/client attribute mismatch to suppress. */
 @media (scripting: enabled) {
   .reveal {
     opacity: 0;
-    transform: translate3d(var(--reveal-x, 0), var(--reveal-y, 24px), 0)
-      scale(var(--reveal-scale, 1));
+    transform: translate3d(0, var(--reveal-y, 28px), 0);
     transition:
-      opacity var(--dur-reveal) var(--ease-out-expo),
-      transform var(--dur-reveal) var(--ease-out-expo);
+      opacity var(--dur-reveal) var(--ease),
+      transform var(--dur-reveal) var(--ease);
     transition-delay: var(--reveal-delay, 0ms);
     will-change: opacity, transform;
   }
-
-  .reveal.is-in {
-    opacity: 1;
-    transform: none;
-    will-change: auto;
-  }
+  .reveal-far { --reveal-y: 56px; }
+  .reveal-left { transform: translate3d(-28px, 0, 0); }
+  .reveal-right { transform: translate3d(28px, 0, 0); }
+  .reveal-scale { transform: scale(0.96); }
+  .reveal.is-in { opacity: 1; transform: none; will-change: auto; }
 }
 
-/* Directional variants, set as custom props so one transition serves all */
-.reveal-left { --reveal-x: -28px; --reveal-y: 0; }
-.reveal-right { --reveal-x: 28px; --reveal-y: 0; }
-.reveal-scale { --reveal-y: 12px; --reveal-scale: 0.96; }
-.reveal-far { --reveal-y: 44px; }
-
-/* ── Kinetic display type ──
-   Lines rise out of a clipping mask. The mask is what makes it read as
-   typeset rather than faded-in. Pure CSS so it starts at first paint
-   and never waits on hydration (the h1 is the LCP element). */
-.line-mask {
-  display: block;
-  overflow: hidden;
-  padding-bottom: 0.08em;
-  margin-bottom: -0.08em;
-}
-
-/* 900ms, not the full cinematic duration: the h1 is the LCP element and
-   spends this animation clipped by its mask, so the reveal length is a
-   direct floor on Largest Contentful Paint. This is the ceiling that
-   still keeps LCP comfortably inside budget. */
-.line-rise {
-  display: block;
-  animation: line-rise 900ms var(--ease-out-expo) both;
-}
-
-.line-rise-1 { animation-delay: 0ms; }
-.line-rise-2 { animation-delay: 110ms; }
-
-@keyframes line-rise {
-  from { transform: translate3d(0, 105%, 0); }
-  to { transform: translate3d(0, 0, 0); }
-}
-
-/* ════════════════════════════════════════════════════════════════════
-   INTERACTION LAYER
-   ════════════════════════════════════════════════════════════════════ */
-
-/* ── Spotlight ──
-   Cards track the pointer via two custom props written by one delegated
-   rAF-throttled handler per grid. The gradient is painted in a
-   pseudo-element under the content so text never dims. */
-.spotlight {
+/* Hairlines are drawn, not printed. */
+.rule {
   position: relative;
+  border-top: 0 !important;
 }
-
-.spotlight::before {
+.rule::before {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    340px circle at var(--mx, 50%) var(--my, 50%),
-    color-mix(in srgb, var(--teal-bright) 13%, transparent),
-    transparent 68%
-  );
-  opacity: 0;
-  transition: opacity var(--dur-base) var(--ease-out-quart);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.spotlight > * {
-  position: relative;
-  z-index: 1;
-}
-
-.spotlight:hover::before,
-.spotlight:focus-within::before {
-  opacity: 1;
-}
-
-/* Paper-ground spotlight reads warmer and tighter */
-.spotlight-paper::before {
-  background: radial-gradient(
-    300px circle at var(--mx, 50%) var(--my, 50%),
-    color-mix(in srgb, var(--teal) 9%, transparent),
-    transparent 66%
-  );
-}
-
-/* ── Lift ──
-   The single elevation gesture. Translate only (never scale, which
-   resamples text), paired with a border warm-up. */
-.lift {
-  transition:
-    transform var(--dur-base) var(--ease-out-expo),
-    border-color var(--dur-base) var(--ease-out-quart),
-    box-shadow var(--dur-base) var(--ease-out-quart);
-}
-
-.lift:hover {
-  transform: translate3d(0, -4px, 0);
-}
-
-.lift-dark:hover {
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 16px 40px -20px rgba(0, 0, 0, 0.8);
-}
-
-.lift-paper:hover {
-  border-color: color-mix(in srgb, var(--ink) 16%, transparent);
-  box-shadow: 0 14px 34px -18px rgba(12, 16, 19, 0.22);
-}
-
-/* ── Primary button ──
-   Deliberately no specular sweep. A shine animation across a button is
-   the single loudest "template" tell there is; a button that simply
-   deepens, warms its shadow, and takes a 1px press reads as considered. */
-.btn-primary {
-  box-shadow: 0 1px 2px rgba(12, 16, 19, 0.14);
-  transition:
-    background-color var(--dur-fast) ease,
-    box-shadow var(--dur-base) var(--ease-out-quart),
-    transform var(--dur-instant) var(--ease-out-quart);
-}
-
-.btn-primary:hover:not(:disabled) {
-  box-shadow: 0 8px 24px -8px color-mix(in srgb, var(--teal) 50%, transparent);
-}
-
-.btn-primary:active:not(:disabled) {
-  transform: translate3d(0, 1px, 0);
-}
-
-/* ── Scroll progress rail ──
-   Pure CSS scroll timeline. Where unsupported (Firefox today) the rail
-   simply stays at scale 0 and is invisible: a decoration that degrades
-   to nothing rather than to something broken. */
-.scroll-rail {
-  transform: scaleX(0);
-  transform-origin: 0 50%;
-}
-
-@supports (animation-timeline: scroll()) {
-  .scroll-rail {
-    animation: rail-fill linear;
-    animation-timeline: scroll(root block);
-  }
-}
-
-@keyframes rail-fill {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-/* ── Phase rail ──
-   The vertical spine of the methodology timeline, drawing itself as the
-   section moves through the viewport. Degradation is deliberate: where
-   scroll timelines are unsupported the rail renders fully drawn, so the
-   design is complete rather than missing a piece. */
-.phase-rail-fill {
-  transform: scaleY(1);
-  transform-origin: 50% 0;
-}
-
-@supports (animation-timeline: view()) {
-  .phase-rail-fill {
-    transform: scaleY(0);
-    animation: rail-grow linear forwards;
-    animation-timeline: view();
-    animation-range: cover 8% cover 62%;
-  }
-}
-
-@keyframes rail-grow {
-  from { transform: scaleY(0); }
-  to { transform: scaleY(1); }
-}
-
-/* ── Atmosphere parallax ──
-   Background layers drift slower than the page. Scroll-linked, so it is
-   perfectly smooth and costs no JS; unsupported browsers just get a
-   static backdrop. */
-@supports (animation-timeline: scroll()) {
-  .parallax-slow {
-    animation: parallax-drift linear;
-    animation-timeline: scroll(root block);
-  }
-}
-
-@keyframes parallax-drift {
-  from { transform: translate3d(0, -4%, 0); }
-  to { transform: translate3d(0, 4%, 0); }
-}
-
-/* Figures in mono keep their columns aligned while they animate. */
-.numeral {
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: 'tnum';
-}
-
-/* ════════════════════════════════════════════════════════════════════
-   APPROVAL QUEUE
-   The signature object. Not a diagram of the product, a piece of the
-   product: a real operator surface where agent work waits on a human.
-
-   The motion is deliberately a one-time performance, not a loop. Three
-   rows clear in sequence as the panel settles, the fourth holds at
-   pending. Loops read as decoration; a sequence that resolves and stops
-   reads as a system that just did something.
-   ════════════════════════════════════════════════════════════════════ */
-
-.queue-panel {
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--navy-800) 55%, var(--navy-950)),
-    var(--navy-950)
-  );
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-card);
-  box-shadow:
-    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
-    0 30px 60px -30px rgba(0, 0, 0, 0.7),
-    0 0 0 1px rgba(0, 0, 0, 0.2);
-}
-
-/* Rows settle in sequence. --row is the row index, set at the call site. */
-.queue-row {
-  animation: queue-row-in 640ms var(--ease-out-expo) both;
-  animation-delay: calc(240ms + var(--row, 0) * 110ms);
-}
-
-@keyframes queue-row-in {
-  from { opacity: 0; transform: translate3d(0, 10px, 0); }
-  to { opacity: 1; transform: none; }
-}
-
-/* Both chip states occupy one grid cell, so the chip is sized by the
-   wider of the two words and nothing reflows when they swap. */
-.chip-swap {
-  display: grid;
-  justify-items: end;
-}
-
-.chip-swap > * {
-  grid-area: 1 / 1;
-}
-
-.chip-state {
-  transition: opacity var(--dur-fast) var(--ease-out-quart);
-}
-
-/* Approval lands as a clean crossfade at a per-row beat. */
-.chip-pending {
-  animation: chip-fade-out 260ms var(--ease-out-quart) both;
-  animation-delay: calc(1150ms + var(--row, 0) * 460ms);
-}
-
-.chip-approved {
-  opacity: 0;
-  animation: chip-fade-in 260ms var(--ease-out-quart) both;
-  animation-delay: calc(1150ms + var(--row, 0) * 460ms);
-}
-
-@keyframes chip-fade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-@keyframes chip-fade-in {
-  from { opacity: 0; transform: translate3d(0, 3px, 0); }
-  to { opacity: 1; transform: none; }
-}
-
-/* A single hairline sweeps the row at the moment it clears. */
-.queue-row-flash {
-  animation: queue-flash 700ms var(--ease-out-quart) both;
-  animation-delay: calc(1150ms + var(--row, 0) * 460ms);
-}
-
-@keyframes queue-flash {
-  0% { opacity: 0; transform: scaleX(0); transform-origin: 0 50%; }
-  35% { opacity: 1; transform: scaleX(1); transform-origin: 0 50%; }
-  100% { opacity: 0; transform: scaleX(1); transform-origin: 100% 50%; }
-}
-
-/* The one row still waiting on a person keeps a slow amber breath. It is
-   the whole pitch in one detail, so it is the only thing left moving. */
-.awaiting {
-  animation: awaiting-breath 3.4s var(--ease-in-out-quart) infinite;
-  animation-delay: 2.6s;
-}
-
-@keyframes awaiting-breath {
-  0%, 100% {
-    border-color: color-mix(in srgb, var(--state-pending-bright) 40%, transparent);
-    background-color: color-mix(in srgb, var(--state-pending-bright) 8%, transparent);
-  }
-  50% {
-    border-color: color-mix(in srgb, var(--state-pending-bright) 75%, transparent);
-    background-color: color-mix(in srgb, var(--state-pending-bright) 16%, transparent);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .queue-row,
-  .chip-pending,
-  .chip-approved,
-  .queue-row-flash,
-  .awaiting {
-    animation: none !important;
-  }
-  /* Resolve to the finished state: cleared rows read approved. */
-  .chip-pending { opacity: 0; }
-  .chip-approved { opacity: 1; }
-  .queue-row-flash { opacity: 0; }
-  .queue-row { opacity: 1; transform: none; }
-}
-
-/* ── Live status dot: a slow breathing ring ── */
-.status-dot {
-  position: relative;
-}
-
-.status-dot::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: 0 0 0 0 color-mix(in srgb, var(--teal-bright) 60%, transparent);
-  animation: status-ring 2.8s var(--ease-out-quart) infinite;
-}
-
-@keyframes status-ring {
-  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--teal-bright) 55%, transparent); }
-  70% { box-shadow: 0 0 0 7px transparent; }
-  100% { box-shadow: 0 0 0 0 transparent; }
-}
-
-/* ── Signature: the Gate Rule ── */
-
-.gate-rule {
-  position: relative;
+  left: 0; right: 0; top: 0;
   height: 1px;
-  max-width: 160px;
-  margin-left: auto;
-  margin-right: auto;
-  background: linear-gradient(to right, transparent, var(--gate-rule-line), transparent);
+  background: var(--color-line);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 900ms var(--ease);
+}
+.reveal.is-in .rule::before, .reveal.is-in.rule::before { transform: scaleX(1); }
+
+/* The wordmark exhales: wide on the hero, settles once the page moves. */
+.wordmark { transition: letter-spacing 700ms var(--ease); }
+header[data-scrolled="false"] .wordmark { letter-spacing: 0.3em; }
+
+/* Emphasis with a cosmic edge: white letters, a thin cyan stroke, a faint halo. */
+.glint {
+  color: var(--color-star);
+  -webkit-text-stroke: 0.5px rgb(99 217 230 / 0.9);
+  paint-order: stroke fill;
+  text-shadow: 0 0 18px rgb(99 217 230 / 0.28);
+}
+.glint-violet {
+  color: var(--color-star);
+  -webkit-text-stroke: 0.5px rgb(139 124 248 / 0.9);
+  paint-order: stroke fill;
+  text-shadow: 0 0 18px rgb(139 124 248 / 0.28);
+}
+.glint-ember {
+  color: var(--color-star);
+  -webkit-text-stroke: 0.5px rgb(255 180 87 / 0.9);
+  paint-order: stroke fill;
+  text-shadow: 0 0 18px rgb(255 150 60 / 0.34);
 }
 
-.gate-rule::after {
+/* Laser-etched word: the fill never changes. Only the outer edge burns in
+   hot and cools to a faint ember line. paint-order keeps the stroke behind
+   the fill, so the inside of every letter stays clean white. */
+.etch {
+  color: var(--color-star);
+  -webkit-text-stroke: 0.8px rgb(255 180 87 / 0.8);
+  paint-order: stroke fill;
+  text-shadow:
+    0 0 1px rgb(255 190 100 / 0.8),
+    0 0 7px rgb(255 120 60 / 0.4),
+    0 0 18px rgb(255 95 162 / 0.18);
+  animation: etch 2600ms cubic-bezier(0.2, 0.8, 0.2, 1) 900ms both;
+}
+@keyframes etch {
+  0%   { -webkit-text-stroke: 2.4px rgb(255 230 170 / 1); text-shadow: 0 0 3px rgb(255 230 170 / 1), 0 0 16px rgb(255 140 60 / 0.95), 0 0 44px rgb(255 95 162 / 0.6); }
+  40%  { -webkit-text-stroke: 1.8px rgb(255 200 110 / 1); text-shadow: 0 0 2px rgb(255 220 150 / 1), 0 0 12px rgb(255 140 60 / 0.8), 0 0 34px rgb(255 95 162 / 0.45); }
+  100% { -webkit-text-stroke: 0.8px rgb(255 180 87 / 0.8); text-shadow: 0 0 1px rgb(255 190 100 / 0.8), 0 0 7px rgb(255 120 60 / 0.4), 0 0 18px rgb(255 95 162 / 0.18); }
+}
+html.warping .etch { animation-play-state: paused; }
+
+/* Chrome on hover. The gradient sits under the letters at all times; the
+   white fill fades to transparent to reveal it. Horizon-style metal: sky
+   light on top, a hard glint line at the middle, dark ground, then a lift.
+   The pointer drives a specular band across it through --mx. */
+.chrome-hover {
+  --mx: 50%;
+  --my: 50%;
+  color: var(--color-star);
+  background-image:
+    radial-gradient(45% 80% at var(--mx) var(--my), rgb(255 255 255 / 0.7), transparent 60%),
+    url('/chrome-env.webp');
+  background-size: 100% 100%, 100% 100%;
+  background-position: 0 0, 0 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: color 480ms var(--ease), filter 480ms var(--ease);
+}
+.chrome-hover:hover {
+  color: transparent;
+  filter: url(#chrome-bevel) drop-shadow(0 1px 0 rgb(255 255 255 / 0.6)) drop-shadow(0 -1px 0 rgb(0 0 0 / 0.9)) drop-shadow(0 0 24px rgb(220 235 255 / 0.28));
+}
+
+/* The lines KALEOS says in its own voice, set against the research: a
+   magenta halo behind the words. */
+.says { position: relative; display: inline-block; isolation: isolate; }
+.says::before {
   content: '';
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 14px;
-  height: 14px;
-  transform: translate(-50%, -50%) rotate(0deg);
-  border-radius: var(--radius-control);
-  border: 1.5px solid var(--color-accent);
-  background: var(--color-paper);
+  inset: -22% -10%;
+  z-index: -1;
+  border-radius: 999px;
+  background: radial-gradient(ellipse at 40% 50%, rgb(255 95 162 / 0.34), rgb(255 95 162 / 0.12) 45%, transparent 72%);
+  filter: blur(16px);
+  pointer-events: none;
 }
 
-.gate-rule.on-dark::after {
-  background: var(--color-ink);
-}
-
-/* Lead-and-support headers left-align the rule; the chip stays on it. */
-.gate-rule.align-start {
-  margin-left: 0;
-}
-
-/* Shared gate-chip ring width: the same hairline weight as the gate
-   rule's own chip, reused everywhere the motif repeats. */
-.gate-chip-ring {
-  border-width: 1.5px;
-}
-
-/* ── Workflow diagram: a system under load ──
-   One 6s cycle shared by the whole diagram. Work sweeps down the
-   connection lines while the three internal stages light in sequence,
-   so the architecture reads as running rather than drawn. */
-
-.system-glow-border {
-  box-shadow: 0 0 24px color-mix(in srgb, var(--teal) 30%, transparent),
-    inset 0 0 24px color-mix(in srgb, var(--teal) 5%, transparent);
-  animation: system-breathe 6s var(--ease-in-out-quart) infinite;
-}
-
-@keyframes system-breathe {
-  0%, 100% {
-    box-shadow: 0 0 20px color-mix(in srgb, var(--teal) 22%, transparent),
-      inset 0 0 24px color-mix(in srgb, var(--teal) 4%, transparent);
-  }
-  50% {
-    box-shadow: 0 0 34px color-mix(in srgb, var(--teal) 38%, transparent),
-      inset 0 0 28px color-mix(in srgb, var(--teal) 8%, transparent);
-  }
-}
-
-/* Work travelling along a connection line. */
-.flow-line {
+/* Section flow: no hairlines between sections; a soft horizon instead. */
+.horizon {
   position: relative;
-  overflow: hidden;
 }
-
-.flow-line::after {
+.horizon::before {
   content: '';
   position: absolute;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--teal-bright),
-    transparent
-  );
-  inset: 0 auto 0 0;
-  width: 40%;
-  animation: flow-sweep-x 2.6s linear infinite;
+  left: 50%; top: 0;
+  width: min(72rem, 90vw);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.14) 30%, rgb(99 217 230 / 0.30) 46%, rgb(255 95 162 / 0.26) 52%, rgb(139 124 248 / 0.24) 58%, rgb(255 255 255 / 0.14) 72%, transparent);
 }
 
-.flow-line-vertical::after {
-  background: linear-gradient(
-    180deg,
-    transparent,
-    var(--teal-bright),
-    transparent
-  );
-  inset: 0 0 auto 0;
-  width: auto;
-  height: 40%;
-  animation: flow-sweep-y 2.6s linear infinite;
+/* The mark in the colors of a nebula: the K artwork as a mask over a slow,
+   saturated gradient. Used once, behind the close. */
+.k-nebula {
+  position: absolute;
+  pointer-events: none;
+  -webkit-mask-image: url('/kaleos-k.png');
+  mask-image: url('/kaleos-k.png');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  background:
+    radial-gradient(circle at 72% 68%, #ffa53a 0%, rgb(255 165 58 / 0) 34%),
+    radial-gradient(circle at 22% 78%, #2fd3e6 0%, rgb(47 211 230 / 0) 40%),
+    radial-gradient(circle at 60% 20%, #ff3d8f 0%, rgb(255 61 143 / 0) 42%),
+    radial-gradient(circle at 40% 55%, rgb(5 5 7 / 0.55) 0%, rgb(5 5 7 / 0) 30%),
+    linear-gradient(135deg, #6d4dff 0%, #ff3d8f 48%, #2fd3e6 100%);
+  background-size: 200% 200%, 200% 200%, 200% 200%, 200% 200%, 200% 200%;
+  animation: k-nebula 22s ease-in-out infinite alternate;
+}
+@keyframes k-nebula {
+  from { background-position: 100% 100%, 0% 100%, 60% 0%, 40% 50%, 0% 0%; }
+  to   { background-position: 0% 0%, 100% 0%, 20% 100%, 70% 30%, 100% 100%; }
 }
 
-@keyframes flow-sweep-x {
-  from { transform: translateX(-110%); }
-  to { transform: translateX(360%); }
+/* Stat numerals roll up when they enter. */
+.stat { font-variant-numeric: tabular-nums; }
+
+/* Header hides on the way down, returns on the way up. */
+header[data-hidden="true"] { transform: translateY(-100%); }
+header { transition: transform 420ms var(--ease), background-color 300ms, border-color 300ms, opacity 500ms var(--ease) 200ms; }
+
+/* Nav links: small mono with a live dot on the current page. */
+.navlink {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding-left: 0.9rem;
+}
+.navlink::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 50%;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  transform: translateY(-50%) scale(0);
+  background: var(--color-comet);
+  box-shadow: 0 0 8px rgb(99 217 230 / 0.8);
+  transition: transform 300ms var(--ease);
+}
+.navlink[aria-current="page"]::before, .navlink:hover::before { transform: translateY(-50%) scale(1); }
+
+/* Orbit, v3: a core in the center, four stations, marks, the gate. */
+.orbit-station { transition: opacity 400ms var(--ease); }
+.orbit-station[data-active="false"] { opacity: 0.45; }
+.orbit-station-ring { fill: var(--color-void); stroke: var(--color-star); stroke-width: 1.25; vector-effect: non-scaling-stroke; transition: stroke 400ms var(--ease), r 400ms var(--ease); }
+.orbit-station[data-active="true"] .orbit-station-ring { stroke: var(--color-comet); }
+.orbit-core { /* halo drawn as an SVG gradient; no image filter (mobile WebKit) */ }
+
+/* Headings rise word by word out of their own masks. */
+.words .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.words .w > span {
+  display: inline-block;
+  transform: translateY(112%);
+  transition: transform 900ms var(--ease) calc(var(--i, 0) * 45ms);
+}
+.reveal.is-in .words .w > span, .words.is-in .w > span { transform: none; }
+@media not (scripting: enabled) { .words .w > span { transform: none; } }
+
+/* The mark glows in a cosmic hue and breathes. */
+.k-glow { position: relative; isolation: isolate; }
+/* The halo is a gradient layer behind the mark, not a filter on the image:
+   mobile WebKit drops the whole image when a large animated drop-shadow is
+   applied to it, and a gradient costs nothing to paint. */
+.k-glow::before {
+  content: '';
+  position: absolute;
+  inset: -34% -44%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgb(247 247 244 / 0.16) 0%, rgb(99 217 230 / 0.20) 14%, rgb(99 217 230 / 0.06) 30%, transparent 46%),
+    radial-gradient(ellipse at 50% 50%, rgb(255 95 162 / 0.16) 0%, rgb(255 95 162 / 0.05) 40%, transparent 60%),
+    radial-gradient(ellipse at 50% 50%, rgb(139 124 248 / 0.20) 0%, rgb(139 124 248 / 0.07) 50%, transparent 76%);
+  animation: k-glow 7s ease-in-out 1600ms infinite;
+}
+@keyframes k-glow {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.12); }
 }
 
-@keyframes flow-sweep-y {
-  from { transform: translateY(-110%); }
-  to { transform: translateY(360%); }
+/* Warp entry: an opaque field over the hero for one second, then gone. */
+.warp {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: var(--color-void);
+  pointer-events: none;
+  transition: opacity 1100ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.warp-out { opacity: 0; }
+/* Fail-safe: if the script never finishes (slow phone, blocked JS, a hydration
+   error), the overlay still clears itself after two and a half seconds. */
+.warp { animation: warp-failsafe 500ms var(--ease) 2800ms forwards; }
+@keyframes warp-failsafe { to { opacity: 0; visibility: hidden; } }
+html.warping .rise, html.warping .k-settle, html.warping .k-glow::before, html.warping .k-solid { animation-play-state: paused; }
+html.warping header { opacity: 0; }
+@media not (scripting: enabled) { .warp { display: none; } }
+
+/* Orbit of names: each mark travels a wide arc across the band like a
+   satellite crossing a horizon, rising from the dark on the left and
+   setting on the right. Motion path, so it is flat and stays upright. */
+.arc-band {
+  position: relative;
+  height: 9rem;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+}
+.arc-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 100% at 50% 130%, rgb(99 217 230 / 0.10), rgb(139 124 248 / 0.04) 55%, transparent 75%);
+}
+.arc-item {
+  position: absolute;
+  left: 0; top: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  white-space: nowrap;
+  color: var(--color-star);
+  offset-path: path('M -240 150 Q 720 -30 1680 150');
+  offset-rotate: 0deg;
+  animation: arc-travel 42s linear infinite;
+  animation-delay: var(--d);
+  will-change: offset-distance, opacity;
+}
+.arc-item svg, .arc-item img { height: 1.35rem; width: auto; }
+.arc-band:hover .arc-item { animation-play-state: paused; }
+@keyframes arc-travel {
+  0%   { offset-distance: 0%; opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+@media (max-width: 767px) {
+  .arc-band { height: 11rem; }
+  .arc-item { offset-path: path('M -640 120 Q 195 -80 1030 120'); }
+  .arc-item:nth-child(even) { offset-path: path('M -640 178 Q 195 -22 1030 178'); }
 }
 
-/* The three internal stages, each lit for a third of the cycle.
-   Delays of 0 / -4s / -2s put them in order across a 6s loop. */
-.node-seq {
-  animation: node-seq 6s linear infinite;
-  animation-delay: var(--seq-delay, 0s);
-}
-
-@keyframes node-seq {
-  0%, 33%, 100% {
-    border-color: rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.06);
+/* Scroll-drawn horizons: the line between sections draws itself as the
+   section arrives. Static where scroll-driven animations are unsupported. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .horizon::before {
+      animation: horizon-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+    @keyframes horizon-draw { from { transform: translateX(-50%) scaleX(0); opacity: 0; } to { transform: translateX(-50%) scaleX(1); opacity: 1; } }
   }
-  5%, 28% {
-    border-color: color-mix(in srgb, var(--teal-bright) 50%, transparent);
-    background-color: color-mix(in srgb, var(--teal) 15%, transparent);
-  }
 }
 
-/* Reduced motion: the diagram holds still and fully legible. */
+/* The rim: the lit edge of a planet at the top of a section. The light
+   travels along it as you scroll (stroke-dashoffset driven by GSAP). */
+.rim { display: block; width: 100%; height: auto; overflow: visible; }
+.rim-arc { fill: none; stroke: url(#rim-light); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.rim-glow { fill: url(#rim-atmo); opacity: 0.5; }
+
+/* The comet: one streak that crosses a section as you scroll. */
+.comet {
+  position: absolute;
+  pointer-events: none;
+  height: 2px;
+  width: min(38vw, 30rem);
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgb(99 217 230 / 0.35) 40%, rgb(255 95 162 / 0.55) 70%, #f7f7f4 100%);
+  box-shadow: 0 0 12px rgb(247 247 244 / 0.35);
+  opacity: 0;
+}
+
+/* Reading progress. */
+.scroll-progress {
+  position: fixed;
+  left: 0; top: 0;
+  z-index: 80;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--color-comet), var(--color-nebula));
+  transform-origin: left;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+
+/* Buttons lean toward the hand. */
+.magnet { transition: transform 260ms var(--ease); will-change: transform; }
+
+/* ── Hero ─────────────────────────────────────────────────────────── */
+
+.rise {
+  animation: rise 800ms var(--ease) both;
+  animation-delay: var(--rise-delay, 0ms);
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* The mark as a solid: the same artwork stacked in depth and swaying slowly
+   in 3D. It never turns past the point where the mark would read mirrored.
+   Back layers sit darker so the side face reads as it turns. */
+.k-stage { perspective: 1400px; }
+.k-solid {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: k-turn 18s ease-in-out infinite;
+}
+.k-solid > * { display: block; }
+.k-solid > .k-layer {
+  position: absolute;
+  inset: 0;
+  transform: translateZ(calc(var(--z) * -1px));
+  filter: brightness(var(--b));
+}
+@keyframes k-turn {
+  0%   { transform: rotateX(6deg) rotateY(-34deg); }
+  50%  { transform: rotateX(-4deg) rotateY(34deg); }
+  100% { transform: rotateX(6deg) rotateY(-34deg); }
+}
+
+/* The mark settles in. */
+.k-settle { animation: k-settle 1400ms var(--ease) both; }
+@keyframes k-settle {
+  from { opacity: 0; transform: translateY(18px) scale(0.985); filter: blur(6px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+.starfield {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ── Orbit ────────────────────────────────────────────────────────── */
+
+.orbit-path {
+  fill: none;
+  stroke: url(#ring-nova);
+  stroke-opacity: 0.9;
+  stroke-width: 1.25;
+  vector-effect: non-scaling-stroke;
+}
+.orbit-gate {
+  fill: var(--color-void);
+  stroke: var(--color-royal-bright);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+.orbit-gate-halo {
+  fill: none;
+  stroke: var(--color-royal-bright);
+  stroke-opacity: 0.35;
+  vector-effect: non-scaling-stroke;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: halo 3.6s ease-in-out infinite;
+}
+@keyframes halo {
+  0%, 100% { transform: scale(1); opacity: 0.35; }
+  50% { transform: scale(1.5); opacity: 0; }
+}
+.orbit-mark { fill: var(--color-star); }
+
+/* ── Prose ────────────────────────────────────────────────────────── */
+
+.prose { color: var(--color-star); font-size: 1.125rem; line-height: 1.7; }
+.prose > * + * { margin-top: 1.4em; }
+.prose h2 { font-size: var(--text-h3); line-height: 1.2; margin-top: 2.4em; }
+.prose h3 { font-size: 1.25rem; margin-top: 2em; }
+.prose p, .prose li { color: #d6d6d2; }
+.prose strong { font-weight: 600; color: var(--color-star); }
+.prose a { color: var(--color-comet); text-decoration: underline; text-underline-offset: 3px; }
+.prose ul, .prose ol { padding-left: 1.4em; }
+.prose ul { list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose li + li { margin-top: 0.5em; }
+.prose blockquote { border-left: 2px solid var(--color-comet); padding-left: 1.25em; color: var(--color-mist); }
+.prose code { font-family: var(--font-mono); font-size: 0.9em; background: var(--color-void-2); padding: 0.1em 0.4em; border-radius: 4px; }
+.prose pre { font-family: var(--font-mono); font-size: 0.9rem; background: var(--color-void-2); border: 1px solid var(--color-line); padding: 1.25rem; border-radius: 10px; overflow-x: auto; }
+.prose pre code { background: none; padding: 0; }
+.prose hr { border: 0; border-top: 1px solid var(--color-line); margin: 3em 0; }
+.prose img { border-radius: 10px; }
+
+/* ── Chat ─────────────────────────────────────────────────────────── */
+
+.ltl-panel { width: min(24rem, calc(100vw - 2rem)); height: min(34rem, calc(100dvh - 3rem)); }
+.ltl-in { animation: ltl-in 360ms var(--ease) both; }
+.ltl-in-fast { animation: ltl-in 220ms var(--ease) both; }
+@keyframes ltl-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.ltl-dot { animation: ltl-dot 1.1s ease-in-out infinite; animation-delay: var(--dot-delay, 0s); }
+@keyframes ltl-dot { 0%, 80%, 100% { opacity: 0.25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+/* ── Reduced motion: every effect at its END state ────────────────── */
+
 @media (prefers-reduced-motion: reduce) {
-  .system-glow-border,
-  .node-seq {
-    animation: none !important;
-  }
-  .flow-line::after {
-    animation: none !important;
-    opacity: 0;
-  }
-}
-
-/* ── Demo system utilities (used by the live demos) ── */
-
-@keyframes pulse-slow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-.animate-pulse-slow {
-  animation: pulse-slow 2s ease-in-out infinite;
-}
-
-@keyframes fade-slide-up {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* CSS-only hero entrances: above-the-fold content must paint without JS */
-.hero-rise {
-  animation: fade-slide-up 0.2s ease-out both;
-}
-.hero-rise-1 { animation-delay: 150ms; }
-.hero-rise-2 { animation-delay: 300ms; }
-.hero-rise-3 { animation-delay: 450ms; }
-
-/* ── Talk to Logan chat widget ── */
-
-@keyframes ltlBounce {
-  0%, 60%, 100% { transform: translateY(0); }
-  30% { transform: translateY(-4px); }
-}
-@keyframes ltlFadeUp {
-  from { opacity: 0; transform: translate3d(0, var(--space-12), 0); }
-  to { opacity: 1; transform: none; }
-}
-
-/* Entrances run on the house curve, as classes rather than inline styles
-   so the reduced-motion block can target them by name. */
-.ltl-in {
-  animation: ltlFadeUp var(--dur-base) var(--ease-out-expo) both;
-}
-.ltl-in-fast {
-  animation: ltlFadeUp var(--dur-fast) var(--ease-out-quart) both;
-}
-.ltl-dot {
-  animation: ltlBounce 1.2s ease-in-out infinite;
-  animation-delay: var(--dot-delay, 0s);
-}
-
-/* No teal glow: the launcher is persistent chrome on every page, and a
-   coloured halo on something always on screen is the loudest thing in the
-   design. It gets depth from a plain shadow instead. */
-.ltl-launcher {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28), 0 12px 32px -12px rgba(0, 0, 0, 0.6);
-  transition:
-    transform var(--dur-base) var(--ease-out-expo),
-    border-color var(--dur-base) var(--ease-out-quart),
-    box-shadow var(--dur-base) var(--ease-out-quart);
-}
-.ltl-launcher:hover {
-  transform: translate3d(0, -2px, 0);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), 0 18px 42px -14px rgba(0, 0, 0, 0.7);
-}
-.ltl-panel {
-  width: min(27.5rem, calc(100vw - var(--space-48)));
-  height: min(42.5rem, calc(100vh - var(--space-48)));
-  box-shadow:
-    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
-    0 32px 80px -24px rgba(0, 0, 0, 0.8),
-    0 0 0 1px rgba(0, 0, 0, 0.3);
-}
-.ltl-bubble-assistant {
-  border-radius: var(--radius-card) var(--radius-card) var(--radius-card) 4px;
-}
-.ltl-bubble-user {
-  border-radius: var(--radius-card) var(--radius-card) 4px var(--radius-card);
-}
-.ltl-scroll::-webkit-scrollbar {
-  width: 4px;
-}
-.ltl-scroll::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-}
-.ltl-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* ── Reduced motion: decorative animation off, content visible ── */
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    /* blanket floor (warden QA round 1, finding 3): named neutralizations below
-       keep their end states; nothing animates or transitions under reduce */
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .animate-pulse-slow,
-  .hero-rise {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-  /* Chat widget: entrances resolve to their end state, the typing dots
-     hold still, and the launcher stops lifting. */
-  .ltl-in,
-  .ltl-in-fast {
-    animation: none !important;
-    opacity: 1;
-    transform: none;
-  }
-  .ltl-dot {
-    animation: none !important;
-  }
-  .ltl-launcher:hover {
-    transform: none;
-  }
-
-  /* ── v3 motion system under reduce ──
-     Every new effect resolves to its END state, never its start state.
-     Content is always fully visible and untransformed. */
-  .reveal,
-  .reveal.is-in {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-  .line-rise {
-    animation: none !important;
-    transform: none !important;
-  }
-  .line-mask {
-    overflow: visible;
-  }
-  /* Ambient loops stop entirely; the atmosphere holds a static pose. */
-  .atmos-aurora::before,
-  .atmos-aurora::after {
-    animation: none !important;
-  }
-  .status-dot::after {
-    animation: none !important;
-  }
-  .lift:hover {
-    transform: none;
-  }
-  /* Scroll-linked decoration is dropped rather than snapped. */
-  .scroll-rail {
-    animation: none !important;
-    animation-timeline: auto !important;
-    opacity: 0;
-  }
-  .parallax-slow {
-    animation: none !important;
-    animation-timeline: auto !important;
-    transform: none !important;
-  }
-  /* The rail keeps its finished state: drawn, just not drawing. */
-  .phase-rail-fill {
-    animation: none !important;
-    animation-timeline: auto !important;
-    transform: scaleY(1) !important;
-  }
-}
-
-/* ── Prose styles for rendered markdown (blog posts stay live) ── */
-
-.prose {
-  line-height: 1.8;
-  font-size: 1.0625rem;
-  color: var(--color-navy);
-}
-
-.prose h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-top: 2em;
-  margin-bottom: 0.75em;
-  color: var(--color-navy);
-}
-
-.prose h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-top: 1.5em;
-  margin-bottom: 0.5em;
-  color: var(--color-navy);
-}
-
-.prose p {
-  margin-bottom: 1.25em;
-}
-
-.prose a {
-  color: var(--color-accent);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.prose a:hover {
-  opacity: 0.8;
-}
-
-.prose strong {
-  font-weight: 600;
-  color: var(--color-navy);
-}
-
-.prose blockquote {
-  border-left: 3px solid var(--color-accent);
-  padding-left: 1em;
-  margin-left: 0;
-  margin-top: 1.25em;
-  margin-bottom: 1.25em;
-  color: var(--slate-600);
-  font-style: italic;
-}
-
-.prose ul, .prose ol {
-  padding-left: 1.5em;
-  margin-bottom: 1.25em;
-}
-
-.prose ul {
-  list-style-type: disc;
-}
-
-.prose ol {
-  list-style-type: decimal;
-}
-
-.prose li {
-  margin-bottom: 0.5em;
-}
-
-.prose code {
-  font-size: 0.875em;
-  background: var(--code-fill);
-  padding: 0.15em 0.4em;
-  border-radius: 4px;
-}
-
-.prose pre {
-  background: var(--color-navy);
-  color: var(--code-block-text);
-  padding: 1em 1.25em;
-  border-radius: 0.75rem;
-  overflow-x: auto;
-  margin-top: 1.25em;
-  margin-bottom: 1.25em;
-}
-
-.prose pre code {
-  background: none;
-  padding: 0;
-  font-size: 0.875em;
-}
-
-.prose img {
-  max-width: 100%;
-  border-radius: 0.75rem;
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
-}
-
-.prose hr {
-  border: none;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.08), transparent);
-  margin: 2em 0;
-}
-
-.prose.prose-invert {
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.prose.prose-invert h2,
-.prose.prose-invert h3 {
-  color: #fff;
-}
-
-.prose.prose-invert strong {
-  color: #fff;
-}
-
-.prose.prose-invert blockquote {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.prose.prose-invert code {
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.prose.prose-invert hr {
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
-}
-
-/* Blog post hero: a faint teal glow behind the title */
-.post-hero-glow {
-  background: radial-gradient(
-    ellipse at center,
-    color-mix(in srgb, var(--teal) 8%, transparent) 0%,
-    transparent 70%
-  );
+  .reveal { opacity: 1; transform: none; }
+  .rise, .k-settle { animation: none; opacity: 1; transform: none; filter: none; }
+  .k-solid { animation: none; transform: rotateX(6deg) rotateY(-14deg); }
+  .etch, .k-nebula { animation: none; }
+  .k-glow::before { animation: none; }
+  header { transition: none; }
+  .warp { display: none; }
+  .band { mask-image: none; -webkit-mask-image: none; }
+  .arc-band { height: auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 3rem; mask-image: none; -webkit-mask-image: none; }
+  .arc-band::before { display: none; }
+  .arc-item, .arc-item:nth-child(2n) { position: static; offset-path: none; animation: none; }
+  .comet { display: none; }
+  .chrome-hover { transition: none; }
+  .words .w > span { transform: none; transition: none; }
+  .orbit-gate-halo { animation: none; opacity: 0.35; }
+  .rule::before { transform: scaleX(1); transition: none; }
+  .magnet { transform: none !important; }
+  .starfield { display: none; }
 }

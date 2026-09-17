@@ -1,79 +1,67 @@
 import type { Metadata } from 'next'
-import { Inter, Bricolage_Grotesque, JetBrains_Mono } from 'next/font/google'
+import { Manrope, Instrument_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-import TalkToLogan from "@/components/TalkToLogan";
+import TalkToLogan from '@/components/TalkToLogan'
+import { SmoothScroll } from '@/components/SmoothScroll'
+import { ScrollProgress } from '@/components/ScrollProgress'
+import { Cursor } from '@/components/Cursor'
+import { ScrollFx } from '@/components/ScrollFx'
+import { JsonLd, organization, service } from '@/components/JsonLd'
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ['latin'],
   display: 'swap',
+  variable: '--font-manrope',
+  weight: ['600', '700', '800'],
 })
 
-const bricolage = Bricolage_Grotesque({
+const instrument = Instrument_Sans({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-display',
-  axes: ['opsz'],
+  variable: '--font-instrument',
+  weight: ['400', '500', '600'],
 })
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-mono',
-  weight: ['400', '600'],
-})
+const DESCRIPTION =
+  'AI that answers to you. Kaleos HQ is a premium AI implementation practice that designs and ships custom AI systems where agents handle the work and a person you trust signs off before anything goes out.'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.kaleoshq.com'),
   title: {
-    default: 'Kaleos HQ | Agentic AI Implementation',
+    default: 'Kaleos HQ | Custom AI solutions for the modern business',
     template: '%s | Kaleos HQ',
   },
-  description:
-    "AI doesn't fail because of the technology. It fails because of the implementation. Kaleos HQ is an agentic AI implementation and applied AI consulting practice: agents do the work, humans make the calls, everything is logged.",
+  description: DESCRIPTION,
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.kaleoshq.com',
     siteName: 'Kaleos HQ',
-    title: 'Kaleos HQ | Agentic AI Implementation',
-    description:
-      "Agentic AI implementation and applied AI consulting. Agents do the work, humans make the calls, everything is logged.",
-    images: [
-      {
-        url: '/opengraph-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Kaleos HQ - Agentic AI Implementation',
-      },
-    ],
+    title: 'Kaleos HQ | Custom AI solutions for the modern business',
+    description: DESCRIPTION,
+    images: [{ url: '/opengraph-image.png', width: 1200, height: 630, alt: 'Kaleos HQ. AI that answers to you.' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kaleos HQ | Agentic AI Implementation',
-    description:
-      "Agentic AI implementation and applied AI consulting. Agents do the work, humans make the calls, everything is logged.",
+    title: 'Kaleos HQ | Custom AI solutions for the modern business',
+    description: DESCRIPTION,
     images: ['/opengraph-image.png'],
   },
-  alternates: {
-    canonical: 'https://www.kaleoshq.com',
-  },
-  verification: {
-    google: 'u9TYfcPGp3i-VQfEiGwIpZQjFveJoI0uijF9d0rev4U',
-  },
+  alternates: { canonical: 'https://www.kaleoshq.com' },
+  verification: { google: 'u9TYfcPGp3i-VQfEiGwIpZQjFveJoI0uijF9d0rev4U' },
 }
 
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${bricolage.variable} ${jetbrainsMono.variable}`}>
-      <body
-        className={`${inter.className} antialiased bg-paper text-slate-700`}
-      >
+    <html lang="en" className={`${manrope.variable} ${instrument.variable}`}>
+      <body className="font-sans antialiased bg-void text-star">
+        <JsonLd data={organization} />
+        <JsonLd data={service} />
+        <SmoothScroll />
+        <ScrollProgress />
+        <Cursor />
+        <ScrollFx />
         {children}
         <TalkToLogan />
         <Analytics />

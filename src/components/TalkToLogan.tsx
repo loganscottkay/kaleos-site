@@ -3,6 +3,10 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import type { CSSProperties, KeyboardEvent } from 'react'
 import Image from 'next/image'
+import { CALENDLY, CTA } from '@/components/NavBar'
+
+/* Posts to /api/chat. The payload shape and the validation limits are the
+   backend's; only the surface changed. Quiet launcher, black panel. */
 
 type Role = 'user' | 'assistant'
 
@@ -14,41 +18,22 @@ interface Message {
 const INITIAL_MESSAGE: Message = {
   role: 'assistant',
   content:
-    "Hey, I'm Logan. If you're thinking about AI for your business, tell me what you're working on. I'll give you a straight answer on where it creates real leverage.",
+    "Hi, I'm Logan. If you're weighing AI for your business, tell me what you're working on and I'll give you a straight answer on whether a system is worth building.",
 }
 
 const INTEREST = /pric|cost|how much|get started|work together|work with|hire|sign up|interested|next step|ready to|let.s go|move forward|schedule|engage|proposal|quote|retainer|consult/
 
 function SendIcon() {
   return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <line x1="22" y1="2" x2="11" y2="13" />
-      <polygon points="22 2 15 22 11 13 2 9 22 2" />
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M5 12h14M13 5l7 7-7 7" />
     </svg>
   )
 }
 
 function CloseIcon() {
   return (
-    <svg
-      className="w-4 h-4"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      aria-hidden="true"
-    >
+    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
       <path d="M6 18L18 6M6 6l12 12" />
     </svg>
   )
@@ -60,6 +45,7 @@ export default function TalkToLogan() {
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [showCTA, setShowCTA] = useState(false)
+  const [pastHero, setPastHero] = useState(false)
 
   const endRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -67,7 +53,6 @@ export default function TalkToLogan() {
   const turns = useRef(0)
   const sessionId = useRef<string | null>(null)
 
-  // Generated lazily so it is never evaluated during server rendering.
   const getSessionId = () => {
     if (!sessionId.current) sessionId.current = crypto.randomUUID()
     return sessionId.current
@@ -75,15 +60,21 @@ export default function TalkToLogan() {
 
   useEffect(() => {
     endRef.current?.scrollIntoView({
-      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-        ? 'auto'
-        : 'smooth',
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
     })
   }, [messages])
 
   useEffect(() => {
     if (isOpen) inputRef.current?.focus()
   }, [isOpen])
+
+  // The hero has its own call to action; the launcher waits until the page moves.
+  useEffect(() => {
+    const onScroll = () => setPastHero(window.scrollY > 160)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const restoreFocus = useRef(false)
 
@@ -92,17 +83,12 @@ export default function TalkToLogan() {
     setIsOpen(false)
   }, [])
 
-  // Focus restoration has to wait for the re-render: the launcher is
-  // unmounted while the panel is open, so calling focus() inside close()
-  // would run against a null ref and drop focus onto <body>.
   useEffect(() => {
     if (isOpen || !restoreFocus.current) return
     restoreFocus.current = false
     launcherRef.current?.focus()
   }, [isOpen])
 
-  // The panel is modal (it renders over a full-screen backdrop), so Escape
-  // has to dismiss it.
   useEffect(() => {
     if (!isOpen) return
     const onKey = (event: globalThis.KeyboardEvent) => {
@@ -130,7 +116,7 @@ export default function TalkToLogan() {
         }),
       })
       const data = await res.json()
-      const text: string = data.content || data.error || 'Something glitched. Try that again?'
+      const text: string = data.content || data.error || 'Something went wrong. Try that again?'
       setMessages((prev) => [...prev, { role: 'assistant', content: text }])
       if ((turns.current >= 3 || INTEREST.test(userMsg.content.toLowerCase())) && !showCTA) {
         setShowCTA(true)
@@ -138,7 +124,7 @@ export default function TalkToLogan() {
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: 'Something glitched on my end. Mind trying again?' },
+        { role: 'assistant', content: 'Something went wrong on my end. Mind trying again?' },
       ])
     } finally {
       setLoading(false)
@@ -154,105 +140,76 @@ export default function TalkToLogan() {
 
   return (
     <>
-      {!isOpen && (
+      {!isOpen && pastHero && (
         <button
           ref={launcherRef}
           type="button"
           onClick={() => setIsOpen(true)}
           aria-haspopup="dialog"
-          className="ltl-launcher fixed bottom-6 right-6 z-[9999] flex items-center gap-3 text-left rounded-card border border-white/10 bg-gradient-to-br from-navy to-navy-950 py-4 pl-4 pr-6 cursor-pointer hover:border-white/20"
+          className="fixed bottom-5 right-5 z-[9999] flex items-center gap-3 rounded-full border border-line bg-void py-2 pl-2 pr-5 text-left text-star shadow-[0_8px_30px_rgb(0_0_0/0.35)] transition-colors hover:border-star/40 md:bottom-6 md:right-6"
         >
-          <span className="relative block w-10 h-10 shrink-0">
-            <Image
-              src="/photo.png"
-              alt=""
-              width={40}
-              height={40}
-              className="w-10 h-10 rounded-full object-cover"
-            />
-            <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-teal-bright border-2 border-navy-950" />
-          </span>
-          <span className="block">
-            <span className="block text-body font-semibold text-white tracking-tight">
-              Talk to Logan
-            </span>
-            <span className="block text-caption text-white/60 mt-1">
-              Free AI consultation
-            </span>
-          </span>
+          <Image
+            src="/photo.png"
+            alt=""
+            width={36}
+            height={36}
+            className="h-9 w-9 rounded-full object-cover grayscale"
+          />
+          <span className="text-[0.95rem]">Talk with us</span>
         </button>
       )}
 
       {isOpen && (
-        <div
-          onClick={close}
-          className="ltl-in-fast fixed inset-0 z-[10000] bg-ink/50 backdrop-blur-sm"
-          aria-hidden="true"
-        />
+        <div onClick={close} className="ltl-in-fast fixed inset-0 z-[10000] bg-void/60" aria-hidden="true" />
       )}
 
       {isOpen && (
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Chat with Logan"
-          className="ltl-panel ltl-in fixed bottom-6 right-6 z-[10001] flex flex-col rounded-card border border-white/10 bg-gradient-to-b from-navy-900 to-navy-950 overflow-hidden"
+          aria-label="Chat with Kaleos HQ"
+          className="ltl-panel ltl-in fixed bottom-4 right-4 z-[10001] flex flex-col overflow-hidden rounded-[14px] border border-line bg-void text-star md:bottom-6 md:right-6"
         >
-          <div className="flex items-center gap-4 px-6 pt-6 pb-4 border-b border-white/10">
-            <span className="relative block w-11 h-11 shrink-0">
-              <Image
-                src="/photo.png"
-                alt=""
-                width={44}
-                height={44}
-                className="w-11 h-11 rounded-full object-cover"
-              />
-              <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-teal-bright border-2 border-navy-900" />
-            </span>
+          <div className="flex items-center gap-4 border-b border-line px-5 py-4">
+            <Image
+              src="/photo.png"
+              alt="Logan Kay"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-full object-cover grayscale"
+            />
             <div className="flex-1">
-              <div
-                className="font-display text-body font-semibold text-white"
-              >
-                Logan Kay
-              </div>
-              <div className="font-system text-caption text-white/60 mt-1">
-                Founder, Kaleos HQ
-              </div>
+              <div className="text-body">Logan Kay</div>
+              <div className="font-mono text-[0.7rem] tracking-wide text-mist">Founder, Kaleos HQ</div>
             </div>
             <button
               onClick={close}
               aria-label="Close chat"
-              className="btn w-10 h-10 bg-white/6 text-white/60 hover:text-white hover:bg-white/10 cursor-pointer"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-mist hover:text-star"
             >
               <CloseIcon />
             </button>
           </div>
 
-          {/* Replies arrive asynchronously, so the transcript announces itself. */}
-          <div
-            className="ltl-scroll flex-1 overflow-y-auto p-6 flex flex-col gap-4"
-            role="log"
-            aria-live="polite"
-            aria-atomic="false"
-          >
+          <div className="flex flex-1 flex-col gap-3 overflow-y-auto p-5" role="log" aria-live="polite" aria-atomic="false" data-lenis-prevent>
             {messages.map((m, i) => (
               <div
                 key={i}
-                className={`ltl-in-fast max-w-[85%] py-3 px-4 text-body leading-relaxed ${
+                className={`ltl-in-fast max-w-[85%] rounded-[12px] px-4 py-3 text-[0.95rem] leading-relaxed ${
                   m.role === 'assistant'
-                    ? 'ltl-bubble-assistant bg-white/6 border border-white/10 text-white/90 self-start'
-                    : 'ltl-bubble-user bg-accent-deep text-white self-end'
+                    ? 'self-start border border-line text-star'
+                    : 'self-end bg-star text-void'
                 }`}
               >
                 {m.content}
               </div>
             ))}
             {loading && (
-              <div className="flex gap-2 py-3 px-4 self-start" aria-label="Logan is typing">
+              <div className="flex gap-1.5 self-start px-4 py-3" aria-label="Logan is typing">
                 {['0s', '0.15s', '0.3s'].map((delay) => (
                   <span
                     key={delay}
-                    className="ltl-dot w-2 h-2 rounded-full bg-white/30"
+                    className="ltl-dot h-1.5 w-1.5 rounded-full bg-star"
                     style={{ '--dot-delay': delay } as CSSProperties}
                   />
                 ))}
@@ -262,30 +219,20 @@ export default function TalkToLogan() {
           </div>
 
           {showCTA && (
-            <div className="ltl-in-fast pt-3 px-6 pb-1">
-              <div className="p-3 rounded-card bg-accent/10 border border-accent/20 text-white/75 text-caption leading-relaxed mb-3">
-                Sounds like we should talk! Here&apos;s how to take the next step:
-              </div>
-              <div className="flex gap-2 flex-wrap">
-                <a
-                  href="https://calendly.com/logan-kaleoshq/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary px-4 text-caption font-semibold"
-                >
-                  Book a Discovery Call
-                </a>
-                <a
-                  href="mailto:logan@kaleoshq.com?subject=Interested%20in%20Kaleos&body=Hi%20Logan%2C%20I'd%20like%20to%20learn%20more%20about%20how%20Kaleos%20can%20help%20my%20business."
-                  className="btn btn-ghost-dark px-4 text-caption"
-                >
-                  Email me directly
-                </a>
-              </div>
+            <div className="ltl-in-fast flex flex-wrap gap-2 border-t border-line px-5 py-4">
+              <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star !min-h-10 text-caption">
+                {CTA}
+              </a>
+              <a
+                href="mailto:logan@kaleoshq.com?subject=Kaleos HQ"
+                className="btn btn-ghost !min-h-10 text-caption"
+              >
+                Email us
+              </a>
             </div>
           )}
 
-          <div className="flex items-end gap-3 pt-4 px-6 pb-6 border-t border-white/10">
+          <div className="flex items-end gap-2 border-t border-line p-4">
             <label htmlFor="ltl-input" className="sr-only">
               Message Logan
             </label>
@@ -295,26 +242,24 @@ export default function TalkToLogan() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={onTextareaKey}
-              placeholder="Tell me about your business..."
+              placeholder="Tell me about your business"
               rows={1}
-              className="input-dark flex-1 px-4 py-3 text-body resize-none leading-normal"
+              className="flex-1 resize-none rounded-[10px] border border-line bg-void-2 px-4 py-3 text-[1rem] leading-normal text-star placeholder:text-mist focus:border-star/50 focus:outline-none"
             />
             <button
               onClick={send}
               disabled={!input.trim() || loading}
               aria-label="Send message"
-              className={`btn w-11 h-11 shrink-0 ${
-                input.trim()
-                  ? 'bg-accent-deep text-white cursor-pointer'
-                  : 'bg-white/6 text-white/60 cursor-default'
+              className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${
+                input.trim() ? 'bg-star text-void' : 'border border-line text-mist'
               }`}
             >
               <SendIcon />
             </button>
           </div>
 
-          <p className="text-center font-system text-white/50 text-caption pb-3">
-            AI-powered &middot; Responses reflect how Logan thinks
+          <p className="pb-3 text-center font-mono text-[0.68rem] tracking-wide text-mist">
+            An AI assistant that answers the way Logan would.
           </p>
         </div>
       )}
