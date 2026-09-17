@@ -36,7 +36,7 @@ export function LogoBand() {
               style={{ '--d': `${-(i * period) / items.length}s` } as CSSProperties}
             >
               {item.mark && <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={item.mark} /></svg>}
-              {item.img && <Image src={item.img} alt="" width={20} height={24} className="brightness-0 invert" />}
+              {item.img && <Image src={item.img} alt="" width={20} height={24} />}
               {item.name}
             </span>
         ))}
