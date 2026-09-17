@@ -285,12 +285,7 @@ export function QuickAssessment() {
 
                 {/* Result */}
                 {step === 3 && result && (
-                  <div
-                    className="text-center"
-                    style={{
-                      
-                    }}
-                  >
+                  <div className="text-center">
                     <p className="font-system text-teal-bright text-caption font-semibold tracking-widest uppercase mb-6">
                       Personalized for you
                     </p>

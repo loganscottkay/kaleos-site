@@ -45,6 +45,13 @@ function validate(body: unknown): { question: QuestionPayload | null; error: str
 }
 
 export async function POST(req: NextRequest) {
+  if (!process.env.RESEND_API_KEY) {
+    return NextResponse.json(
+      { error: 'Question sending is not configured in this environment (RESEND_API_KEY is unset).' },
+      { status: 503 }
+    )
+  }
+
   if (isRateLimited(clientIp(req))) {
     return NextResponse.json(
       { error: 'Too many questions from this connection. Try again in an hour.' },

@@ -72,26 +72,34 @@ documents and processes.
 - Chatbot: OpenAI GPT-4o via /api/chat route
 
 ## Project Structure
+- README.md — designer-facing guide (setup, codebase map, what is theirs to change)
+- docs/DESIGN-HANDOFF.md — brand brief, asset inventory, token starting values
+- docs/baseline-screenshots/ — full-page captures of every route before the overhaul
+- docs/archive/ — old runbooks, progress logs, audits, and review artifacts (history only)
 - src/app/page.tsx — Homepage
 - src/app/audit/page.tsx — Assessment page (nav label "Assessment") with intake form
 - src/app/about/page.tsx — About page
-- src/app/blog/ — Blog posts (live, unlinked from nav)
+- src/app/blog/ — Blog posts (live, unlinked from nav); content in content/blog/*.md
 - src/app/api/lead/route.ts — Lead form backend (Resend + Airtable)
 - src/app/api/chat/route.ts — OpenAI proxy for chatbot
+- src/app/api/bohan/roadmap-question/route.ts — question box on the Bohan client roadmap
 - src/app/robots.ts, src/app/sitemap.ts — SEO layer
-- src/lib/rate-limit.ts — shared in-memory rate limiter for both API routes
+- src/app/globals.css — design tokens (@theme + :root at the top) and all hand-written CSS
+- src/lib/rate-limit.ts — shared in-memory rate limiter for the API routes
+- src/lib/blog.ts — reads content/blog markdown
 - src/components/ApprovalQueue.tsx — the hero signature panel (live approval queue)
 - src/components/Reveal.tsx — Reveal (scroll entrances) + SpotlightGroup (pointer tracking)
-- src/components/AnimateIn.tsx — compatibility shim over Reveal, kept for existing call sites
+- src/components/Card.tsx — the one card system (was GlassCard)
 - src/components/GateRule.tsx — approval-gate divider motif
 - src/components/demos/ — three interactive demos (ClientPortal, Accountability, Outreach) + shared GateAction
-- src/components/TalkToLogan.jsx — AI chatbot widget
+- src/components/TalkToLogan.tsx — AI chatbot widget
 - src/components/NavBar.tsx — Nav with K logo + Kaleos HQ wordmark + CTA
 - src/components/AuditForm.tsx — Lead capture form (posts to /api/lead)
 - public/photo.png — Logan's headshot
-- public/kaleos-logo.png — K logo mark
-- audits/ — baseline + design decisions + Lighthouse snapshots
-- docs/, reviews/ — preship report and code-review artifacts
+- public/kaleos-logo.png — K logo mark (nav, footer); src/app/icon.png and apple-icon.png are the favicon copies
+- public/bohan/roadmap.html — standalone client roadmap, served at /bohan/roadmap, noindex
+- brand-assets/ — social banners and LinkedIn logo, not used by the site build
+- .env.example — every env var with a placeholder; site runs with placeholders (integrations show "not configured")
 
 ## Design System ("Machined Graphite v3", applied 2026-08-17)
 

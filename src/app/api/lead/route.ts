@@ -55,7 +55,17 @@ function validate(body: unknown): { lead: LeadPayload | null; error: string | nu
   }
 }
 
+// Local dev with only .env.example copied in: say so instead of failing.
+const NOT_CONFIGURED =
+  'Lead capture is not configured in this environment (RESEND_API_KEY and AIRTABLE_* are unset). Nothing was sent.'
+
 export async function POST(req: NextRequest) {
+  const resendReady = Boolean(process.env.RESEND_API_KEY)
+  const airtableReady = Boolean(process.env.AIRTABLE_API_KEY && process.env.AIRTABLE_BASE_ID)
+  if (!resendReady && !airtableReady) {
+    return NextResponse.json({ error: NOT_CONFIGURED }, { status: 503 })
+  }
+
   if (isRateLimited(clientIp(req))) {
     return NextResponse.json(
       { error: 'Too many submissions from this connection. Try again in an hour.' },
@@ -86,7 +96,8 @@ export async function POST(req: NextRequest) {
 
   // async wrappers so constructor/config errors reject instead of throwing
   const airtablePromise = (async () =>
-    new Airtable({ apiKey: process.env.AIRTABLE_API_KEY })
+    airtableReady
+      ? new Airtable({ apiKey: process.env.AIRTABLE_API_KEY })
       .base(process.env.AIRTABLE_BASE_ID!)('Leads')
       .create([
         {
@@ -101,11 +112,13 @@ export async function POST(req: NextRequest) {
             'Submitted At': submittedDate,
           },
         },
-      ]))()
+      ])
+      : Promise.reject(new Error('Airtable not configured')))()
 
   // The Resend SDK reports API failures as a resolved { error } value, not a
   // rejection, so surface that as a failure explicitly.
   const emailPromise = (async () => {
+    if (!resendReady) throw new Error('Resend not configured')
     const result = await new Resend(process.env.RESEND_API_KEY).emails.send({
       from: FROM_ADDRESS,
       to: NOTIFY_ADDRESS,

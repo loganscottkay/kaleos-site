@@ -1,4 +1,4 @@
-import { GlassCard } from '@/components/GlassCard'
+import { Card } from '@/components/Card'
 import { Reveal, SpotlightGroup } from '@/components/Reveal'
 import { GateRule } from '@/components/GateRule'
 
@@ -51,7 +51,7 @@ export function InProduction() {
         <SpotlightGroup className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {systems.map((item, i) => (
             <Reveal key={item.label} delay={i * 90} className="h-full">
-              <GlassCard
+              <Card
                 light
                 hover
                 className="spotlight spotlight-paper lift lift-paper p-8 h-full"
@@ -68,7 +68,7 @@ export function InProduction() {
                   </span>
                 </div>
                 <p className="text-slate-600 text-body">{item.desc}</p>
-              </GlassCard>
+              </Card>
             </Reveal>
           ))}
         </SpotlightGroup>

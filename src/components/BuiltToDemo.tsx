@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { AnimateIn } from '@/components/AnimateIn'
 import { Reveal, SpotlightGroup } from '@/components/Reveal'
 import { GateRule } from '@/components/GateRule'
 
@@ -78,7 +77,7 @@ export function BuiltToDemo() {
       <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
       <div className="max-w-7xl mx-auto px-4">
-        <AnimateIn>
+        <Reveal>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-6 items-end mb-16">
             <div className="md:col-span-6">
               <p className="font-system text-teal-bright text-caption tracking-widest mb-3 uppercase">
@@ -97,7 +96,7 @@ export function BuiltToDemo() {
               every Kaleos HQ system ships with.
             </p>
           </div>
-        </AnimateIn>
+        </Reveal>
 
         <SpotlightGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {demos.map((demo, i) => (

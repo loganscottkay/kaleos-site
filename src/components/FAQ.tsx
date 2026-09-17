@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 
 const faqs = [
   {
@@ -39,15 +39,11 @@ const faqs = [
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
-  const [visibleItems] = useState<Set<number>>(new Set(faqs.map((_, i) => i)))
-  const sectionRef = useRef<HTMLDivElement>(null)
-
 
   return (
-    <div ref={sectionRef} className="space-y-3">
+    <div className="space-y-3">
       {faqs.map((faq, i) => {
         const isOpen = openIndex === i
-        const isVisible = visibleItems.has(i)
 
         return (
           <div
@@ -56,14 +52,7 @@ export function FAQ() {
               isOpen
                 ? 'bg-white/[0.08] border-accent/30'
                 : 'hover:border-white/[0.2]'
-            } ${
-              isVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-4'
             }`}
-            style={{
-              transitionProperty: 'opacity, transform, background-color, border-color, box-shadow',
-            }}
           >
             <button
               onClick={() => setOpenIndex(isOpen ? null : i)}

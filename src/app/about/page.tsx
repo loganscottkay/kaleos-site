@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { NavBar } from '@/components/NavBar'
 import { Footer, SocialIcons } from '@/components/Footer'
-import { GlassCard } from '@/components/GlassCard'
-import { AnimateIn } from '@/components/AnimateIn'
-import { SpotlightGroup } from '@/components/Reveal'
+import { Card } from '@/components/Card'
+import { Reveal, SpotlightGroup } from '@/components/Reveal'
 import { StrategyGraph } from '@/components/StrategyGraph'
 
 export const metadata: Metadata = {
@@ -87,16 +86,16 @@ export default function AboutPage() {
               <div className="flex flex-col md:flex-row gap-12 items-center max-w-4xl mx-auto">
                 {/* Text */}
                 <div className="flex-1">
-                  <AnimateIn>
+                  <Reveal>
                     <p className="text-body-lg text-slate-800 font-medium mb-6 tracking-tight max-w-xl">
                       Kaleos HQ exists because wanting AI and running AI are
                       different problems. The AI advantage isn&apos;t about the
                       best tools. It&apos;s about the best implementation.
                     </p>
-                  </AnimateIn>
+                  </Reveal>
 
                   <div className="space-y-4 text-slate-600 leading-relaxed max-w-xl">
-                    <AnimateIn delay={100}>
+                    <Reveal delay={100}>
                       <p>
                         Brilliant executives keep getting stuck. They have the
                         vision but nobody to translate it into AI systems that
@@ -104,21 +103,21 @@ export default function AboutPage() {
                         first, then precision-scoped systems with human
                         approval on every consequential call.
                       </p>
-                    </AnimateIn>
+                    </Reveal>
 
-                    <AnimateIn delay={200}>
+                    <Reveal delay={200}>
                       <p>
                         Kaleos HQ was founded by Logan Kay, who designed and
                         deployed AI systems across admissions and operations at
                         Harvard Business School. The implementation methodology
                         we run today comes directly from that work.
                       </p>
-                    </AnimateIn>
+                    </Reveal>
                   </div>
                 </div>
 
                 {/* Photo */}
-                <AnimateIn delay={200} className="w-full md:w-auto shrink-0">
+                <Reveal delay={200} className="w-full md:w-auto shrink-0">
                   <div className="max-w-100 mx-auto md:mx-0 md:w-70 xl:w-65">
                     <div className="aspect-[4/5] rounded-card overflow-hidden relative">
                       <Image src="/photo.png" alt="Logan Kay, Founder of Kaleos HQ" fill className="object-cover" sizes="(max-width: 1280px) 100vw, 280px" />
@@ -133,7 +132,7 @@ export default function AboutPage() {
                       <SocialIcons className="[&_a]:text-slate-400/50 [&_a:hover]:text-teal-bright" />
                     </div>
                   </div>
-                </AnimateIn>
+                </Reveal>
               </div>
             </div>
           </div>
@@ -150,15 +149,15 @@ export default function AboutPage() {
         <div className="atmos-layer atmos-horizon" aria-hidden="true" />
 
         <div className="max-w-7xl mx-auto px-4">
-          <AnimateIn>
+          <Reveal>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
               Background
             </h2>
-          </AnimateIn>
+          </Reveal>
 
           <SpotlightGroup className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
-            <AnimateIn delay={0} className="h-full">
-              <GlassCard className="spotlight lift lift-dark p-8 h-full">
+            <Reveal delay={0} className="h-full">
+              <Card className="spotlight lift lift-dark p-8 h-full">
                 {/* Brain/circuit icon */}
                 <div className="mb-4">
                   <svg className="w-8 h-8 text-teal-bright" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -173,11 +172,11 @@ export default function AboutPage() {
                   operations at Harvard Business School. The Kaleos HQ
                   implementation methodology comes from that work.
                 </p>
-              </GlassCard>
-            </AnimateIn>
+              </Card>
+            </Reveal>
 
-            <AnimateIn delay={150} className="h-full">
-              <GlassCard className="spotlight lift lift-dark p-8 h-full">
+            <Reveal delay={150} className="h-full">
+              <Card className="spotlight lift lift-dark p-8 h-full">
                 {/* Chart icon */}
                 <div className="mb-4">
                   <svg className="w-8 h-8 text-teal-bright" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -192,11 +191,11 @@ export default function AboutPage() {
                   client portals, coaching platforms, and outreach engines,
                   each with human approval built in.
                 </p>
-              </GlassCard>
-            </AnimateIn>
+              </Card>
+            </Reveal>
 
-            <AnimateIn delay={300} className="h-full">
-              <GlassCard className="spotlight lift lift-dark p-8 h-full">
+            <Reveal delay={300} className="h-full">
+              <Card className="spotlight lift lift-dark p-8 h-full">
                 {/* Rocket/growth icon */}
                 <div className="mb-4">
                   <svg className="w-8 h-8 text-teal-bright" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -211,8 +210,8 @@ export default function AboutPage() {
                   plus hands-on operating experience. Every engagement is
                   informed by real operational work, not theory.
                 </p>
-              </GlassCard>
-            </AnimateIn>
+              </Card>
+            </Reveal>
           </SpotlightGroup>
         </div>
       </section>
@@ -225,37 +224,37 @@ export default function AboutPage() {
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
         <div className="max-w-7xl mx-auto px-4">
-          <AnimateIn>
+          <Reveal>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
               How we&apos;re different
             </h2>
-          </AnimateIn>
+          </Reveal>
 
           <SpotlightGroup className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
-            <AnimateIn delay={100} className="h-full">
-              <GlassCard className="spotlight lift lift-dark p-8 h-full">
+            <Reveal delay={100} className="h-full">
+              <Card className="spotlight lift lift-dark p-8 h-full">
                 <h3 className="text-h4 font-semibold mb-3 text-white">
                   Methodology over tools.
                 </h3>
                 <p className="text-white/80 leading-relaxed">
                   Strategy determines what gets built. The methodology is the product.
                 </p>
-              </GlassCard>
-            </AnimateIn>
+              </Card>
+            </Reveal>
 
-            <AnimateIn delay={200} className="h-full">
-              <GlassCard className="spotlight lift lift-dark p-8 h-full">
+            <Reveal delay={200} className="h-full">
+              <Card className="spotlight lift lift-dark p-8 h-full">
                 <h3 className="text-h4 font-semibold mb-3 text-white">
                   Single-outcome precision.
                 </h3>
                 <p className="text-white/80 leading-relaxed">
                   One system, one KPI, clear results. Then expand based on data.
                 </p>
-              </GlassCard>
-            </AnimateIn>
+              </Card>
+            </Reveal>
 
-            <AnimateIn delay={300} className="h-full">
-              <GlassCard className="spotlight lift lift-dark p-8 h-full">
+            <Reveal delay={300} className="h-full">
+              <Card className="spotlight lift lift-dark p-8 h-full">
                 <h3 className="text-h4 font-semibold mb-3 text-white">
                   Absolute executive control.
                 </h3>
@@ -263,8 +262,8 @@ export default function AboutPage() {
                   Nothing executes without human approval. AI amplifies your
                   judgment, never replaces it.
                 </p>
-              </GlassCard>
-            </AnimateIn>
+              </Card>
+            </Reveal>
           </SpotlightGroup>
         </div>
       </section>
@@ -275,14 +274,14 @@ export default function AboutPage() {
 
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-3xl mx-auto text-slate-600 leading-relaxed">
-            <AnimateIn>
+            <Reveal>
               <p className="text-center">
                 Kaleos HQ is a focused firm by design. Every engagement gets
                 senior attention from strategy through deployment, and the
                 systems we ship for clients run on the same architecture we
                 use to run Kaleos HQ itself.
               </p>
-            </AnimateIn>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -297,12 +296,12 @@ export default function AboutPage() {
         <div className="atmos-layer atmos-horizon" aria-hidden="true" />
 
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <AnimateIn>
+          <Reveal>
             <h2 className="text-h2 font-medium mb-6 text-white">
               Want to see if AI can help your business?
             </h2>
-          </AnimateIn>
-          <AnimateIn delay={150}>
+          </Reveal>
+          <Reveal delay={150}>
             <a
               href="https://calendly.com/logan-kaleoshq/30min"
               target="_blank"
@@ -311,7 +310,7 @@ export default function AboutPage() {
             >
               Book a Discovery Call
             </a>
-          </AnimateIn>
+          </Reveal>
         </div>
       </section>
 

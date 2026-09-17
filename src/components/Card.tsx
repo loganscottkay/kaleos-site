@@ -1,19 +1,19 @@
 import type { ReactNode } from 'react'
 
-interface GlassCardProps {
+interface CardProps {
   children: ReactNode
   className?: string
   hover?: boolean
   light?: boolean
 }
 
-// Solid card system (name kept from the v1 glass era to avoid churn at call sites)
-export function GlassCard({
+// The one card system: white on paper (`light`), white-at-opacity on dark grounds.
+export function Card({
   children,
   className = '',
   hover = false,
   light = false,
-}: GlassCardProps) {
+}: CardProps) {
   const base = light ? 'card' : 'card-dark'
 
   const hoverClass = hover

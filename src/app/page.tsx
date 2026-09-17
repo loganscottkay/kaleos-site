@@ -1,6 +1,6 @@
 import { NavBar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
-import { GlassCard } from '@/components/GlassCard'
+import { Card } from '@/components/Card'
 import { Reveal, SpotlightGroup } from '@/components/Reveal'
 import { WorkflowDiagram } from '@/components/WorkflowDiagram'
 import { QuickAssessment } from '@/components/QuickAssessment'
@@ -228,7 +228,7 @@ export default function Home() {
           <SpotlightGroup className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {implementationGap.map((item, i) => (
               <Reveal key={item.title} delay={i * 90} className="h-full">
-                <GlassCard
+                <Card
                   hover
                   className="spotlight lift lift-dark p-8 h-full"
                 >
@@ -238,7 +238,7 @@ export default function Home() {
                   <p className="text-mist leading-relaxed text-body">
                     {item.desc}
                   </p>
-                </GlassCard>
+                </Card>
               </Reveal>
             ))}
           </SpotlightGroup>

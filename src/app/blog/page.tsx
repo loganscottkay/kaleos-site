@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { NavBar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
-import { GlassCard } from '@/components/GlassCard'
-import { AnimateIn } from '@/components/AnimateIn'
+import { Card } from '@/components/Card'
+import { Reveal } from '@/components/Reveal'
 import { getAllPosts } from '@/lib/blog'
 
 export const metadata: Metadata = {
@@ -49,17 +49,17 @@ export default function BlogPage() {
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <AnimateIn distance={24}>
+          <Reveal>
             <h1 className="text-h1 font-semibold text-white">
               Thinking
             </h1>
-          </AnimateIn>
-          <AnimateIn delay={100}>
+          </Reveal>
+          <Reveal delay={100}>
             <p className="mt-4 text-white/60 text-body-lg max-w-xl mx-auto text-center">
               Frameworks, lessons, and perspectives on AI implementation that
               actually works.
             </p>
-          </AnimateIn>
+          </Reveal>
         </div>
 
         {/* Posts */}
@@ -72,7 +72,7 @@ export default function BlogPage() {
 
           {/* Featured post */}
           {featured && (
-            <AnimateIn>
+            <Reveal>
               <Link href={`/blog/${featured.slug}`} className="block group">
                 <div className="relative">
                   <div className="card-dark card-hover relative bg-white/[0.06] overflow-hidden">
@@ -105,16 +105,16 @@ export default function BlogPage() {
                   </div>
                 </div>
               </Link>
-            </AnimateIn>
+            </Reveal>
           )}
 
           {/* Post grid */}
           {rest.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
               {rest.map((post, i) => (
-                <AnimateIn key={post.slug} delay={100 + i * 80}>
+                <Reveal key={post.slug} delay={100 + i * 80}>
                   <Link href={`/blog/${post.slug}`} className="block group h-full">
-                    <GlassCard hover className="p-8 h-full flex flex-col">
+                    <Card hover className="p-8 h-full flex flex-col">
                       <div className="flex items-center gap-3 mb-4">
                         {post.category && (
                           <span className="px-3 py-1 text-caption font-semibold rounded-control bg-accent/15 text-teal-bright tracking-wide uppercase">
@@ -139,9 +139,9 @@ export default function BlogPage() {
                           Read &rarr;
                         </span>
                       </div>
-                    </GlassCard>
+                    </Card>
                   </Link>
-                </AnimateIn>
+                </Reveal>
               ))}
             </div>
           )}

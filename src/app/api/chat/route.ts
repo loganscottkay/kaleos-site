@@ -41,6 +41,13 @@ When someone expresses interest, say something like: 'Sounds like we should talk
 Book a free call links to Calendly. Email me directly opens mailto:logan@kaleoshq.com.`;
 
 export async function POST(req: NextRequest) {
+  if (!process.env.OPENAI_API_KEY) {
+    return NextResponse.json(
+      { error: "The chat assistant is not configured in this environment (OPENAI_API_KEY is unset)." },
+      { status: 503 }
+    );
+  }
+
   // Rate limiting
   if (isRateLimited(clientIp(req))) {
     return NextResponse.json(
