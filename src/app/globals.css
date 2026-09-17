@@ -683,7 +683,7 @@ html.warping header { opacity: 0; }
   .band { mask-image: none; -webkit-mask-image: none; }
   .arc-band { height: auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 3rem; mask-image: none; -webkit-mask-image: none; }
   .arc-band::before { display: none; }
-  .arc-item { position: static; offset-path: none; animation: none; }
+  .arc-item, .arc-item:nth-child(2n) { position: static; offset-path: none; animation: none; }
   .comet { display: none; }
   .chrome-hover { transition: none; }
   .words .w > span { transform: none; transition: none; }
