@@ -10,7 +10,7 @@ import { Rim } from '@/components/home/Rim'
    client confirms, replace the paraphrase with their approved words. Drafts
    carry no visible marker; before the PR into main, set SHOW_DRAFTS to false
    so only confirmed quotes render. */
-const SHOW_DRAFTS = false
+const SHOW_DRAFTS = true
 
 
 type Piece = { t: string; u?: boolean }
