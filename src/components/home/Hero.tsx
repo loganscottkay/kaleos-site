@@ -8,7 +8,6 @@ import { KSolid } from '@/components/KSolid'
 import { CALENDLY, CTA } from '@/components/NavBar'
 import { Starfield } from '@/components/home/Starfield'
 import { Magnet } from '@/components/Magnet'
-import { ChromeWord } from '@/components/ChromeWord'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
@@ -50,12 +49,12 @@ export function Hero() {
         </div>
 
         <div className="hero-copy flex flex-col items-center">
-          <h1 className="rise mt-12 max-w-[16ch] text-display md:mt-16" style={{ '--rise-delay': '500ms' } as CSSProperties}>
-            Custom <span className="etch">AI solutions</span> for the <ChromeWord>modern business</ChromeWord>
+          <h1 className="rise mt-12 max-w-[30ch] text-display md:mt-16" style={{ '--rise-delay': '500ms' } as CSSProperties}>
+            AI systems that do the work. <span className="etch">You make the&nbsp;calls.</span>
           </h1>
 
           <p className="rise mt-8 max-w-[40rem] text-body-lg text-mist" style={{ '--rise-delay': '700ms' } as CSSProperties}>
-            Kaleos HQ is a premium AI implementation practice. We design and ship systems where agents handle the work and a person you trust signs off before anything reaches a client, an inbox, or a ledger. Thirty days to the first system, scoped and priced on a call.
+            Kaleos HQ designs and ships agent systems where a person you trust signs off before anything reaches a client, an inbox, or a ledger. First system in thirty days, scoped and priced on a call.
           </p>
 
           <div className="rise mt-10 flex flex-wrap items-center justify-center gap-4" style={{ '--rise-delay': '860ms' } as CSSProperties}>

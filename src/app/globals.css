@@ -98,7 +98,7 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; }
 .wordmark {
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.08em;
   line-height: 1;
 }
 
