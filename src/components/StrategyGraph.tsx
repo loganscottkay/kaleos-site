@@ -13,7 +13,7 @@ const config = {
     gradientColor: 'var(--decline)',
     borderColor: 'border-decline/25',
     labelColor: 'var(--decline-bright)',
-    cardBg: 'rgba(50, 15, 15, 0.9)',
+    cardBg: 'bg-chart-decline',
     linePath: 'M 25,18 C 50,20 70,30 95,55 C 120,80 145,105 165,118 C 175,124 182,127 185,128',
     fillPath:
       'M 25,18 C 50,20 70,30 95,55 C 120,80 145,105 165,118 C 175,124 182,127 185,128 L 185,140 L 25,140 Z',
@@ -35,7 +35,7 @@ const config = {
     gradientColor: 'var(--teal)',
     borderColor: 'border-accent/25',
     labelColor: 'var(--teal-bright)',
-    cardBg: 'rgba(10, 35, 30, 0.9)',
+    cardBg: 'bg-chart-growth',
     linePath: 'M 25,128 C 50,127 75,124 100,112 C 125,95 145,65 160,40 C 172,22 180,15 185,12',
     fillPath:
       'M 25,128 C 50,127 75,124 100,112 C 125,95 145,65 160,40 C 172,22 180,15 185,12 L 185,140 L 25,140 Z',
@@ -64,8 +64,7 @@ export function StrategyGraph({ variant }: StrategyGraphProps) {
       <div className="relative h-full">
         {/* Card */}
         <div
-          className={`relative rounded-card border ${c.borderColor} overflow-hidden h-full flex flex-col`}
-          style={{ backgroundColor: c.cardBg }}
+          className={`relative rounded-card border ${c.borderColor} ${c.cardBg} overflow-hidden h-full flex flex-col`}
         >
           {/* Top highlight */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.07] via-transparent to-transparent pointer-events-none" />
@@ -217,7 +216,7 @@ export function StrategyGraph({ variant }: StrategyGraphProps) {
                   strokeWidth={10}
                   strokeLinecap="round"
                   filter={`url(#glow-${variant})`}
-                  style={{ opacity: 0.35 }}
+                  className="opacity-35"
                 />
 
                 {/* Main line */}

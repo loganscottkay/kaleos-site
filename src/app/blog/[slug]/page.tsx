@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { NavBar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
-import { AnimateIn } from '@/components/AnimateIn'
+import { Reveal } from '@/components/Reveal'
 import { getAllPosts, getPostBySlug } from '@/lib/blog'
 
 export function generateStaticParams() {
@@ -57,29 +57,23 @@ export default async function BlogPostPage({
       {/* Hero */}
       <section className="relative pt-24 md:pt-32 pb-12 md:pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-navy" />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse at center, color-mix(in srgb, var(--teal) 8%, transparent) 0%, transparent 70%)',
-          }}
-        />
+        <div className="absolute inset-0 post-hero-glow" />
 
         <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
-          <AnimateIn>
+          <Reveal>
             <Link
               href="/blog"
               className="inline-flex items-center text-white/60 text-body hover:text-teal-bright transition-colors mb-8"
             >
               &larr; Back to Thinking
             </Link>
-          </AnimateIn>
-          <AnimateIn distance={24} delay={50}>
+          </Reveal>
+          <Reveal delay={50}>
             <h1 className="text-h1 font-semibold text-white">
               {post.title}
             </h1>
-          </AnimateIn>
-          <AnimateIn delay={150}>
+          </Reveal>
+          <Reveal delay={150}>
             <div className="mt-6 flex items-center justify-center gap-3 text-body text-white/60">
               {post.category && (
                 <>
@@ -93,7 +87,7 @@ export default async function BlogPostPage({
               <span className="text-white/60">·</span>
               <span>{post.readTime}</span>
             </div>
-          </AnimateIn>
+          </Reveal>
         </div>
       </section>
 
@@ -106,7 +100,7 @@ export default async function BlogPostPage({
 
 
         <div className="relative z-10 max-w-180 mx-auto px-4">
-          <AnimateIn>
+          <Reveal>
             <div className="card-dark relative bg-white/5 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-white/[0.05] via-transparent to-transparent pointer-events-none" />
               <div className="relative p-8 sm:p-12">
@@ -116,11 +110,11 @@ export default async function BlogPostPage({
                 />
               </div>
             </div>
-          </AnimateIn>
+          </Reveal>
 
           {/* Tags */}
           {post.tags.length > 0 && (
-            <AnimateIn delay={100}>
+            <Reveal delay={100}>
               <div className="mt-8 flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
                   <span
@@ -131,18 +125,18 @@ export default async function BlogPostPage({
                   </span>
                 ))}
               </div>
-            </AnimateIn>
+            </Reveal>
           )}
 
           {/* Back link */}
-          <AnimateIn delay={200}>
+          <Reveal delay={200}>
             <Link
               href="/blog"
               className="inline-block mt-12 text-teal-bright font-medium text-body hover:underline"
             >
               &larr; Back to Thinking
             </Link>
-          </AnimateIn>
+          </Reveal>
         </div>
       </section>
 

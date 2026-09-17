@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
 import { NavBar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
-import { GlassCard } from '@/components/GlassCard'
-import { AnimateIn } from '@/components/AnimateIn'
-import { SpotlightGroup } from '@/components/Reveal'
+import { Card } from '@/components/Card'
+import { Reveal, SpotlightGroup } from '@/components/Reveal'
 import { AuditForm } from '@/components/AuditForm'
 import { FAQ } from '@/components/FAQ'
 
@@ -74,13 +73,13 @@ export default function AuditPage() {
         <div className="atmos-layer atmos-grid-paper parallax-slow" aria-hidden="true" />
 
         <div className="relative max-w-7xl mx-auto px-4">
-          <AnimateIn>
+          <Reveal>
             <h2 className="text-h2 font-medium text-center mb-12 text-ink">
               Assessment deliverables
             </h2>
-          </AnimateIn>
+          </Reveal>
 
-          <AnimateIn delay={100}>
+          <Reveal delay={100}>
             <div className="max-w-2xl mx-auto">
               <div className="space-y-4">
                 {deliverables.map((item, i) => (
@@ -103,7 +102,7 @@ export default function AuditPage() {
                 ))}
               </div>
             </div>
-          </AnimateIn>
+          </Reveal>
         </div>
       </section>
 
@@ -116,17 +115,17 @@ export default function AuditPage() {
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
         <div className="relative max-w-7xl mx-auto px-4">
-          <AnimateIn>
+          <Reveal>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
               How it works
             </h2>
-          </AnimateIn>
+          </Reveal>
 
           <SpotlightGroup className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {steps.map((item, i) => (
-              <AnimateIn key={i} delay={i * 100} className="h-full">
-                <GlassCard className="spotlight lift lift-dark p-6 h-full">
-                  <div className="text-white/60 text-caption uppercase tracking-widest mb-2" style={{ fontFamily: "'Inter', sans-serif" }}>
+              <Reveal key={i} delay={i * 100} className="h-full">
+                <Card className="spotlight lift lift-dark p-6 h-full">
+                  <div className="text-white/60 text-caption uppercase tracking-widest mb-2">
                     {item.step}
                   </div>
                   <h3 className="text-h4 font-semibold mb-2 text-white">
@@ -135,8 +134,8 @@ export default function AuditPage() {
                   <p className="text-white/70 text-body leading-relaxed">
                     {item.desc}
                   </p>
-                </GlassCard>
-              </AnimateIn>
+                </Card>
+              </Reveal>
             ))}
           </SpotlightGroup>
         </div>
@@ -150,7 +149,7 @@ export default function AuditPage() {
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
         <div className="relative max-w-7xl mx-auto px-4">
-          <AnimateIn>
+          <Reveal>
             <h2 className="text-h2 font-medium text-center mb-6 text-white">
               How engagements work
             </h2>
@@ -159,7 +158,7 @@ export default function AuditPage() {
               shelf, no rate card. Three ways to work together, priced on a
               call once we understand what you actually need.
             </p>
-          </AnimateIn>
+          </Reveal>
 
           <SpotlightGroup className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {[
@@ -176,8 +175,8 @@ export default function AuditPage() {
                 desc: 'Ongoing full-stack implementation with strategic oversight. Continuous builds, priority response, and quarterly reviews tied to your business goals.',
               },
             ].map((tier, i) => (
-              <AnimateIn key={tier.name} delay={i * 100} className="h-full">
-                <GlassCard hover className="spotlight lift lift-dark p-8 h-full">
+              <Reveal key={tier.name} delay={i * 100} className="h-full">
+                <Card hover className="spotlight lift lift-dark p-8 h-full">
                   <div className="flex flex-col h-full">
                     <h3 className="text-h4 font-semibold text-white mb-4">
                       {tier.name}
@@ -194,8 +193,8 @@ export default function AuditPage() {
                       Book a Discovery Call
                     </a>
                   </div>
-                </GlassCard>
-              </AnimateIn>
+                </Card>
+              </Reveal>
             ))}
           </SpotlightGroup>
         </div>
@@ -210,11 +209,11 @@ export default function AuditPage() {
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
         <div className="relative max-w-7xl mx-auto px-4">
-          <AnimateIn>
+          <Reveal>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
               Frequently asked questions
             </h2>
-          </AnimateIn>
+          </Reveal>
 
           <div className="max-w-2xl mx-auto">
             <FAQ />
@@ -230,19 +229,19 @@ export default function AuditPage() {
         <div className="atmos-layer atmos-grain" aria-hidden="true" />
 
         <div className="relative max-w-7xl mx-auto px-4">
-          <AnimateIn>
+          <Reveal>
             <h2 className="text-h2 font-medium text-center mb-12 text-white">
               Start a conversation
             </h2>
-          </AnimateIn>
+          </Reveal>
 
-          <AnimateIn delay={100}>
+          <Reveal delay={100}>
             <div className="max-w-lg mx-auto">
               <div className="card-dark p-8">
                 <AuditForm />
               </div>
             </div>
-          </AnimateIn>
+          </Reveal>
         </div>
       </section>
 

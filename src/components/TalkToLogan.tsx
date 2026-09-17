@@ -130,7 +130,7 @@ export default function TalkToLogan() {
         }),
       })
       const data = await res.json()
-      const text: string = data.content || 'Something glitched. Try that again?'
+      const text: string = data.content || data.error || 'Something glitched. Try that again?'
       setMessages((prev) => [...prev, { role: 'assistant', content: text }])
       if ((turns.current >= 3 || INTEREST.test(userMsg.content.toLowerCase())) && !showCTA) {
         setShowCTA(true)
@@ -211,8 +211,7 @@ export default function TalkToLogan() {
             </span>
             <div className="flex-1">
               <div
-                className="text-body font-semibold text-white"
-                style={{ fontFamily: 'var(--font-display)' }}
+                className="font-display text-body font-semibold text-white"
               >
                 Logan Kay
               </div>

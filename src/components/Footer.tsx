@@ -63,8 +63,7 @@ export function Footer() {
                 className="rounded-control object-cover"
               />
               <span
-                className="text-white font-semibold text-body-lg tracking-tight"
-                style={{ fontFamily: 'var(--font-display), sans-serif' }}
+                className="font-display text-white font-semibold text-body-lg tracking-tight"
               >
                 Kaleos HQ
               </span>

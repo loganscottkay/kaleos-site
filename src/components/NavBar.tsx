@@ -26,7 +26,7 @@ export function NavBar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
         scrolled
-          ? 'bg-paper/90 border-slate-200 shadow-[0_1px_16px_-8px_rgba(12,16,19,0.35)]'
+          ? 'bg-paper/90 border-slate-200 shadow-nav'
           : 'bg-paper/70 border-transparent'
       } backdrop-blur-md`}
     >
@@ -51,8 +51,7 @@ export function NavBar() {
             priority
           />
           <span
-            className="text-navy font-semibold text-body-lg tracking-tight"
-            style={{ fontFamily: 'var(--font-display), sans-serif' }}
+            className="font-display text-navy font-semibold text-body-lg tracking-tight"
           >
             Kaleos HQ
           </span>
