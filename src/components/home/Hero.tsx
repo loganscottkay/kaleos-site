@@ -2,6 +2,7 @@ import type { CSSProperties } from 'react'
 import { KLogo } from '@/components/KLogo'
 import { CALENDLY, CTA } from '@/components/NavBar'
 import { Starfield } from '@/components/home/Starfield'
+import { Magnet } from '@/components/Magnet'
 
 /* The mark first, with the star lit at its center. Then four words. Then
    one button. Everything paints without JavaScript; the settle, the star,
@@ -34,8 +35,8 @@ export function Hero() {
         </p>
 
         <div className="rise mt-10 flex flex-wrap items-center justify-center gap-4" style={{ '--rise-delay': '860ms' } as CSSProperties}>
-          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star btn-lg">{CTA}</a>
-          <a href="#method" className="btn btn-ghost btn-lg">How it works</a>
+          <Magnet><a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star btn-lg">{CTA}</a></Magnet>
+          <Magnet><a href="#method" className="btn btn-ghost btn-lg">How it works</a></Magnet>
         </div>
       </div>
     </section>

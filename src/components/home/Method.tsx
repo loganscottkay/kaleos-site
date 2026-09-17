@@ -108,7 +108,7 @@ export function Method() {
         <ol className="mt-16 grid gap-x-8 gap-y-12 md:mt-24 md:grid-cols-4">
           {steps.map((s, i) => (
             <li key={s.n}>
-              <Reveal delay={i * 90} className="flex h-full flex-col border-t border-line pt-6">
+              <Reveal delay={i * 90} className="rule flex h-full flex-col border-t border-line pt-6">
                 <div className="flex items-baseline justify-between">
                   <span className="font-display text-[2rem] font-bold cosmic-outline-nebula">{s.n}</span>
                   <span className="eyebrow text-ash">{s.when}</span>

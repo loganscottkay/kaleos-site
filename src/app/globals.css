@@ -111,6 +111,14 @@ h1, h2, h3 { font-weight: 700; }
   color: transparent;
   -webkit-text-stroke: 1px var(--color-comet);
   paint-order: stroke fill;
+  transition: color 600ms var(--ease) 350ms, -webkit-text-stroke-color 600ms var(--ease) 350ms;
+}
+/* Unsigned words sign themselves: once the section is in view the stroke
+   fills to solid white. The hero keeps its outline (no reveal wrapper). */
+.reveal.is-in .cosmic-outline,
+.reveal.is-in.cosmic-outline {
+  color: var(--color-star);
+  -webkit-text-stroke-color: rgb(99 217 230 / 0);
 }
 .cosmic-outline-nebula {
   color: transparent;
@@ -211,6 +219,30 @@ h1, h2, h3 { font-weight: 700; }
   .reveal-scale { transform: scale(0.96); }
   .reveal.is-in { opacity: 1; transform: none; will-change: auto; }
 }
+
+/* Hairlines are drawn, not printed. */
+.rule {
+  position: relative;
+  border-top: 0 !important;
+}
+.rule::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 1px;
+  background: var(--color-line);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 900ms var(--ease);
+}
+.reveal.is-in .rule::before, .reveal.is-in.rule::before { transform: scaleX(1); }
+
+/* The wordmark exhales: wide on the hero, settles once the page moves. */
+.wordmark { transition: letter-spacing 700ms var(--ease); }
+header[data-scrolled="false"] .wordmark { letter-spacing: 0.3em; }
+
+/* Buttons lean toward the hand. */
+.magnet { transition: transform 260ms var(--ease); will-change: transform; }
 
 /* ── Hero ─────────────────────────────────────────────────────────── */
 
@@ -332,5 +364,8 @@ h1, h2, h3 { font-weight: 700; }
   .rise, .k-settle { animation: none; opacity: 1; transform: none; filter: none; }
   .k-star { animation: none; opacity: 1; transform: none; }
   .orbit-gate-halo { animation: none; opacity: 0.35; }
+  .rule::before { transform: scaleX(1); transition: none; }
+  .cosmic-outline { transition: none; }
+  .magnet { transform: none !important; }
   .starfield { display: none; }
 }

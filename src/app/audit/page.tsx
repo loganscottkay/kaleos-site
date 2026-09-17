@@ -65,8 +65,8 @@ export default function AuditPage() {
           </div>
           <ol className="md:col-span-7 md:col-start-6">
             {deliverables.map((d, i) => (
-              <li key={d.t} className="border-t border-line last:border-b">
-                <Reveal delay={i * 70} className="grid gap-3 py-6 md:grid-cols-12">
+              <li key={d.t} className="last:border-b last:border-line">
+                <Reveal delay={i * 70} className="rule grid gap-3 py-6 md:grid-cols-12">
                   <span className="font-display text-[1.5rem] font-bold cosmic-outline-nebula md:col-span-2">0{i + 1}</span>
                   <div className="md:col-span-10">
                     <h3 className="text-h3">{d.t}</h3>

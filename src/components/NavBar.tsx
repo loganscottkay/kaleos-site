@@ -38,6 +38,7 @@ export function NavBar() {
 
   return (
     <header
+      data-scrolled={scrolled || open}
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-300 ${
         scrolled || open ? 'bg-void/80 backdrop-blur-md border-b border-line' : 'border-b border-transparent'
       }`}
