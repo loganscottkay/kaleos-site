@@ -2,10 +2,26 @@
 
 import { useEffect, useRef } from 'react'
 
-/* A sparse field of points on the void with slow drift, a little parallax
-   from the pointer, and a shooting star every so often. Canvas 2D, paused
-   off screen, hidden under reduced motion (CSS). */
-export function Starfield({ density = 0.00013, shooting = true }: { density?: number; shooting?: boolean }) {
+/* A field of stars on the void with slow drift, a little parallax from the
+   pointer, and a shooting star every so often. With `real`, the field is
+   the actual sky: 3,000 stars from the Yale Bright Star Catalog (via the
+   d3-celestial data set) projected stereographically around the winter
+   sky, Orion at the center, sized by magnitude and tinted by color index,
+   turning slowly like the night does. Canvas 2D, paused off screen, hidden
+   under reduced motion (CSS). */
+type Catalog = [number, number, number, number][]
+let catalog: Promise<Catalog> | null = null
+const loadCatalog = () => (catalog ??= fetch('/stars.json').then((r) => r.json() as Promise<Catalog>))
+
+function tint(bv: number) {
+  if (bv < -0.05) return '#b9cdff'
+  if (bv < 0.35) return '#f7f7f4'
+  if (bv < 0.8) return '#fff1d6'
+  if (bv < 1.3) return '#ffd9a8'
+  return '#ffc48a'
+}
+
+export function Starfield({ density = 0.00013, shooting = true, real = false }: { density?: number; shooting?: boolean; real?: boolean }) {
   const ref = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -18,6 +34,11 @@ export function Starfield({ density = 0.00013, shooting = true }: { density?: nu
     let w = 0, h = 0, raf = 0, running = true
     let px = 0, py = 0, tx = 0, ty = 0
     type Star = { x: number; y: number; z: number; r: number; a: number; tw: number; c: string }
+    type Sky = { ra: number; dec: number; r: number; a: number; c: string; tw: number }
+    let sky: Sky[] = []
+    let ra0 = 84
+    const dec0 = 8 // between Orion and Taurus; the field turns slowly westward
+    if (real) loadCatalog().then((cat) => { sky = cat.map(([ra, dec, mag, bv]) => ({ ra, dec, r: Math.max(0.35, (6.2 - mag) * 0.42), a: Math.min(1, 0.25 + (6 - mag) * 0.16), c: tint(bv), tw: Math.random() * Math.PI * 2 })) }).catch(() => {})
     type Streak = { x: number; y: number; vx: number; vy: number; life: number; max: number }
     let stars: Star[] = []
     let streak: Streak | null = null
@@ -46,7 +67,25 @@ export function Starfield({ density = 0.00013, shooting = true }: { density?: nu
       px += (tx - px) * 0.03
       py += (ty - py) * 0.03
       ctx.clearRect(0, 0, w, h)
-      for (const s of stars) {
+      if (real && sky.length) {
+        // Stereographic projection of the real sky around (ra0, dec0).
+        ra0 += 0.00035
+        const scale = Math.max(w, h) * 0.62
+        const d0 = (dec0 * Math.PI) / 180, sd0 = Math.sin(d0), cd0 = Math.cos(d0)
+        for (const s of sky) {
+          const dra = ((s.ra - ra0) * Math.PI) / 180, d = (s.dec * Math.PI) / 180
+          const sd = Math.sin(d), cd = Math.cos(d), cdra = Math.cos(dra)
+          const k = 2 / (1 + sd0 * sd + cd0 * cd * cdra)
+          if (k > 3.2) continue
+          const x = w / 2 + k * cd * Math.sin(dra) * scale * -1 + px * 12
+          const y = h / 2 - k * (cd0 * sd - sd0 * cd * cdra) * scale + py * 8
+          if (x < -4 || x > w + 4 || y < -4 || y > h + 4) continue
+          const twinkle = 0.86 + 0.14 * Math.sin(now / 1600 + s.tw)
+          ctx.globalAlpha = s.a * twinkle
+          ctx.fillStyle = s.c
+          ctx.beginPath(); ctx.arc(x, y, s.r, 0, Math.PI * 2); ctx.fill()
+        }
+      } else for (const s of stars) {
         ctx.fillStyle = s.c
         s.y -= 0.016 * s.z
         if (s.y < -2) s.y = h + 2
@@ -115,7 +154,7 @@ export function Starfield({ density = 0.00013, shooting = true }: { density?: nu
       window.removeEventListener('resize', resize)
       window.removeEventListener('pointermove', onMove)
     }
-  }, [density, shooting])
+  }, [density, shooting, real])
 
   return <canvas ref={ref} className="starfield" aria-hidden="true" />
 }

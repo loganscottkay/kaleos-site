@@ -104,7 +104,7 @@ export function AuditForm() {
   const label = 'block text-caption font-medium text-mist'
 
   return (
-    <form onSubmit={handleSubmit} className="surface p-6 md:p-10" noValidate>
+    <form onSubmit={handleSubmit} className="surface surface-nova p-6 md:p-10" noValidate>
       <div className="absolute opacity-0 pointer-events-none" aria-hidden="true">
         <label htmlFor="lead-website">Website</label>
         <input

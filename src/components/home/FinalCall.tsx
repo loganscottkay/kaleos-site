@@ -23,8 +23,7 @@ export function FinalCall() {
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-royal btn-lg">{CTA}</a>
-            <a href="mailto:logan@kaleoshq.com" className="btn btn-ghost btn-lg">Email us</a>
-            <a href="/audit#contact" className="self-center text-body text-mist underline decoration-line underline-offset-4 hover:text-star">or send a note first</a>
+            <a href="/audit#contact" className="btn btn-ghost btn-lg">Send us a note</a>
           </div>
         </Reveal>
 

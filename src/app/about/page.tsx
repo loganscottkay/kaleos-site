@@ -4,6 +4,7 @@ import { NavBar, CALENDLY, CTA } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
 import { Reveal } from '@/components/Reveal'
 import { Words } from '@/components/Words'
+import { Rim } from '@/components/home/Rim'
 import { Starfield } from '@/components/home/Starfield'
 
 export const metadata: Metadata = {
@@ -36,7 +37,7 @@ export default function AboutPage() {
         <Starfield density={0.00008} shooting={false} />
         <div className="relative mx-auto max-w-[88rem] px-5 pb-20 pt-36 md:px-8 md:pb-28 md:pt-48">
           <h1 className="mt-6 max-w-[12ch] text-h1">
-            A firm built on one rule
+            A firm built on <span className="glint">one rule</span>
           </h1>
           <p className="mt-8 max-w-[34rem] text-body-lg text-mist">
             A person signs before anything ships, and everything else at KALEOS follows from that.
@@ -48,14 +49,16 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-[88rem] gap-12 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
           <div className="md:col-span-4">
             <Reveal>
-              <Image
-                src="/photo.png"
-                alt="Logan Kay, founder of KALEOS"
-                width={640}
-                height={640}
-                className="aspect-square w-full max-w-sm rounded-[14px] object-cover grayscale"
-                priority
-              />
+              <div className="surface-nova aspect-square w-full max-w-sm rounded-[14px]">
+                <Image
+                  src="/photo.png"
+                  alt="Logan Kay, founder of KALEOS"
+                  width={640}
+                  height={640}
+                  className="aspect-square w-full rounded-[14px] object-cover grayscale"
+                  priority
+                />
+              </div>
               <p className="mt-5 font-display text-body font-semibold text-star">Logan Kay</p>
               <p className="text-caption text-mist">Founder and CEO</p>
             </Reveal>
@@ -89,8 +92,9 @@ export default function AboutPage() {
       </section>
 
       {/* What we hold to. Prose, not a grid. */}
-      <section className="horizon" aria-labelledby="hold-heading">
-        <div className="mx-auto max-w-[88rem] px-5 py-20 md:px-8 md:py-28">
+      <section className="horizon relative overflow-hidden" aria-labelledby="hold-heading">
+        <div aria-hidden="true" data-fx="comet" className="comet left-[8%] top-[12%] -rotate-[7deg]" />
+        <div className="relative mx-auto max-w-[88rem] px-5 py-20 md:px-8 md:py-28">
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
               <Reveal>
@@ -118,8 +122,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="horizon">
-        <div className="mx-auto flex max-w-[88rem] flex-col items-start gap-8 px-5 py-20 md:flex-row md:items-center md:justify-between md:px-8 md:py-28">
+      <section className="relative overflow-hidden">
+        <Rim />
+        <div className="relative mx-auto flex max-w-[88rem] flex-col items-start gap-8 px-5 py-24 md:flex-row md:items-center md:justify-between md:px-8 md:py-32">
           <h2 className="max-w-[16ch] text-h2">Curious whether this fits your business</h2>
           <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star btn-lg">{CTA}</a>
         </div>

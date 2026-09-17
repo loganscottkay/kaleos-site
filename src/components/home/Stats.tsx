@@ -1,6 +1,7 @@
 import { Reveal } from '@/components/Reveal'
 import { CountUp } from '@/components/CountUp'
 import { Words } from '@/components/Words'
+import { KLogo } from '@/components/KLogo'
 
 /* The implementation gap, in numbers a buyer can check. Each figure links to
    its original source. Each one sits next to the part of the method that
@@ -72,7 +73,8 @@ export function Stats() {
                     </a>
                   </div>
                   <div className={`md:col-span-5 ${i % 2 === 1 ? 'md:col-start-1 md:row-start-1' : 'md:col-start-8'} md:pt-6`}>
-                    <p className="max-w-[24ch] font-display text-h3 font-semibold leading-snug text-star">
+                    <p className="says max-w-[24ch] font-display text-h3 font-semibold leading-snug text-star">
+                      <KLogo className="says-mark" alt="KALEOS" />
                       <span className="glint">{s.answer}</span>
                     </p>
                   </div>

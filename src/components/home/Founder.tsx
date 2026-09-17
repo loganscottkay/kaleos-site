@@ -14,7 +14,7 @@ export function Founder() {
             </Link>
             <p className="max-w-3xl font-display text-[1.35rem] font-semibold leading-snug text-star md:text-[1.75rem]">
               <Link href="/about" className="underline decoration-comet/60 decoration-2 underline-offset-[0.2em] hover:decoration-comet">Logan Kay</Link>
-              {' '}founded KALEOS after designing and deploying AI systems across admissions and operations at Harvard Business School. He is a <span className="glint-violet">Claude Corps Fellow at Anthropic</span>.
+              {' '}founded KALEOS after designing and deploying AI systems across admissions and operations at Harvard Business School. He is a <span className="glint-ember">Claude Corps Fellow at Anthropic</span>.
             </p>
           </div>
         </Reveal>

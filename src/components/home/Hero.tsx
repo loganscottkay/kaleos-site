@@ -13,7 +13,10 @@ import { ChromeWord } from '@/components/ChromeWord'
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 /* After the warp: the mark, glowing, turning slowly as a solid. Then one
-   line. Then one button. Scrolling pulls the mark back into the field. */
+   line. Then one button. Scrolling pulls the mark back into the field.
+   SKY picks the field: 'catalog' draws the real sky from the star catalog,
+   'photo' lays a NASA night-sky photograph under it, 'both' does both. */
+const SKY: 'catalog' | 'photo' | 'both' = 'photo'
 export function Hero() {
   const root = useRef<HTMLElement>(null)
 
@@ -36,7 +39,10 @@ export function Hero() {
 
   return (
     <section ref={root} className="relative isolate min-h-[100svh] overflow-hidden">
-      <Starfield />
+      {SKY !== 'catalog' && (
+        <div aria-hidden="true" className="sky-photo absolute inset-0" style={{ backgroundImage: "url('/sky.webp')" }} />
+      )}
+      {SKY !== 'photo' && <Starfield real />}
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-void" />
 
       <div className="relative mx-auto flex min-h-[100svh] max-w-[88rem] flex-col items-center justify-center px-5 pb-28 pt-28 text-center md:px-8">
@@ -48,7 +54,7 @@ export function Hero() {
 
         <div className="hero-copy flex flex-col items-center">
           <h1 className="rise mt-12 max-w-[16ch] text-display md:mt-16" style={{ '--rise-delay': '500ms' } as CSSProperties}>
-            Custom <span className="etch">AI</span> solutions for the <ChromeWord>modern business</ChromeWord>
+            Custom <span className="etch">AI solutions</span> for the <ChromeWord>modern business</ChromeWord>
           </h1>
 
           <p className="rise mt-8 max-w-[40rem] text-body-lg text-mist" style={{ '--rise-delay': '700ms' } as CSSProperties}>

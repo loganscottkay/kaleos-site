@@ -122,9 +122,6 @@ export function Method() {
                   <circle cx={C} cy={C} r="78" fill="url(#core-halo)" />
                   <image href="/kaleos-k.png" x={C - 42} y={C - 46} width="84" height="92" />
                 </g>
-                <text x={C} y={C + 82} textAnchor="middle" fill="var(--color-mist)" fontFamily="var(--font-mono)" fontSize="12" letterSpacing="2.5">
-                  YOUR BUSINESS
-                </text>
 
                 {STATIONS.map((s, i) => (
                   <g key={s.label} className="orbit-station" data-active={active === i}>

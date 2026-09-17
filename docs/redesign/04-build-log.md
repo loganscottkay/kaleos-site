@@ -94,3 +94,11 @@ Revert: `git checkout <tag>` or `git reset --hard <tag>` on design-overhaul.
 - Scroll pieces: horizons draw themselves as sections arrive (scroll-driven animation where supported), a lit planetary rim above the testimonials whose light travels with the scroll, a comet crossing "Who we work with", parallax on the stat numerals and the nebula K. All scrubbed to the scroll, off under reduced motion.
 - Award tag is magenta.
 - Warp made unbreakable: any exception inside the frame loop ends the intro cleanly, and a hard timer guarantees the page is released. Found by the critic pass: an intermittent non-finite canvas gradient in Chrome killed the loop and left the hero hidden.
+
+## cp14, September 17, 2026: real sky, real chrome, brand across pages
+
+- Hero field: a NASA photograph of the night sky (Kennedy Space Center shoreline, public domain), cooled and darkened, under the mark. The real-catalog map (3,000 Yale Bright Star Catalog stars, stereographic, drifting) is the alternative behind the SKY constant in Hero.tsx; both tested.
+- Chrome: studio environment texture mapped onto "modern business" plus an SVG specular bevel whose light follows the pointer. Reads as liquid metal, fades in and out with the pointer.
+- The three KALEOS lines in the stats carry a magenta halo and the mark. The Anthropic credential glows ember.
+- Etch spans "AI solutions". "YOUR BUSINESS" removed from the orbit. Close: Talk with us plus Send us a note (to the form); Email us removed.
+- Assessment and About pages: sparse starfield behind the hero, a glint phrase in the h1, a comet across one section, the rim above the closing section, the light-edged card on the form and the portrait.

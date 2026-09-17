@@ -7,6 +7,8 @@ import { FAQ } from '@/components/FAQ'
 import { AuditForm } from '@/components/AuditForm'
 import { JsonLd } from '@/components/JsonLd'
 import { faqs } from '@/components/FAQ'
+import { Starfield } from '@/components/home/Starfield'
+import { Rim } from '@/components/home/Rim'
 
 export const metadata: Metadata = {
   title: 'Assessment',
@@ -43,11 +45,13 @@ export default function AuditPage() {
       <NavBar />
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }} />
 
-      <section className="mx-auto max-w-[88rem] px-5 pb-20 pt-36 md:px-8 md:pb-28 md:pt-48">
+      <section className="relative isolate overflow-hidden">
+        <Starfield density={0.0001} />
+        <div className="relative mx-auto max-w-[88rem] px-5 pb-20 pt-36 md:px-8 md:pb-28 md:pt-48">
         <div className="grid gap-12 md:grid-cols-12 md:items-end">
           <div className="md:col-span-8">
             <h1 className="mt-6 max-w-[12ch] text-h1">
-              Two weeks to a clear first move
+              Two weeks to a <span className="glint">clear first move</span>
             </h1>
           </div>
           <div className="md:col-span-4">
@@ -56,6 +60,7 @@ export default function AuditPage() {
             </p>
             <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star btn-lg mt-8">{CTA}</a>
           </div>
+        </div>
         </div>
       </section>
 
@@ -82,8 +87,9 @@ export default function AuditPage() {
         </div>
       </section>
 
-      <section className="horizon" aria-labelledby="tiers-heading">
-        <div className="mx-auto max-w-[88rem] px-5 py-20 md:px-8 md:py-28">
+      <section className="horizon relative overflow-hidden" aria-labelledby="tiers-heading">
+        <div aria-hidden="true" data-fx="comet" className="comet left-[6%] top-[14%] -rotate-[6deg]" />
+        <div className="relative mx-auto max-w-[88rem] px-5 py-20 md:px-8 md:py-28">
           <Reveal>
             <Words as="h2" id="tiers-heading" className="mt-5 block max-w-[18ch] text-h2">Three ways to work together</Words>
           </Reveal>
@@ -133,8 +139,9 @@ export default function AuditPage() {
         </div>
       </section>
 
-      <section id="contact" className="horizon" aria-labelledby="form-heading">
-        <div className="mx-auto grid max-w-[88rem] gap-12 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
+      <section id="contact" className="relative overflow-hidden" aria-labelledby="form-heading">
+        <Rim />
+        <div className="relative mx-auto grid max-w-[88rem] gap-12 px-5 py-24 md:grid-cols-12 md:px-8 md:py-32">
           <div className="md:col-span-4">
             <Reveal>
               <Words as="h2" id="form-heading" className="mt-5 block max-w-[12ch] text-h2">
