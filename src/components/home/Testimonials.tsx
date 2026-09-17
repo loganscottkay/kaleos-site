@@ -9,7 +9,7 @@ import { Rim } from '@/components/home/Rim'
    sits in the mark's light-edge frame with a soft glow behind it; the
    attribution comes from docs/proof-kit/testimonials.json. */
 const MEDIA: Record<string, { video?: string; image: string; label: string }> = {
-  'advisor-solutions-os': { image: '/testimonials/advisor-solutions-os.jpg', label: 'Coaching operating system' },
+  'advisor-solutions-os': { video: '/testimonials/advisor-solutions-os.mp4', image: '/testimonials/advisor-solutions-os.jpg', label: 'Coaching operating system' },
   'bohan-contracting': { video: '/testimonials/bohan-contracting.mp4', image: '/testimonials/bohan-contracting.jpg', label: 'Client journey portal' },
   cogniify: { image: '/testimonials/cogniify.jpg', label: 'Outreach and reply system' },
 }
