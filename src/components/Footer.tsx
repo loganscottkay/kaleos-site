@@ -21,7 +21,7 @@ export function Footer() {
               <span className="wordmark text-[1.05rem]">Kaleos</span>
             </Link>
             <p className="mt-6 max-w-sm text-[1.05rem] leading-relaxed text-mist">
-              Premium AI implementation. Agents do the work. You make the calls. Everything is logged.
+              Premium AI implementation with a person at the gate.
             </p>
           </div>
           <div className="md:col-span-3">

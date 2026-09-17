@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { NavBar, CALENDLY, CTA } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
 import { Reveal } from '@/components/Reveal'
+import { Words } from '@/components/Words'
 import { FAQ } from '@/components/FAQ'
 import { AuditForm } from '@/components/AuditForm'
 
@@ -18,16 +19,16 @@ export const metadata: Metadata = {
 }
 
 const deliverables = [
-  { t: 'Operational workflow map', d: 'Every workflow that eats senior time, drawn start to finish, with the judgment calls marked.' },
+  { t: 'Operational workflow map', d: 'Every workflow that eats senior time, drawn from start to finish with the judgment calls marked.' },
   { t: 'Readiness read across every function', d: 'Where the data, the process, and the people are ready for a system, and where they are not yet.' },
   { t: 'Ranked opportunity matrix', d: 'Each candidate workflow scored on impact and complexity, so the first build is the obvious one.' },
   { t: 'Roadmap for the first system', d: 'What gets built first, what number it is expected to move, and what comes after it proves out.' },
-  { t: 'Executive summary and a 45-minute walkthrough', d: 'A short PDF and a live session to go through it and decide.' },
+  { t: 'Executive summary and a 45-minute walkthrough', d: 'A short PDF and a live session where we go through it together and decide.' },
 ]
 
 const tiers = [
-  { name: 'Assessment', what: 'The starting point. A deep read of your operation and a plan.', includes: 'Workflow map, readiness read, ranked matrix, roadmap, executive summary.', timeline: 'Delivered within two weeks.' },
-  { name: 'Implementation', what: 'The assessment plus the build. One system, scoped, shipped, in production.', includes: 'Everything in Assessment, plus design, build, testing, and deployment of the first system with human approval built in.', timeline: 'First system live by day 30.' },
+  { name: 'Assessment', what: 'The starting point: a deep read of your operation and a plan.', includes: 'Workflow map, readiness read, ranked matrix, roadmap, executive summary.', timeline: 'Delivered within two weeks.' },
+  { name: 'Implementation', what: 'The assessment plus the build of one system, scoped, shipped, and in production.', includes: 'Everything in Assessment, plus design, build, testing, and deployment of the first system with human approval built in.', timeline: 'First system live by day 30.' },
   { name: 'Strategic partner', what: 'Ongoing implementation with senior attention.', includes: 'Continuous builds, priority response, and quarterly reviews tied to your business goals.', timeline: 'Ongoing.' },
 ]
 
@@ -43,12 +44,12 @@ export default function AuditPage() {
           <div className="md:col-span-8">
             <p className="eyebrow text-ash">Assessment</p>
             <h1 className="mt-6 max-w-[12ch] text-h1">
-              Two weeks. Every workflow mapped. <span className="cosmic-outline">One clear first move.</span>
+              Two weeks to a clear first move
             </h1>
           </div>
           <div className="md:col-span-4">
             <p className="measure text-body-lg text-mist">
-              We map how your business actually runs, rank where a system would matter most, and hand you a roadmap for the first one. Then we decide together on a call.
+              We map how your business actually runs, rank where a system would matter most, and hand you a roadmap for the first one. Then we decide together on a call whether to build it.
             </p>
             <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star btn-lg mt-8">{CTA}</a>
           </div>
@@ -60,14 +61,14 @@ export default function AuditPage() {
           <div className="md:col-span-4">
             <Reveal>
               <p className="eyebrow text-ash">What you get</p>
-              <h2 id="deliverables-heading" className="mt-5 max-w-[12ch] text-h2">Five things, in writing.</h2>
+              <Words as="h2" id="deliverables-heading" className="mt-5 block max-w-[12ch] text-h2">What you receive</Words>
             </Reveal>
           </div>
           <ol className="md:col-span-7 md:col-start-6">
             {deliverables.map((d, i) => (
               <li key={d.t} className="last:border-b last:border-line">
                 <Reveal delay={i * 70} className="rule grid gap-3 py-6 md:grid-cols-12">
-                  <span className="font-display text-[1.5rem] font-bold cosmic-outline-nebula md:col-span-2">0{i + 1}</span>
+                  <span className="font-display text-[1.5rem] font-bold text-comet md:col-span-2">0{i + 1}</span>
                   <div className="md:col-span-10">
                     <h3 className="text-h3">{d.t}</h3>
                     <p className="mt-2 max-w-xl text-body text-mist">{d.d}</p>
@@ -83,7 +84,7 @@ export default function AuditPage() {
         <div className="mx-auto max-w-[88rem] px-5 py-20 md:px-8 md:py-28">
           <Reveal>
             <p className="eyebrow text-ash">How engagements work</p>
-            <h2 id="tiers-heading" className="mt-5 max-w-[18ch] text-h2">Three ways to work together. No packages off a shelf.</h2>
+            <Words as="h2" id="tiers-heading" className="mt-5 block max-w-[18ch] text-h2">Three ways to work together</Words>
           </Reveal>
           <Reveal delay={100}>
             <div className="mt-14 overflow-x-auto">
@@ -108,7 +109,7 @@ export default function AuditPage() {
                   <tr>
                     <th scope="row" className={rowLabel}>Pricing</th>
                     <td colSpan={3} className="py-5 text-body text-mist">
-                      Scoped to your business and quoted on a call once we understand the work. A real number, not a rate card.
+                      We scope and quote on a call once we understand the work, and you get a real number rather than a rate card.
                     </td>
                   </tr>
                 </tbody>
@@ -123,7 +124,7 @@ export default function AuditPage() {
           <div className="md:col-span-4">
             <Reveal>
               <p className="eyebrow text-ash">Questions</p>
-              <h2 id="faq-heading" className="mt-5 max-w-[12ch] text-h2">Asked before every engagement.</h2>
+              <Words as="h2" id="faq-heading" className="mt-5 block max-w-[12ch] text-h2">Questions we hear before every engagement</Words>
             </Reveal>
           </div>
           <div className="md:col-span-7 md:col-start-6">
@@ -137,11 +138,11 @@ export default function AuditPage() {
           <div className="md:col-span-4">
             <Reveal>
               <p className="eyebrow text-ash">Or write first</p>
-              <h2 id="form-heading" className="mt-5 max-w-[12ch] text-h2">
-                Tell us what is <span className="cosmic-outline">eating your week.</span>
-              </h2>
+              <Words as="h2" id="form-heading" className="mt-5 block max-w-[12ch] text-h2">
+                Tell us what is eating your week
+              </Words>
               <p className="mt-6 max-w-sm text-body text-mist">
-                The call is the fastest route. If you would rather start in writing, this lands in our inbox and you hear back within a day.
+                The call is the fastest route. If you would rather start in writing, this lands in our inbox and you will hear back within a day.
               </p>
             </Reveal>
           </div>

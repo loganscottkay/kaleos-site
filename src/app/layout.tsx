@@ -1,15 +1,16 @@
 import type { Metadata } from 'next'
-import { Syne, Instrument_Sans, Geist_Mono } from 'next/font/google'
+import { Manrope, Instrument_Sans, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import TalkToLogan from '@/components/TalkToLogan'
 import { SmoothScroll } from '@/components/SmoothScroll'
+import { ScrollProgress } from '@/components/ScrollProgress'
 
-const syne = Syne({
+const manrope = Manrope({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-syne',
-  weight: ['500', '600', '700', '800'],
+  variable: '--font-manrope',
+  weight: ['600', '700', '800'],
 })
 
 const instrument = Instrument_Sans({
@@ -27,12 +28,12 @@ const geistMono = Geist_Mono({
 })
 
 const DESCRIPTION =
-  'KALEOS is a premium AI implementation practice. We design and ship systems where agents do the work and a person you trust approves every consequential step. Everything is logged.'
+  'KALEOS is a premium AI implementation practice. We design and ship systems where agents handle the work and a person you trust signs off before anything goes out.'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.kaleoshq.com'),
   title: {
-    default: 'KALEOS | Your judgment, at scale',
+    default: 'KALEOS | AI systems for the modern company',
     template: '%s | KALEOS',
   },
   description: DESCRIPTION,
@@ -41,13 +42,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.kaleoshq.com',
     siteName: 'KALEOS',
-    title: 'KALEOS | Your judgment, at scale',
+    title: 'KALEOS | AI systems for the modern company',
     description: DESCRIPTION,
-    images: [{ url: '/opengraph-image.png', width: 1200, height: 630, alt: 'KALEOS. Your judgment, at scale.' }],
+    images: [{ url: '/opengraph-image.png', width: 1200, height: 630, alt: 'KALEOS. AI systems for the modern company.' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'KALEOS | Your judgment, at scale',
+    title: 'KALEOS | AI systems for the modern company',
     description: DESCRIPTION,
     images: ['/opengraph-image.png'],
   },
@@ -57,9 +58,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${syne.variable} ${instrument.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${manrope.variable} ${instrument.variable} ${geistMono.variable}`}>
       <body className="font-sans antialiased bg-void text-star">
         <SmoothScroll />
+        <ScrollProgress />
         {children}
         <TalkToLogan />
         <Analytics />

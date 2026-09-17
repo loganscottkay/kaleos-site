@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { NavBar, CALENDLY, CTA } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
 import { Reveal } from '@/components/Reveal'
+import { Words } from '@/components/Words'
 import { Starfield } from '@/components/home/Starfield'
 
 export const metadata: Metadata = {
@@ -35,10 +36,10 @@ export default function AboutPage() {
         <div className="relative mx-auto max-w-[88rem] px-5 pb-20 pt-36 md:px-8 md:pb-28 md:pt-48">
           <p className="eyebrow text-ash">About</p>
           <h1 className="mt-6 max-w-[12ch] text-h1">
-            Built on <span className="cosmic-outline">one rule.</span>
+            A firm built on one rule
           </h1>
           <p className="mt-8 max-w-[34rem] text-body-lg text-mist">
-            A person signs before anything ships. Everything else at KALEOS follows from that.
+            A person signs before anything ships, and everything else at KALEOS follows from that.
           </p>
         </div>
       </section>
@@ -63,10 +64,10 @@ export default function AboutPage() {
             <Reveal>
               <div className="space-y-6 text-body-lg leading-[1.55] text-star">
                 <p>
-                  KALEOS exists because wanting AI and running AI are different problems. Most companies that start with AI never get past the demo. Not because the technology fails, but because nobody connected it to how the business actually operates.
+                  KALEOS exists because wanting AI and running AI are different problems. Most companies that start with AI never get past the demo. The technology rarely fails. What fails is the connection between the tool and how the business actually operates.
                 </p>
                 <p>
-                  We close that gap the slow way. Map the workflows first. Design one system tied to one number. Ship it with a person at the gate. Prove it moved the number before building anything else.
+                  We close that gap the slow way. We map the workflows first, design one system tied to one number, ship it with a person at the gate, and prove it moved the number before we build anything else.
                 </p>
                 <p>
                   The method comes from Logan&apos;s work at Harvard Business School, where he designed and deployed AI systems across admissions and operations. The systems KALEOS ships for clients run on the same architecture KALEOS uses to run itself.
@@ -94,22 +95,22 @@ export default function AboutPage() {
             <div className="md:col-span-5">
               <Reveal>
                 <p className="eyebrow text-ash">What we hold to</p>
-                <h2 id="hold-heading" className="mt-5 max-w-[10ch] text-h2">
-                  The method is <span className="cosmic-outline">the product.</span>
-                </h2>
+                <Words as="h2" id="hold-heading" className="mt-5 block max-w-[10ch] text-h2">
+                  The method is the product
+                </Words>
               </Reveal>
             </div>
             <div className="md:col-span-6 md:col-start-7">
               <Reveal delay={100}>
                 <div className="space-y-7 text-body-lg leading-[1.55] text-mist">
                   <p>
-                    Tools change every quarter. What does not change is deciding, before anything is built, which workflow deserves a system and what number it has to move. Strategy decides what gets built. That decision is most of the work, and it is the part almost everyone skips.
+                    Tools change every quarter. What does not change is the decision, made before anything is built, about which workflow deserves a system and what number it has to move. That decision is most of the work, and it is the part almost everyone skips.
                   </p>
                   <p>
-                    So we take <span className="text-star">one outcome at a time.</span> One system, one number, a clear result. Then the next workflow, chosen on what the first one proved rather than on what sounded exciting in the kickoff.
+                    So we take <span className="text-star">one outcome at a time.</span> We build one system, tie it to one number, and read the result. Then we choose the next workflow based on what the first one proved rather than on what sounded exciting in the kickoff.
                   </p>
                   <p>
-                    And on every one of them, <span className="text-star">a person signs.</span> Nothing executes without human approval. The system amplifies your judgment. It does not replace it, and we will not build one that tries.
+                    And on every one of them, <span className="text-star">a person signs.</span> Nothing executes without human approval. The system extends your judgment rather than replacing it, and we will not build one that tries.
                   </p>
                 </div>
               </Reveal>
@@ -120,7 +121,7 @@ export default function AboutPage() {
 
       <section className="border-t border-line">
         <div className="mx-auto flex max-w-[88rem] flex-col items-start gap-8 px-5 py-20 md:flex-row md:items-center md:justify-between md:px-8 md:py-28">
-          <h2 className="max-w-[16ch] text-h2">Want to see if it fits your business?</h2>
+          <h2 className="max-w-[16ch] text-h2">Curious whether this fits your business</h2>
           <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star btn-lg">{CTA}</a>
         </div>
       </section>

@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import { Reveal } from '@/components/Reveal'
+import { Words } from '@/components/Words'
 
 /* Client words, cut to what matters. The full drafts live in
    docs/proof-kit/testimonials.json and are the source of truth for who
@@ -42,9 +43,9 @@ export function Testimonials() {
       <div className="mx-auto max-w-[88rem] px-5 py-24 md:px-8 md:py-36">
         <Reveal>
           <p className="eyebrow text-ash">In production</p>
-          <h2 id="testimonials-heading" className="mt-5 max-w-[16ch] text-h2">
-            Operators who <span className="cosmic-outline">already run on it.</span>
-          </h2>
+          <Words as="h2" id="testimonials-heading" className="mt-5 block max-w-[16ch] text-h2">
+            What our clients say
+          </Words>
         </Reveal>
 
         <div className="mt-16 divide-y divide-line border-y border-line md:mt-24">
@@ -53,7 +54,7 @@ export function Testimonials() {
             const quote = confirmed ? t.quote : SHORT[t.id] ?? t.quote
             const who = t.client_name ? `${t.client_name}, ${t.title}` : t.company
             return (
-              <Reveal key={t.id} delay={i * 90}>
+              <Reveal key={t.id} delay={i * 90} variant={i % 2 === 0 ? 'left' : 'right'}>
                 <figure className="grid gap-6 py-10 md:grid-cols-12 md:items-start md:py-14">
                   <blockquote className="font-display text-[1.6rem] font-semibold leading-[1.2] tracking-tight text-star md:col-span-8 md:text-[2.25rem]">
                     “{quote}”

@@ -259,7 +259,7 @@ export default function TalkToLogan() {
           </div>
 
           <p className="pb-3 text-center font-mono text-[0.68rem] tracking-wide text-mist">
-            AI assistant. Replies reflect how Logan thinks.
+            An AI assistant that answers the way Logan would.
           </p>
         </div>
       )}

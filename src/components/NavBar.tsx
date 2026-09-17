@@ -43,10 +43,10 @@ export function NavBar() {
         scrolled || open ? 'bg-void/80 backdrop-blur-md border-b border-line' : 'border-b border-transparent'
       }`}
     >
-      <nav aria-label="Primary" className="mx-auto flex h-16 max-w-[88rem] items-center justify-between px-5 md:h-18 md:px-8">
+      <nav aria-label="Primary" className="mx-auto flex h-[4.5rem] max-w-[88rem] items-center justify-between px-5 md:h-20 md:px-8">
         <Link href="/" className="flex items-center gap-3 text-star" aria-label="KALEOS, home">
-          <KLogo className="h-6" />
-          <span className="wordmark text-[0.95rem]">Kaleos</span>
+          <KLogo className="h-8 md:h-9" />
+          <span className="wordmark text-[1.25rem] md:text-[1.45rem]">Kaleos</span>
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">

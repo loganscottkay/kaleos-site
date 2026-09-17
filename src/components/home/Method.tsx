@@ -5,6 +5,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import { Reveal } from '@/components/Reveal'
+import { Words } from '@/components/Words'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
@@ -14,10 +15,10 @@ gsap.registerPlugin(ScrollTrigger, useGSAP)
    the site. Under reduced motion the orbit is simply drawn. */
 
 const steps = [
-  { n: '01', when: 'Weeks 1 to 2', title: 'Map the work', body: 'Every workflow, start to finish. We separate the parts that need your judgment from the parts that do not, then rank what is worth building first.' },
-  { n: '02', when: 'Weeks 3 to 4', title: 'Design one system', body: 'One workflow, one number you can measure. Scoped to how your business runs, not to a demo. You see the design before anyone writes code.' },
-  { n: '03', when: 'By day 30', title: 'Live, with you at the gate', body: 'Approval and audit logging from day one. The agent drafts and prepares. Nothing reaches a client, an inbox, or a ledger without your sign-off.' },
-  { n: '04', when: 'Ongoing', title: 'Prove it, then extend', body: 'We track the number we agreed on. If it moved, we take the next workflow. If it did not, we fix it or tell you it is not worth building.' },
+  { n: '01', when: 'Weeks 1 to 2', title: 'Map the work', body: 'We map every workflow from start to finish, separate the parts that need your judgment from the parts that do not, and rank what is worth building first.' },
+  { n: '02', when: 'Weeks 3 to 4', title: 'Design one system', body: 'We scope one workflow to one number you can measure and design it around how your business already runs. You see the design before anyone writes code.' },
+  { n: '03', when: 'By day 30', title: 'Live, with you at the gate', body: 'Approval and audit logging are built in from day one. The agent drafts and prepares, and nothing reaches a client, an inbox, or a ledger without your sign-off.' },
+  { n: '04', when: 'Ongoing', title: 'Prove it, then extend', body: 'We track the number we agreed on. If it moved, we take on the next workflow. If it did not, we fix the system or tell you plainly that it is not worth building.' },
 ]
 
 // viewBox 0 0 1000 400. A wide ellipse, the gate at the bottom.
@@ -79,13 +80,13 @@ export function Method() {
         <div className="grid gap-10 md:grid-cols-12 md:items-end">
           <Reveal className="md:col-span-7">
             <p className="eyebrow text-ash">How it works</p>
-            <h2 id="method-heading" className="mt-5 max-w-[14ch] text-h2">
-              One orbit. <span className="cosmic-outline">One gate.</span>
-            </h2>
+            <Words as="h2" id="method-heading" className="mt-5 block max-w-[14ch] text-h2">
+              How we work with you
+            </Words>
           </Reveal>
           <Reveal delay={100} className="md:col-span-4 md:col-start-9">
             <p className="text-body-lg text-mist">
-              Work moves in a loop. It can only cross the gate when a person signs. Thirty days from first map to a system in production.
+              Work moves in a loop and can only cross the gate when a person signs. The first system is in production within thirty days.
             </p>
           </Reveal>
         </div>
@@ -110,7 +111,7 @@ export function Method() {
             <li key={s.n}>
               <Reveal delay={i * 90} className="rule flex h-full flex-col border-t border-line pt-6">
                 <div className="flex items-baseline justify-between">
-                  <span className="font-display text-[2rem] font-bold cosmic-outline-nebula">{s.n}</span>
+                  <span className="font-display text-[2rem] font-bold text-comet">{s.n}</span>
                   <span className="eyebrow text-ash">{s.when}</span>
                 </div>
                 <h3 className="mt-5 text-h3">{s.title}</h3>
