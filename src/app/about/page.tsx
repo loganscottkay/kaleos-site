@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { NavBar, CALENDLY, CTA } from '@/components/NavBar'
+import { NavBar, CALENDLY, CTA, LINKEDIN } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
 import { Reveal } from '@/components/Reveal'
 import { Words } from '@/components/Words'
@@ -22,10 +22,8 @@ export const metadata: Metadata = {
 
 const background = [
   { k: 'Now', v: 'Founder and CEO, Kaleos HQ' },
-  { k: 'Anthropic', v: 'Claude Corps Fellow' },
+  { k: 'Anthropic', v: 'Claude Corps Fellow, Cohort 1' },
   { k: 'Previously', v: 'Designed and deployed AI systems across admissions and operations at Harvard Business School. The implementation method Kaleos HQ runs today comes from that work.' },
-  { k: 'Before that', v: 'Fraud detection at K2 Integrity, analyzing more than two million financial transactions.' },
-  { k: 'Studied', v: 'Boston University' },
 ]
 
 export default function AboutPage() {
@@ -61,6 +59,7 @@ export default function AboutPage() {
               </div>
               <p className="mt-5 font-display text-body font-semibold text-star">Logan Kay</p>
               <p className="text-caption text-mist">Founder and CEO</p>
+              <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block py-1 text-caption text-mist underline decoration-line underline-offset-4 hover:text-star">LinkedIn</a>
             </Reveal>
           </div>
           <div className="md:col-span-7 md:col-start-6">

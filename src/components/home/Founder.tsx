@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { LINKEDIN } from '@/components/NavBar'
 import { Reveal } from '@/components/Reveal'
 
 /* One line about the person at the gate. The name goes to the About page. */
@@ -14,7 +15,7 @@ export function Founder() {
             </Link>
             <p className="max-w-3xl font-display text-[1.35rem] font-semibold leading-snug text-star md:text-[1.75rem]">
               <Link href="/about" className="underline decoration-comet/60 decoration-2 underline-offset-[0.2em] hover:decoration-comet">Logan Kay</Link>
-              {' '}founded Kaleos HQ after designing and deploying AI systems across admissions and operations at Harvard Business School. He is a <span className="glint-ember">Claude Corps Fellow at Anthropic</span>.
+              {' '}founded Kaleos HQ after designing and deploying AI systems across admissions and operations at Harvard Business School. He is a <span className="glint-ember">Claude Corps Fellow, Cohort 1, at Anthropic</span>. <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="text-mist underline decoration-line underline-offset-[0.2em] hover:text-star">LinkedIn</a>
             </p>
           </div>
         </Reveal>
