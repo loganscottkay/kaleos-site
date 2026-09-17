@@ -23,7 +23,7 @@ export async function generateMetadata({
     description: post.description,
     alternates: { canonical: `https://www.kaleoshq.com/blog/${post.slug}` },
     openGraph: {
-      title: `${post.title} | Kaleos HQ`,
+      title: `${post.title} | KALEOS`,
       description: post.description,
       url: `https://www.kaleoshq.com/blog/${post.slug}`,
       type: 'article',
@@ -49,16 +49,16 @@ export default async function BlogPostPage({
   })
 
   return (
-    <main className="min-h-screen bg-paper text-ink">
-      <NavBar theme="light" />
+    <main className="min-h-screen bg-void text-star">
+      <NavBar />
 
       <article className="mx-auto max-w-[88rem] px-5 pb-24 pt-36 md:px-8 md:pb-32 md:pt-48">
         <header className="grid gap-8 md:grid-cols-12">
           <div className="md:col-span-3">
-            <Link href="/blog" className="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-slate hover:text-ink">
+            <Link href="/blog" className="eyebrow text-mist hover:text-star">
               Thinking
             </Link>
-            <p className="mt-6 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-slate">
+            <p className="mt-6 eyebrow text-mist">
               {formattedDate}
               <br />
               {post.readTime}
@@ -71,8 +71,8 @@ export default async function BlogPostPage({
             </p>
           </div>
           <div className="md:col-span-8 md:col-start-5">
-            <h1 className="max-w-[16ch] text-h1 font-light tracking-tightest">{post.title}</h1>
-            <p className="mt-6 max-w-2xl text-body-lg text-slate">{post.description}</p>
+            <h1 className="max-w-[16ch] text-h1">{post.title}</h1>
+            <p className="mt-6 max-w-2xl text-body-lg text-mist">{post.description}</p>
           </div>
         </header>
 
@@ -82,20 +82,20 @@ export default async function BlogPostPage({
             {post.tags.length > 0 && (
               <ul className="mt-12 flex flex-wrap gap-2" aria-label="Tags">
                 {post.tags.map((tag) => (
-                  <li key={tag} className="rounded-full border border-line-light px-3 py-1 font-mono text-[0.7rem] tracking-wide text-slate">
+                  <li key={tag} className="rounded-full border border-line px-3 py-1 font-mono text-[0.7rem] tracking-wide text-mist">
                     {tag}
                   </li>
                 ))}
               </ul>
             )}
-            <Link href="/blog" className="mt-14 inline-block text-body text-ink underline decoration-line-light underline-offset-4 hover:decoration-ink">
+            <Link href="/blog" className="mt-14 inline-block text-body text-star underline decoration-line underline-offset-4 hover:decoration-star">
               All notes
             </Link>
           </div>
         </div>
       </article>
 
-      <Footer theme="light" />
+      <Footer />
     </main>
   )
 }

@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { KMark } from '@/components/KMark'
-import { CALENDLY, type Theme } from '@/components/NavBar'
+import { KLogo } from '@/components/KLogo'
+import { CALENDLY, CTA } from '@/components/NavBar'
 
 function XIcon() {
   return (
@@ -10,66 +10,43 @@ function XIcon() {
   )
 }
 
-/* The footer carries the positioning line and the ways to reach Logan.
-   Nothing decorative, no status lights. */
-export function Footer({ theme = 'dark' }: { theme?: Theme }) {
-  const dark = theme === 'dark'
-  const fg = dark ? 'text-star' : 'text-ink'
-  const muted = dark ? 'text-mist' : 'text-slate'
-  const link = dark ? 'text-mist hover:text-star' : 'text-slate hover:text-ink'
-  const line = dark ? 'border-line-dark' : 'border-line-light'
-
+export function Footer() {
   return (
-    <footer className={`border-t ${line}`}>
+    <footer className="border-t border-line">
       <div className="mx-auto max-w-[88rem] px-5 py-14 md:px-8 md:py-20">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-6">
-            <Link href="/" className={`inline-flex items-center gap-3 ${fg}`} aria-label="Kaleos HQ, home">
-              <KMark className="h-7 w-auto" />
-              <span className="wordmark text-[1.15rem]">Kaleos HQ</span>
+            <Link href="/" className="inline-flex items-center gap-3 text-star" aria-label="KALEOS, home">
+              <KLogo className="h-7" />
+              <span className="wordmark text-[1.05rem]">Kaleos</span>
             </Link>
-            <p className={`mt-6 max-w-sm text-[1.05rem] leading-relaxed ${muted}`}>
-              Agents do the work. You make the calls. Everything is logged.
+            <p className="mt-6 max-w-sm text-[1.05rem] leading-relaxed text-mist">
+              Premium AI implementation. Agents do the work. You make the calls. Everything is logged.
             </p>
           </div>
-
           <div className="md:col-span-3">
-            <p className={`eyebrow ${muted}`}>Site</p>
+            <p className="eyebrow text-ash">Site</p>
             <ul className="mt-4 space-y-3">
-              <li><Link href="/" className={link}>Home</Link></li>
-              <li><Link href="/audit" className={link}>Assessment</Link></li>
-              <li><Link href="/about" className={link}>About</Link></li>
+              <li><Link href="/" className="text-mist hover:text-star">Home</Link></li>
+              <li><Link href="/audit" className="text-mist hover:text-star">Assessment</Link></li>
+              <li><Link href="/about" className="text-mist hover:text-star">About</Link></li>
             </ul>
           </div>
-
           <div className="md:col-span-3">
-            <p className={`eyebrow ${muted}`}>Reach Logan</p>
+            <p className="eyebrow text-ash">Reach us</p>
             <ul className="mt-4 space-y-3">
+              <li><a href="mailto:logan@kaleoshq.com" className="text-mist hover:text-star">logan@kaleoshq.com</a></li>
+              <li><a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="text-mist hover:text-star">{CTA}</a></li>
               <li>
-                <a href="mailto:logan@kaleoshq.com" className={link}>logan@kaleoshq.com</a>
-              </li>
-              <li>
-                <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className={link}>
-                  Book a Discovery Call
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://x.com/KaleosHQ"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Kaleos HQ on X"
-                  className={`inline-flex h-10 w-10 items-center justify-center ${link}`}
-                >
+                <a href="https://x.com/KaleosHQ" target="_blank" rel="noopener noreferrer" aria-label="KALEOS on X" className="inline-flex h-10 w-10 items-center justify-center text-mist hover:text-star">
                   <XIcon />
                 </a>
               </li>
             </ul>
           </div>
         </div>
-
-        <div className={`mt-14 flex flex-col gap-3 border-t ${line} pt-6 font-mono text-[0.75rem] tracking-wide sm:flex-row sm:items-center sm:justify-between ${muted}`}>
-          <span>© {new Date().getFullYear()} Kaleos HQ</span>
+        <div className="mt-14 flex flex-col gap-3 border-t border-line pt-6 font-mono text-[0.75rem] tracking-wide text-ash sm:flex-row sm:items-center sm:justify-between">
+          <span>© {new Date().getFullYear()} KALEOS</span>
           <span>Built with Claude</span>
         </div>
       </div>

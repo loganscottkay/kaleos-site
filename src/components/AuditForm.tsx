@@ -90,11 +90,11 @@ export function AuditForm() {
 
   if (status === 'success') {
     return (
-      <div className="surface-light p-8 md:p-10" role="status">
-        <p className="eyebrow text-slate">Received</p>
-        <h3 className="mt-4 text-h3 font-light">Thank you. You will hear back within 24 hours.</h3>
-        <ol className="mt-6 space-y-2 text-body text-slate">
-          <li>1. Logan reads your submission.</li>
+      <div className="surface p-8 md:p-10" role="status">
+        <p className="eyebrow text-ash">Received</p>
+        <h3 className="mt-4 text-h3">Thank you. You will hear back within 24 hours.</h3>
+        <ol className="mt-6 space-y-2 text-body text-mist">
+          <li>1. We read your submission.</li>
           <li>2. You get a discovery call on the calendar.</li>
           <li>3. The assessment is delivered within two weeks.</li>
         </ol>
@@ -102,7 +102,7 @@ export function AuditForm() {
     )
   }
 
-  const label = 'block font-mono text-[0.72rem] uppercase tracking-[0.18em] text-slate'
+  const label = 'block eyebrow text-ash'
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8" noValidate>
@@ -130,7 +130,7 @@ export function AuditForm() {
             autoComplete="name"
             value={formData.name}
             onChange={(e) => update('name', e.target.value)}
-            className="input-light mt-3"
+            className="input mt-3"
             placeholder="Your name"
           />
         </div>
@@ -144,7 +144,7 @@ export function AuditForm() {
             autoComplete="email"
             value={formData.email}
             onChange={(e) => update('email', e.target.value)}
-            className="input-light mt-3"
+            className="input mt-3"
             placeholder="you@company.com"
           />
         </div>
@@ -160,7 +160,7 @@ export function AuditForm() {
           autoComplete="organization"
           value={formData.company}
           onChange={(e) => update('company', e.target.value)}
-          className="input-light mt-3"
+          className="input mt-3"
           placeholder="Company name"
         />
       </div>
@@ -213,22 +213,22 @@ export function AuditForm() {
           value={formData.desired_outcome}
           onChange={(e) => update('desired_outcome', e.target.value)}
           rows={4}
-          className="input-light mt-3 resize-none"
+          className="input mt-3 resize-none"
           placeholder="One or two sentences is plenty."
         />
       </div>
 
       {status === 'error' && (
-        <p role="alert" className="border-l-2 border-ink pl-4 text-body text-ink">
+        <p role="alert" className="border-l-2 border-comet pl-4 text-body text-star">
           {errorMessage}
         </p>
       )}
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <button type="submit" disabled={status === 'loading'} className="btn btn-ink btn-lg">
-          {status === 'loading' ? 'Sending' : 'Send it to Logan'}
+        <button type="submit" disabled={status === 'loading'} className="btn btn-star btn-lg">
+          {status === 'loading' ? 'Sending' : 'Send it'}
         </button>
-        <p className="text-caption text-slate">You will hear back within 24 hours. No spam, no pitch.</p>
+        <p className="text-caption text-mist">You will hear back within 24 hours. No spam, no pitch.</p>
       </div>
     </form>
   )

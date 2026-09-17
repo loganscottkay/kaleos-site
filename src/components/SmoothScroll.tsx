@@ -23,6 +23,9 @@ export function SmoothScroll() {
     })
 
     lenis.on('scroll', ScrollTrigger.update)
+    const refresh = () => ScrollTrigger.refresh()
+    window.addEventListener('load', refresh)
+    document.fonts?.ready.then(refresh)
     const tick = (time: number) => lenis.raf(time * 1000)
     gsap.ticker.add(tick)
     gsap.ticker.lagSmoothing(0)
@@ -35,6 +38,7 @@ export function SmoothScroll() {
 
     return () => {
       reduced.removeEventListener('change', onChange)
+      window.removeEventListener('load', refresh)
       gsap.ticker.remove(tick)
       lenis.destroy()
     }

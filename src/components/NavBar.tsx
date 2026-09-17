@@ -3,9 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { KMark } from '@/components/KMark'
-
-export type Theme = 'dark' | 'light'
+import { KLogo } from '@/components/KLogo'
 
 const links = [
   { href: '/audit', label: 'Assessment' },
@@ -13,19 +11,14 @@ const links = [
 ]
 
 export const CALENDLY = 'https://calendly.com/logan-kaleoshq/30min'
+export const CTA = 'Talk with us'
 
-/* Quiet by design: a small K, the wordmark in light weight, two links, one
-   button. The bar is transparent over the hero and gains a hairline and a
-   blur once the page moves. `theme` also paints the document ground so
-   overscroll on phones matches the page. */
-export function NavBar({ theme = 'dark' }: { theme?: Theme }) {
+/* Quiet: the mark, KALEOS, two links, one button. Transparent over the
+   hero, a hairline and a blur once the page moves. */
+export function NavBar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme
-  }, [theme])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -43,29 +36,16 @@ export function NavBar({ theme = 'dark' }: { theme?: Theme }) {
     return () => document.removeEventListener('keydown', onKey)
   }, [open])
 
-  const dark = theme === 'dark'
-  const fg = dark ? 'text-star' : 'text-ink'
-  const muted = dark ? 'text-mist hover:text-star' : 'text-slate hover:text-ink'
-  const line = dark ? 'border-line-dark' : 'border-line-light'
-  const ground = dark ? 'bg-void/80' : 'bg-paper/85'
-
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-300 ${
-        scrolled || open ? `${ground} backdrop-blur-md border-b ${line}` : 'border-b border-transparent'
+        scrolled || open ? 'bg-void/80 backdrop-blur-md border-b border-line' : 'border-b border-transparent'
       }`}
     >
-      <nav
-        aria-label="Primary"
-        className="mx-auto flex h-16 max-w-[88rem] items-center justify-between px-5 md:h-18 md:px-8"
-      >
-        <Link
-          href="/"
-          className={`group flex items-center gap-3 ${fg}`}
-          aria-label="Kaleos HQ, home"
-        >
-          <KMark className="h-6 w-auto" />
-          <span className="wordmark text-[1.05rem]">Kaleos HQ</span>
+      <nav aria-label="Primary" className="mx-auto flex h-16 max-w-[88rem] items-center justify-between px-5 md:h-18 md:px-8">
+        <Link href="/" className="flex items-center gap-3 text-star" aria-label="KALEOS, home">
+          <KLogo className="h-6" />
+          <span className="wordmark text-[0.95rem]">Kaleos</span>
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
@@ -76,21 +56,14 @@ export function NavBar({ theme = 'dark' }: { theme?: Theme }) {
                 key={l.href}
                 href={l.href}
                 aria-current={active ? 'page' : undefined}
-                className={`text-[0.95rem] tracking-tight transition-colors ${
-                  active ? fg : muted
-                }`}
+                className={`text-[0.95rem] transition-colors ${active ? 'text-star' : 'text-mist hover:text-star'}`}
               >
                 {l.label}
               </Link>
             )
           })}
-          <a
-            href={CALENDLY}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={dark ? 'btn btn-star' : 'btn btn-ink'}
-          >
-            Book a Discovery Call
+          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star">
+            {CTA}
           </a>
         </div>
 
@@ -100,46 +73,24 @@ export function NavBar({ theme = 'dark' }: { theme?: Theme }) {
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'Close menu' : 'Open menu'}
-          className={`flex h-11 w-11 items-center justify-center md:hidden ${fg}`}
+          className="flex h-11 w-11 items-center justify-center text-star md:hidden"
         >
           <span className="relative block h-[10px] w-5" aria-hidden="true">
-            <span
-              className={`absolute left-0 top-0 h-px w-5 bg-current transition-transform duration-300 ${
-                open ? 'translate-y-[5px] rotate-45' : ''
-              }`}
-            />
-            <span
-              className={`absolute bottom-0 left-0 h-px w-5 bg-current transition-transform duration-300 ${
-                open ? '-translate-y-[4px] -rotate-45' : ''
-              }`}
-            />
+            <span className={`absolute left-0 top-0 h-px w-5 bg-current transition-transform duration-300 ${open ? 'translate-y-[5px] rotate-45' : ''}`} />
+            <span className={`absolute bottom-0 left-0 h-px w-5 bg-current transition-transform duration-300 ${open ? '-translate-y-[4px] -rotate-45' : ''}`} />
           </span>
         </button>
       </nav>
 
-      <div
-        id="mobile-menu"
-        hidden={!open}
-        className={`md:hidden border-t ${line} ${ground} backdrop-blur-md`}
-      >
+      <div id="mobile-menu" hidden={!open} className="border-t border-line bg-void/90 backdrop-blur-md md:hidden">
         <div className="flex flex-col gap-1 px-5 pb-6 pt-3">
           {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className={`py-3 text-[1.35rem] font-light tracking-tight ${fg}`}
-            >
+            <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="font-display py-3 text-[1.5rem] font-semibold text-star">
               {l.label}
             </Link>
           ))}
-          <a
-            href={CALENDLY}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`mt-3 ${dark ? 'btn btn-star' : 'btn btn-ink'} w-full`}
-          >
-            Book a Discovery Call
+          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star mt-3 w-full">
+            {CTA}
           </a>
         </div>
       </div>

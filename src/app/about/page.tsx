@@ -1,99 +1,84 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { NavBar, CALENDLY } from '@/components/NavBar'
+import { NavBar, CALENDLY, CTA } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
 import { Reveal } from '@/components/Reveal'
-import { KMark } from '@/components/KMark'
+import { Starfield } from '@/components/home/Starfield'
 
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Kaleos HQ was founded by Logan Kay, who previously designed and deployed AI systems at Harvard Business School. One rule runs the firm: a person signs before anything ships.',
+    'KALEOS was founded by Logan Kay, who previously designed and deployed AI systems at Harvard Business School. One rule runs the firm: a person signs before anything ships.',
   alternates: { canonical: 'https://www.kaleoshq.com/about' },
   openGraph: {
-    title: 'About | Kaleos HQ',
-    description:
-      'Kaleos HQ was founded by Logan Kay, who previously designed and deployed AI systems at Harvard Business School.',
+    title: 'About | KALEOS',
+    description: 'KALEOS was founded by Logan Kay, who previously designed and deployed AI systems at Harvard Business School.',
     url: 'https://www.kaleoshq.com/about',
   },
 }
 
 const background = [
-  { k: 'Now', v: 'Founder and CEO, Kaleos HQ' },
+  { k: 'Now', v: 'Founder and CEO, KALEOS' },
   { k: 'Next', v: 'Incoming, Anthropic' },
-  { k: 'Previously', v: 'Designed and deployed AI systems across admissions and operations at Harvard Business School. The implementation method Kaleos runs today comes from that work.' },
+  { k: 'Previously', v: 'Designed and deployed AI systems across admissions and operations at Harvard Business School. The implementation method KALEOS runs today comes from that work.' },
   { k: 'Before that', v: 'Fraud detection at K2 Integrity, analyzing more than two million financial transactions.' },
   { k: 'Studied', v: 'Boston University' },
 ]
 
-const principles = [
-  {
-    title: 'Method over tools.',
-    body: 'Strategy decides what gets built. The tools change every quarter. The method is the product.',
-  },
-  {
-    title: 'One outcome at a time.',
-    body: 'One system, one number, clear results. Then the next workflow, based on what the first one proved.',
-  },
-  {
-    title: 'A person signs.',
-    body: 'Nothing executes without human approval. The system amplifies your judgment. It never replaces it.',
-  },
-]
-
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-paper text-ink">
-      <NavBar theme="light" />
+    <main className="min-h-screen bg-void text-star">
+      <NavBar />
 
-      <section className="mx-auto max-w-[88rem] px-5 pb-20 pt-36 md:px-8 md:pb-28 md:pt-48">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-8">
-            <p className="eyebrow text-slate">About</p>
-            <h1 className="mt-6 max-w-[14ch] text-h1 font-light tracking-tightest">
-              A firm built on one rule: a person signs before anything ships.
-            </h1>
-          </div>
+      <section className="relative isolate overflow-hidden">
+        <Starfield density={0.00008} shooting={false} />
+        <div className="relative mx-auto max-w-[88rem] px-5 pb-20 pt-36 md:px-8 md:pb-28 md:pt-48">
+          <p className="eyebrow text-ash">About</p>
+          <h1 className="mt-6 max-w-[12ch] text-h1">
+            Built on <span className="cosmic-outline">one rule.</span>
+          </h1>
+          <p className="mt-8 max-w-[34rem] text-body-lg text-mist">
+            A person signs before anything ships. Everything else at KALEOS follows from that.
+          </p>
         </div>
       </section>
 
-      <section className="border-t border-line-light">
+      <section className="border-t border-line">
         <div className="mx-auto grid max-w-[88rem] gap-12 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
           <div className="md:col-span-4">
             <Reveal>
               <Image
                 src="/photo.png"
-                alt="Logan Kay, founder of Kaleos HQ"
+                alt="Logan Kay, founder of KALEOS"
                 width={640}
                 height={640}
                 className="aspect-square w-full max-w-sm rounded-[14px] object-cover grayscale"
                 priority
               />
-              <p className="mt-5 text-body text-ink">Logan Kay</p>
-              <p className="text-caption text-slate">Founder and CEO</p>
+              <p className="mt-5 font-display text-body font-semibold text-star">Logan Kay</p>
+              <p className="text-caption text-mist">Founder and CEO</p>
             </Reveal>
           </div>
           <div className="md:col-span-7 md:col-start-6">
             <Reveal>
-              <div className="space-y-6 text-body-lg font-light leading-[1.55] text-ink">
+              <div className="space-y-6 text-body-lg leading-[1.55] text-star">
                 <p>
-                  Kaleos HQ exists because wanting AI and running AI are different problems. Most companies that start with AI never get past the demo. Not because the technology fails, but because nobody connected it to how the business actually operates.
+                  KALEOS exists because wanting AI and running AI are different problems. Most companies that start with AI never get past the demo. Not because the technology fails, but because nobody connected it to how the business actually operates.
                 </p>
                 <p>
-                  We close that gap the slow way: map the workflows first, design one system tied to one number, ship it with a person at the gate, and prove it moved the number before building anything else.
+                  We close that gap the slow way. Map the workflows first. Design one system tied to one number. Ship it with a person at the gate. Prove it moved the number before building anything else.
                 </p>
                 <p>
-                  The method comes from Logan&apos;s work at Harvard Business School, where he designed and deployed AI systems across admissions and operations. The systems Kaleos ships for clients run on the same architecture Kaleos uses to run itself.
+                  The method comes from Logan&apos;s work at Harvard Business School, where he designed and deployed AI systems across admissions and operations. The systems KALEOS ships for clients run on the same architecture KALEOS uses to run itself.
                 </p>
               </div>
             </Reveal>
-
             <Reveal delay={100}>
-              <dl className="mt-16 divide-y divide-line-light border-y border-line-light">
+              <dl className="mt-16 divide-y divide-line border-y border-line">
                 {background.map((b) => (
                   <div key={b.k} className="grid gap-2 py-5 md:grid-cols-4">
-                    <dt className="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-slate">{b.k}</dt>
-                    <dd className="text-body text-ink md:col-span-3">{b.v}</dd>
+                    <dt className="eyebrow text-ash">{b.k}</dt>
+                    <dd className="text-body text-star md:col-span-3">{b.v}</dd>
                   </div>
                 ))}
               </dl>
@@ -102,41 +87,45 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-line-light" aria-labelledby="principles-heading">
+      {/* What we hold to. Prose, not a grid. */}
+      <section className="border-t border-line" aria-labelledby="hold-heading">
         <div className="mx-auto max-w-[88rem] px-5 py-20 md:px-8 md:py-28">
-          <Reveal>
-            <p className="eyebrow text-slate">How we are different</p>
-            <h2 id="principles-heading" className="mt-5 max-w-[16ch] text-h2 font-light">
-              Three commitments, kept on every engagement.
-            </h2>
-          </Reveal>
-          <ol className="mt-14 grid gap-px bg-line-light md:grid-cols-3">
-            {principles.map((p, i) => (
-              <li key={p.title} className="bg-paper">
-                <Reveal delay={i * 90} className="h-full p-6 md:p-8">
-                  <span className="font-mono text-[0.72rem] tracking-[0.18em] text-slate">0{i + 1}</span>
-                  <h3 className="mt-5 text-h3 font-light">{p.title}</h3>
-                  <p className="mt-4 text-body text-slate">{p.body}</p>
-                </Reveal>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section className="border-t border-line-light">
-        <div className="mx-auto flex max-w-[88rem] flex-col items-start gap-8 px-5 py-20 md:flex-row md:items-center md:justify-between md:px-8 md:py-28">
-          <div className="flex items-center gap-6">
-            <KMark className="h-12 w-auto text-ink" />
-            <h2 className="text-h2 font-light">Want to see if it fits your business?</h2>
+          <div className="grid gap-12 md:grid-cols-12">
+            <div className="md:col-span-5">
+              <Reveal>
+                <p className="eyebrow text-ash">What we hold to</p>
+                <h2 id="hold-heading" className="mt-5 max-w-[10ch] text-h2">
+                  The method is <span className="cosmic-outline">the product.</span>
+                </h2>
+              </Reveal>
+            </div>
+            <div className="md:col-span-6 md:col-start-7">
+              <Reveal delay={100}>
+                <div className="space-y-7 text-body-lg leading-[1.55] text-mist">
+                  <p>
+                    Tools change every quarter. What does not change is deciding, before anything is built, which workflow deserves a system and what number it has to move. Strategy decides what gets built. That decision is most of the work, and it is the part almost everyone skips.
+                  </p>
+                  <p>
+                    So we take <span className="text-star">one outcome at a time.</span> One system, one number, a clear result. Then the next workflow, chosen on what the first one proved rather than on what sounded exciting in the kickoff.
+                  </p>
+                  <p>
+                    And on every one of them, <span className="text-star">a person signs.</span> Nothing executes without human approval. The system amplifies your judgment. It does not replace it, and we will not build one that tries.
+                  </p>
+                </div>
+              </Reveal>
+            </div>
           </div>
-          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-ink btn-lg">
-            Book a Discovery Call
-          </a>
         </div>
       </section>
 
-      <Footer theme="light" />
+      <section className="border-t border-line">
+        <div className="mx-auto flex max-w-[88rem] flex-col items-start gap-8 px-5 py-20 md:flex-row md:items-center md:justify-between md:px-8 md:py-28">
+          <h2 className="max-w-[16ch] text-h2">Want to see if it fits your business?</h2>
+          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star btn-lg">{CTA}</a>
+        </div>
+      </section>
+
+      <Footer />
     </main>
   )
 }

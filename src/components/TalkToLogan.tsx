@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import type { CSSProperties, KeyboardEvent } from 'react'
 import Image from 'next/image'
-import { CALENDLY } from '@/components/NavBar'
+import { CALENDLY, CTA } from '@/components/NavBar'
 
 /* Posts to /api/chat. The payload shape and the validation limits are the
    backend's; only the surface changed. Quiet launcher, black panel. */
@@ -45,6 +45,7 @@ export default function TalkToLogan() {
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [showCTA, setShowCTA] = useState(false)
+  const [pastHero, setPastHero] = useState(false)
 
   const endRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -66,6 +67,14 @@ export default function TalkToLogan() {
   useEffect(() => {
     if (isOpen) inputRef.current?.focus()
   }, [isOpen])
+
+  // The hero has its own call to action; the launcher waits until the page moves.
+  useEffect(() => {
+    const onScroll = () => setPastHero(window.scrollY > 160)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const restoreFocus = useRef(false)
 
@@ -131,13 +140,13 @@ export default function TalkToLogan() {
 
   return (
     <>
-      {!isOpen && (
+      {!isOpen && pastHero && (
         <button
           ref={launcherRef}
           type="button"
           onClick={() => setIsOpen(true)}
           aria-haspopup="dialog"
-          className="fixed bottom-5 right-5 z-[9999] flex items-center gap-3 rounded-full border border-line-dark bg-void py-2 pl-2 pr-5 text-left text-star shadow-[0_8px_30px_rgb(0_0_0/0.35)] transition-colors hover:border-star/40 md:bottom-6 md:right-6"
+          className="fixed bottom-5 right-5 z-[9999] flex items-center gap-3 rounded-full border border-line bg-void py-2 pl-2 pr-5 text-left text-star shadow-[0_8px_30px_rgb(0_0_0/0.35)] transition-colors hover:border-star/40 md:bottom-6 md:right-6"
         >
           <Image
             src="/photo.png"
@@ -146,7 +155,7 @@ export default function TalkToLogan() {
             height={36}
             className="h-9 w-9 rounded-full object-cover grayscale"
           />
-          <span className="text-[0.95rem]">Talk to Logan</span>
+          <span className="text-[0.95rem]">Talk with us</span>
         </button>
       )}
 
@@ -158,10 +167,10 @@ export default function TalkToLogan() {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Chat with Logan"
-          className="ltl-panel ltl-in fixed bottom-4 right-4 z-[10001] flex flex-col overflow-hidden rounded-[14px] border border-line-dark bg-void text-star md:bottom-6 md:right-6"
+          aria-label="Chat with KALEOS"
+          className="ltl-panel ltl-in fixed bottom-4 right-4 z-[10001] flex flex-col overflow-hidden rounded-[14px] border border-line bg-void text-star md:bottom-6 md:right-6"
         >
-          <div className="flex items-center gap-4 border-b border-line-dark px-5 py-4">
+          <div className="flex items-center gap-4 border-b border-line px-5 py-4">
             <Image
               src="/photo.png"
               alt="Logan Kay"
@@ -171,7 +180,7 @@ export default function TalkToLogan() {
             />
             <div className="flex-1">
               <div className="text-body">Logan Kay</div>
-              <div className="font-mono text-[0.7rem] tracking-wide text-mist">Founder, Kaleos HQ</div>
+              <div className="font-mono text-[0.7rem] tracking-wide text-mist">Founder, KALEOS</div>
             </div>
             <button
               onClick={close}
@@ -188,8 +197,8 @@ export default function TalkToLogan() {
                 key={i}
                 className={`ltl-in-fast max-w-[85%] rounded-[12px] px-4 py-3 text-[0.95rem] leading-relaxed ${
                   m.role === 'assistant'
-                    ? 'self-start border border-line-dark text-star'
-                    : 'self-end bg-star text-ink'
+                    ? 'self-start border border-line text-star'
+                    : 'self-end bg-star text-void'
                 }`}
               >
                 {m.content}
@@ -210,20 +219,20 @@ export default function TalkToLogan() {
           </div>
 
           {showCTA && (
-            <div className="ltl-in-fast flex flex-wrap gap-2 border-t border-line-dark px-5 py-4">
+            <div className="ltl-in-fast flex flex-wrap gap-2 border-t border-line px-5 py-4">
               <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-star !min-h-10 text-caption">
-                Book a Discovery Call
+                {CTA}
               </a>
               <a
                 href="mailto:logan@kaleoshq.com?subject=Kaleos%20HQ"
-                className="btn btn-ghost-dark !min-h-10 text-caption"
+                className="btn btn-ghost !min-h-10 text-caption"
               >
-                Email Logan
+                Email us
               </a>
             </div>
           )}
 
-          <div className="flex items-end gap-2 border-t border-line-dark p-4">
+          <div className="flex items-end gap-2 border-t border-line p-4">
             <label htmlFor="ltl-input" className="sr-only">
               Message Logan
             </label>
@@ -235,14 +244,14 @@ export default function TalkToLogan() {
               onKeyDown={onTextareaKey}
               placeholder="Tell me about your business"
               rows={1}
-              className="flex-1 resize-none rounded-[10px] border border-line-dark bg-void-2 px-4 py-3 text-[1rem] leading-normal text-star placeholder:text-mist focus:border-star/50 focus:outline-none"
+              className="flex-1 resize-none rounded-[10px] border border-line bg-void-2 px-4 py-3 text-[1rem] leading-normal text-star placeholder:text-mist focus:border-star/50 focus:outline-none"
             />
             <button
               onClick={send}
               disabled={!input.trim() || loading}
               aria-label="Send message"
               className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${
-                input.trim() ? 'bg-star text-ink' : 'border border-line-dark text-mist'
+                input.trim() ? 'bg-star text-void' : 'border border-line text-mist'
               }`}
             >
               <SendIcon />
