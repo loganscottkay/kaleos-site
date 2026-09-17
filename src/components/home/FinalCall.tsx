@@ -10,7 +10,7 @@ export function FinalCall() {
   return (
     <section id="call" className="horizon relative isolate overflow-hidden" aria-labelledby="close-heading">
       <Starfield density={0.00009} />
-      <div aria-hidden="true" data-fx="parallax" data-speed="0.35" className="k-nebula bottom-[3%] right-[-8%] h-[64vw] w-[58vw] max-h-[42rem] max-w-[38rem] md:right-[4%] md:h-[60vw] md:w-[54vw]" />
+      <div aria-hidden="true" data-fx="parallax" data-speed="0.35" className="k-nebula bottom-[3%] left-[21vw] h-[64vw] w-[58vw] max-h-[42rem] max-w-[38rem] md:left-auto md:right-[4%] md:h-[60vw] md:w-[54vw]" />
       <div className="relative mx-auto max-w-[88rem] px-5 pb-[78vw] pt-32 md:px-8 md:py-48">
         <Reveal>
           <Words as="h2" id="close-heading" className="block max-w-[9ch] text-display">
