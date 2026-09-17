@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'Notes on AI implementation that holds up in production.',
   alternates: { canonical: 'https://www.kaleoshq.com/blog' },
   openGraph: {
-    title: 'Thinking | KALEOS',
+    title: 'Thinking | Kaleos HQ',
     description: 'Notes on AI implementation that holds up in production.',
     url: 'https://www.kaleoshq.com/blog',
     images: ['/opengraph-image.png'],

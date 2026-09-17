@@ -26,9 +26,9 @@ export function Footer() {
       <div className="mx-auto max-w-[88rem] px-5 py-16 md:px-8 md:py-24">
         <div className="grid gap-12 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
-            <Link href="/" className="inline-flex items-center gap-3 text-star" aria-label="KALEOS, home">
+            <Link href="/" className="inline-flex items-center gap-3 text-star" aria-label="Kaleos HQ, home">
               <KLogo className="h-8" />
-              <span className="wordmark text-[1.25rem]">Kaleos</span>
+              <span className="wordmark text-[1.25rem]">Kaleos HQ</span>
             </Link>
             <p className="mt-8 max-w-[14ch] font-display text-h2 font-bold text-star">{MOTTO}</p>
             <p className="mt-4 max-w-md text-body text-mist">
@@ -50,10 +50,10 @@ export function Footer() {
                 <li><a href="mailto:logan@kaleoshq.com" className="inline-block break-all py-1.5 text-mist hover:text-star">logan@kaleoshq.com</a></li>
                 <li><a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 text-mist hover:text-star">{CTA}</a></li>
                 <li className="flex gap-2 pt-1">
-                  <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" aria-label="KALEOS on LinkedIn" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-mist hover:border-star hover:text-star">
+                  <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" aria-label="Kaleos HQ on LinkedIn" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-mist hover:border-star hover:text-star">
                     <LinkedInIcon />
                   </a>
-                  <a href="https://x.com/KaleosHQ" target="_blank" rel="noopener noreferrer" aria-label="KALEOS on X" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-mist hover:border-star hover:text-star">
+                  <a href="https://x.com/KaleosHQ" target="_blank" rel="noopener noreferrer" aria-label="Kaleos HQ on X" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-mist hover:border-star hover:text-star">
                     <XIcon />
                   </a>
                 </li>
@@ -62,7 +62,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-16 flex flex-col gap-3 font-mono text-[0.72rem] tracking-wide text-ash sm:flex-row sm:items-center sm:justify-between">
-          <span>© {new Date().getFullYear()} KALEOS</span>
+          <span>© {new Date().getFullYear()} Kaleos HQ</span>
           <span>Every action is logged.</span>
         </div>
       </div>

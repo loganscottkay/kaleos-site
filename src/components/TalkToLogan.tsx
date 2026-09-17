@@ -167,7 +167,7 @@ export default function TalkToLogan() {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Chat with KALEOS"
+          aria-label="Chat with Kaleos HQ"
           className="ltl-panel ltl-in fixed bottom-4 right-4 z-[10001] flex flex-col overflow-hidden rounded-[14px] border border-line bg-void text-star md:bottom-6 md:right-6"
         >
           <div className="flex items-center gap-4 border-b border-line px-5 py-4">
@@ -180,7 +180,7 @@ export default function TalkToLogan() {
             />
             <div className="flex-1">
               <div className="text-body">Logan Kay</div>
-              <div className="font-mono text-[0.7rem] tracking-wide text-mist">Founder, KALEOS</div>
+              <div className="font-mono text-[0.7rem] tracking-wide text-mist">Founder, Kaleos HQ</div>
             </div>
             <button
               onClick={close}
@@ -224,7 +224,7 @@ export default function TalkToLogan() {
                 {CTA}
               </a>
               <a
-                href="mailto:logan@kaleoshq.com?subject=KALEOS"
+                href="mailto:logan@kaleoshq.com?subject=Kaleos HQ"
                 className="btn btn-ghost !min-h-10 text-caption"
               >
                 Email us

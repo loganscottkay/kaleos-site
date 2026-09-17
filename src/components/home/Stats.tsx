@@ -84,7 +84,7 @@ export function Stats() {
 
         <Reveal>
           <p className="mt-20 max-w-2xl text-body text-mist md:mt-28">
-            In McKinsey&apos;s 2025 survey, 64% of organizations said AI enables innovation, while 39% reported an effect on enterprise earnings. The ones that did were nearly three times as likely to have redesigned individual workflows first, which is where every KALEOS engagement begins.{' '}
+            In McKinsey&apos;s 2025 survey, 64% of organizations said AI enables innovation, while 39% reported an effect on enterprise earnings. The ones that did were nearly three times as likely to have redesigned individual workflows first, which is where every Kaleos HQ engagement begins.{' '}
             <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener noreferrer" className="text-comet underline decoration-comet/40 underline-offset-4 hover:decoration-comet">
               Source: McKinsey, 2025
             </a>

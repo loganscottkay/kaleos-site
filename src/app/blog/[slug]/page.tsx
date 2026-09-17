@@ -23,7 +23,7 @@ export async function generateMetadata({
     description: post.description,
     alternates: { canonical: `https://www.kaleoshq.com/blog/${post.slug}` },
     openGraph: {
-      title: `${post.title} | KALEOS`,
+      title: `${post.title} | Kaleos HQ`,
       description: post.description,
       url: `https://www.kaleoshq.com/blog/${post.slug}`,
       images: ['/opengraph-image.png'],

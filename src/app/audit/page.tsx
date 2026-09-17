@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     'A two-week operational assessment: every workflow mapped, the opportunities ranked, and a roadmap for the first system. Then a 30-minute call to decide together.',
   alternates: { canonical: 'https://www.kaleoshq.com/audit' },
   openGraph: {
-    title: 'Assessment | KALEOS',
+    title: 'Assessment | Kaleos HQ',
     description: 'A two-week operational assessment: every workflow mapped, the opportunities ranked, and a roadmap for the first system.',
     url: 'https://www.kaleoshq.com/audit',
     images: ['/opengraph-image.png'],

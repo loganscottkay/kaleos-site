@@ -54,9 +54,9 @@ export function NavBar() {
       }`}
     >
       <nav aria-label="Primary" className="mx-auto flex h-[4.5rem] max-w-[88rem] items-center justify-between px-5 md:h-20 md:px-8">
-        <Link href="/" className="flex items-center gap-3 text-star" aria-label="KALEOS, home">
+        <Link href="/" className="flex items-center gap-3 text-star" aria-label="Kaleos HQ, home">
           <KLogo className="h-8 md:h-9" />
-          <span className="wordmark text-[1.25rem] md:text-[1.45rem]">Kaleos</span>
+          <span className="wordmark text-[1.25rem] md:text-[1.45rem]">Kaleos HQ</span>
         </Link>
 
         <div className="hidden items-center gap-9 md:flex">

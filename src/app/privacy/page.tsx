@@ -4,7 +4,7 @@ import { Footer } from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Privacy',
-  description: 'What KALEOS collects on this site, why, which services handle it, and how to ask for it to be removed.',
+  description: 'What Kaleos HQ collects on this site, why, which services handle it, and how to ask for it to be removed.',
   alternates: { canonical: 'https://www.kaleoshq.com/privacy' },
 }
 

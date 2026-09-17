@@ -12,10 +12,10 @@ import { Rim } from '@/components/home/Rim'
    so only confirmed quotes render. */
 const SHOW_DRAFTS = true
 
-/* KALEOS's own recognition of a client system. Wording is Ryan's proposal;
+/* Kaleos HQ's own recognition of a client system. Wording is Ryan's proposal;
    Logan confirms it in docs/redesign/FOR-LOGAN.md before merge. */
 const AWARD: Record<string, string> = {
-  'advisor-solutions-os': 'KALEOS Award 2026',
+  'advisor-solutions-os': 'Kaleos HQ Award 2026',
 }
 
 type Piece = { t: string; u?: boolean }

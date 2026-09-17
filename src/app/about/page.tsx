@@ -10,20 +10,20 @@ import { Starfield } from '@/components/home/Starfield'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'KALEOS was founded by Logan Kay, who previously designed and deployed AI systems at Harvard Business School. One rule runs the firm: a person signs before anything ships.',
+    'Kaleos HQ was founded by Logan Kay, who previously designed and deployed AI systems at Harvard Business School. One rule runs the firm: a person signs before anything ships.',
   alternates: { canonical: 'https://www.kaleoshq.com/about' },
   openGraph: {
-    title: 'About | KALEOS',
-    description: 'KALEOS was founded by Logan Kay, who previously designed and deployed AI systems at Harvard Business School.',
+    title: 'About | Kaleos HQ',
+    description: 'Kaleos HQ was founded by Logan Kay, who previously designed and deployed AI systems at Harvard Business School.',
     url: 'https://www.kaleoshq.com/about',
     images: ['/opengraph-image.png'],
   },
 }
 
 const background = [
-  { k: 'Now', v: 'Founder and CEO, KALEOS' },
+  { k: 'Now', v: 'Founder and CEO, Kaleos HQ' },
   { k: 'Anthropic', v: 'Claude Corps Fellow' },
-  { k: 'Previously', v: 'Designed and deployed AI systems across admissions and operations at Harvard Business School. The implementation method KALEOS runs today comes from that work.' },
+  { k: 'Previously', v: 'Designed and deployed AI systems across admissions and operations at Harvard Business School. The implementation method Kaleos HQ runs today comes from that work.' },
   { k: 'Before that', v: 'Fraud detection at K2 Integrity, analyzing more than two million financial transactions.' },
   { k: 'Studied', v: 'Boston University' },
 ]
@@ -40,7 +40,7 @@ export default function AboutPage() {
             A firm built on <span className="glint">one rule</span>
           </h1>
           <p className="mt-8 max-w-[34rem] text-body-lg text-mist">
-            A person signs before anything ships, and everything else at KALEOS follows from that.
+            A person signs before anything ships, and everything else at Kaleos HQ follows from that.
           </p>
         </div>
       </section>
@@ -52,7 +52,7 @@ export default function AboutPage() {
               <div className="surface-nova aspect-square w-full max-w-sm rounded-[14px]">
                 <Image
                   src="/photo.png"
-                  alt="Logan Kay, founder of KALEOS"
+                  alt="Logan Kay, founder of Kaleos HQ"
                   width={640}
                   height={640}
                   className="aspect-square w-full rounded-[14px] object-cover grayscale"
@@ -67,13 +67,13 @@ export default function AboutPage() {
             <Reveal>
               <div className="space-y-6 text-body-lg leading-[1.55] text-star">
                 <p>
-                  KALEOS exists because wanting AI and running AI are different problems. Most companies that start with AI never get past the demo. The technology rarely fails. What fails is the connection between the tool and how the business actually operates.
+                  Kaleos HQ exists because wanting AI and running AI are different problems. Most companies that start with AI never get past the demo. The technology rarely fails. What fails is the connection between the tool and how the business actually operates.
                 </p>
                 <p>
                   We close that gap the slow way. We map the workflows first, design one system tied to one number, ship it with a person at the gate, and prove it moved the number before we build anything else.
                 </p>
                 <p>
-                  The method comes from Logan&apos;s work at Harvard Business School, where he designed and deployed AI systems across admissions and operations. The systems KALEOS ships for clients run on the same architecture KALEOS uses to run itself.
+                  The method comes from Logan&apos;s work at Harvard Business School, where he designed and deployed AI systems across admissions and operations. The systems Kaleos HQ ships for clients run on the same architecture Kaleos HQ uses to run itself.
                 </p>
               </div>
             </Reveal>

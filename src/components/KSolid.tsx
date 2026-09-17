@@ -8,7 +8,7 @@ const LAYERS = 8
 
 export function KSolid({ className = '' }: { className?: string }) {
   return (
-    <div className="k-solid" aria-label="KALEOS" role="img">
+    <div className="k-solid" aria-label="Kaleos HQ" role="img">
       {Array.from({ length: LAYERS - 1 }, (_, i) => (
         <Image
           key={i}

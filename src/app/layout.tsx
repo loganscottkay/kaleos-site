@@ -24,27 +24,27 @@ const instrument = Instrument_Sans({
 })
 
 const DESCRIPTION =
-  'AI that answers to you. KALEOS is a premium AI implementation practice that designs and ships custom AI systems where agents handle the work and a person you trust signs off before anything goes out.'
+  'AI that answers to you. Kaleos HQ is a premium AI implementation practice that designs and ships custom AI systems where agents handle the work and a person you trust signs off before anything goes out.'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.kaleoshq.com'),
   title: {
-    default: 'KALEOS | Custom AI solutions for the modern business',
-    template: '%s | KALEOS',
+    default: 'Kaleos HQ | Custom AI solutions for the modern business',
+    template: '%s | Kaleos HQ',
   },
   description: DESCRIPTION,
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.kaleoshq.com',
-    siteName: 'KALEOS',
-    title: 'KALEOS | Custom AI solutions for the modern business',
+    siteName: 'Kaleos HQ',
+    title: 'Kaleos HQ | Custom AI solutions for the modern business',
     description: DESCRIPTION,
-    images: [{ url: '/opengraph-image.png', width: 1200, height: 630, alt: 'KALEOS. AI that answers to you.' }],
+    images: [{ url: '/opengraph-image.png', width: 1200, height: 630, alt: 'Kaleos HQ. AI that answers to you.' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'KALEOS | Custom AI solutions for the modern business',
+    title: 'Kaleos HQ | Custom AI solutions for the modern business',
     description: DESCRIPTION,
     images: ['/opengraph-image.png'],
   },

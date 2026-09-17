@@ -55,7 +55,7 @@ export function Hero() {
           </h1>
 
           <p className="rise mt-8 max-w-[40rem] text-body-lg text-mist" style={{ '--rise-delay': '700ms' } as CSSProperties}>
-            KALEOS is a premium AI implementation practice. We design and ship systems where agents handle the work and a person you trust signs off before anything reaches a client, an inbox, or a ledger. Thirty days to the first system, scoped and priced on a call.
+            Kaleos HQ is a premium AI implementation practice. We design and ship systems where agents handle the work and a person you trust signs off before anything reaches a client, an inbox, or a ledger. Thirty days to the first system, scoped and priced on a call.
           </p>
 
           <div className="rise mt-10 flex flex-wrap items-center justify-center gap-4" style={{ '--rise-delay': '860ms' } as CSSProperties}>

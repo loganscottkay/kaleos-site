@@ -17,7 +17,7 @@ export function WhoFor() {
           <Reveal delay={100}>
             <div className="space-y-8 text-body-lg text-mist">
               <p>
-                KALEOS is a premium service for <span className="text-star">founders and executives</span> running companies up to $100M+ in ARR, with workflows that eat senior time and nobody in house to build. Most of our clients are professional services firms, agencies, and coaching businesses, where the client relationship depends on what goes out the door.
+                Kaleos HQ is a premium service for <span className="text-star">founders and executives</span> running companies up to $100M+ in ARR, with workflows that eat senior time and nobody in house to build. Most of our clients are professional services firms, agencies, and coaching businesses, where the client relationship depends on what goes out the door.
               </p>
               <p>
                 We are the wrong firm for a chatbot on a website, and we will not build an AI that acts with nobody checking. <span className="glint">If you want a system you can stand behind, we should talk.</span>
