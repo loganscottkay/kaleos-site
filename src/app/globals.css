@@ -172,6 +172,7 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; }
   transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .chip-sm { min-height: 2.25rem; padding: 0 0.85rem; font-size: 0.9rem; }
+@media (pointer: coarse) { .chip, .chip-sm { min-height: 2.75rem; } }
 .chip:hover { border-color: var(--color-star); }
 .chip[aria-pressed="true"] { background: var(--color-star); color: var(--color-void); border-color: var(--color-star); }
 
@@ -285,7 +286,7 @@ header { transition: transform 420ms var(--ease), background-color 300ms, border
 .orbit-station[data-active="false"] { opacity: 0.45; }
 .orbit-station-ring { fill: var(--color-void); stroke: var(--color-star); stroke-width: 1.25; vector-effect: non-scaling-stroke; transition: stroke 400ms var(--ease), r 400ms var(--ease); }
 .orbit-station[data-active="true"] .orbit-station-ring { stroke: var(--color-comet); }
-.orbit-core { filter: drop-shadow(0 0 14px rgb(99 217 230 / 0.4)) drop-shadow(0 0 40px rgb(139 124 248 / 0.25)); }
+.orbit-core { /* halo drawn as an SVG gradient; no image filter (mobile WebKit) */ }
 
 /* Headings rise word by word out of their own masks. */
 .words .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.08em; margin-bottom: -0.08em; }
@@ -298,13 +299,24 @@ header { transition: transform 420ms var(--ease), background-color 300ms, border
 @media not (scripting: enabled) { .words .w > span { transform: none; } }
 
 /* The mark glows in a cosmic hue and breathes. */
-.k-glow {
-  filter: drop-shadow(0 0 18px rgb(99 217 230 / 0.35)) drop-shadow(0 0 70px rgb(139 124 248 / 0.22));
+.k-glow { position: relative; isolation: isolate; }
+/* The halo is a gradient layer behind the mark, not a filter on the image:
+   mobile WebKit drops the whole image when a large animated drop-shadow is
+   applied to it, and a gradient costs nothing to paint. */
+.k-glow::before {
+  content: '';
+  position: absolute;
+  inset: -30% -40%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgb(99 217 230 / 0.26) 0%, rgb(99 217 230 / 0.10) 28%, transparent 52%),
+    radial-gradient(ellipse at 50% 50%, rgb(139 124 248 / 0.22) 0%, rgb(139 124 248 / 0.08) 45%, transparent 72%);
   animation: k-glow 6s ease-in-out 1600ms infinite;
 }
 @keyframes k-glow {
-  0%, 100% { filter: drop-shadow(0 0 18px rgb(99 217 230 / 0.35)) drop-shadow(0 0 70px rgb(139 124 248 / 0.22)); }
-  50% { filter: drop-shadow(0 0 30px rgb(99 217 230 / 0.6)) drop-shadow(0 0 110px rgb(139 124 248 / 0.38)); }
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.12); }
 }
 
 /* Warp entry: an opaque field over the hero for one second, then gone. */
@@ -317,7 +329,11 @@ header { transition: transform 420ms var(--ease), background-color 300ms, border
   transition: opacity 650ms var(--ease);
 }
 .warp-out { opacity: 0; }
-html.warping .rise, html.warping .k-settle, html.warping .k-star, html.warping .k-glow { animation-play-state: paused; }
+/* Fail-safe: if the script never finishes (slow phone, blocked JS, a hydration
+   error), the overlay still clears itself after two and a half seconds. */
+.warp { animation: warp-failsafe 500ms var(--ease) 2500ms forwards; }
+@keyframes warp-failsafe { to { opacity: 0; visibility: hidden; } }
+html.warping .rise, html.warping .k-settle, html.warping .k-star, html.warping .k-glow::before { animation-play-state: paused; }
 html.warping header { opacity: 0; }
 @media not (scripting: enabled) { .warp { display: none; } }
 
@@ -476,7 +492,7 @@ html.warping header { opacity: 0; }
   .reveal { opacity: 1; transform: none; }
   .rise, .k-settle { animation: none; opacity: 1; transform: none; filter: none; }
   .k-star { animation: none; opacity: 1; transform: none; }
-  .k-glow { animation: none; }
+  .k-glow::before { animation: none; }
   header { transition: none; }
   .warp { display: none; }
   .band { mask-image: none; -webkit-mask-image: none; }

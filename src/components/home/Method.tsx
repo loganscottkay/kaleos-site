@@ -104,6 +104,7 @@ export function Method() {
             <div className="md:sticky md:top-28">
               <svg viewBox="-90 -40 780 690" className="mx-auto w-full max-w-[36rem]" aria-hidden="true">
                 <defs>
+                  <radialGradient id="core-halo"><stop offset="0" stopColor="#63d9e6" stopOpacity="0.28" /><stop offset="0.45" stopColor="#8b7cf8" stopOpacity="0.14" /><stop offset="1" stopColor="#8b7cf8" stopOpacity="0" /></radialGradient>
                   <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
                     <stop offset="0%" stopColor="rgb(99 217 230 / 0.35)" />
                     <stop offset="60%" stopColor="rgb(139 124 248 / 0.12)" />
@@ -118,6 +119,7 @@ export function Method() {
 
                 {/* The core: your business, your call. */}
                 <g className="orbit-core">
+                  <circle cx={C} cy={C} r="78" fill="url(#core-halo)" />
                   <image href="/kaleos-k.png" x={C - 42} y={C - 46} width="84" height="92" />
                 </g>
                 <text x={C} y={C + 82} textAnchor="middle" fill="var(--color-mist)" fontFamily="var(--font-mono)" fontSize="12" letterSpacing="2.5">

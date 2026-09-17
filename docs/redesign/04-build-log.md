@@ -52,3 +52,12 @@ Revert: `git checkout <tag>` or `git reset --hard <tag>` on design-overhaul.
 - LinkedIn and X banners regenerated inside each platform's safe zone, no motto, small mark instead of the large K.
 - Brand deck at `docs/brand/brand-deck.md` (source of truth) and a slide version published privately.
 - Root overflow clipped horizontally (the hidden reveal-right state was widening the page by 8 px on phones).
+
+## cp9, September 17, 2026: mobile Safari pass
+
+- Ran every route through Playwright's WebKit engine as iPhone 14 and iPhone SE over the LAN address. Two real defects found and fixed:
+  - The hero K did not paint in mobile WebKit under the animated double drop-shadow filter. The halo is now a gradient layer behind the mark (`.k-glow::before`), and the orbit core's halo is an SVG radial gradient. No image carries a filter any more.
+  - The dev server does not hydrate when opened from a LAN address (Next 16 blocks cross-origin dev assets unless `allowedDevOrigins` is set, and `next.config.ts` is off-limits). Phone previews now run on the production build (`next start -H 0.0.0.0`).
+- Fail-safe: the warp overlay clears itself by CSS after 2.5 s even if the script never finishes.
+- Touch targets: chips grow to 44 px on coarse pointers, footer and source links get vertical padding.
+- Verified on both phones: menu opens, every reveal fires on scroll, chat opens, form validates and submits, no horizontal overflow, no page errors. The only console 404 is Vercel's analytics script, which does not exist off Vercel.

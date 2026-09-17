@@ -67,7 +67,7 @@ export function Stats() {
                     </div>
                     <p className="mt-4 max-w-[26ch] text-h3 font-semibold text-star">{s.claim}</p>
                     <p className="mt-4 max-w-md text-body text-mist">{s.detail}</p>
-                    <a href={s.href} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block font-mono text-[0.72rem] uppercase tracking-[0.16em] text-comet underline decoration-comet/40 underline-offset-4 hover:decoration-comet">
+                    <a href={s.href} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block py-2 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-comet underline decoration-comet/40 underline-offset-4 hover:decoration-comet">
                       Source: {s.source}
                     </a>
                   </div>

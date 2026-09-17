@@ -37,18 +37,18 @@ export function Footer() {
           </div>
           <div className="grid gap-8 sm:grid-cols-2 md:col-span-5">
             <div>
-              <ul className="space-y-3 text-body">
-                <li><Link href="/" className="text-mist hover:text-star">Home</Link></li>
-                <li><Link href="/audit" className="text-mist hover:text-star">Assessment</Link></li>
-                <li><Link href="/about" className="text-mist hover:text-star">About</Link></li>
-                <li><Link href="/privacy" className="text-mist hover:text-star">Privacy</Link></li>
-                <li><Link href="/terms" className="text-mist hover:text-star">Terms</Link></li>
+              <ul className="space-y-1 text-body">
+                <li><Link href="/" className="inline-block py-1.5 text-mist hover:text-star">Home</Link></li>
+                <li><Link href="/audit" className="inline-block py-1.5 text-mist hover:text-star">Assessment</Link></li>
+                <li><Link href="/about" className="inline-block py-1.5 text-mist hover:text-star">About</Link></li>
+                <li><Link href="/privacy" className="inline-block py-1.5 text-mist hover:text-star">Privacy</Link></li>
+                <li><Link href="/terms" className="inline-block py-1.5 text-mist hover:text-star">Terms</Link></li>
               </ul>
             </div>
             <div>
-              <ul className="space-y-3 text-body">
-                <li><a href="mailto:logan@kaleoshq.com" className="break-all text-mist hover:text-star">logan@kaleoshq.com</a></li>
-                <li><a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="text-mist hover:text-star">{CTA}</a></li>
+              <ul className="space-y-1 text-body">
+                <li><a href="mailto:logan@kaleoshq.com" className="inline-block break-all py-1.5 text-mist hover:text-star">logan@kaleoshq.com</a></li>
+                <li><a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 text-mist hover:text-star">{CTA}</a></li>
                 <li className="flex gap-2 pt-1">
                   <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" aria-label="KALEOS on LinkedIn" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-mist hover:border-star hover:text-star">
                     <LinkedInIcon />
