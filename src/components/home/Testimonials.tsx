@@ -49,7 +49,6 @@ export function Testimonials() {
         <div className="mt-16 space-y-14 md:mt-24 md:space-y-20">
           {items.map((t, i) => {
             const m = MEDIA[t.id]
-            const who = t.client_name ? `${t.client_name}, ${t.title}` : t.company
             return (
               <Reveal key={t.id} delay={60} variant={i % 2 === 0 ? 'left' : 'right'}>
                 <figure className={`grid gap-6 md:grid-cols-12 md:items-end ${i % 2 === 1 ? 'md:[&>div]:col-start-4' : ''}`}>
@@ -81,18 +80,14 @@ export function Testimonials() {
                   </div>
                   <figcaption className={`md:col-span-3 ${i % 2 === 1 ? 'md:col-start-1 md:row-start-1 md:self-end' : 'md:col-start-10'}`}>
                     <div className="eyebrow text-ash">{m.label}</div>
-                    <div className="mt-3 text-body text-star">{who}</div>
-                    <div className="mt-1 text-caption text-mist">
-                      {t.client_name ? t.company : null}
-                      {t.project_url && (
-                        <>
-                          {t.client_name ? ' · ' : null}
-                          <a href={t.project_url} target="_blank" rel="noopener noreferrer" className="break-all underline decoration-line underline-offset-4 hover:text-star">
-                            {t.project_url.replace(/^https?:\/\//, '')}
-                          </a>
-                        </>
-                      )}
-                    </div>
+                    <div className="mt-3 text-body text-star">{t.company}</div>
+                    {t.project_url && (
+                      <div className="mt-1 text-caption text-mist">
+                        <a href={t.project_url} target="_blank" rel="noopener noreferrer" className="break-all underline decoration-line underline-offset-4 hover:text-star">
+                          {t.project_url.replace(/^https?:\/\//, '')}
+                        </a>
+                      </div>
+                    )}
                   </figcaption>
                 </figure>
               </Reveal>
