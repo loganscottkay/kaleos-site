@@ -10,13 +10,8 @@ import { Rim } from '@/components/home/Rim'
    client confirms, replace the paraphrase with their approved words. Drafts
    carry no visible marker; before the PR into main, set SHOW_DRAFTS to false
    so only confirmed quotes render. */
-const SHOW_DRAFTS = true
+const SHOW_DRAFTS = false
 
-/* Kaleos HQ's own recognition of a client system. Wording is Ryan's proposal;
-   Logan confirms it in docs/redesign/FOR-LOGAN.md before merge. */
-const AWARD: Record<string, string> = {
-  'advisor-solutions-os': 'Kaleos HQ Award 2026',
-}
 
 type Piece = { t: string; u?: boolean }
 const SHORT: Record<string, Piece[]> = {
@@ -80,21 +75,16 @@ export function Testimonials() {
                   <figcaption className={`md:col-span-3 ${i % 2 === 1 ? 'md:col-start-1 md:row-start-1 md:self-end' : 'md:col-start-10'}`}>
                     <div className="text-body text-star">{who}</div>
                     <div className="mt-1 text-caption text-mist">
-                      {t.client_name ? t.company : 'Name pending'}
+                      {t.client_name ? t.company : null}
                       {t.project_url && (
                         <>
-                          {' · '}
+                          {t.client_name ? ' · ' : null}
                           <a href={t.project_url} target="_blank" rel="noopener noreferrer" className="break-all underline decoration-line underline-offset-4 hover:text-star">
                             {t.project_url.replace(/^https?:\/\//, '')}
                           </a>
                         </>
                       )}
                     </div>
-                    {AWARD[t.id] && (
-                      <div className="mt-4">
-                        <span className="award"><span aria-hidden="true">✦</span>{AWARD[t.id]}</span>
-                      </div>
-                    )}
                   </figcaption>
                 </figure>
               </Reveal>
