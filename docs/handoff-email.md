@@ -1,9 +1,6 @@
 To: Ryanhazen80@gmail.com
 Subject: Kaleos HQ site: repo access and how to get started
 
-Hi Ryan,
-
-The Kaleos HQ site is ready for you. Here is everything you need to get going.
 
 The code lives on GitHub at https://github.com/loganscottkay/kaleos-site. You should have an invitation from GitHub in your inbox. Accept it and you will have write access to the repo. If it has not arrived, send me the email address or username on your GitHub account and I will resend it.
 
