@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#050507"/>
+  <g fill="#f7f7f4" transform="translate(197 152) scale(0.7912) translate(-440 -430)">
+    <path d="M440 430H650V720C650 800 600 860 490 860C600 860 650 920 650 1000V1340H440Z"/>
+    <path d="M960 430H1210L840 860C760 860 690 830 660 780Z"/>
+    <path d="M840 860L1265 1340H975L660 960C690 900 760 860 840 860Z"/>
+  </g>
+</svg>
