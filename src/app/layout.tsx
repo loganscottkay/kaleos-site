@@ -6,6 +6,7 @@ import TalkToLogan from '@/components/TalkToLogan'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { ScrollProgress } from '@/components/ScrollProgress'
 import { Cursor } from '@/components/Cursor'
+import { ScrollFx } from '@/components/ScrollFx'
 import { JsonLd, organization, service } from '@/components/JsonLd'
 
 const manrope = Manrope({
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <SmoothScroll />
         <ScrollProgress />
         <Cursor />
+        <ScrollFx />
         {children}
         <TalkToLogan />
         <Analytics />

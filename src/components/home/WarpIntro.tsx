@@ -52,8 +52,21 @@ export function WarpIntro() {
     let last = t0
     let raf = 0
     let fading = false
+    let done = false
+    const end = () => {
+      if (done) return
+      done = true
+      cancelAnimationFrame(raf)
+      root.classList.remove('warping')
+      setPhase('done')
+    }
+    // Hard stop: whatever happens inside the loop, the page is never held.
+    const guard = window.setTimeout(end, WARP_MS + SETTLE_MS + 1500)
 
     const draw = (now: number) => {
+      try { step(now) } catch { end() }
+    }
+    const step = (now: number) => {
       const t = (now - t0) / WARP_MS
       const dt = Math.min(48, now - last) / 16.67
       last = now
@@ -78,7 +91,7 @@ export function WarpIntro() {
         const k0 = focal / s.pz, k1 = focal / s.z
         const x0 = cx + s.x * k0, y0 = cy + s.y * k0
         const x1 = cx + s.x * k1, y1 = cy + s.y * k1
-        if (x1 < -80 || x1 > w + 80 || y1 < -80 || y1 > h + 80) { Object.assign(s, spawn(false)); s.pz = s.z; continue }
+        if (!Number.isFinite(x0 + y0 + x1 + y1) || x1 < -80 || x1 > w + 80 || y1 < -80 || y1 > h + 80) { Object.assign(s, spawn(false)); s.pz = s.z; continue }
         const near = 1 - Math.min(1, s.z / 2)
         const alpha = Math.min(1, 0.12 + near * 0.9) * Math.min(1, 0.35 + t * 1.2)
         const width = 0.5 + near * 2.2
@@ -102,10 +115,10 @@ export function WarpIntro() {
         root.classList.remove('warping')
       }
       if (t < 1 + SETTLE_MS / WARP_MS) raf = requestAnimationFrame(draw)
-      else setPhase('done')
+      else end()
     }
     raf = requestAnimationFrame(draw)
-    return () => { cancelAnimationFrame(raf); root.classList.remove('warping') }
+    return () => { window.clearTimeout(guard); cancelAnimationFrame(raf); root.classList.remove('warping') }
   }, [])
 
   if (phase === 'done') return null

@@ -1,10 +1,11 @@
 import Image from 'next/image'
+import type { CSSProperties } from 'react'
 import { marks } from '@/components/home/marks'
 
-/* Where the method comes from and what the systems are built on. One line
-   that drifts left, pauses under the pointer, and lays out as a wrapped row
-   under reduced motion. Each name is spelled out next to its mark so nothing
-   depends on recognizing an icon. */
+/* Where the method comes from and what the systems are built on, each
+   crossing the band on a wide arc like a satellite over a horizon. Names
+   are spelled out next to their marks. Under reduced motion it lays flat
+   as a wrapped row. */
 
 type Item = { name: string; mark?: string; img?: string }
 
@@ -20,30 +21,25 @@ const items: Item[] = [
   { name: 'Resend', mark: marks['Resend'] },
 ]
 
-function Mark({ item }: { item: Item }) {
-  return (
-    <span className="band-item font-display text-[1.05rem] font-semibold tracking-[-0.01em]">
-      {item.mark && (
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={item.mark} /></svg>
-      )}
-      {item.img && (
-        <Image src={item.img} alt="" width={20} height={24} className="brightness-0 invert" aria-hidden="true" />
-      )}
-      {item.name}
-    </span>
-  )
-}
-
 export function LogoBand() {
+  const period = 42
   return (
     <section aria-label="Where the method comes from and what we build with" className="relative py-10 md:py-14">
-      <div className="band">
-        <div className="band-track">
-          {items.map((item) => <Mark key={item.name} item={item} />)}
-        </div>
-        <div className="band-track" aria-hidden="true">
-          {items.map((item) => <Mark key={item.name} item={item} />)}
-        </div>
+      <ul className="sr-only">
+        {items.map((i) => <li key={i.name}>{i.name}</li>)}
+      </ul>
+      <div className="arc-band mx-auto max-w-[90rem]" aria-hidden="true">
+        {items.map((item, i) => (
+            <span
+              key={item.name}
+              className="arc-item font-display text-[1.05rem] font-semibold tracking-[-0.01em]"
+              style={{ '--d': `${-(i * period) / items.length}s` } as CSSProperties}
+            >
+              {item.mark && <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={item.mark} /></svg>}
+              {item.img && <Image src={item.img} alt="" width={20} height={24} className="brightness-0 invert" />}
+              {item.name}
+            </span>
+        ))}
       </div>
     </section>
   )

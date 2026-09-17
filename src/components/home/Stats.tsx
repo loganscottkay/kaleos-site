@@ -61,7 +61,7 @@ export function Stats() {
               <Reveal variant={i % 2 === 0 ? 'left' : 'right'}>
                 <div className={`grid gap-8 md:grid-cols-12 md:items-start ${i % 2 === 1 ? 'md:[&>*:first-child]:col-start-6' : ''}`}>
                   <div className="md:col-span-5">
-                    <div className="font-display text-[clamp(4rem,10vw,9rem)] font-extrabold leading-none tracking-[-0.04em] text-star">
+                    <div data-fx="parallax" data-speed="0.22" className="font-display text-[clamp(4rem,10vw,9rem)] font-extrabold leading-none tracking-[-0.04em] text-star">
                       {s.prefix && <span className="mr-3 align-baseline text-[0.28em] font-semibold tracking-normal text-mist">{s.prefix.trim()}</span>}
                       <CountUp value={s.value} suffix={s.suffix} />
                     </div>

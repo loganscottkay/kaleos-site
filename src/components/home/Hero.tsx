@@ -8,6 +8,7 @@ import { KSolid } from '@/components/KSolid'
 import { CALENDLY, CTA } from '@/components/NavBar'
 import { Starfield } from '@/components/home/Starfield'
 import { Magnet } from '@/components/Magnet'
+import { ChromeWord } from '@/components/ChromeWord'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
@@ -47,7 +48,7 @@ export function Hero() {
 
         <div className="hero-copy flex flex-col items-center">
           <h1 className="rise mt-12 max-w-[16ch] text-display md:mt-16" style={{ '--rise-delay': '500ms' } as CSSProperties}>
-            Custom <span className="etch">AI</span> solutions for the modern business
+            Custom <span className="etch">AI</span> solutions for the <ChromeWord>modern business</ChromeWord>
           </h1>
 
           <p className="rise mt-8 max-w-[40rem] text-body-lg text-mist" style={{ '--rise-delay': '700ms' } as CSSProperties}>

@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { Reveal } from '@/components/Reveal'
 import { Words } from '@/components/Words'
+import { Rim } from '@/components/home/Rim'
 
 /* Client words, cut to what matters. The full drafts live in
    docs/proof-kit/testimonials.json and are the source of truth for who said
@@ -50,8 +51,9 @@ export function Testimonials() {
   if (items.length === 0) return null
 
   return (
-    <section id="clients" className="horizon" aria-labelledby="testimonials-heading">
-      <div className="mx-auto max-w-[88rem] px-5 py-24 md:px-8 md:py-36">
+    <section id="clients" className="relative overflow-hidden" aria-labelledby="testimonials-heading">
+      <Rim />
+      <div className="relative mx-auto max-w-[88rem] px-5 py-28 md:px-8 md:py-40">
         <Reveal>
           <Words as="h2" id="testimonials-heading" className="block max-w-[14ch] text-h2">
             What our clients say

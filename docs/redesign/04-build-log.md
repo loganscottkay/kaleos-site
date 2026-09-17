@@ -85,3 +85,12 @@ Revert: `git checkout <tag>` or `git reset --hard <tag>` on design-overhaul.
 - Hero haze removed: the only colored light on the home page is the halo behind the K.
 - About: "Studied: Boston University", no major.
 - Rule audit against Logan's constraints (see the report in the chat and FOR-LOGAN): protected paths untouched, endpoints and field names unchanged, no em dashes, no banned words, no dollar pricing. Open judgment calls: "$100M+ in ARR" (audience sizing, Ryan's wording), the Anthropic credential, the award, "Every action is logged".
+
+## cp13, September 17, 2026: edges, chrome, arc, scroll pieces, critic
+
+- Etch burns only the outer edge of "AI": the fill is white from the first frame, the stroke starts wide and hot and cools.
+- "modern business" turns to chrome under the pointer: a horizon-style metal (sky light, hard glint line, dark ground) painted under the letters at all times, revealed by fading the white fill, with a specular band that follows the pointer. Fades back when the pointer leaves.
+- The band of names is now an orbit: each mark crosses a wide arc like a satellite over a horizon (CSS motion path), two lanes on phones. The 3D ring tried first broke in mobile WebKit and rendered artifacts in Chrome, so it was dropped.
+- Scroll pieces: horizons draw themselves as sections arrive (scroll-driven animation where supported), a lit planetary rim above the testimonials whose light travels with the scroll, a comet crossing "Who we work with", parallax on the stat numerals and the nebula K. All scrubbed to the scroll, off under reduced motion.
+- Award tag is magenta.
+- Warp made unbreakable: any exception inside the frame loop ends the intro cleanly, and a hard timer guarantees the page is released. Found by the critic pass: an intermittent non-finite canvas gradient in Chrome killed the loop and left the hero hidden.

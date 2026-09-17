@@ -3,7 +3,8 @@ import { Words } from '@/components/Words'
 
 export function WhoFor() {
   return (
-    <section id="who" className="horizon" aria-labelledby="who-heading">
+    <section id="who" className="horizon relative overflow-hidden" aria-labelledby="who-heading">
+      <div aria-hidden="true" data-fx="comet" className="comet left-[10%] top-[18%] -rotate-[8deg]" />
       <div className="mx-auto grid max-w-[88rem] gap-12 px-5 py-24 md:grid-cols-12 md:px-8 md:py-36">
         <div className="md:col-span-5">
           <Reveal>

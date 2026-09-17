@@ -192,9 +192,9 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; }
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.01em;
-  color: var(--color-ember);
-  background: rgb(255 180 87 / 0.07);
-  border: 1px solid rgb(255 180 87 / 0.32);
+  color: var(--color-nova);
+  background: rgb(255 95 162 / 0.08);
+  border: 1px solid rgb(255 95 162 / 0.38);
   white-space: nowrap;
 }
 .award > span:first-child { font-size: 0.7rem; }
@@ -261,24 +261,47 @@ header[data-scrolled="false"] .wordmark { letter-spacing: 0.3em; }
   text-shadow: 0 0 18px rgb(139 124 248 / 0.28);
 }
 
-/* Laser-etched word: the letters cut in with a hot edge, then cool to a
-   faint ember line that stays. */
+/* Laser-etched word: the fill never changes. Only the outer edge burns in
+   hot and cools to a faint ember line. paint-order keeps the stroke behind
+   the fill, so the inside of every letter stays clean white. */
 .etch {
   color: var(--color-star);
-  -webkit-text-stroke: 0.7px rgb(255 180 87 / 0.85);
+  -webkit-text-stroke: 0.8px rgb(255 180 87 / 0.8);
   paint-order: stroke fill;
   text-shadow:
-    0 0 1px rgb(255 180 87 / 0.9),
-    0 0 6px rgb(255 120 60 / 0.45),
-    0 0 16px rgb(255 95 162 / 0.22);
+    0 0 1px rgb(255 190 100 / 0.8),
+    0 0 7px rgb(255 120 60 / 0.4),
+    0 0 18px rgb(255 95 162 / 0.18);
   animation: etch 2600ms cubic-bezier(0.2, 0.8, 0.2, 1) 900ms both;
 }
 @keyframes etch {
-  0%   { color: rgb(247 247 244 / 0); -webkit-text-stroke-color: rgb(255 210 120 / 1); text-shadow: 0 0 2px rgb(255 220 150 / 1), 0 0 14px rgb(255 140 60 / 0.9), 0 0 40px rgb(255 95 162 / 0.6); }
-  35%  { color: rgb(247 247 244 / 0.35); -webkit-text-stroke-color: rgb(255 200 110 / 1); text-shadow: 0 0 2px rgb(255 220 150 / 1), 0 0 12px rgb(255 140 60 / 0.8), 0 0 34px rgb(255 95 162 / 0.5); }
-  100% { color: var(--color-star); -webkit-text-stroke-color: rgb(255 180 87 / 0.85); text-shadow: 0 0 1px rgb(255 180 87 / 0.9), 0 0 6px rgb(255 120 60 / 0.45), 0 0 16px rgb(255 95 162 / 0.22); }
+  0%   { -webkit-text-stroke: 2.4px rgb(255 230 170 / 1); text-shadow: 0 0 3px rgb(255 230 170 / 1), 0 0 16px rgb(255 140 60 / 0.95), 0 0 44px rgb(255 95 162 / 0.6); }
+  40%  { -webkit-text-stroke: 1.8px rgb(255 200 110 / 1); text-shadow: 0 0 2px rgb(255 220 150 / 1), 0 0 12px rgb(255 140 60 / 0.8), 0 0 34px rgb(255 95 162 / 0.45); }
+  100% { -webkit-text-stroke: 0.8px rgb(255 180 87 / 0.8); text-shadow: 0 0 1px rgb(255 190 100 / 0.8), 0 0 7px rgb(255 120 60 / 0.4), 0 0 18px rgb(255 95 162 / 0.18); }
 }
 html.warping .etch { animation-play-state: paused; }
+
+/* Chrome on hover. The gradient sits under the letters at all times; the
+   white fill fades to transparent to reveal it. Horizon-style metal: sky
+   light on top, a hard glint line at the middle, dark ground, then a lift.
+   The pointer drives a specular band across it through --mx. */
+.chrome-hover {
+  --mx: 50%;
+  color: var(--color-star);
+  background-image:
+    linear-gradient(105deg, transparent calc(var(--mx) - 16%), rgb(255 255 255 / 0.55) calc(var(--mx) - 5%), #ffffff var(--mx), rgb(255 255 255 / 0.55) calc(var(--mx) + 5%), transparent calc(var(--mx) + 16%)),
+    linear-gradient(180deg,
+      #f4f8ff 0%, #ffffff 8%, #cfd8e6 20%, #7c8494 34%, #3a3f4b 46%,
+      #ffffff 49.5%, #ffffff 51%,
+      #14161c 53%, #2b2f39 60%, #5a606e 70%, #a9afbd 82%, #e8ebf2 92%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: color 480ms var(--ease), filter 480ms var(--ease);
+}
+.chrome-hover:hover {
+  color: transparent;
+  filter: drop-shadow(0 1px 0 rgb(255 255 255 / 0.5)) drop-shadow(0 -1px 0 rgb(0 0 0 / 0.7)) drop-shadow(0 0 18px rgb(220 235 255 / 0.22));
+}
 
 /* Section flow: no hairlines between sections; a soft horizon instead. */
 .horizon {
@@ -407,53 +430,80 @@ html.warping .rise, html.warping .k-settle, html.warping .k-glow::before, html.w
 html.warping header { opacity: 0; }
 @media not (scripting: enabled) { .warp { display: none; } }
 
-/* Logo band: one continuous line of marks, never a grid. */
-.band {
-  display: flex;
+/* Orbit of names: each mark travels a wide arc across the band like a
+   satellite crossing a horizon, rising from the dark on the left and
+   setting on the right. Motion path, so it is flat and stays upright. */
+.arc-band {
+  position: relative;
+  height: 9rem;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
 }
-.band-track {
-  display: flex;
-  width: max-content;
-  gap: 4.5rem;
-  padding-right: 4.5rem;
-  animation: band 46s linear infinite;
+.arc-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 100% at 50% 130%, rgb(99 217 230 / 0.10), rgb(139 124 248 / 0.04) 55%, transparent 75%);
 }
-.band:hover .band-track { animation-play-state: paused; }
-@keyframes band { to { transform: translateX(-50%); } }
-.band-item { display: inline-flex; align-items: center; gap: 0.7rem; white-space: nowrap; color: var(--color-star); opacity: 0.62; transition: opacity var(--dur-base) var(--ease); }
-.band-item:hover { opacity: 1; }
-.band-item svg, .band-item img { height: 1.35rem; width: auto; }
-
-/* Cursor: a precise dot and a lagging ring, fine pointers only. The dot
-   never leaves the true pointer position, so nothing feels laggy; the ring
-   grows over anything you can press. */
-@media (pointer: fine) {
-  html.has-cursor, html.has-cursor a, html.has-cursor button, html.has-cursor [role="button"], html.has-cursor summary, html.has-cursor label { cursor: none; }
-  html.has-cursor input, html.has-cursor textarea { cursor: auto; }
-}
-.cursor-dot, .cursor-ring {
-  position: fixed;
+.arc-item {
+  position: absolute;
   left: 0; top: 0;
-  z-index: 10002;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  white-space: nowrap;
+  color: var(--color-star);
+  offset-path: path('M -240 150 Q 720 -30 1680 150');
+  offset-rotate: 0deg;
+  animation: arc-travel 42s linear infinite;
+  animation-delay: var(--d);
+  will-change: offset-distance, opacity;
+}
+.arc-item svg, .arc-item img { height: 1.35rem; width: auto; }
+.arc-band:hover .arc-item { animation-play-state: paused; }
+@keyframes arc-travel {
+  0%   { offset-distance: 0%; opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+@media (max-width: 767px) {
+  .arc-band { height: 11rem; }
+  .arc-item { offset-path: path('M -640 120 Q 195 -80 1030 120'); }
+  .arc-item:nth-child(even) { offset-path: path('M -640 178 Q 195 -22 1030 178'); }
+}
+
+/* Scroll-drawn horizons: the line between sections draws itself as the
+   section arrives. Static where scroll-driven animations are unsupported. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .horizon::before {
+      animation: horizon-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+    @keyframes horizon-draw { from { transform: translateX(-50%) scaleX(0); opacity: 0; } to { transform: translateX(-50%) scaleX(1); opacity: 1; } }
+  }
+}
+
+/* The rim: the lit edge of a planet at the top of a section. The light
+   travels along it as you scroll (stroke-dashoffset driven by GSAP). */
+.rim { display: block; width: 100%; height: auto; overflow: visible; }
+.rim-arc { fill: none; stroke: url(#rim-light); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.rim-glow { fill: url(#rim-atmo); opacity: 0.5; }
+
+/* The comet: one streak that crosses a section as you scroll. */
+.comet {
+  position: absolute;
   pointer-events: none;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  will-change: transform;
+  height: 2px;
+  width: min(38vw, 30rem);
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgb(99 217 230 / 0.35) 40%, rgb(255 95 162 / 0.55) 70%, #f7f7f4 100%);
+  box-shadow: 0 0 12px rgb(247 247 244 / 0.35);
+  opacity: 0;
 }
-.cursor-dot { width: 6px; height: 6px; background: var(--color-star); mix-blend-mode: difference; }
-.cursor-ring {
-  width: 34px; height: 34px;
-  border: 1px solid rgb(247 247 244 / 0.55);
-  mix-blend-mode: difference;
-  transition: width 260ms var(--ease), height 260ms var(--ease), border-color 260ms var(--ease), opacity 260ms var(--ease);
-}
-html[data-cursor="press"] .cursor-ring { width: 52px; height: 52px; border-color: rgb(99 217 230 / 0.9); }
-html[data-cursor="text"] .cursor-ring { opacity: 0; }
-html[data-cursor="hidden"] .cursor-dot, html[data-cursor="hidden"] .cursor-ring { opacity: 0; }
-@media (pointer: coarse), (prefers-reduced-motion: reduce) { .cursor-dot, .cursor-ring { display: none; } }
 
 /* Reading progress. */
 .scroll-progress {
@@ -596,9 +646,11 @@ html[data-cursor="hidden"] .cursor-dot, html[data-cursor="hidden"] .cursor-ring 
   header { transition: none; }
   .warp { display: none; }
   .band { mask-image: none; -webkit-mask-image: none; }
-  .band { display: block; }
-  .band-track { animation: none; width: auto; flex-wrap: wrap; justify-content: center; gap: 2rem 3rem; padding: 0; }
-  .band-track[aria-hidden] { display: none; }
+  .arc-band { height: auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 3rem; mask-image: none; -webkit-mask-image: none; }
+  .arc-band::before { display: none; }
+  .arc-item { position: static; offset-path: none; animation: none; }
+  .comet { display: none; }
+  .chrome-hover { transition: none; }
   .words .w > span { transform: none; transition: none; }
   .orbit-gate-halo { animation: none; opacity: 0.35; }
   .rule::before { transform: scaleX(1); transition: none; }

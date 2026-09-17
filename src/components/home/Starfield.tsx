@@ -75,6 +75,7 @@ export function Starfield({ density = 0.00013, shooting = true }: { density?: nu
           const nx = -streak.vx, ny = -streak.vy
           const m = Math.hypot(nx, ny) || 1
           const ex = streak.x + (nx / m) * len, ey = streak.y + (ny / m) * len
+          if (!Number.isFinite(streak.x + streak.y + ex + ey)) { streak = null; ctx.globalAlpha = 1; raf = requestAnimationFrame(draw); return }
           const g = ctx.createLinearGradient(streak.x, streak.y, ex, ey)
           g.addColorStop(0, `rgba(247,247,244,${0.95 * fade})`)
           g.addColorStop(0.3, `rgba(99,217,230,${0.5 * fade})`)
