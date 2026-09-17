@@ -12,7 +12,7 @@ type Item = { name: string; mark?: string; img?: string }
 const items: Item[] = [
   { name: 'Anthropic', mark: marks['Anthropic'] },
   { name: 'Harvard Business School', img: '/logos/harvard-business-school.svg' },
-  { name: 'OpenAI' },
+  { name: 'OpenAI', mark: marks['OpenAI'] },
   { name: 'Vercel', mark: marks['Vercel'] },
   { name: 'Next.js', mark: marks['Next.js'] },
   { name: 'Supabase', mark: marks['Supabase'] },
