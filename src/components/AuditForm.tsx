@@ -91,8 +91,7 @@ export function AuditForm() {
   if (status === 'success') {
     return (
       <div className="surface p-8 md:p-10" role="status">
-        <p className="eyebrow text-ash">Received</p>
-        <h3 className="mt-4 text-h3">Thank you. You will hear back within 24 hours.</h3>
+        <h3 className="text-h3">Received. You will hear back within a day.</h3>
         <ol className="mt-6 space-y-2 text-body text-mist">
           <li>1. We read your submission.</li>
           <li>2. You get a discovery call on the calendar.</li>
@@ -102,10 +101,10 @@ export function AuditForm() {
     )
   }
 
-  const label = 'block eyebrow text-ash'
+  const label = 'block text-caption font-medium text-mist'
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8" noValidate>
+    <form onSubmit={handleSubmit} className="surface p-6 md:p-10" noValidate>
       <div className="absolute opacity-0 pointer-events-none" aria-hidden="true">
         <label htmlFor="lead-website">Website</label>
         <input
@@ -119,7 +118,7 @@ export function AuditForm() {
         />
       </div>
 
-      <div className="grid gap-8 md:grid-cols-2">
+      <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
         <div>
           <label htmlFor="lead-name" className={label}>Name</label>
           <input
@@ -130,7 +129,7 @@ export function AuditForm() {
             autoComplete="name"
             value={formData.name}
             onChange={(e) => update('name', e.target.value)}
-            className="input mt-3"
+            className="input mt-2"
             placeholder="Your name"
           />
         </div>
@@ -144,29 +143,28 @@ export function AuditForm() {
             autoComplete="email"
             value={formData.email}
             onChange={(e) => update('email', e.target.value)}
-            className="input mt-3"
+            className="input mt-2"
             placeholder="you@company.com"
+          />
+        </div>
+        <div className="sm:col-span-2 md:col-span-1">
+          <label htmlFor="lead-company" className={label}>Company</label>
+          <input
+            id="lead-company"
+            name="company"
+            type="text"
+            required
+            autoComplete="organization"
+            value={formData.company}
+            onChange={(e) => update('company', e.target.value)}
+            className="input mt-2"
+            placeholder="Company name"
           />
         </div>
       </div>
 
-      <div>
-        <label htmlFor="lead-company" className={label}>Company</label>
-        <input
-          id="lead-company"
-          name="company"
-          type="text"
-          required
-          autoComplete="organization"
-          value={formData.company}
-          onChange={(e) => update('company', e.target.value)}
-          className="input mt-3"
-          placeholder="Company name"
-        />
-      </div>
-
-      <fieldset>
-        <legend className={label}>Company size</legend>
+      <fieldset className="mt-8">
+        <legend className={label}>Team size</legend>
         <div className="mt-3 flex flex-wrap gap-2">
           {sizeOptions.map((size) => {
             const selected = formData.company_size === size
@@ -176,7 +174,7 @@ export function AuditForm() {
                 type="button"
                 aria-pressed={selected}
                 onClick={() => update('company_size', selected ? '' : size)}
-                className="chip"
+                className="chip chip-sm"
               >
                 {size}
               </button>
@@ -185,8 +183,10 @@ export function AuditForm() {
         </div>
       </fieldset>
 
-      <fieldset>
-        <legend className={label}>What are you looking to solve? Pick any.</legend>
+      <fieldset className="mt-8">
+        <legend className={label}>
+          What do you want to solve? <span className="text-ash">Pick any that apply.</span>
+        </legend>
         <div className="mt-3 flex flex-wrap gap-2">
           {challengeOptions.map((challenge) => {
             const selected = formData.challenges.includes(challenge)
@@ -196,7 +196,7 @@ export function AuditForm() {
                 type="button"
                 aria-pressed={selected}
                 onClick={() => toggleChallenge(challenge)}
-                className="chip"
+                className="chip chip-sm"
               >
                 {challenge}
               </button>
@@ -205,30 +205,30 @@ export function AuditForm() {
         </div>
       </fieldset>
 
-      <div>
+      <div className="mt-8">
         <label htmlFor="lead-outcome" className={label}>What outcome are you hoping for?</label>
         <textarea
           id="lead-outcome"
           name="desired_outcome"
           value={formData.desired_outcome}
           onChange={(e) => update('desired_outcome', e.target.value)}
-          rows={4}
-          className="input mt-3 resize-none"
+          rows={3}
+          className="input mt-2 resize-none"
           placeholder="One or two plain sentences is plenty."
         />
       </div>
 
       {status === 'error' && (
-        <p role="alert" className="border-l-2 border-comet pl-4 text-body text-star">
+        <p role="alert" className="mt-6 border-l-2 border-comet pl-4 text-body text-star">
           {errorMessage}
         </p>
       )}
 
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <button type="submit" disabled={status === 'loading'} className="btn btn-star btn-lg">
           {status === 'loading' ? 'Sending' : 'Send it'}
         </button>
-        <p className="text-caption text-mist">You will hear back within 24 hours. No spam, no pitch.</p>
+        <p className="text-caption text-mist">A reply within a day. No newsletter, no pitch.</p>
       </div>
     </form>
   )

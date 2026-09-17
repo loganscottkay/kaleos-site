@@ -42,3 +42,13 @@ Revert: `git checkout <tag>` or `git reset --hard <tag>` on design-overhaul.
 4. The K paths are a trace. Replace with the real vector if one exists, then regenerate icon.png, apple-icon.png, and opengraph-image.png (script in the session scratchpad, `pw/icons.mjs`).
 5. Cogniify has no usable logo; the card shows the name only.
 6. Security headers still absent (next.config.ts is off limits). Send to Logan.
+
+## cp8, September 17, 2026
+
+- Warp rebuilt as a depth field: stars projected from z toward the camera, speed ramps in over 350 ms, holds, then drops out with a short bloom while the overlay fades and the stars settle. Moved out of the hero's stacking context so it covers the header; the header fades in after the drop.
+- Logo band under the hero: one flowing line (simple-icons marks, CC0), pauses on hover, wraps under reduced motion. Caption "Where we learned and what we build with".
+- Contact form on the Assessment page in one card: three fields on a row, sentence-case labels, smaller chips, "Team size", shorter intro.
+- Terms page at `/terms`, linked in the footer. Stats section carries a checked date. `scroll-padding-top` for focus not obscured. Chat mailto subject now KALEOS.
+- LinkedIn and X banners regenerated inside each platform's safe zone, no motto, small mark instead of the large K.
+- Brand deck at `docs/brand/brand-deck.md` (source of truth) and a slide version published privately.
+- Root overflow clipped horizontally (the hidden reveal-right state was widening the page by 8 px on phones).

@@ -42,6 +42,7 @@ export function Footer() {
                 <li><Link href="/audit" className="text-mist hover:text-star">Assessment</Link></li>
                 <li><Link href="/about" className="text-mist hover:text-star">About</Link></li>
                 <li><Link href="/privacy" className="text-mist hover:text-star">Privacy</Link></li>
+                <li><Link href="/terms" className="text-mist hover:text-star">Terms</Link></li>
               </ul>
             </div>
             <div>

@@ -12,6 +12,12 @@ Prepared by Ryan, September 17, 2026. Everything on the redesigned site either c
 6. **Motto.** "AI that answers to you." is in the footer, the metadata, and the LinkedIn banner. Say the word if you want a different one and I will swap all four places.
 7. **Statistics.** Three primary-source figures on the home page (S&P Global, Gartner, KPMG/University of Melbourne) plus one McKinsey line, each linked. I left out the "80% fail" RAND number and the MIT "95%" headline on purpose. One figure Ryan's research memo suggested (larger firms scaling 2x more than smaller ones) came from a secondary source and is not on the site; use it only if you verify it in McKinsey's full report.
 
+11. **The logo band on the home page.** Under the hero, one flowing line reads "Where we learned and what we build with": Anthropic, Harvard Business School, OpenAI, Vercel, Next.js, Supabase, Cloudflare, Airtable, Resend. Anthropic, HBS, OpenAI, Vercel, Next.js, Airtable, and Resend are true of this site or your background. Supabase and Cloudflare are there because Ryan asked for them; confirm you build on them, or say which to drop. Harvard's shield is a trademark; confirm you are comfortable showing it, or we keep the name in type only.
+12. **"Every action is logged."** in the footer is a claim about the systems you ship. Confirm it holds for every engagement, or we change it to "Every action our systems take is logged for you."
+13. **Terms page (`/terms`).** Written plainly for the website only. Have counsel read it and the privacy page together.
+14. **Where you are based.** The research says buyers look for a city or a registered address. Send one and it goes in the footer and the privacy page.
+15. **Your personal LinkedIn.** Send the URL and it goes on the About page and the founder line.
+
 ## Do on your side
 
 8. **Security headers.** The live site sends no CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, or Permissions-Policy. These live in `next.config.ts`, which I did not touch. A `headers()` block with those five is a ten-minute change.

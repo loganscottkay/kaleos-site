@@ -1,12 +1,22 @@
 # LinkedIn and X kit
 
-Generated September 17, 2026 from the supplied K artwork. Everything is black ground, white mark, the new motto.
+Generated September 17, 2026 from the supplied K artwork. Black ground, small mark, wordmark, the positioning line, and the domain. The motto is not on the banners on purpose; it stays on the site.
+
+## Safe zones (why the layout is off-center)
+
+LinkedIn puts the profile image over the bottom-left of every banner and crops the sides on phones, so the banners keep the left ~420 px and the bottom ~80 px empty and hold everything inside the region that stays visible:
+
+- Personal profile, 1584 x 396: safe rectangle roughly x 162 to 1544, y 80 to 316; the photo covers about 300 x 300 px at the bottom-left on desktop and more on mobile. Sources: [HyperClapper](https://www.hyperclapper.com/blog-posts/linkedin-cover-photo-size-guide), [usevisuals](https://usevisuals.com/blog/linkedin-banner-size-safe-zones-guide).
+- Company page, 1128 x 191: the page logo overlaps the bottom-left; content starts at x 330 and stays above y 160.
+- X header, 1500 x 500: the avatar overlaps the bottom-left, so content sits upper-center.
+
+Check on a phone within a few minutes of uploading. If LinkedIn's reposition tool shifts the image, drag it back to the default.
 
 ## Files
 
 - `kaleos-logo-400.png` and `kaleos-logo-1024.png`: the page logo. Black square, white K. Use the 400 for LinkedIn and X profile images.
-- `linkedin-banner-1584x396.png`: LinkedIn company page banner.
-- `linkedin-banner-1128x191.png`: LinkedIn personal profile banner size, if Logan wants his own to match.
+- `linkedin-banner-1584x396.png`: personal profile banner (Logan's own profile).
+- `linkedin-banner-1128x191.png`: company page cover, the size LinkedIn asks for on Pages.
 - `x-banner-1500x500.png`: X header.
 
 Copies of the banners and the 400 logo also replace the old files in `brand-assets/` so the repo's asset inventory stays true.

@@ -7,7 +7,6 @@ import { useGSAP } from '@gsap/react'
 import { KLogo } from '@/components/KLogo'
 import { CALENDLY, CTA } from '@/components/NavBar'
 import { Starfield } from '@/components/home/Starfield'
-import { WarpIntro } from '@/components/home/WarpIntro'
 import { Magnet } from '@/components/Magnet'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
@@ -36,7 +35,6 @@ export function Hero() {
 
   return (
     <section ref={root} className="relative isolate min-h-[100svh] overflow-hidden">
-      <WarpIntro />
       <Starfield />
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-void" />
 

@@ -141,7 +141,7 @@ export default function AuditPage() {
                 Tell us what is eating your week
               </Words>
               <p className="mt-6 max-w-sm text-body text-mist">
-                The call is the fastest route. If you would rather start in writing, this lands in our inbox and you will hear back within a day.
+                Prefer to start in writing? Send this and you will hear back within a day.
               </p>
             </Reveal>
           </div>

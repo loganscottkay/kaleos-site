@@ -224,7 +224,7 @@ export default function TalkToLogan() {
                 {CTA}
               </a>
               <a
-                href="mailto:logan@kaleoshq.com?subject=Kaleos%20HQ"
+                href="mailto:logan@kaleoshq.com?subject=KALEOS"
                 className="btn btn-ghost !min-h-10 text-caption"
               >
                 Email us

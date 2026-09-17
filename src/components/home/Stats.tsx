@@ -50,7 +50,7 @@ export function Stats() {
           </Reveal>
           <Reveal delay={100} className="md:col-span-4 md:col-start-9">
             <p className="text-body-lg text-mist">
-              The technology rarely fails. What fails is the connection between the tool and how the business actually runs. The numbers below come from the research firms buyers already trust, and each links to its source.
+              The technology rarely fails. What fails is the connection between the tool and how the business actually runs. The numbers below come from the research firms buyers already trust, and each links to its source. Figures checked against those sources on September 17, 2026.
             </p>
           </Reveal>
         </div>
