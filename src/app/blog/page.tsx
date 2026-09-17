@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: 'Thinking | Kaleos HQ',
     description: 'Notes on AI implementation that holds up in production.',
     url: 'https://www.kaleoshq.com/blog',
-    images: ['/opengraph-image.png'],
+    images: ['/og-kaleos-hq.png'],
   },
 }
 

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: 'About | Kaleos HQ',
     description: 'Kaleos HQ was founded by Logan Kay, who previously designed and deployed AI systems at Harvard Business School.',
     url: 'https://www.kaleoshq.com/about',
-    images: ['/opengraph-image.png'],
+    images: ['/og-kaleos-hq.png'],
   },
 }
 

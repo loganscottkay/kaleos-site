@@ -23,7 +23,7 @@ The current visual identity is "Machined Graphite": warm bone paper against neut
 | K logo mark | `public/kaleos-logo.png` | 500x500 | Nav bar (`src/components/NavBar.tsx`) and footer (`src/components/Footer.tsx`), rendered at 28x28. |
 | Favicon | `src/app/icon.png` | 64x64 | Browser tab. Next.js picks it up by filename. |
 | iOS icon | `src/app/apple-icon.png` | 180x180 | Home-screen icon on iPhone and iPad. Picked up by filename. |
-| Open Graph image | `public/opengraph-image.png` | 1200x630 | Link previews on X, LinkedIn, Slack, iMessage. Referenced in `src/app/layout.tsx` under `openGraph.images` and `twitter.images`. |
+| Open Graph image | `public/og-kaleos-hq.png` | 1200x630 | Link previews on X, LinkedIn, Slack, iMessage. Referenced in `src/app/layout.tsx` under `openGraph.images` and `twitter.images`. |
 | Headshot | `public/photo.png` | 1024x1024 | About page portrait and the chat widget avatar (`src/components/TalkToLogan.tsx`). |
 | LinkedIn logo | `brand-assets/linkedin-logo.png` | 300x300 | LinkedIn company page only. Not used by the site. |
 | LinkedIn banners | `brand-assets/linkedin-banner-1584x396.png`, `brand-assets/linkedin-banner-1128x191.png` | as named | LinkedIn only. Not used by the site. |
@@ -38,7 +38,7 @@ The transactional emails (lead notifications) are plain text with no logo, so no
 - [ ] Replace `public/kaleos-logo.png` (keep the filename, or update the two `src` references in NavBar and Footer).
 - [ ] Replace `src/app/icon.png` (64x64 PNG).
 - [ ] Replace `src/app/apple-icon.png` (180x180 PNG).
-- [ ] Replace `public/opengraph-image.png` (1200x630 PNG) and check the `alt` text in `src/app/layout.tsx`.
+- [ ] Replace `public/og-kaleos-hq.png` (1200x630 PNG) and check the `alt` text in `src/app/layout.tsx`.
 - [ ] Update the wordmark styling if the type treatment changes (NavBar, Footer, TalkToLogan all use the `font-display` class).
 - [ ] Replace the files in `brand-assets/` so the social profiles match. Logan uploads those by hand.
 - [ ] Clear the preview cache on LinkedIn and X after deploy so the new Open Graph image shows.

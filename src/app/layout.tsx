@@ -29,7 +29,7 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.kaleoshq.com'),
   title: {
-    default: 'Kaleos HQ | Custom AI solutions for the modern business',
+    default: 'Kaleos HQ | AI systems that do the work. You make the calls.',
     template: '%s | Kaleos HQ',
   },
   description: DESCRIPTION,
@@ -38,15 +38,15 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.kaleoshq.com',
     siteName: 'Kaleos HQ',
-    title: 'Kaleos HQ | Custom AI solutions for the modern business',
+    title: 'Kaleos HQ | AI systems that do the work. You make the calls.',
     description: DESCRIPTION,
-    images: [{ url: '/opengraph-image.png', width: 1200, height: 630, alt: 'Kaleos HQ. AI that answers to you.' }],
+    images: [{ url: '/og-kaleos-hq.png', width: 1200, height: 630, alt: 'Kaleos HQ. AI that answers to you.' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kaleos HQ | Custom AI solutions for the modern business',
+    title: 'Kaleos HQ | AI systems that do the work. You make the calls.',
     description: DESCRIPTION,
-    images: ['/opengraph-image.png'],
+    images: ['/og-kaleos-hq.png'],
   },
   alternates: { canonical: 'https://www.kaleoshq.com' },
   verification: { google: 'u9TYfcPGp3i-VQfEiGwIpZQjFveJoI0uijF9d0rev4U' },

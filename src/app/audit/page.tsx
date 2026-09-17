@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: 'Assessment | Kaleos HQ',
     description: 'A two-week operational assessment: every workflow mapped, the opportunities ranked, and a roadmap for the first system.',
     url: 'https://www.kaleoshq.com/audit',
-    images: ['/opengraph-image.png'],
+    images: ['/og-kaleos-hq.png'],
   },
 }
 
