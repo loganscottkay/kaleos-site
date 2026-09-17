@@ -106,6 +106,10 @@ One easing curve does most of the work: `cubic-bezier(0.16, 1, 0.3, 1)` (expo ou
 - **Chat widget.** `TalkToLogan.tsx` renders on every page as a floating button. It is a client component with its own styles; treat it as part of the redesign.
 - **Blog.** Posts are markdown in `content/blog/`. `src/lib/blog.ts` turns them into HTML, and the `.prose` rules at the bottom of `globals.css` style that HTML.
 
+## Proof kit
+
+Three client testimonials and five logos (three clients, plus Harvard Business School and Claude as background and tooling, not clients) live in `docs/proof-kit/`. Its README explains what is confirmed, what is not, and how HBS and Claude may be shown.
+
 ## Baseline
 
 Full-page screenshots of every route at 1440px and 390px are in `docs/baseline-screenshots/`. They are the "before".

@@ -107,6 +107,8 @@ Everything the visitor sees is yours. That includes:
 
 You have full creative license. If a component gets in the way, replace it.
 
+Real client testimonials and logos to design a proof section with are in `docs/proof-kit/` (read its README first; the quotes are not confirmed yet).
+
 A few things worth keeping because they cost real effort to get right:
 
 - The contact form must still POST to `/api/lead` with the same field names (see `AuditForm.tsx`). Restyle it however you like.
