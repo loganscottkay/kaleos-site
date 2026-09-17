@@ -525,6 +525,7 @@ html.warping header { opacity: 0; }
 /* The rim: the lit edge of a planet at the top of a section. The light
    travels along it as you scroll (stroke-dashoffset driven by GSAP). */
 .rim { display: block; width: 100%; height: auto; overflow: visible; }
+@media (min-width: 768px) { .rim { height: 6.5rem; } }
 .rim-arc { fill: none; stroke: url(#rim-light); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
 .rim-glow { fill: url(#rim-atmo); opacity: 0.5; }
 
