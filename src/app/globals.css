@@ -338,18 +338,10 @@ html.warping .etch { animation-play-state: paused; }
   pointer-events: none;
 }
 
-/* Section flow: no hairlines between sections; a soft horizon instead. */
+/* Section flow: no hairlines or horizon lines between sections; spacing
+   and the headings do the separating. */
 .horizon {
   position: relative;
-}
-.horizon::before {
-  content: '';
-  position: absolute;
-  left: 50%; top: 0;
-  width: min(72rem, 90vw);
-  height: 1px;
-  transform: translateX(-50%);
-  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.14) 30%, rgb(99 217 230 / 0.30) 46%, rgb(255 95 162 / 0.26) 52%, rgb(139 124 248 / 0.24) 58%, rgb(255 255 255 / 0.14) 72%, transparent);
 }
 
 /* The mark in the colors of a nebula: the K artwork as a mask over a slow,
