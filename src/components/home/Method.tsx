@@ -21,12 +21,12 @@ const steps = [
 ]
 
 // Orbit geometry (viewBox 0 0 1200 520). Nodes sit on the ellipse.
-const ORBIT = 'M600,60 C900,60 1140,150 1140,260 C1140,370 900,460 600,460 C300,460 60,370 60,260 C60,150 300,60 600,60 Z'
+const ORBIT = 'M600,40 C920,40 1150,120 1150,210 C1150,300 920,380 600,380 C280,380 50,300 50,210 C50,120 280,40 600,40 Z'
 const NODES = [
-  { x: 300, y: 86 },
-  { x: 1090, y: 200 },
-  { x: 600, y: 460 }, // the gate
-  { x: 110, y: 320 },
+  { x: 290, y: 62 },
+  { x: 1108, y: 160 },
+  { x: 600, y: 380 }, // the gate
+  { x: 92, y: 260 },
 ]
 
 export function Method() {
@@ -74,7 +74,7 @@ export function Method() {
   )
 
   return (
-    <section className="border-t border-line-dark" aria-labelledby="method-heading">
+    <section id="method" className="border-t border-line-dark" aria-labelledby="method-heading">
       <div ref={root} className="mx-auto max-w-[88rem] px-5 py-24 md:px-8 md:py-36">
         <Reveal>
           <p className="eyebrow text-mist">How the work goes</p>
@@ -85,8 +85,8 @@ export function Method() {
 
         <div className="relative mt-16 md:mt-24">
           <svg
-            viewBox="0 0 1200 520"
-            className="hidden w-full md:block"
+            viewBox="0 0 1200 440"
+            className="mx-auto hidden w-full max-w-5xl md:block"
             aria-hidden="true"
           >
             <path className="orbit-path" d={ORBIT} />
@@ -105,7 +105,7 @@ export function Method() {
                 )}
                 <text
                   x={p.x + (i === 1 ? -34 : i === 3 ? 34 : 0)}
-                  y={p.y + (i === 0 ? -26 : i === 2 ? 48 : 6)}
+                  y={p.y + (i === 0 ? -24 : i === 2 ? 44 : 5)}
                   textAnchor={i === 1 ? 'end' : i === 3 ? 'start' : 'middle'}
                   fill="var(--color-mist)"
                   fontFamily="var(--font-mono)"

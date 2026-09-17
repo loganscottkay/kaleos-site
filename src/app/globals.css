@@ -183,7 +183,8 @@ html.lenis, html.lenis body { height: auto; }
   transition: border-color var(--dur-fast) var(--ease);
 }
 .input-light::placeholder { color: #9a9aa2; }
-.input-light:focus { border-color: var(--color-ink); outline: none; }
+.input-light:focus { border-color: var(--color-ink); }
+.input-light:focus-visible { outline: 2px solid var(--color-royal); outline-offset: 2px; }
 
 .chip {
   display: inline-flex;
@@ -292,8 +293,8 @@ html.lenis, html.lenis body { height: auto; }
 .orbit-path {
   fill: none;
   stroke: var(--color-star);
-  stroke-opacity: 0.35;
-  stroke-width: 1;
+  stroke-opacity: 0.5;
+  stroke-width: 1.25;
   vector-effect: non-scaling-stroke;
 }
 .orbit-gate {

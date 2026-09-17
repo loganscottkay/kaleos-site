@@ -68,7 +68,7 @@ export function FinalCall() {
   )
 
   return (
-    <section className="border-t border-line-dark" aria-labelledby="close-heading">
+    <section id="call" className="border-t border-line-dark" aria-labelledby="close-heading">
       <div ref={root} className="mx-auto grid max-w-[88rem] items-center gap-12 px-5 py-28 md:grid-cols-12 md:px-8 md:py-44">
         <div className="md:col-span-7">
           <h2 id="close-heading" className="max-w-[10ch] text-display font-light tracking-tightest">

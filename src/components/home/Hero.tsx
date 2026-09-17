@@ -17,7 +17,7 @@ export function Hero() {
       <div className="relative mx-auto flex min-h-[100svh] max-w-[88rem] flex-col justify-end px-5 pb-16 pt-32 md:px-8 md:pb-24">
         <KMark
           assemble
-          className="mb-10 h-[18vh] min-h-[7rem] w-auto text-star md:mb-14 md:h-[24vh]"
+          className="mb-10 h-[18vh] min-h-[7rem] w-auto self-start text-star md:mb-14 md:h-[24vh]"
           title="Kaleos HQ"
         />
 

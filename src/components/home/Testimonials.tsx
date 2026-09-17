@@ -35,7 +35,7 @@ export function Testimonials() {
   if (items.length === 0) return null
 
   return (
-    <section className="border-t border-line-dark" aria-labelledby="testimonials-heading">
+    <section id="clients" className="border-t border-line-dark" aria-labelledby="testimonials-heading">
       <div className="mx-auto max-w-[88rem] px-5 py-24 md:px-8 md:py-36">
         <Reveal>
           <p className="eyebrow text-mist">What clients say</p>
@@ -57,7 +57,7 @@ export function Testimonials() {
                     {t.quote}
                   </blockquote>
                   <figcaption className="mt-10">
-                    <div className="flex items-end justify-between gap-6">
+                    <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
                       <div>
                         <div className="text-body text-star">{who}</div>
                         <div className="mt-1 text-caption text-mist">
@@ -69,7 +69,7 @@ export function Testimonials() {
                                 href={t.project_url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="underline decoration-line-dark underline-offset-4 hover:text-star"
+                                className="break-all underline decoration-line-dark underline-offset-4 hover:text-star"
                               >
                                 {t.project_url.replace(/^https?:\/\//, '')}
                               </a>
@@ -83,7 +83,7 @@ export function Testimonials() {
                           alt={`${t.company} logo`}
                           width={96}
                           height={40}
-                          className="h-7 w-auto max-w-[6rem] object-contain opacity-80"
+                          className="h-7 w-auto max-w-[6rem] object-contain opacity-80 grayscale"
                         />
                       )}
                     </div>

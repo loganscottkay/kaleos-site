@@ -3,7 +3,7 @@ import { Reveal } from '@/components/Reveal'
 /* Honest and fast. Who this is for, and who it is not for. */
 export function WhoFor() {
   return (
-    <section className="border-t border-line-dark" aria-labelledby="who-heading">
+    <section id="who" className="border-t border-line-dark" aria-labelledby="who-heading">
       <div className="mx-auto grid max-w-[88rem] gap-12 px-5 py-24 md:grid-cols-12 md:px-8 md:py-36">
         <div className="md:col-span-5">
           <Reveal>

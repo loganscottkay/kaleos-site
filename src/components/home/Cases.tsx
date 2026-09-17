@@ -83,8 +83,8 @@ function Timeline() {
   return (
     <div className="surface-dark p-6 md:p-8" aria-hidden="true">
       <div className="flex items-center justify-between font-mono text-[0.7rem] uppercase tracking-[0.18em] text-mist">
-        <span>Project journey</span>
-        <span>Phase 3 of 5</span>
+        <span>Project status</span>
+        <span>Framing · 3 of 5</span>
       </div>
       <ol className="mt-8 flex items-center justify-between">
         {steps.map((s, i) => (
@@ -95,7 +95,7 @@ function Timeline() {
                   i < 2 ? 'bg-star' : i === 2 ? 'bg-royal-bright ring-4 ring-royal-bright/20' : 'border border-line-dark'
                 }`}
               />
-              <span className={`text-[0.7rem] ${i <= 2 ? 'text-star' : 'text-mist'}`}>{s}</span>
+              <span className={`hidden text-[0.7rem] sm:block ${i <= 2 ? 'text-star' : 'text-mist'}`}>{s}</span>
             </div>
             {i < steps.length - 1 && <span className={`mx-2 mb-6 h-px flex-1 ${i < 2 ? 'bg-star' : 'bg-line-dark'}`} />}
           </li>
@@ -138,7 +138,7 @@ function Outreach() {
           </span>
         </div>
       </div>
-      <div className="mt-6 flex gap-3">
+      <div className="mt-6 flex flex-wrap gap-3">
         <span className="btn btn-star !min-h-10 text-caption">Approve and send</span>
         <span className="btn btn-ghost-dark !min-h-10 text-caption">Edit</span>
       </div>
@@ -166,8 +166,9 @@ export function Cases() {
         return (
           <article
             key={c.n}
+            id={`case-${c.n}`}
             className="mx-auto grid max-w-[88rem] gap-12 px-5 py-24 md:grid-cols-12 md:gap-8 md:px-8 md:py-40"
-            aria-labelledby={`case-${c.n}`}
+            aria-labelledby={`case-${c.n}-title`}
           >
             <div className="md:col-span-6">
               <Reveal>
@@ -175,7 +176,7 @@ export function Cases() {
                   <span>{c.n}</span>
                   <span>{c.client}</span>
                 </div>
-                <h3 id={`case-${c.n}`} className="mt-6 max-w-[16ch] text-h1 font-light tracking-tightest">
+                <h3 id={`case-${c.n}-title`} className="mt-6 max-w-[16ch] text-h1 font-light tracking-tightest">
                   {c.title}
                 </h3>
               </Reveal>

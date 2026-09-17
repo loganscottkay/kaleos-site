@@ -11,7 +11,7 @@ export function Credentials() {
     { k: 'Next', v: 'Incoming, Anthropic' },
   ]
   return (
-    <section className="border-t border-line-dark" aria-label="Credentials">
+    <section id="credentials" className="border-t border-line-dark" aria-label="Credentials">
       <div className="mx-auto grid max-w-[88rem] gap-px bg-line-dark px-0 md:grid-cols-4">
         {items.map((it, i) => (
           <Reveal key={it.k} delay={i * 80} className="bg-void">
